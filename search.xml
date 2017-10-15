@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Python第十二天]]></title>
+    <url>%2F2017%2F10%2F12%2FPython%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[生成列表 要生成list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]，我们可以用range(1, 11)。 &gt;&gt;&gt; range(1, 11) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 列表生成式则可以用一行语句代替循环生成上面的list。 &gt;&gt;&gt; [x * x for x in range(1, 11)] [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] 写列表生成式时，把要生成的元素 x * x 放到前面，后面跟 for 循环，就可以把list创建出来。 print [x*(x+1) for x in range(1,100,2)] 复杂表达式 使用for循环的迭代不仅可以迭代普通的list，还可以迭代dict。 tds = ['&lt;tr&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;/tr&gt;' % (name, score) for name, score in d.iteritems()] print '&lt;table&gt;' print '&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;&lt;tr&gt;' print '\n'.join(tds) print '&lt;/table&gt;' 字符串可以通过 % 进行格式化，用指定的参数替代 %s。字符串的join()方法可以把一个 list 拼接成一个字符串。 d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 } def generate_tr(name, score): return '&lt;tr&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td style=&quot;color:red&quot;&gt;&gt;%s&lt;/td&gt;&lt;/tr&gt;' % (name, score) tds = [generate_tr(name, score) for name, score in d.iteritems()] print '&lt;table border=&quot;1&quot;&gt;' print '&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;&lt;tr&gt;' print '\n'.join(tds) print '&lt;/table&gt;' 条件过滤 列表生成式的 for 循环后面还可以加上 if 判断。 &gt;&gt;&gt; [x * x for x in range(1, 11) if x % 2 == 0] [4, 16, 36, 64, 100] isinstance(x, str) 可以判断变量 x 是否是字符串； 字符串的 upper() 方法可以返回大写的字母。 def toUppers(L): return [s.upper() for s in L if isinstance(s,str)] print toUppers(['Hello', 'world', 101]) 多层表达式 for循环可以嵌套，因此，在列表生成式中，也可以用多层 for 循环来生成列表。 &gt;&gt;&gt; [m + n for m in 'ABC' for n in '123'] ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第十一天]]></title>
+    <url>%2F2017%2F10%2F11%2FPython%E7%AC%AC%E5%8D%81%E4%B8%80%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[什么是迭代 在Python中，如果给定一个list或tuple，我们可以通过for循环来遍历这个list或tuple，这种遍历我们成为迭代（Iteration）。 在Python中，迭代是通过 for ... in 来完成的。 Python 的 for循环不仅可以用在list或tuple上，还可以作用在其他任何可迭代对象上。 迭代操作就是对于一个集合，无论该集合是有序还是无序，我们用 for 循环总是可以依次取出集合的每一个元素。 有序集合：list，tuple，str和unicode； 无序集合：set 无序集合并且具有 key-value 对：dict 迭代是一个动词，它指的是一种操作，在Python中，就是 for 循环。 迭代与按下标访问数组最大的不同是，后者是一种具体的迭代实现方式，而前者只关心迭代结果，根本不关心迭代内部是如何实现的。 for i in range(1,100)[6:100:7]: print i 索引迭代 Python中，迭代永远是取出元素本身，而非元素的索引。 对于有序集合，元素确实是有索引的。有的时候，我们确实想在 for 循环中拿到索引，可以使用enumerate()函数。 &gt;&gt;&gt; L = ['Adam', 'Lisa', 'Bart', 'Paul'] &gt;&gt;&gt; for index, name in enumerate(L): ... print index, '-', name ... 0 - Adam 1 - Lisa 2 - Bart 3 - Paul 使用 enumerate() 函数，我们可以在for循环中同时绑定索引index和元素name。 zip()函数可以把两个 list 变成一个 list。 L = ['Adam', 'Lisa', 'Bart', 'Paul'] for index, name in zip(range(1,5) , L): print index, '-', name 迭代dict的value dict 对象有一个 values() 方法，这个方法把dict转换成一个包含所有value的list，这样，我们迭代的就是 dict的每一个 value。 d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 } print d.values() # [85, 95, 59] for v in d.values(): print v # 85 # 95 # 59 dict除了values()方法外，还有一个 itervalues() 方法，用 itervalues() 方法替代 values() 方法，迭代效果完全一样。 d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 } print d.itervalues() # &lt;dictionary-valueiterator object at 0x106adbb50&gt; for v in d.itervalues(): print v # 85 # 95 # 59 values() 方法实际上把一个 dict 转换成了包含 value 的list。 但是 itervalues() 方法不会转换，它会在迭代过程中依次从 dict 中取出 value，所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。 打印 itervalues() 发现它返回一个 &lt;dictionary-valueiterator&gt; 对象，这说明在Python中，for 循环可作用的迭代对象远不止 list，tuple，str，unicode，dict等，任何可迭代对象都可以作用于for循环，而内部如何迭代我们通常并不用关心。 d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59, 'Paul': 74 } sum = 0.0 for v in d.values(): sum += v print sum/len(d) 迭代dict的key和value items() 方法把dict对象转换成了包含tuple的list，我们对这个list进行迭代，可以同时获得key和value。 &gt;&gt;&gt; for key, value in d.items(): ... print key, ':', value ... Lisa : 85 Adam : 95 Bart : 59 和 values() 有一个 itervalues() 类似， items() 也有一个对应的 iteritems()，iteritems() 不把dict转换成list，而是在迭代过程中不断给出 tuple，所以， iteritems() 不占用额外的内存。 d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59, 'Paul': 74 } sum = 0.0 for k, v in d.items(): sum = sum + v print k+':'+str(v) print 'average', ':',sum/len(d)]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第十天]]></title>
+    <url>%2F2017%2F10%2F10%2FPython%E7%AC%AC%E5%8D%81%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[对list进行切片 对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符，能大大简化这种操作。 取前3个元素，用一行代码就可以完成切片。 &gt;&gt;&gt; L[0:3] ['Adam', 'Lisa', 'Bart'] L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。 如果第一个索引是0，还可以省略。 &gt;&gt;&gt; L[:3] ['Adam', 'Lisa', 'Bart'] 只用一个 : ，表示从头到尾。 &gt;&gt;&gt; L[:] ['Adam', 'Lisa', 'Bart', 'Paul'] 因此，L[:]实际上复制出了一个新list。 切片操作还可以指定第三个参数。第三个参数表示每N个取一个，上面的 L[::2] 会每两个元素取出一个来，也就是隔一个取一个。 &gt;&gt;&gt; L[::2] ['Adam', 'Bart'] 把list换成tuple，切片操作完全相同，只是切片的结果也变成了tuple。 L = range(1, 101) print L[0:10] print L[2:99:3] print L[4:50:5] 倒序切片 &gt;&gt;&gt; L = ['Adam', 'Lisa', 'Bart', 'Paul'] &gt;&gt;&gt; L[-2:] ['Bart', 'Paul'] &gt;&gt;&gt; L[:-2] ['Adam', 'Lisa'] &gt;&gt;&gt; L[-3:-1] ['Lisa', 'Bart'] &gt;&gt;&gt; L[-4:-1:2] ['Adam', 'Bart'] 对于list，既然Python支持L[-1]取倒数第一个元素，那么它同样支持倒数切片。 记住倒数第一个元素的索引是-1。倒序切片包含起始索引，不包含结束索引。 L = range(1, 101) print L[-10:] print L[-46::5] 对字符串切片 &gt;&gt;&gt; 'ABCDEFG'[:3] 'ABC' &gt;&gt;&gt; 'ABCDEFG'[-3:] 'EFG' &gt;&gt;&gt; 'ABCDEFG'[::2] 'ACEG' 字符串 'xxx'和 Unicode字符串 u'xxx'也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串。 def firstCharUpper(s): return s[0].upper()+s[1:] print firstCharUpper('hello') print firstCharUpper('sunday') print firstCharUpper('september')]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第九天]]></title>
+    <url>%2F2017%2F10%2F09%2FPython%E7%AC%AC%E4%B9%9D%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[函数 函数调用 s = area_of_circle(x)，而函数 area_of_circle 本身只需要写一次，就可以多次调用。 函数就是最基本的一种代码抽象的方式。 调用函数 要调用一个函数，需要知道函数的名称和参数。 定义函数 def square_of_sum(L): sum = 0 for i in L: sum += i*i return sum print square_of_sum([1, 2, 3, 4, 5]) print square_of_sum([-5, 0, 5, 15, 25]) 在Python中，定义一个函数要使用 def 语句，依次写出函数名、括号、括号中的参数和冒号:，然后，在缩进块中编写函数体，函数的返回值用 return 语句返回。 def my_abs(x): if x &gt;= 0: return x else: return -x 函数体内部的语句在执行时，一旦执行到return时，函数就执行完毕，并将结果返回。因此，函数内部通过条件判断和循环可以实现非常复杂的逻辑。 如果没有return语句，函数执行完毕后也会返回结果，只是结果为 None。 return None可以简写为return。 返回多值 import math def move(x, y, step, angle): nx = x + step * math.cos(angle) ny = y - step * math.sin(angle) return nx, ny &gt;&gt;&gt; x, y = move(100, 100, 60, math.pi / 6) &gt;&gt;&gt; print x, y 151.961524227 70.0 &gt;&gt;&gt; r = move(100, 100, 60, math.pi / 6) &gt;&gt;&gt; print r (151.96152422706632, 70.0) 在语法上，返回一个tuple可以省略括号，而多个变量可以同时接收一个tuple，按位置赋给对应的值，所以，Python的函数返回多值其实就是返回一个tuple，但写起来更方便。 import math def quadratic_equation(a, b, c): x1 = (-b + math.sqrt(b*b - 4*a*c))/(2*a) x2 = (-b - math.sqrt(b*b - 4*a*c))/(2*a) return x1 , x2 print quadratic_equation(2, 3, 0) print quadratic_equation(1, -6, 5) 递归函数 def fact(n): if n==1: return 1 return n * fact(n - 1) 在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。 递归函数的优点是定义简单，逻辑清晰。理论上，所有的递归函数都可以写成循环的方式，但循环的逻辑不如递归清晰。 使用递归函数需要注意防止栈溢出。 汉若塔实例 def move(n, a, b, c): if n == 1: print a+' --&gt; '+c else: move(n-1, a, c, b) print a+' --&gt; '+c move(n-1, b, a, c) move(4, 'A', 'B', 'C') 我们对柱子编号为a, b, c，将所有圆盘从a移到c可以描述为： 如果a只有一个圆盘，可以直接移动到c； 如果a有N个圆盘，可以看成a有1个圆盘（底盘） + (N-1)个圆盘，首先需要把 (N-1) 个圆盘移动到 b，然后，将 a的最后一个圆盘移动到c，再将b的(N-1)个圆盘移动到c。 请编写一个函数，给定输入 n, a, b, c，打印出移动的步骤： move(n, a, b, c) 定义默认参数 def power(x, n=2): s = 1 while n &gt; 0: n = n - 1 s = s * x return s 例如Python自带的 int() 函数，其实就有两个参数，我们既可以传一个参数，又可以传两个参数。int()函数的第二个参数是转换进制，如果不传，默认是十进制 (base=10)，如果传了，就用传入的参数。 由于函数的参数按从左到右的顺序匹配，所以默认参数只能定义在必需参数的后面。 def greet(word = 'world'): print 'hello,'+word greet() greet('Bart') 定义可变参数 如果想让一个函数能接受任意个参数，我们就可以定义一个可变参数 def fn(*args): print args 可变参数的名字前面有个 * 号，我们可以传入0个、1个或多个参数给可变参数。 可变参数也不是很神秘，Python解释器会把传入的一组参数组装成一个tuple传递给可变参数，因此，在函数内部，直接把变量 args 看成一个 tuple 就好了。 def average(*args): if len(args) == 0: return 0.0 sum = 0.0 for i in args: sum += i return sum/len(args) print average() print average(1, 2) print average(1, 2, 2, 3, 4)]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第八天]]></title>
+    <url>%2F2017%2F10%2F08%2FPython%E7%AC%AC%E5%85%AB%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[set set 持有一系列元素，这一点和 list 很像，但是set的元素没有重复，而且是无序的，这点和 dict 的 key很像。 创建 set 的方式是调用 set() 并传入一个 list，list的元素将作为set的元素。 s = set(['A', 'B', 'C']) set会自动去掉重复的元素。 访问set 用 in 操作符判断。 'Bart' in s 大小写很重要，'Bart' 和 'bart'被认为是两个不同的元素。 set特点 set的内部结构和dict很像，唯一区别是不存储value，因此，判断一个元素是否在set中速度很快。 set存储的元素和dict的key类似，必须是不变对象，因此，任何可变对象是不能放入set中的。 set存储的元素也是没有顺序的。 遍历set s = set(['Adam', 'Lisa', 'Bart']) for name in s: print name 更新set 添加元素时，用set的add()方法。 s.add(4) 删除set中的元素时，用set的remove()方法。 s.remove(4) 如果删除的元素不存在set中，remove()会报错，所以用add()可以直接添加，而remove()前需要判断。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第七天]]></title>
+    <url>%2F2017%2F10%2F07%2FPython%E7%AC%AC%E4%B8%83%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[dict d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 } Python的dict有一个key对应一个value。dict通过key来查找value。 花括号 {} 表示这是一个dict，然后按照 key: value, 写出来即可。最后一个 key: value 的逗号可以省略。 由于dict也是集合，len() 函数可以计算任意集合的大小。 len(d) 一个 key-value 算一个，因此，dict大小为3。 访问dict 可以简单地使用 d[key] 的形式来查找对应的 value，这和 list 很像，不同之处是，list 必须使用索引返回对应的元素，而dict使用key。 通过 key 访问 dict 的value，只要 key 存在，dict就返回对应的value。如果key不存在，会直接报错：KeyError。 dict本身提供的一个 get 方法，在Key不存在的时候，返回None。 d.get('Bart') dict特点 dict的第一个特点是查找速度快，无论dict有10个元素还是10万个元素，查找速度都一样。而list的查找速度随着元素增加而逐渐下降。 不过dict的查找速度快不是没有代价的，dict的缺点是占用内存大，还会浪费很多内容，list正好相反，占用内存小，但是查找速度慢。 由于dict是按 key 查找，所以，在一个dict中，key不能重复。 dict的第二个特点就是存储的key-value序对是没有顺序的！这和list不一样。 dict内部是无序的，不能用dict存储有序的集合。 dict的第三个特点是作为 key 的元素必须不可变，Python的基本类型如字符串、整数、浮点数都是不可变的，都可以作为 key。但是list是可变的，就不能作为 key。 更新dict d['Paul'] = 72 如果 key 已经存在，则赋值会用新的 value 替换掉原来的 value。 遍历dict for key in d: print key 通过 key 可以获取对应的 value，因此，在循环体内，可以获取到value的值。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第六天]]></title>
+    <url>%2F2017%2F10%2F06%2FPython%E7%AC%AC%E5%85%AD%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[for循环 L = ['Adam', 'Lisa', 'Bart'] for name in L: print name Python的 for 循环就可以依次把list或tuple的每个元素迭代出来。 name 这个变量是在 for 循环中定义的，意思是，依次取出list中的每一个元素，并把元素赋值给 name，然后执行for循环体（就是缩进的代码块）。 while循环 N = 10 x = 0 while x &lt; N: print x x = x + 1 while 循环不会迭代 list 或 tuple 的元素，而是根据表达式判断循环是否结束。 break sum = 0 x = 1 n = 1 while True: sum += x x *= 2 n += 1 if n &gt; 20 break print sum 用 for 循环或者 while 循环时，如果要在循环体内直接退出循环，可以使用 break 语句。 continue continue跳过后续循环代码，继续下一次循环。 多重循环 for x in ['1','2','3','4','5','6','7','8','9']: for y in ['0','2','3','4','5','6','7','8','9']: if x &lt; y: print x + y]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第五天]]></title>
+    <url>%2F2017%2F10%2F05%2FPython%E7%AC%AC%E4%BA%94%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[if语句 age = 20 if age &gt;= 18: print 'your age is', age print 'adult' print 'END' Python代码的缩进规则。具有相同缩进的代码被视为代码块。 缩进要严格按照Python的习惯写法：4个空格，不要使用Tab，更不要混合Tab和空格，否则很容易造成因为缩进引起的语法错误。 if 语句后接表达式，然后用:表示代码块开始。 在Python交互环境下敲代码，还要特别留意缩进，并且退出缩进需要多敲一行回车。 if-else if age &gt;= 18: print 'adult' else: print 'teenager' 利用 if ... else ... 语句，我们可以根据条件表达式的值为 True 或者 False ，分别执行 if 代码块或者 else 代码块。 else 后面有个“:”。 if-elif-else if age &gt;= 18: print 'adult' elif age &gt;= 6: print 'teenager' elif age &gt;= 3: print 'kid' else: print 'baby' 要避免嵌套结构的 if ... else ...，我们可以用 if ... 多个elif ... else ... 的结构，一次写完所有的规则。 elif 意思就是 else if。 这一系列条件判断会从上到下依次判断，如果某个判断为 True，执行完对应的代码块，后面的条件判断就直接忽略，不再执行了。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第四天]]></title>
+    <url>%2F2017%2F10%2F04%2FPython%E7%AC%AC%E5%9B%9B%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[tuple是另一种有序的列表，中文翻译为“ 元组 ”。tuple 和 list 非常类似，但是，tuple一旦创建完毕，就不能修改了 t = ('Adam', 'Lisa', 'Bart') 创建tuple和创建list唯一不同之处是用( )替代了[ ]。 t就不能改变了，tuple没有 append()方法，也没有insert()和pop()方法 获取 tuple 元素的方式和 list 是一模一样的，我们可以正常使用 t[0]，t[-1]等索引方式访问元素，但是不能赋值成别的元素 创建单元素tuple 空tuple t = () 包含一个元素的tuple t = (1,) ()既可以表示tuple，又可以作为括号表示运算时的优先级，结果 (1) 被Python解释器计算出结果 1，导致我们得到的不是tuple，而是整数 1。正是因为用()定义单元素的tuple有歧义，所以 Python 规定，单元素 tuple 要多加一个逗号“,”，这样就避免了歧义。 '可变'的tuple t = ('a', 'b', ['A', 'B']) L = t[2] L[0] = 'X' L[1] = 'Y' print t ('a', 'b', ['X', 'Y']) 表面上看，tuple的元素确实变了，但其实变的不是 tuple 的元素，而是list的元素。 tuple一开始指向的list并没有改成别的list，所以，tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。即指向'a'，就不能改成指向'b'，指向一个list，就不能改成指向其他对象，但指向的这个list本身是可变的！]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第三天]]></title>
+    <url>%2F2017%2F10%2F03%2FPython%E7%AC%AC%E4%B8%89%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[Python内置的一种数据类型是列表：list。list是有种有序的集合，可以随时添加和删除其中的元素。 list中的元素是按照顺序排列的。 直接用[]把list的所有元素括起来，就是一个list对象。 Python是动态语言，所以list中包含的元素并不要求必须都是同一种数据类型。 L = ['Michael', 100, True] 一个元素也没有的list,是空list empty_list = [] 通过索引获取list中的指定元素 索引从0开始，第一个元素的索引是0，第二个元素的索引是1，和C语言数组相似。 使用索引，注意别越界。IndexError意思就是索引超出了范围。 倒序访问list Python使用-1这个索引来表示最后一个元素。 类似的倒数第二用-2表示，倒数第三用-3表示。 使用倒序索引时，也要注意不要越界。 添加新元素 list的append方法，把新元素追加到list的末尾。 list的insert方法，接受两个参数，第一个参数是索引号，第二个参数是待添加的新元素。L.insert(0,'Paul')意思是，将'Paul'添加到索引为0的位置上，原来的索引自动后移一位。 从list中删除元素 list的pop方法总是删掉list的最后一个元素，并且它还返回这个元素。 也可在pop中添加索引，来删除索引位置元素。L.pop(2),删除索引为2的元素。 替换元素 对list中的某个索引赋值，就可以直接用新的元素替换掉原来的元素，list包含的元素个数保持不变。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第一天]]></title>
+    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%B8%80%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[Python可以处理任意大小的整数 整数运算永远是精确的，包括除法。浮点运算可能会有四舍五入的误差 在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来。 空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。 print语句也可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出。 print会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符串是这样拼起来的。 Python的注释以 # 开头，后面的文字直到行尾都算注释 在Python程序中，变量是用一个变量名表示，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头。 在Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量。 这种变量本身类型不固定的语言称之为动态语言，与之对应的是静态语言。 如果字符串本身包含'这时，可以用&quot; &quot;括起来表示。 类似的，如果字符串包含&quot;，我们就可以用' '括起来表示。 如果字符串既包含'又包含&quot;，就需要对字符串的某些特殊字符进行“转义”，Python字符串用\进行转义。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python第二天]]></title>
+    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%BA%8C%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[raw字符串与多行字符串 如果一个字符串包含很多需要转义字符，对每一个字符串都进行转义会很麻烦。在字符串前面加个前缀r，这是表示这是一个raw字符串，里面的字符串不需要转义了。 print r'\\(~\_~)/ \\(~_~)/' 但是r'...'表示法不能表示多行字符串，也不能表示包含'和&quot;的字符串，如果要表示多行字符串，可以用'''...'''表示。 print r'''&quot;To be, or not to be&quot;: that is the question. Whether it's nobler in the mind to suffer.''' Unicode字符串 ASCII编码 GB2312编码 Unicode编码，两个字节表示一个字符，原有的英文编码从单字节变成双字节，只需要把高字节全部填为0就可以。 Python以Unicode表示的字符串用u'...'表示 Unicode字符串除了多一个u之外，与普通的字符串没啥区别，转义字符和多行表示法仍然有效。 如果中文字符串在Python环境遇到UnicodeDecodeError，这是因为.py文件保存格式的问题。可以在第一行添加注释# -*- coding: utf-8 -*- # 整数和浮点数 Pyhton的整数运算结果仍然是整数，浮点数运算结果仍然是浮点数。 整数和浮点数混合运算结果就变成了浮点数 Python的整数除法，即使除不尽，结果仍然是整数，余数直接扔掉 布尔类型 与运算 True and True # ==&gt; True True and False # ==&gt; False False and True # ==&gt; False False and False # ==&gt; False 或运算 True or True # ==&gt; True True or False # ==&gt; True False or True # ==&gt; True False or False # ==&gt; False 非运算 not True # ==&gt; False not False # ==&gt; True Python把0、空字符串''、None看出Flase，其他数值和非空字符串都看成True 短路计算 在计算 a and b 时，如果 a 是 False，则根据与运算法则，整个结果必定为 False，因此返回 a；如果 a 是 True，则整个计算结果必定取决与 b，因此返回 b。 在计算 a or b 时，如果 a 是 True，则根据或运算法则，整个计算结果必定为 True，因此返回 a；如果 a 是 False，则整个计算结果必定取决于 b，因此返回 b。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[脚本语言第一行]]></title>
+    <url>%2F2017%2F10%2F01%2F%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80%E7%AC%AC%E4%B8%80%E8%A1%8C%2F</url>
+    <content type="text"><![CDATA[脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它，就这么简单 1234567#!/usr/bin/python 是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；#!/usr/bin/env python 这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。#!/usr/bin/python 相当于写死了python路径;#!/usr/bin/env python会去环境设置寻找python目录,推荐这种写法]]></content>
+      <categories>
+        <category>脚本</category>
+      </categories>
+      <tags>
+        <tag>脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[docker运行haproxy]]></title>
+    <url>%2F2017%2F04%2F26%2Fdocker%E8%BF%90%E8%A1%8Chaproxy%2F</url>
+    <content type="text"><![CDATA[准备 1234# 新建/home/docker/haproxy目录放置配置文件mkdir /home/docker/haproxy# 新建haproxy.cfgvim haproxy.cfg 12345678910111213141516171819# haproxy.cfg简单配置global daemon maxconn 256 tune.bufsize 16384defaults mode http timeout connect 5000ms timeout client 50000ms timeout server 50000msfrontend http-in bind *:80 default_backend serversbackend servers server server1 127.0.0.1:8080 maxconn 32 docker命令 1docker run -d -p 80:80 --name my_haproxy -v /home/docker/haproxy:/usr/local/etc/haproxy:ro haproxy:1.7]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Yahoo军规]]></title>
+    <url>%2F2017%2F04%2F26%2FYahoo%E5%86%9B%E8%A7%84%2F</url>
+    <content type="text"><![CDATA[尽量减少HTTP请求个数——须权衡 合并图片（如css sprites，内置图片使用数据）、合并CSS、JS，这一点很重要，但是要考虑合并后的文件体积。 使用CDN（内容分发网络） 这里可以关注CDN的三类实现：镜像、高速缓存、专线，以及智能路由器和负载均衡； 为文件头指定Expires或Cache-Control，使内容具有缓存性。 区分静态内容和动态内容，避免以后页面访问中不必要的HTTP请求。 避免空的src和href 留意具有这两个属性的标签如link，script，img，iframe等； 使用gzip压缩内容 Gzip压缩所有可能的文件类型以来减少文件体积 把CSS放到顶部 实现页面有秩序地加载，这对于拥有较多内容的页面和网速较慢的用户来说更为重要，同时，HTML规范清楚指出样式表要放包含在页面的&lt;head /&gt;区域内； 把JS放到底部 HTTP/1.1 规范建议，浏览器每个主机名的并行下载内容不超过两个，而问题在于脚本阻止了页面的平行下载，即便是主机名不相同 避免使用CSS表达式 页面显示和缩放，滚动、乃至移动鼠标时，CSS表达式的计算频率是我们要关注的。可以考虑一次性的表达式或者使用事件句柄来代替CSS表达式。 将CSS和JS放到外部文件中 我们需要权衡内置代码带来的HTTP请求减少与通过使用外部文件进行缓存带来的好处的折中点。 减少DNS查找次数 我们需要权衡减少 DNS查找次数和保持较高程度并行下载两者之间的关系。 精简CSS和JS 目的就是减少下载的文件体积，可考虑压缩工具JSMin和YUI Compressor。 避免跳转 为了确保“后退”按钮可以正确地使用，使用标准的 3XXHTTP状态代码；同域中注意避免反斜杠 “/” 的跳转； 跨域使用 Alias或者 mod_rewirte建立 CNAME（保存一个域名和另外一个域名之间关系的DNS记录） 剔除重复的JS和CSS 重复调用脚本，除了增加额外的HTTP请求外，多次运算也会浪费时间。在IE和Firefox中不管脚本是否可缓存，它们都存在重复运算JavaScript的问题。 配置ETags Entity tags（ETags）（实体标签）是web服务器和浏览器用于判断浏览器缓存中的内容和服务器中的原始内容是否匹配的一种机制（“实体”就是所说的“内 容”，包括图片、脚本、样式表等），是比last-modified date更更加灵活的机制，单位时间内文件被修过多次，Etag可以综合Inode(文件的索引节点(inode)数)，MTime(修改时间)和Size来精准的进行判断，避开UNIX记录MTime只能精确到秒的问题。 服务器集群使用，可取后两个参数。使用ETags减少Web应用带宽和负载。 使AJAX可缓存 利用时间戳，更精巧的实现响应可缓存与服务器数据同步更新。 尽早刷新输出缓冲 尤其对于css，js文件的并行下载更有意义 使用GET来完成AJAX请求 当使用XMLHttpRequest时，浏览器中的POST方法是一个“两步走”的过程：首先发送文件头，然后才发送数据。在url小于2K时使用GET获取数据时更加有意义。 延迟加载 确定页面运行正常后，再加载脚本来实现如拖放和动画，或者是隐藏部分的内容以及折叠内容等。 预加载 关注下无条件加载，有条件加载和有预期的加载。 减少DOM元素个数 使用更适合或者在语意是更贴切的标签，要考虑大量DOM元素中循环的性能开销。 根据域名划分页面内容 很显然， 是最大限度地实现平行下载 尽量减少iframe的个数 考虑即使内容为空，加载也需要时间，会阻止页面加载，没有语意，注意iframe相对于其他DOM元素高出1-2个数量级的开销，它会在典型方式下阻塞onload事件，IE和Firefox中主页面样式表会阻塞它的下载。 避免404 HTTP请求时间消耗是很大的，有些站点把404错误响应页面改为“你是不是要找***”，这虽然改进了用户体验但是同样也会浪费服务器资源（如数据库等）。最糟糕的情况是指向外部 JavaScript的链接出现问题并返回404代码。首先，这种加载会破坏并行加载；其次浏览器会把试图在返回的404响应内容中找到可能有用的部分当作JavaScript代码来执行。 减少Cookie的大小 去除不必要的coockie 使coockie体积尽量小以减少对用户响应的影响 注意在适应级别的域名上设置coockie以便使子域名不受影响 设置合理的过期时间。较早地Expire时间和不要过早去清除coockie，都会改善用户的响应时间。 使用无cookie的域 确定对于静态内容的请求是无coockie的请求。创建一个子域名并用他来存放所有静态内容。 减少DOM访问 缓存已经访问过的有关元素 线下更新完节点之后再将它们添加到文档树中 避免使用JavaScript来修改页面布局 开发智能事件处理程序 有时候我们会感觉到页面反应迟钝，这是因为DOM树元素中附加了过多的事件句柄并且些事件句病被频繁地触发。这就是为什么说使用event delegation（事件代理）是一种好方法了。如果你在一个div中有10个按钮，你只需要在div上附加一次事件句柄就可以了，而不用去为每一个按 钮增加一个句柄。事件冒泡时你可以捕捉到事件并判断出是哪个事件发出的。 你同样也不用为了操作DOM树而等待onload事件的发生。你需要做的就是等待树结构中你要访问的元素出现。你也不用等待所有图像都加载完毕。 你可能会希望用DOMContentLoaded事件来代替 事件应用程序中的onAvailable方法。 用&lt;link&gt;代替@import 在IE中，页面底部@import和使用&lt;link&gt;作用是一样的，因此最好不要使用它。 避免使用滤镜 完全避免使用AlphaImageLoader的最好方法就是使用PNG8格式来代替，这种格式能在IE中很好地工作。如果你确实需要使用 AlphaImageLoader，请使用下划线_filter又使之对IE7以上版本的用户无效。 优化图像 尝试把GIF格式转换成PNG格式，看看是否节省空间。在所有的PNG图片上运行pngcrush（或者其它PNG优化工具） 优化CSS Spirite 在Spirite中水平排列你的图片，垂直排列会稍稍增加文件大小； Spirite中把颜色较近的组合在一起可以降低颜色数，理想状况是低于256色以便适用PNG8格式； 便于移动，不要在Spirite的图像中间留有较大空隙。这虽然不大会增加文件大小但对于用户代理来说它需要更少的内存来把图片解压为像素地图。 100×100的图片为1万像素，而1000×1000就是100万像素。 不要在HTML中缩放图像——须权衡 不要为了在HTML中设置长宽而使用比实际需要大的图片。如果你需要： &lt;img width=”100″ height=”100″ src=”mycat.jpg” alt=”My Cat” /&gt; 那么你的图片（mycat.jpg）就应该是100×100像素而不是把一个500×500像素的图片缩小使用。这里在下文有更有趣的分析。 favicon.ico要小而且可缓存 favicon.ico是位于服务器根目录下的一个图片文件。它是必定存在的，因为即使你不关心它是否有用，浏览器也会对它发出请求，因此最好不要返回一 个404 Not Found的响应。由于是在同一台服务器上，它每被请求一次coockie就会被发送一次。这个图片文件还会影响下载顺序，例如在IE中当你在 onload中请求额外的文件时，favicon会在这些额外内容被加载前下载。 因此，为了减少favicon.ico带来的弊端，要做到： 文件尽量地小，最好小于1K 在适当的时候（也就是你不要打算再换favicon.ico的时候，因为更换新文件时不能对它进行重命名）为它设置Expires文件头。你可以很安全地 把Expires文件头设置为未来的几个月。你可以通过核对当前favicon.ico的上次编辑时间来作出判断。 Imagemagick可以帮你创建小巧的favicon。 保持单个内容小于25K 因为iPhone不能缓存大于25K的文件。注意这里指的是解压缩后的大小。由于单纯gizp压缩可能达不要求，因此精简文件就显得十分重 要。 打包组件成复合文本 页面内容打包成复合文本就如同带有多附件的Email，它能够使你在一个HTTP请求中取得多个组件（切记：HTTP请求是很奢侈的）。当你使用这条规 则时，首先要确定用户代理是否支持（iPhone就不支持）。]]></content>
+      <tags>
+        <tag>think</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[同步、异步、阻塞与非阻塞]]></title>
+    <url>%2F2017%2F04%2F11%2F%E5%90%8C%E6%AD%A5%E3%80%81%E5%BC%82%E6%AD%A5%E3%80%81%E9%98%BB%E5%A1%9E%E4%B8%8E%E9%9D%9E%E9%98%BB%E5%A1%9E%2F</url>
+    <content type="text"><![CDATA[同步 所谓同步就是一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。 当一个同步调用发出后，调用者要一直等待返回消息（结果）通知后，才能进行后续的执行。 异步 所谓异步是不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。 当一个异步过程调用发出后，调用者不能立刻得到返回消息（结果）。 状态、通知和回调 如果执行部件用状态来通知，那么调用者就需要每隔一定时间检查一次，效率就很低（有些初学多线程编程的人，总喜欢用一个循环去检查某个变量的值，这其实是一种很严重的错误）。 如果是使用通知的方式，效率则很高，因为执行部件几乎不需要做额外的操作。至于回调函数，其实和通知没太多区别。 阻塞与非阻塞 阻塞和非阻塞这两个概念与程序（线程）等待消息通知(无所谓同步或者异步)时的状态有关。也就是说阻塞与非阻塞主要是程序（线程）等待消息通知时的状态角度来说的。 阻塞调用是指调用结果返回之前，当前线程会被挂起，一直处于等待消息通知，不能够执行其他业务。函数只有在得到结果之后才会返回。 如果这个线程在等待当前函数返回时，仍在执行其他消息处理，那这种情况就叫做同步非阻塞。 如果这个线程在等待当前函数返回时，没有执行其他消息处理，而是处于挂起等待状态，那这种情况就叫做同步阻塞。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[工厂模式]]></title>
+    <url>%2F2017%2F04%2F11%2F%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[工厂模式的概念 实例化对象，用工厂方法代替new操作 工厂模式包括工厂方法模式和抽象工厂模式 抽象工厂模式是工厂方法模式的扩展 工厂模式的意图 定义一个接口来创建对象，但是让子类来决定哪些类需要被实例化 工厂方法把实例化的工作推迟到子类中去实现 什么时候适合工厂模式 有一组类似的对象需要创建 在编码时不能预见需要创建哪种类的实例 系统需要考虑扩展性，不应依赖于产品类实例如何被创建、组合和表达的细节 设计 尽量松耦合，一个对象的依赖对象的变化与本身无关 具体产品与客户端剥离，责任剥离 工厂模式 创建接口 12345678910111213package com.sunny.project;/** * 发型接口 * @author Administrator * */public interface HairInterface &#123; /** * 画图 */ public void draw();&#125; 创建工厂 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172package com.sunny.project;import java.util.Map;/** * 发型工厂 * @author Administrator * */public class HairFactory &#123; /** * 根据类型来创建对象 * @param key * @return */ public HairInterface getHair(String key)&#123; if("left".equals(key))&#123; return new LeftHair(); &#125;else if("right".equals(key))&#123; return new RightHair(); &#125; return null; &#125; /** * 根据类的名称来生产对象 * @param className * @return */ public HairInterface getHairByClass(String className)&#123; try &#123; HairInterface hair = (HairInterface) Class.forName(className).newInstance(); return hair; &#125; catch (InstantiationException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; catch (IllegalAccessException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; catch (ClassNotFoundException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; return null; &#125; /** * 根据类的名称来生产对象 * @param className * @return */ public HairInterface getHairByClassKey(String key)&#123; try &#123; Map&lt;String, String&gt; map = new PropertiesReader().getProperties(); HairInterface hair = (HairInterface) Class.forName(map.get(key)).newInstance(); return hair; &#125; catch (InstantiationException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; catch (IllegalAccessException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; catch (ClassNotFoundException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; return null; &#125;&#125; 调用 123456789101112131415161718package com.sunny.project;public class SunnyTest &#123; public static void main(String[] args)&#123; // HairInterface left = new LeftHair(); // left.draw(); HairFactory factory = new HairFactory(); // HairInterface right = factory.getHair("right"); // right.draw(); // HairInterface left = factory.getHairByClass("com.sunny.project.LeftHair"); // left.draw(); // HairInterface hair = factory.getHairByClassKey("in"); // hair.draw(); &#125;&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git]]></title>
+    <url>%2F2017%2F04%2F11%2Fgit%2F</url>
+    <content type="text"><![CDATA[Workspace：工作区 Index/Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库 新建代码库 在当前目录新建一个Git代码库 1$ git init 新建一个目录，将其初始化为Git代码库 1$ git init [project-name] 下载一个项目和它的整个代码历史 1$ git clone [url] 配置 Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。 显示当前的Git配置 1$ git config --list 编辑Git配置文件 1$ git config -e [--global] 设置提交代码时的用户信息 12$ git config [--global] user.name "[name]"$ git config [--global] user.email "[email address]" 增加/删除文件 添加指定文件到暂存区 1$ git add [file1] [file2] ... 添加指定目录到暂存区，包括子目录 1$ git add [dir] 添加当前目录的所有文件到暂存区 1$ git add . 删除工作区文件，并且将这次删除放入暂存区 1$ git rm [file1] [file2] ... 停止追踪指定文件，但该文件会保留在工作区 1$ git rm --cached [file] 改名文件，并且将这个改名放入暂存区 1$ git mv [file-original] [file-renamed] 代码提交 提交暂存区到仓库区 1$ git commit -m [message] 提交暂存区的指定文件到仓库区 1$ git commit [file1] [file2] ... -m [message] 提交工作区自上次commit之后的变化，直接到仓库区 1$ git commit -a 提交时显示所有diff信息 1$ git commit -v 使用一次新的commit，替代上一次提交 如果代码没有任何新变化，则用来改写上一次commit的提交信息 1$ git commit --amend -m [message] 重做上一次commit，并包括指定文件的新变化 1$ git commit --amend [file1] [file2] ... 分支 列出所有本地分支 1$ git branch 列出所有远程分支 1$ git branch -r 列出所有本地分支和远程分支 1$ git branch -a 新建一个分支，但依然停留在当前分支 1$ git branch [branch-name] 新建一个分支，并切换到该分支 1$ git checkout -b [branch] 新建一个分支，指向指定commit 1$ git branch [branch] [commit] 新建一个分支，与指定的远程分支建立追踪关系 1$ git branch --track [branch] [remote-branch] 切换到指定分支，并更新工作区 1$ git checkout [branch-name] 建立追踪关系，在现有分支与指定的远程分支之间 1$ git branch --set-upstream [branch] [remote-branch] 合并指定分支到当前分支 1$ git merge [branch] 选择一个commit，合并进当前分支 1$ git cherry-pick [commit] 删除分支 1$ git branch -d [branch-name] 删除远程分支 12$ git push origin --delete [branch-name]$ git branch -dr [remote/branch] 标签 列出所有tag 1$ git tag 新建一个tag在当前commit 1$ git tag [tag] 新建一个tag在指定commit 1$ git tag [tag] [commit] 查看tag信息 1$ git show [tag] 提交指定tag 1$ git push [remote] [tag] 提交所有tag 1$ git push [remote] --tags 新建一个分支，指向某个tag 1$ git checkout -b [branch] [tag] 查看信息 显示有变更的文件 1$ git status 显示当前分支的版本历史 1$ git log 显示commit历史，以及每次commit发生变更的文件 1$ git log --stat 显示某个文件的版本历史，包括文件改名 12$ git log --follow [file]$ git whatchanged [file] 显示指定文件相关的每一次diff 1$ git log -p [file] 显示指定文件是什么人在什么时间修改过 1$ git blame [file] 显示暂存区和工作区的差异 1$ git diff 显示暂存区和上一个commit的差异 1$ git diff --cached [file] 显示工作区与当前分支最新commit之间的差异 1$ git diff HEAD 显示两次提交之间的差异 1$ git diff [first-branch]...[second-branch] 显示某次提交的元数据和内容变化 1$ git show [commit] 显示某次提交发生变化的文件 1$ git show --name-only [commit] 显示某次提交时，某个文件的内容 1$ git show [commit]:[filename] 显示当前分支的最近几次提交 1$ git reflog 远程同步 下载远程仓库的所有变动 1$ git fetch [remote] 显示所有远程仓库 1$ git remote -v 显示某个远程仓库的信息 1$ git remote show [remote] 增加一个新的远程仓库，并命名 1$ git remote add [shortname] [url] 取回远程仓库的变化，并与本地分支合并 1$ git pull [remote] [branch] 上传本地指定分支到远程仓库 1$ git push [remote] [branch] 强行推送当前分支到远程仓库，即使有冲突 1$ git push [remote] --force 推送所有分支到远程仓库 1$ git push [remote] --all 撤销 恢复暂存区的指定文件到工作区 1$ git checkout [file] 恢复某个commit的指定文件到工作区 1$ git checkout [commit] [file] 恢复上一个commit的所有文件到工作区 1$ git checkout . 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变 1$ git reset [file] 重置暂存区与工作区，与上一次commit保持一致 1$ git reset --hard 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变 1$ git reset [commit] 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致 1$ git reset --hard [commit] 重置当前HEAD为指定commit，但保持暂存区和工作区不变 1$ git reset --keep [commit] 新建一个commit，用来撤销指定commit 后者的所有变化都将被前者抵消，并且应用到当前分支 1$ git revert [commit] 其他 生成一个可供发布的压缩包 1$ git archive]]></content>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java反射]]></title>
+    <url>%2F2017%2F04%2F11%2FJava%E5%8F%8D%E5%B0%84%2F</url>
+    <content type="text"><![CDATA[Class类的使用 方法的反射 成员变量的反射 构造函数的反射 Java类的加载机制 Class类 在面向对象的世界里，万事万物皆为对象。 类是对象，类是Java.lang.Class类的实例对象 There is a class named Class 任何一个类都是Class类的实例对象，这个实例对象有三种表示方式 123456789101112131415Foo foo1 = new Foo();//第一种表示方式--&gt;实际告诉我们任何一个类都有一个隐含的静态成员变量classClass c1 = Foo.class;//第二种表达方式，已经知道该类的对象通过getClass方法Class c2 = foo1.getClass();/*官网：C1，C2表示了Foo类的类类型（class type）*///不管C1或者C2都代表了Foo类的类类型，一个类只可能是Class类的一个实例对象//第三种表达方式Class c3 = nulll;c3 = Class.forName("com.imooc.reflet.Foo"); Class.forName(&quot;类的全称&quot;) 不仅表示类的类类型，还代表了动态加载类 编译时刻加载的类是静态加载类，运行时刻加载类是动态加载类型]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java]]></title>
+    <url>%2F2017%2F04%2F11%2FJava%2F</url>
+    <content type="text"><![CDATA[高级特性 反射 泛型 注释符 自动装箱和拆箱 枚举类 可变参数 可变返回类型 增强循环 静态导入 核心编程 IO 多线程 实体类 集合类 正则表达式 XML和属性文件 网络编程 Applet Socket/TCP/UDP NIO RMI CORBA Java语法基础 类 抽象类 接口 最终类 静态类 匿名类 内部类 异常类 编码规范 Java开发环境 JDK JVM Eclipse Linux JavaWeb核心编程 三大组件（JSP、JavaBean、Servlet） 扩展技术（EL、JSTL、Taglib） 网页开发技术 HTML XML CSS JavaScript AJAX 数据库 SQL MySQL JDBC Web服务器 Tomcat Jetty JavaWeb开源技术与框架 工作流 规则引擎 搜索引擎 缓存引擎 任务调度 身份认证 报表服务 系统测试 集群 负载均衡 故障转移 JavaWeb分布式开发技术 JTA（Java事务管理） JAAS（Java验证和授权服务） JNDI（Java命名和目录服务） JavaMail（Java邮件服务） JMS（Java信息服务） WebService（Web服务） JCA（Java连接体系） JMS（Java管理体系） Java与UML建模 对象图 用例图 组件图 部署图 序列图 交互图 活动图 正向工程 逆向工程]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java设计模式]]></title>
+    <url>%2F2017%2F04%2F11%2FJava%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[创建式模式 抽象工厂 建造者 工厂方法 原型 单例 构造型模式 适配器 桥接 组合 装饰 外观 享元 代理 行为型模式 责任链 命令 解释器 迭代子 中介者 备忘录 观察者 状态 策略 模板方法 访问者]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RBAC]]></title>
+    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
+    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[GUID——全局唯一标识符]]></title>
+    <url>%2F2017%2F04%2F11%2FGUID%2F</url>
+    <content type="text"><![CDATA[理论 GUID(Globally Unique Identifier)是一个128位整数（16字节），可用于所有需要唯一标识符的计算机和网络。此标识符重复的可能性非常小。 GUID是由网卡上的标识数字（每个网卡都有唯一的标识号）以及CPU时钟的唯一数字生成的一个16字节的二进制值。 GUID的格式为“xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”,其中每一个x是0-9或a-f范围内的一个十六进制的数字。 世界上的任何两台计算机都不会生成重复的GUID值（概率很小）。 GUID主要用于在拥有多个节点、多台计算机的网络或系统中，分配必须具有唯一性的表示符。 在Windows平台上，GUID应用非常广泛：注册表、类及接口标识、数据库、甚至自动生成的机器名、目录名等。 Time 时间戳。将objectid的前4位进行提取，然后按照十六进制转为十进制，这个数字就是一个时间戳。通过时间戳的转换，可以很容易看清时间格式。 Machine 机器码。接下来的三个字节是所在主机的唯一标识符，一般是机器主机的散列值，这样就确保了不同主机生成不同的机器hash值，确保在分布式中不造成冲突，这也就是在同一台机器生成的objectid中间的字符串都是一模一样的原因。 PID 进程ID。上面的Machine是为了确保在不同机器产生的objectId不冲突，而pid就是为了在同一台机器不同的mongodb进程产生了objectId不冲突，接下来的两位就是产生objectId的进程标识符。 INC 自增计数器。前面的九个字节是保证了一秒内不同机器不同进程生成objectId不冲突，最后面的三个字节是一个自动增加的计数器，用来确保在同一秒内产生的objectId也不会发现冲突，允许2^24等于16777216条记录的唯一性。 &quot;Big Bang&quot; was caused when two GUIDs collided.]]></content>
+      <tags>
+        <tag>GUID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring Boot]]></title>
+    <url>%2F2017%2F04%2F10%2Fspringboot%2F</url>
+    <content type="text"><![CDATA[四个核心 自动配置 Spring Boot会为常见配置场景进行自动配置。 起步依赖 Spring Boot通过起步依赖为项目的依赖管理提供帮助。 Spring Boot起步依赖基本都以spring-boot-starter打头，随后是直接代表其功能的名字，比如web、 test。 命令行界面（CLI） CLI能检测到你使用了哪些类，它知道要向Classpath中添加哪些起步依赖才能让它运转起来。一旦那些依赖出现在Classpath中，一系列自动配置就会接踵而来。 Actuator Actuator则提供在运行时检视应用程序内部情况的能力。 初步 @SpringBootApplication 开启了Spring的组件扫描和Spring Boot的自动配置功能。 Spring的@Configuration 标明该类使用Spring基于Java的配置 Spring的@ComponentScan 启用组件扫描 Spring Boot的 @EnableAutoConfiguration 开启Spring Boot自动配置 application.properties server.port=8000]]></content>
+      <categories>
+        <category>java</category>
+        <category>Spring Boot</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[TODO]]></title>
+    <url>%2F2017%2F04%2F09%2FTODO%2F</url>
+    <content type="text"><![CDATA[[ ] Spring boot [ ] ActiveMQ [ ] 爬虫]]></content>
+      <tags>
+        <tag>TODO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F04%2F07%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start Create a new post 1$ hexo new "My New Post" More info: Writing Run server 1$ hexo server More info: Server Generate static files 1$ hexo generate More info: Generating Deploy to remote sites 1$ hexo deploy More info: Deployment]]></content>
+      <tags>
+        <tag>Hello World</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[EL表达式]]></title>
+    <url>%2F2016%2F10%2F18%2FEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[1$&#123;表达式&#125; &quot;.&quot;与&quot;[]&quot;运算符 12$&#123;user.sex&#125; &lt;==&gt; $&#123;user["sex"]&#125;$&#123;bookList[0].price&#125; EL变量 JSP内置对象 EL名称 Page PageScope Request RequestScope Session SessionScope Application ApplicationScope]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[OAuth]]></title>
+    <url>%2F2016%2F10%2F18%2FOAuth2.0%2F</url>
+    <content type="text"><![CDATA[OAuth is short for Open Authorization OAuth协议为用户资源授权提供了一个安全的、开放而简易的标准。与以往的授权方式不同之处是OAuth的授权不会使第三方触及到用户的账号信息（如用户名与密码），即第三方无需使用用户的用户名与密码就可以申请获得该用户的资源授权，因此OAuth是安全的。 工作原理 第三方登录 获取Request Token 获取Access Token 后续API访问 Refresh Token刷新Access Token 请求OAuth登陆页面 Request Token URL 未授权的令牌请求服务地址]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>OAuth</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hosts]]></title>
+    <url>%2F2016%2F10%2F18%2FHosts%2F</url>
+    <content type="text"><![CDATA[Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统再会将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
+      <categories>
+        <category>http</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hibernate]]></title>
+    <url>%2F2016%2F10%2F18%2Fhibernate%2F</url>
+    <content type="text"><![CDATA[hibernate.cfg.xml常用配置 1234567891011121314151617181920212223242526272829303132333435363738394041&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;&lt;!--声明Hibernate配置文件的开始--&gt;&lt;hibernate-configuration&gt; &lt;!--表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存HIbernate的配置信息，以及对Session的操作--&gt; &lt;session-factory&gt; &lt;!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序--&gt; &lt;property name="connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; &lt;!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，hibernate是数据库名--&gt; &lt;property name="connection.url"&gt; jdbc:mysql://115.29.52.104:3306/ssh?useUnicode=true&amp;amp;characterEncoding=utf8 &lt;/property&gt; &lt;!--连接数据库是用户名--&gt; &lt;property name="connection.username"&gt;nebula&lt;/property&gt; &lt;!--连接数据库是密码--&gt; &lt;property name="connection.password"&gt;314159&lt;/property&gt; &lt;!--数据库连接池的大小--&gt; &lt;property name="hibernate.connection.pool.size"&gt;20&lt;/property&gt; &lt;!-- 显示SQL语句 --&gt; &lt;property name="show_sql"&gt;true&lt;/property&gt; &lt;property name="format_sql"&gt;true&lt;/property&gt; &lt;!-- create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表 create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。 update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据 model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。 --&gt; &lt;property name="hbm2ddl.auto"&gt;update&lt;/property&gt; &lt;!-- 定义方言 --&gt; &lt;property name="dialect"&gt; org.hibernate.dialect.MySQLDialect &lt;/property&gt; &lt;!--指定映射文件为“site/nebulas/bean/User.hbm.xml”--&gt; &lt;mapping resource="site/nebulas/bean/User.hbm.xml"&gt;&lt;/mapping&gt; &lt;/session-factory&gt;&lt;/hibernate-configuration&gt; User.hbm.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&lt;?xml version="1.0"?&gt;&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;&lt;!-- &lt;hibernate-mapping&gt;一般不去配置，采用默认即可。 default-cascade="none"：默认的级联风格，表与表联动。 default-lazy="true"：默认延迟加载 --&gt;&lt;hibernate-mapping&gt; &lt;!-- &lt;class&gt;：使用class元素定义一个持久化类。 name="site.nebulas.bean.User"：持久化类的java全限定名； table="user"：对应数据库表名； mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除； dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段； dynamic-update="false"：默认为false，动态插入非空值字段； select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新； optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)、 none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作； --&gt; &lt;class name="site.nebulas.bean.User" table="user" dynamic-insert="true" dynamic-update="true" optimistic-lock="version"&gt; &lt;!-- &lt;id&gt;：定义了该属性到数据库表主键字段的映射。 name="userId"：标识属性的名字； column="userId"：表主键字段的名字，如果不填写与name一样； --&gt; &lt;id name="id"&gt; &lt;!-- &lt;generator&gt;：指定主键由什么生成，推荐使用uuid（随机生成唯一通用的表示符，实体类的ID必须是String）， native（让数据库自动选择用什么生成（根据底层数据库的能力选择identity，sequence或hilo中的一种））， assigned（指用户手工填入，默认）。 --&gt; &lt;generator class="identity"/&gt; &lt;/id&gt; &lt;!-- &lt;version/&gt;：使用版本控制来处理并发，要开启optimistic-lock="version"和dynamic-update="true"。 name="version"：持久化类的属性名，column="version"：指定持有版本号的字段名； &lt;version name="version" column="version"/&gt; --&gt; &lt;!-- &lt;property&gt;：为类定义一个持久化的javaBean风格的属性。 name="name"：标识属性的名字，以小写字母开头； column="name"：表主键字段的名字，如果不填写与name一样； update="true"/insert="true"：默认为true，表示可以被更新或插入； --&gt; &lt;property name="name" column="name" /&gt; &lt;property name="password" column="password"/&gt; &lt;property name="createTime" column="createTime"/&gt; &lt;!-- 组件映射：把多个属性打包在一起当一个属性使用，用来把类的粒度变小。 &lt;component name="属性，这里指对象"&gt; &lt;property name="name1"&gt;&lt;/property&gt; &lt;property name="name2"&gt;&lt;/property&gt; &lt;/component&gt; --&gt; &lt;!-- &lt;join&gt;:一个对象映射多个表，该元素必须放在所有&lt;property&gt;之后。 &lt;join table="tbl_test：子表名"&gt; &lt;key column="uuid：子表主键"&gt;&lt;/key&gt; &lt;property name="name1：对象属性" column="name：子表字段"&gt;&lt;/property&gt; &lt;/join&gt; --&gt; &lt;/class&gt;&lt;/hibernate-mapping&gt; session save() update() delete() createQuery() transaction]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java加解密]]></title>
+    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
+    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[事务]]></title>
+    <url>%2F2016%2F10%2F17%2F%E4%BA%8B%E7%89%A9%2F</url>
+    <content type="text"><![CDATA[事务指的是逻辑上的一组操作，这组操作要么全部成功，要么全部失败。 事物的特性 原子性 原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发送，要么都不发生 一致性 一致性指事务前后的数据的完整性必须保持一致 隔离性 隔离性指多个用户并发访问数据库时，一个用户的事务不能被其他用户的事务所干扰，多个并发事务之间的数据要相互隔离 持久性 持久性指的是一个事务一旦被提交，它对数据库中的改变就是永久性的即使是数据库发生故障也不应该对其有任何影响 Spring事务管理 PlatformTransactionManager 事务管理器 TransactionDefinition 事务定义信息（隔离、传播、超时、只读） TransactionStatus 事务具体运行状态]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java注解]]></title>
+    <url>%2F2016%2F10%2F10%2FJava%E6%B3%A8%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[JDK自带注解 @Override 覆盖/实现 @Deprecared 表示方法已经过时 @Suppvisewarnings 忽略警告 Spring注解 @Autowired @Service @Repository Mybatis注解 @InsertProvider @UpdateProvider @Options]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HTTP]]></title>
+    <url>%2F2016%2F10%2F10%2FHTTP%2F</url>
+    <content type="text"><![CDATA[端口 端口号 0~65535 get/post get获取信息 Post提交表单数据或上传文件 HTTP头 HTTP头文件是&quot;键/值&quot;对 键可能会在HTTP头文件中出现任意次数 cookie 服务端发送到客户端然后客户端稍后再返回到服务端的短字符串 URL编码 URL编码标准用%后面跟着2位的代码代表特殊字符并以&quot;+&quot;字符代替空格 通用首部字段 字段 描述 Cashe-Control 控制缓存行为 Connection 逐跳首部、连接的管理 Date 创建报文的日期时间 Pragma 报文指令 Trailer 报文末端的首部一览 Transfer-Encoding 指定报文主体的传输编码方式 Upgrade 升级为其他协议 Via 代理服务器的相关信息 Warning 错误通知 请求首部字段 字段 描述 Accept 用于告诉服务器，客户机支持的数据类型 Accept-Charset 用于告诉服务器，客户机采用的编码 Accept-Encoding 用于告诉服务器，客户机支持的数据压缩格式 Accept-Language 客户机的语言环境 Host 客户机通过这个头告诉服务器，想要访问的主机名 Referer 客户机通过这个头告诉服务器，它是从哪个资源来访问服务器的（防盗链） Authorization Web认证信息 Expect 期待服务器的特定行为 From 用户的电子邮箱地址 If-Match 比较实体标记（ETag） If-None_Match 比较实体标记（与f-Match相反） If-Range 资源未更新时发送实体Byte的范围请求 If-Modified-Since 客户机通过这个头告诉服务器，资源的缓存时间 If-Unmodified-Since 比较资源更新的时间（与If-Modified-Since相反） Max-Forwards 最大传输逐跳数 Proxy-Authorization 代理服务器要求客户端的认证信息 Range 实体的字节范围请求 TE 传输编码的优先级 User-Agent HTTP客户端程序的信息 响应首部字段 字段 描述 Accept-Ranges 是否接受字节范围请求 Age 推算资源创建经过时间 Proxy-Authenticate 代理服务器对客户端的认证信息 Retry-After 对再起发起请求的时机要求 Vary 代理服务器缓存的管理信息 WWW-Authenticate 服务器对客户端的认证信息 location 配和302状态码使用，告诉客户机找谁 Server 服务器通过这个头，告诉浏览器服务器的类型 Content-Encoding 服务器通过这个头，数据的压缩格式 Content-Length 服务器通过这个头，告诉浏览器回送数据的长度 Content-Type 服务器通过这个头，告诉浏览器回送数据的类型 Last-Modified 服务器通过这个头，告诉浏览器当前资源缓存时间 Refresh 服务器通过这个头，告诉浏览器隔多久刷新一次 Content-Disposition 服务器通过这个头，告诉浏览器以下载方式打开这个数据 Transfer-Encoding 服务器通过这个头，告诉浏览器数据的传送格式 Etag 缓存 Expires 服务器通过这个头，告诉浏览器把回送的资源缓存多长时间，-1或0，则是不缓存 Cache-Control no-cache Pragma no-cache 服务器通过以上两个头，也是控制浏览器不要缓存数据 实体首部字段 字段 描述 Allow 资源可支持的HTTP方法 Content-Encoding 实体主体使用的编码方式 Content-Language 实体主体的自然语言 Content-Length 实体主体的大小（单位:字节） Content-Location 代替对应资源的URI Content-MD5 实体主体的报文摘要 Content-Range 实体主体的位置范围 Content-Type 实体主体的媒体类型 Expires 实体主体过期的日期时间 Last-Modified 资源的最后修改日期时间 Cache-Control 缓存请求指令 指令 参数 说明 no-cache 无 强制向源服务器再次验证 no-store 无 不缓存请求或响应的任何内容 max-age = [秒] 必需 响应的最大Age值 max-stale( = [秒]) 可省略 接收已过期的响应 min-fresh = [秒] 必需 期望在指定时间内的响应任有效 no-transform 无 代理不可更改媒体类型 only-if-cached 无 从缓存获取资源 cache-extension - 新指令标记（token） 缓存响应指令 指令 参数 说明 public 无 可向任意方提供响应的缓存 private 可省略 仅向特定用户返回响应 no-cache 可 省略 缓存前必需先确认其有效性 no-store 无 不缓存或响应任何内容 no-transform 无 代理不可更改媒体类型 must-revalidate 无 可缓存但必须再向源服务器确认 proxy-revalidate 无 要求中间缓存服务器对缓存的响应有效性再进行确认 max-age = [秒] 必需 响应的最大Age值 s-maxage = [秒] 必需 公共缓存服务器响应的最大Age值 cache-extension - 新指令标记（token）]]></content>
+      <categories>
+        <category>http</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Struts2]]></title>
+    <url>%2F2016%2F10%2F09%2Fstruts2%2F</url>
+    <content type="text"><![CDATA[Struts Struts是流行和成熟的基于MVC设计模式的Web应用程序框架 Struts2 Struts2不是一个全新的框架，因此稳定性、性能等各方面都有很好的保证，同时吸收了Struts1和WebWork两者的优势。 Struts2的环境需求 Servlet API 2.4 JSP API 2.0 Java 5 jar包 struts2-convention-plugin-2.3.15.3.jar 注解开发jar包 Struts2配置 配置依赖Struts2的基本jar包 配置web.xml,加载Struts2过滤器 加载Struts2的配置文件Struts.xml到src目录 开发Struts中的Action类，类中必须有execute方法 web.xml——Struts2过滤器 任何MVC框架都需要与Web应用整合，这就不得不借助于web.xml文件，只有配置在web.xml文件中Servlet才会被应用加载。 通常，所有的MVC框架都需要Web应用加载一个核心控制器，对于Struts2框架而言，需要加载StrutsPrepareAndExecuteFilter，只要Web应用负责加载StrutsPrepareAndExecuteFilter，StrutsPrepareAndExecuteFilter将会加载Struts2框架。 1234567891011121314151617181920212223&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0"&gt; &lt;filter&gt; &lt;filter-name&gt;struts2&lt;/filter-name&gt; &lt;filter-class&gt; org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;struts2&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; &lt;welcome-file-list&gt; &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt; &lt;/welcome-file-list&gt;&lt;/web-app&gt; Struts.xml struts2的核心配置文件，在开发过程中利用率最高。 该文件主要负责管理应用中的Action映射，以及该Action包含的Result定义等。 全局属性 用户请求和响应Action之间的对应关系 Action可能用到的参数和返回结果 各种拦截器配置 include 12&lt;!-- include节点试试struts2中组件化的方式，可以将每个功能模块独立到一个xml配置文件中，然后用include节点引用 --&gt;&lt;include file="struts-default.xml"&gt;&lt;/include&gt; package 12345678910111213141516171819202122232425262728293031323334353637&lt;!-- package提供了将多个Action组织为一个模块的方式 package的名字必须是唯一的 package可以扩展 当一个package扩展自另一个package时该package会在本身配置的基础上加入扩展的package的配置 父package必须在子package前配置 name:package名称 extends:继承父package名称 abstract:设置package的属性为抽象的，抽象的package不能定义action 值true:flase namespace:定义package命名空间，该命名空间影响到url的地址，例如此命名空间为/test那么访问的是地址为http://localhost:8080/struts2/test/xx.action --&gt;&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;&lt;struts&gt; &lt;package name="default" namespace="/" extends="struts-default"&gt; &lt;action name="helloAction" class="site.nebulas.action.HelloAction"&gt; &lt;result name="hello"&gt;/jsps/helloAction.jsp&lt;/result&gt; &lt;/action&gt; &lt;/package&gt;&lt;!-- &lt;package name="users" namespace="/users" extends="default"&gt; &lt;action name="*_*" class="action.&#123;1&#125;Action" method="&#123;2&#125;"&gt; &lt;result name="login_success"&gt;/users/Users_login_success.jsp&lt;/result&gt; &lt;result name="login_failure"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;result name="logout_success"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;result name="input"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;/action&gt; &lt;/package&gt;--&gt;&lt;/struts&gt; interceptors 拦截器 12345678910111213141516&lt;interceptors&gt; &lt;!-- 定义拦截器 name:拦截器名称 class:拦截器类路径 --&gt; &lt;interceptor name="timer" class="site.nebulas.timer"&gt;&lt;/interceptor&gt; &lt;!-- 定义拦截器栈 --&gt; &lt;interceptor-stack&gt; &lt;interceptor-ref name="timer"&gt;&lt;/interceptor-ref&gt; &lt;interceptor-ref name="logger"&gt;&lt;/interceptor-ref&gt; &lt;/interceptor-stack&gt;&lt;/interceptors&gt;&lt;!-- 定义默认的拦截器 每个Action都会自动引用，如果Action中引用了其他拦截器，默认拦截器将无效 --&gt;&lt;default-interceptor-ref name="mystack"&gt;&lt;/default-interceptor-ref&gt; global-results 1234&lt;!-- 全局results配置 --&gt;&lt;global-results&gt; &lt;result name="input"&gt;/input.jsp&lt;/result&gt;&lt;/global-results&gt; action 123456&lt;!-- Action配置一个Action可以被多层映射（只要action配置中的name不同） name:action名称 class:对应的类路径 method:调用Action中的方法名 --&gt;&lt;action name="hello" class="site.nebulas.Action.LoginAcrion"&gt; result 1234&lt;!-- 节点配置 name:result名称和Action中返回值相同 type:result类型不写则选用superpackage的type struts-default.xml中的默认为dispatcher --&gt; param 1234&lt;!-- 参数设置 name:对应Action中的get/set方法 --&gt;&lt;param name="url"&gt;http://www.sina.com&lt;/param&gt; struts.properties struts2框架的全局属性文件，自动加载 该文件包含很多key-value对。 该文件完全可以配置在struts.xml文件中，使用constant元素。 12#指定默认编码集，对于请求参数带有中午的情况应该设置GBK或GB2312，默认值UTF-8struts.i18n.encoding=GB2312 Servlet API doGet() doPost() 接收参数 使用Action的属性接收参数 使用DomainModel接收参数 使用ModelDriven接收参数 Struts2注解]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[pom.xml]]></title>
+    <url>%2F2016%2F10%2F09%2Fpom%2F</url>
+    <content type="text"><![CDATA[依赖范围（scope） compile : 默认的范围，编译测试运行都有效 provided : 在编译和测试时有效 runtime : 在测试和运行时有效 test : 只在测试时有效 system : 与本机系统相关联，可移植性差 import : 导入的范围，它只使用在dependencyManagement中，表示从其它的pom中导入dependecy的配置 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081&lt;!-- 指定当前pom的版本 --&gt;&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;&lt;groupId&gt;反写的公司网址+项目名&lt;/groupId&gt;&lt;artifacId&gt;项目名+模块名&lt;/artifacId&gt;&lt;!-- 0.0.1 第一个0表示大版本号 第二个0表示分支版本号 第三个0表示小版本号 snapshot快照 alpha内部测试 beta公测 Release稳定 GA正式发布 --&gt;&lt;version&gt;&lt;/version&gt;&lt;!-- 默认是jar war zip pom --&gt;&lt;packaging&gt;&lt;/packaging&gt;&lt;!-- 项目描述名 --&gt;&lt;name&gt;&lt;/name&gt;&lt;!-- 项目地址 --&gt;&lt;url&gt;&lt;/url&gt;&lt;!-- 项目描述 --&gt;&lt;description&gt;&lt;/description&gt;&lt;developers&gt;&lt;/developers&gt;&lt;licenses&gt;&lt;/licenses&gt;&lt;organization&gt;&lt;/organization&gt;&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;&lt;/groupId&gt; &lt;artifacId&gt;&lt;/artifacId&gt; &lt;version&gt;&lt;/version&gt; &lt;type&gt;&lt;/type&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;!-- 设置依赖是否可选 --&gt; &lt;optional&gt;&lt;/optional&gt; &lt;!-- 排除依赖传递列表 --&gt; &lt;exclusions&gt; &lt;exclusion&gt;&lt;/exclusion&gt; &lt;/exclusions&gt; &lt;/dependency&gt;&lt;/dependencies&gt;&lt;!-- 依赖的管理 --&gt;&lt;dependencyManagement&gt; &lt;dependencies&gt; &lt;dependency&gt;&lt;/dependency&gt; &lt;/dependencies&gt;&lt;/dependencyManagement&gt;&lt;!-- 插件管理 --&gt;&lt;build&gt; &lt;!-- 插件列表 --&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;&lt;/groupId&gt; &lt;artifacId&gt;&lt;/artifacId&gt; &lt;version&gt;&lt;/version&gt; &lt;/plugin&gt; &lt;/plugins&gt;&lt;/build&gt;&lt;!-- --&gt;&lt;parent&gt;&lt;/parent&gt;&lt;!-- --&gt;&lt;modules&gt; &lt;module&gt;&lt;/module&gt;&lt;/modules&gt;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Servlet]]></title>
+    <url>%2F2016%2F10%2F09%2FServlet%2F</url>
+    <content type="text"><![CDATA[Servlet是JSP的前身 Servlet是在服务器上运行的小程序。一个Servlet就是一个Java类，并且可以通过“请求-响应”编程模型来访问的这个驻留在服务器内存里的Servlet程序。 Servlet实现 继承HttpServlet 重写doGet()或者doPost()方法 在web.xml中注册Servlet web.xml中配置 12345678&lt;servlet&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;servlet-class&gt;site.nebulas.servlet.HelloServlet&lt;/servlet-class&gt;&lt;/servlet&gt;&lt;servlet-mapping&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;url-pattern&gt;servlet/hello&lt;/url-pattern&gt;&lt;/servlet-mapping&gt; Servlet生命周期 在下列时刻Servlet容器装载Servlet Servlet容器启动时自动装载某些Servlet,实现它只需要在web.xml文件中的&lt;Servlet&gt;&lt;/Servlet&gt;之间添加如下代码：&lt;loadon-startup&gt;1&lt;/loadon-startup&gt;数字越小表示优先级别越高。 在Servlet容器启动后，客户首次向Servlet发送请求。 Servlet类文件被更新后，重新装载Servlet。 Servlet被装载后，Servlet容器创建一个Servlet实例并且调用Servlet的init()方法进行初始化。在Servlet的整个生命周期内，init()方法只被调用一次。 Servelt与九大内置对象 | JSP对象 | 怎样获得 | |::|::| | out | resp.getWriter | | request | service方法中的req参数 | | response | service方法中的resp参数 | | session | req.getSession()函数 | | application | getServletContext()函数 | | exception | Throwable | | page | this | | pageContext | PageContext | | Config | getServletConfig()函数 |]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[多线程]]></title>
+    <url>%2F2016%2F10%2F08%2F%E5%A4%9A%E7%BA%BF%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[##进程 动态性：程序（任务）的执行过程 持有资源（共享内存，共享文件）和线程 ##线程 线程是系统中最小的执行单元 同一进程中有多个线程 线程共享进程的资源 互斥 同步 ##Java支持 class Thread interface Runnable public void run() ##Thread常用方法 Thread():创建线程 Thread(String name):创建线程 Thread(Runnable target):创建线程 Thread(Runnable target,String name):创建线程 void start():启动线程 static void sleep(long millis):线程休眠 static void sleep(long millis,int nanos):线程休眠 void join():使其他线程等待当前线程终止 void join(long millis):使其他线程等待当前线程终止 void join(long millis,int nanos):使其他线程等待当前线程终止 static void yield():当前运行线程释放处理器资源 static Thread currentThread():返回当前运行的线程引用 可见性及volatile关键字 线程的互斥synchronized 线程的同步wait/notifyAll ##Java Memory Mode JMM描述了Java线程如何通过内存进行交互 happens-before synchonized,volatile &amp; final ##Lock &amp; Condition Java锁机制和等待条件的高层实现 java.util.concurrent.locks ##线程的安全性 原子性与可见性 java.util.concurrent.atomic synchronized &amp; volatile DeadLocks ##多线程编程常用的交互模型 Producer-Consumer模型 Read-Write Lock模型 Future模型 Worker Thread模型]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[socket.io 实现在线聊天室]]></title>
+    <url>%2F2016%2F10%2F07%2F%E5%9C%A8%E7%BA%BF%E8%81%8A%E5%A4%A9%E5%AE%A4%2F</url>
+    <content type="text"><![CDATA[在学习WebSocket的时候，发现node.js的socket.io模块对WebSocket进行了封装更加方便开发者使用，便开始学习socket.io并以在线聊天室作为学习项目。 开发语言、环境 node.js win7 node.js node.js是一个JavaScript运行环境，简单的说就是运行在服务端的node.js 基础教程推荐Node.js菜鸟教程 安装包推荐4.6.0LTSNode.js官网 本项目代码主要参考socket.io官网的例子 界面则采用CSS框架bootstrap node.js是通过事件和回调来支持并发的，所以很好的理解它的事件机制有助于接下来的编程。 业务逻辑 用户需登录后才能发生消息，如未登陆则弹出登陆框 用户发送消息，服务端接收后转发给所有用户 当有用户离线，服务端群发询问还有谁在线，并更新用户列表 项目目录结构 chat --node_modules --static --views app.js node_modules主要是存放node.js的各种模块 static用来存放一些静态资源，这里放的是bootstrap views用来存放页面，本项目放的是chat.html app.js则是服务端，监听各种事件并处理 express模块 express是一个基于Node.js平台的极简、灵活的 web 应用开发框架，它提供一系列强大的特性，帮助你创建各种 Web 和移动设备应用。 本聊天室的应用 123456789101112var express = require('express');var app = express();var http = require('http').Server(app);var io = require('socket.io')(http);var userList = new Array();app.use("/static",express.static(__dirname + '/static'));app.get('/', function(req, res)&#123; res.sendFile(__dirname + '/views/chat.html');&#125;); 代码 代码主要在chat.html和app.js两个文件 app.js 123456789101112131415161718192021222324252627282930313233343536var express = require('express');var app = express();var http = require('http').Server(app);var io = require('socket.io')(http);var userList = new Array();app.use("/static",express.static(__dirname + '/static'));app.get('/', function(req, res)&#123; res.sendFile(__dirname + '/views/chat.html');&#125;);io.on('connection', function(socket)&#123; //绑定用户登录事件 socket.on('userLogin', function(userName)&#123; userList.push(userName); io.emit('userLoginList', userList); &#125;); //绑定用户发送消息事件 socket.on('chat message', function(userName, msg)&#123; // io.emit('chat message', userName, msg); &#125;); //绑定断开连接事件 socket.on('disconnect',function()&#123; console.log('disconnect'); //有人断开连接，询问还有谁在线，更新用户列表 userList = new Array(); io.emit('who_online'); &#125;);&#125;);http.listen(8765, function()&#123; console.log('listening on *:8765');&#125;); chat.html 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140&lt;!doctype html&gt;&lt;html&gt; &lt;head&gt; &lt;title&gt;聊天室&lt;/title&gt; &lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt; &lt;link rel="stylesheet" href="/static/css/bootstrap.min.css"&gt; &lt;link rel="stylesheet" href="/static/css/bootstrap-theme.min.css"&gt; &lt;style&gt;&lt;/style&gt; &lt;/head&gt; &lt;body&gt; &lt;div class="container"&gt; &lt;div class="page-header"&gt; &lt;h1&gt;聊天室 &lt;small&gt;——畅所欲言&lt;/small&gt;&lt;/h1&gt; &lt;/div&gt; &lt;div class="row"&gt; &lt;div class="col-xs-3 panel panel-default"&gt; &lt;div class="panel-body" id="userListDiv" style="overflow-y:auto;height:350px;"&gt; &lt;table class="table table-striped" id="userList"&gt; &lt;/table&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class="col-xs-9 panel panel-default"&gt; &lt;div class="panel-body" id="messagesDiv" style="overflow-y:auto;height:350px;"&gt; &lt;table class="table table-striped" id="messages"&gt; &lt;/table&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;form action="" class="form"&gt; &lt;div class="form-group"&gt; &lt;div class="col-xs-offset-3 col-xs-7"&gt; &lt;input id="m" class="form-control" autocomplete="off" /&gt; &lt;/div&gt; &lt;div class="col-xs-1"&gt; &lt;button class="btn btn-default"&gt;Send&lt;/button&gt; &lt;/div&gt; &lt;/div&gt; &lt;/form&gt; &lt;/div&gt; &lt;div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"&gt; &lt;div class="modal-dialog modal-sm"&gt; &lt;div class="modal-content"&gt; &lt;div class="modal-header"&gt; &lt;button type="button" class="close" data-dismiss="modal"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;span class="sr-only"&gt;Close&lt;/span&gt;&lt;/button&gt; &lt;h4 class="modal-title"&gt;登录&lt;/h4&gt; &lt;/div&gt; &lt;div class="modal-body"&gt; &lt;form class="form" role="form"&gt; &lt;div class="form-group"&gt; &lt;input type="email" class="form-control" id="inputUserName" placeholder="用户名"&gt; &lt;/div&gt; &lt;/form&gt; &lt;/div&gt; &lt;div class="modal-footer"&gt; &lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;取消&lt;/button&gt; &lt;button type="button" class="btn btn-primary" id="login"&gt;确定&lt;/button&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt; &lt;script src="/static/js/jquery.min.js"&gt;&lt;/script&gt; &lt;script src="/static/js/bootstrap.min.js"&gt;&lt;/script&gt; &lt;script&gt; var userName = ''; var userList = new Array(); $(function()&#123; $('#myModal').modal('show'); &#125;); //用户登录 $('#login').click(function()&#123; userName = $('#inputUserName').val(); if(!userName) return false; socket.emit('userLogin', userName); $('#myModal').modal('hide'); &#125;); var socket = io(); //用户发送消息 $('form').submit(function()&#123; if(!userName) &#123; $('#myModal').modal('show'); return false; &#125; socket.emit('chat message', userName, $('#m').val()); $('#m').val(''); return false; &#125;); //绑定用户登录列表事件 socket.on('userLoginList', function(userList)&#123; $('#userList').empty(); for (i=0, len=userList.length; i&lt;len; i++)&#123; $('#userList').append($('&lt;tr&gt;').append($('&lt;td&gt;').text(userList[i]))); &#125; document.getElementById('userListDiv').scrollTop=document.getElementById('userListDiv').scrollHeight; &#125;); //绑定用户发送信息事件 socket.on('chat message', function(userName,msg)&#123; $('#messages').append($('&lt;tr&gt;').append($('&lt;td&gt;').html(showMessage(userName,msg)))); document.getElementById('messagesDiv').scrollTop=document.getElementById('messagesDiv').scrollHeight; &#125;); //绑定用户在线事件 socket.on('who_online', function()&#123; socket.emit('userLogin', userName); &#125;); function showMessage(userName,msg)&#123; var content = '&lt;span class="label label-info"&gt;'+ currentTime() +'&lt;/span&gt;'+ '&lt;span class="label label-primary"&gt;'+ userName +'&lt;/span&gt;&lt;br&gt;' + '&lt;strong&gt;'+ msg +'&lt;/strong&gt;'; return content; &#125; function currentTime()&#123; var date = new Date(); var year = date.getFullYear(); var month = date.getMonth()+1; var d = date.getDate(); var h = date.getHours(); var m = date.getMinutes(); var s = date.getSeconds(); month = month&gt;9?month:('0'+month); d = d&gt;9?d:('0'+d); h = h&gt;9?h:('0'+h); m = m&gt;9?m:('0'+m); s = s&gt;9?s:('0'+s); var time = ''+year+'-'+month+'-'+d+' '+h+':'+m+':'+s; return time; &#125; &lt;/script&gt; &lt;/body&gt;&lt;/html&gt;]]></content>
+      <categories>
+        <category>node.js</category>
+      </categories>
+      <tags>
+        <tag>node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F29%2Fpython%20POP3%E8%8E%B7%E5%8F%96%E9%82%AE%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[#python POP3获取邮件 POP协议（Post Office Protocol,邮局协议），默认使用110端口。 IMAP4协议。 服务器端-客户端工作模式。 python标准库中支持POP3协议的实现是poplib模块。 ##典型邮件客户端获取邮件的步骤 使用DNS协议来解析POP3服务器的IP地址 使用TCP协议来连接邮件服务器的110端口（默认情况下） 当客户端连接上POP3服务器后，将通过USER命令来传送邮箱账号，通过PASS命令来传送邮箱密码。提供这些信息来完成用户认证 当完成用户认证后，可以使用STAT命令来获取POP3服务器中此账号的邮箱统计资料，包括邮件的总数和邮件的大小 同时可以使用LIST命令列出POP3服务器中的已有邮件数量 邮件客户端可以通过RETR命令来获取邮件，并使用DELE命令来设置删除标志 所有的文件获取完毕后，可以使用QUIT命令中断和POP3邮件服务器的连接。同时，服务器会删除已设置为删除标志的邮件 ##poplib中类 POP3类和POP3_SSL类 POP_SSL类为POP3类的子类，实现了基于SSL的邮件传输 ##POP3类对象中定义的方法 set_debuglevel 设置调试信息级别 getwelcome 获取服务器的欢迎信息 user 发送邮箱名 pass_ 发送邮箱密码，锁定邮箱 stat 获取邮箱的统计信息 list 获取邮箱的邮件列表信息 retr 获取特定的邮箱 dele 设置邮件的删除标志 rset 删除所有邮件的删除标记 noop 不做任何事情，在为了保持连接的时候使用 quit 中断连接，解锁邮箱]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F29%2Fpython%E6%A8%A1%E5%9D%97%2F</url>
+    <content type="text"><![CDATA[#python模块 ##包、模块、类和函数之间的关系 一个python文件就是一个模块 模块由代码、函数、或类组成 sys.path from module_name import function_name]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F23%2Fpython%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[#python 生产者消费者模式 生产者的工作是产生一块数据，放到buffer中，如此循环。与此同时，消费者在消耗这些数据（例如从buffer中把它们移除），每次一块。 ##线程概念 Condition:线程中的条件 wait():在条件实例过程中可用的wait() notify():在条件实例中可用的notify() 生产者和消费者是并发运行的，生产者和消费者是线程分离的。 设定一个全局变量，可以被生产者和消费者线程修改，生产者生产数据并把它加入到队列，消费者消耗这些数据(把数据移出)。 队列是一个共享变量，把它放到lock程序块内，以防发生竞态条件。 在加入数据前，生产者检查队列是否为满。 如果不为满，生产者可以继续正常流程。 如果为满，生产者必须等待，调用condition实例的wait()。 消费者可以运行。消费者消耗队列，并产生一个空余位置。 然后消费者notify生产者。 当消费者释放lock，消费者可以acquire这个lock然后往队列中加入数据。 from threading import Thread, Condition import time import random queue = [] MAX_NUM = 10 condition = Condition() class ProducerThread(Thread): def run(self): #nums = range(5) num = 1 global queue while True: condition.acquire() if len(queue) == MAX_NUM: print &quot;Queue full, producer is waiting&quot; condition.wait() print &quot;Space in queue, Consumer notified the producer&quot; #num = random.choice(nums) queue.append(num) print &quot;Produced&quot;, num num = num + 1 condition.notify() condition.release() time.sleep(random.random()*10) class ConsumerThread(Thread): def run(self): global queue while True: condition.acquire() if not queue: print &quot;Nothing in queue, consumer is waiting&quot; condition.wait() print &quot;Producer added something to queue and notified the consumer&quot; num = queue.pop(0) print &quot;Consumed&quot;, num condition.notify() condition.release() time.sleep(random.random()*10) ProducerThread().start() ConsumerThread().start()]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F21%2FPython%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86%2F</url>
+    <content type="text"><![CDATA[#Python文件打开方式 文件打开方法：open(name[,mode[buf]]) name:文件路径 mode:打开方式 buf:缓冲buffering大小 'r' 只读方式打开 文件必须存在 'w' 只写方式打开 文件不存在创建文件，文件存在则情况文件内容 'a' 追加方式打开 文件不存在创建文件 'r+'/'w+' 读写方式打开 'a+' 追加和读写方式打开 'rb','wb','ab','rb+','wb+','ab+':二进制方式打开 ##python读取方式 read([size]):读取文件（读取size个字节，默认读取全部） readline([size]):读取一行 readlines([size]):读取完文件，返回每一行所组成的列表 ##python写入方式 write(str):将字符串写入文件 writelines(sequence_of_strings):写多行到文件 # -*- encoding:utf-8 -*- #以写的方式打开 f = open(&quot;1.txt&quot;,'w') f.write(&quot;test write&quot;) f.close()]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F08%2FPython%20MySQLdb%2F</url>
+    <content type="text"><![CDATA[#Python MySQLdb ##Python MySQLdb安装错误解决 ImportError: this is MySQLdb version (1, 2, 4, 'beta', 4), but _mysql is ver 解决办法：删除\Lib\site-packages下所有的mysqldb，重新安装 ##MySQLdb.Connect(参数) host 字符串 MySQL服务器地址 port 数字 MySQL服务器端口号 user 字符串 用户名 passwd 字符串 密码 db 字符串 数据库名称 charset 字符串 连接编码 ##connection对象支持的方法 cursor() 使用该连接创建并返回游标 commit() 提交当前事务 rollback() 回滚当前事务 close() 关闭连接 ##cursor对象支持的方法 execute(opp[,args]) 执行一个数据库查询命令 fetchone() 取的结果集的下一行 fetchmany(size) 获取结果集的下几行 fetchall() 获取结果集中剩下的所有行 rowcount 最近一次execute返回数据的行数或影响行数 close() 关闭游标对象 fetch*()方法：移动rownumber，返回数据 ##事务：访问和更新数据库的一个程序执行单元 原子性：事务中包括的诸操作要么都做，要么都不做 一致性：事务必须使数据库从一致性状态变到另一个一致性 隔离性：一个事务的执行不能被其他事务干扰 持久性：事务一旦提交，它对数据库的改变就是永久性的 ##开发中使用事务 关闭自动commit：设置conn.autocommit(False) 正常结束事务：conn.commit() 异常结束事务：conn.rollback() ##程序 ####查询 # -- coding: utf-8 -- # import MySQLdb conn = MySQLdb.Connect( host = 'xxx.xxx.xxx.xxx', port = 3306, user = 'nebula', passwd = 'xxxxxx', db = 'one', charset = 'utf8' ) cursor = conn.cursor() sql = &quot;select * from quotations&quot; cursor.execute(sql) #输出返回条数 print cursor.rowcount #输出返回第一条 rs = cursor.fetchone() print rs[1] for i in rs: print i #输出之后三条 #rs = cursor.fetchmany(3) #print rs #输出之后所有 #rs = cursor.fetchall() #print rs cursor.close() conn.close() ####增删改 # -- coding: utf-8 -- # import MySQLdb conn = MySQLdb.Connect( host = 'xxx.xxx.xxx.xxx', port = 3306, user = 'nebula', passwd = 'xxxxxx', db = 'one', charset = 'utf8' ) cursor = conn.cursor() conn.autocommit(False) sql_insert = &quot;insert into quotations(content) values('test')&quot; sql_update = &quot;update quotations set content='test_update' where id=3&quot; sql_delete = &quot;delete from quotations where id&gt;2&quot; try: #cursor.execute(sql_insert) #print cursor.rowcount cursor.execute(sql_update) print cursor.rowcount cursor.execute(sql_delete) print cursor.rowcount conn.commit() except Exception as e: print e conn.rollback() finally: cursor.close() conn.close()]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F06%2Fshell%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[#shell环境变量配置文件 ##source命令 source 配置文件 . 配置文件 #修改配置文件后，必须注销重新登录后才能生效，使用source命令可以不用重新登录 PATH、HISTSIZE、PS1、HOSTNAME等环境变量写入对应的环境变量配置文件 环境变量配置文件中主要是定义对系统操作环境生效的系统环境变量，如PATH等 /etc/profile /etc/profile.d/*.sh ~/.bash_profile ~/.bashrc /etc/bashrc ##/etc/profile的作用 USER变量 LOGNAME变量 MAIL变量 PATH变量 HOSTNAME变量 HISTSIZE变量 umask 调用/etc/profile.d/*.sh文件 ##umask权限 umask #查看系统默认权限 注意： * 文件最高权限为666 * 目录最高权限为777 * 权限不能使用数字进行换算，而必须使用字母 * umask定义权限，是系统默认权限中准备丢弃的权限]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F06%2Fshell%E8%BF%90%E7%AE%97%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[#shell运算符 ##declare声明变量类型 declare [+/-][选项] 变量名 选项： -:给变量设定类型属性 +:取消变量的类型属性 -a:将变量声明为数组型 -i:将变量声明为整数型（integer） -x:将变量声明为环境变量 -r:将变量声明为只读变量 -p:显示指定变量的被声明类型 ##expr或let数值运算工具 dd=$(expr $aa + $bb) #dd的值是aa和bb的和。注意“+”号左右两侧必须有空格。 ##&quot;$((运算式))&quot;或&quot;$[运算式]&quot; ff=$(( $aa+$bb )) gg=$[ $aa+$bb ]]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F03%2F31%2Fshell%E7%BC%96%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[#shell编程 ##变量名规则 变量名必须以字母或下划线打头，名字中间只能由字母、数字和下划线组成 变量名的长度不得超过255个字符 变量名的有效范围必须是唯一的 在Bash中，变量的默认类型都是字符串型 ##变量安装存储数据分类 字符串型 整型 浮点型 日期型 ##变量的分类 用户自定义变量：变量自定义 环境变量：这种变量中主要保存的是和系统操作环境相关的数据。。变量可以自定义，但是对系统生效的环境变量名和变量作用是固定的 位置参数变量：这种变量主要是用来向脚本当中传递参数或数据的，变量名不能自定义，变量作用是固定的 预定义变量：是Bash中已经定义好的变量，变量名不能自定义，变量作用也是固定的 ##变量调用 echo $变量名 例如 echo $x name=&quot;hello&quot; echo $name ##变量叠加 x=123 x=&quot;$x&quot;456 x=${x}789 ##变量查看 set #查看所有变量 选项： -u 如果设定此选项，调用未声明变量时会报错（默认无任何提示） env #查看环境变量 ##环境变量 用户自定义的变量只能在当前的shell中生效 环境变量在当前shell和这个shell的所有子shell中生效 对系统生效的环境变量名和变量作用是固定的 ##设置环境变量 export 变量名=变量值 或 变量名=变量值 export 变量名 ##删除环境变量 unset 变量名 ##常用环境变量 HOSTNAME:主机名 SHELL:当前的shell TERM:终端环境 HISTSIZEL:历史命令条数 SSH_CLIENT:当前操作环境是ssh连接的，这里记录客户端ip SSH_TTY:ssh连接的终端时pst/1 USER:当前登录的用户 ##PATH环境变量 PATH变量：系统查找命令的路径 echo $PATH #查看PATH环境变量 PATH=&quot;$PATH&quot;:/root/sh #增加PATH变量的值 ##PS1环境变量 PS1变量：命令提示符设置 \d 显示日期，格式为“星期 月 日” \H 显示完整的主机名。如默认主机名“localhost.localdomain” \t 显示24小时制时间，格式为“HH：MM：SS” \A 显示24小时制时间，格式为“HH：MM” \u 显示当前用户名 \w 显示当前所在目录的完整名称 \W 显示当前所在目录的最后一个目录 $ 提示符。如果是root用户会显示提示符为“#”，如果是普通用户显示提示符为“$” ##当前语系查询 locale #查询当前系统语系 LANG 定义系统主语系的变量 LC_ALL 定义整体语系的变量 ##语系变量LANG echo $LANG #查看系统当前语系 locale -a | more #查看Linux支持的所有语系 ##查询系统默认语系 cat /etc/sysconfig/i18n ##位置参数变量 $n n为数字，$0表示命令本身，$1-$9代表第一到第九个参数，十以上的参数需要用大括号包含，如${10} $* 这个变量代表命令行中所有参数，$*把所有的参数看成一个整体 $@ 这个变量也代表命令中所有的参数，不过$@把每个参数区分对待 $# 这个变量代表命令中所有参数的个数 例子 num1=$1 num2=$2 sum=$(($num1 + $num2)) #变量sum的和是num1加num2 echo $sum #打印变量sum的值 #!/bin/bash echo &quot;A total of $# parameters&quot; #使用$#代表所有参数的个数 echo &quot;The parameters is:$*&quot; #使用$*代表所有的参数 echo &quot;The parameters is:$@&quot; #使用$@也代表所有参数 $*与$@的区别 #!/bin/bash for i in &quot;$*&quot; #$*中的所有参数看成是一个整体，所以这个for循环只会循环一次 do echo &quot;The parameters is:$i&quot; done for y in &quot;$@&quot; #$@中的所有参数看成是独立的，所以&quot;$@&quot;中有几个参数，就会循环几次 do echo &quot;The parameters is:$y&quot; done ##预定义变量 $? 最后一次执行的命令的返回状态。如果这个变量的值是0，证明上一个命令正确执行；如果这个值为非0（具体是哪个数，由命令自己来决定），则证明上一个命令执行不正确。 $$ 当前进程的进程号（PID） $! 后台运行的最后一个进程的进程号（PID） ##接受键盘输入 read [选项] [变量名] 选项 -p “提示信息”：在等待read输入时，输入提示信息 -t 秒数：read命令会一直等待用户输入，使用此选项可以指定等待时间 -n 字符数：read命令只接受指定的字符数， 就会执行 -s 隐藏输入的数据，适用于机密信息的输入 ##其他 pstree #查看进程树]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F03%2F23%2F20160321%2F</url>
+    <content type="text"><![CDATA[##get方法抓取网页 import urllib2 url=&quot;http://www.baidu.com&quot; response = urllib2.urlopen(url) print response.read() ##post方法抓取页面 import urllib import urllib2 url = &quot;http://pay.fjut.edu.cn/user.php&quot; form = {'act':'act_login','username':'Arvin','password':'password'} form_data = urllib.urlencode(form) request = urllib2.Request(url,form_data) response = urllib2.urlopen(request) print response.read() #Python安装模块 cmd进入E:\Program Files\Python\Scripts pip install 模块名 #python爬取one # -- coding: utf-8 -- # import requests import bs4 import re response = requests.get('http://wufazhuce.com') soup = bs4.BeautifulSoup(response.text,&quot;html.parser&quot;) #print soup.find_all('img')[1]['src'] #print soup.find_all('a')[1]['href'] #for i in soup.find_all(&quot;img&quot;,class_=&quot;fp-one-imagen&quot;): # print i for i in soup.find_all(&quot;div&quot;,class_=&quot;item active&quot;): print i.find_all('img')[0]['src'] print i.find_all('a')[1].string #for i in soup.find_all(&quot;div&quot;,class_=&quot;fp-one-cita&quot;,limit=1): # print i #for i in soup.find_all(href=re.compile(&quot;http://wufazhuce.com/one&quot;)): # print i #for i in soup.find_all(id='carousel-one'): # print i #for i in soup.find_all('a'): # print i #for child in soup.body.children: # print child]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F03%2F20%2FShell%2F</url>
+    <content type="text"><![CDATA[#Shell ##什么是Shell Shell是一个命令解释器，他为用户提供一个向Linux内核发送请求以便运行程序的界面系统级程序，用户可以用Shell来启动、挂起、停止甚至是编写一些程序。 Shell还是一个功能相当强大的编程语言，易编写，易调试，灵活性较强。Shell是解释执行的脚本语言，在Shell中可以直接调用Linux系统命令。 ##Linux支持的Shell /etc/shells ##echo输出命令 echo [选项] [输出内容] 选项： -e：支持反斜杠控制的字符转换 echo -e &quot;\e[1;31m 你好 \e[0m&quot; #30m=黑色，31m=红色，32m=绿色，33m=黄色 #34m=蓝色，35m=洋红，36m=青色，37m=白色 ##第一个脚本 #!/bin/bash #The first program echo -e &quot;\e[1;34m 第一个脚本 \e[0m&quot; ##脚本执行 赋予执行权限，直接运行 chmod 755 hello.sh ./hello.sh 通过Bash调用执行脚本 bash hello.sh ##查看和设定别名 alias #查看系统中所有的命令别名 alias 别名='原命令' #设定命令别名 ##别名永久生效与删除别名 vi ~/.bashrc #写入环境变量配置文件 unalias 别名 #删除别名 ##命令生效顺序 第一顺位执行用绝对路径或相对路径执行的命令 第二顺位执行别名 第三顺位执行Bash的内部命令 第四顺位执行按照$PATH环境变量定义的目录查找顺序找到的第一个命令 ##常用快捷键 ctrl+c 强制终止当前命令 ctrl+l 清屏 ctrl+a 光标移动到命令首行 ctrl+e 光标移动到命令尾行 ctrl+u 从光标所在位置删除到首行 ctrl+z 把命令放入后台 ctrl+r 在历史命令中搜索 ##历史命令 history [选项] [历史命令保存文件] 选项： -c：清空历史命令 -w：把缓存中的历史命令写入历史命令保存文件~/.bash_history 历史命令默认会保存1000条，可以在环境变量配置文件/etc/profile中进行修改 使用上、下箭头调用以前的历史命令 使用&quot;!n&quot;重复执行第n条历史命令 使用&quot;!!&quot;重复执行上一条命令 使用&quot;!字符串&quot; 重复执行最后一条以该字符串开头的命令 ##命令与文件的补全 在Bash中，命令与文件补全是非常方便与常用的功能，我们只要在输入命令或文件时，按&quot;Tab&quot;键就会自动进行补全 ##输出重定向 标准输出重定向 命令 &gt; 文件 以覆盖的方式，把命令的正确输出输出到指定的文件或设备中 命令 &gt;&gt; 文件 以追加的方式，把命令的正确输出输出到指定的文件或设备中 标准错误输出重定向 错误命令 2&gt;文件 以覆盖的方式，把命令的错误输出输出到指定的文件或设备中 错误的命令 2&gt;&gt;文件 以最佳的方式，把命令的错误输出输出到指定的文件或设备中 正确输出和错误输出同时保持 命令 &gt; 文件 2&gt;&amp;1 以覆盖的方式，把正确输出和错误输出都保存到同一个文件当中 命令 &gt;&gt; 文件 2&gt;&amp;1 以追加的方式，把正确输出和错误输出都保存到同一个文件当中 命令 &amp;&gt;文件 以覆盖的方式，把正确输出和错误输出都保存到同一个文件当中 命令 &amp;&gt;&gt;文件 以追加的方式，把正确输出和错误输出都保存到同一个文件当中 命令&gt;&gt;文件1 2&gt;&gt;文件2 把正确的输出追加到文件1中，把错误的输出追加到文件2中 ##输入重定向 wc [选项] [文件名] 选项： -c 统计字节数 -w 统计单词数 -l 统计行数 命令 &lt; 文件 把文件作为命令的输入 命令 &lt;&lt; 标识符 ##多命令顺序执行 ； 命令1;命令2 多个命令顺序执行，命令之间没有任何逻辑关系 &amp;&amp; 命令1&amp;&amp;命令2 逻辑与，当命令1正确执行则命令2才会执行，当命令1执行不正确，则命令2不会执行 || 命令1||命令2 逻辑或，当命令1执行不正确命令2才会执行，当命令1正确执行则命令2不会执行 ##管道符 命令1 | 命令2 #命令1的正确输出作为命令2的操作对象 ##通配符 ? 匹配一个任意字符 * 匹配0个或任意多个任意字符，也就是可以匹配任何内容 [] 匹配中括号中任意一个字符。例如：[abc]代表一定匹配一个字符，或者是a，或者是b，或者时c [-] 匹配中括号中任意一个字符，-代表一个范围。例如：[a-z]代表匹配一个小写的字符 [^] 逻辑非，表示匹配不是中括号内的一个字符。例如：[^0-9]代表匹配一个不是数字的字符 ##Bash中的其他特殊符号 ' 单引号，在单引号中所有的特殊符号，如&quot;$&quot;和&quot;&quot;（反引号）都没有特殊含义 &quot;&quot; 双引号，在双引号中特殊符号都没有特殊含义，但是&quot;$&quot;、&quot;&quot;和&quot;&quot;是例外，拥有&quot;调用变量的值&quot;、&quot;引用命令&quot;和&quot;转义符&quot;的特殊含义 `` 反引号，反引号括起来的内容时系统命令，在Bash中会先执行它。和$()作用一样，不过推荐使用$(),因为反引号非常容易看错。 $() 和反引号作用一样，用来引用系统命令 # 在shel脚本中，#开头的行代表注释 $ 用于调用变量的值，如需要调用变量name的值时，需要用$name的方式得到变量的值 \ 转义符，跟在\之后的特殊符号将失去特殊含义，变为普通字符，如$将输出&quot;$&quot;符号，而不当做是变量引用]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux环境下的MySQL备份]]></title>
+    <url>%2F2016%2F03%2F13%2FLinux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%A4%87%E4%BB%BDMySQL%2F</url>
+    <content type="text"><![CDATA[cd /var/spool/cron vim root 编辑root 12*/1 * * * * date &gt;&gt; /tmp/backuplog.txt 2&gt;&amp;130 4 * * * cd /var/lib;tar -zcvf /home/nebula/backup/mysqlbackup.tar.gz mysql/* &gt;&gt; /tmp/backuplog.txt 2&gt;&amp;1]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[磁盘管理]]></title>
+    <url>%2F2016%2F03%2F12%2FLinux%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617df 查看磁盘分区使用情况 -l 仅显示本地磁盘（默认） -a 显示所有文件系统的磁盘使用情况，包含比如/proc/ -h 以1024进制计算最适合的单位显示磁盘容量 -H 以1000进制计算最适合的单位显示磁盘容量 -T 显示磁盘分区类型 -t 显示指定类型文件系统的磁盘分区 -x 不显示指定类型文件系统的磁盘分区du 统计磁盘上的文件大小 -b 以byte为单位统计文件 -k 以KB为单位统计文件 -m 以MB为单位统计文件 -h 按照1024进制以最适合的单位统计文件 -H 按照1000进制以最适合的单位统计文件 -s 指定统计目标]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux绑定域名]]></title>
+    <url>%2F2016%2F03%2F11%2FLinux%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D%2F</url>
+    <content type="text"><![CDATA[将域名解析到服务器IP地址 进入/etc/httpd/conf目录，修改httpd.conf文件，添加如下 123456789&lt;VirtualHost xxx.xxx.xxx.xxx&gt; DocumentRoot /var/www/html/ ServerName xxx.xxx.xxx.xxx&lt;/VirtualHost&gt;&lt;VirtualHost xxx.xxx.xxx.xxx&gt; DocumentRoot /var/www/html/wordpress/ ServerName www.example.com&lt;/VirtualHost&gt; 重启httpdservice httpd restart 进入WordPress的常规设置，将WordPress(URL)和站点地址（URL）修改成域名。]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux安装Python2.7环境]]></title>
+    <url>%2F2016%2F03%2F10%2FLinux%E5%AE%89%E8%A3%85Python2.7%E7%8E%AF%E5%A2%83%2F</url>
+    <content type="text"><![CDATA[Linux将Python2.6升级至2.7 查看当前Python版本 12# python -V Python 2.6.6 下载Python2.7.5源码 1# wget http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz 解压源代码包 1# tar xvf Python-2.7.5.tgz 进入解压目录并安装 123456# cd Python-2.7.5 # ./configure # make all # make install # make clean # make distclean 将系统默认的python设置为python2.7.5 12# rm /usr/bin/python # ln -s /usr/local/bin/python2.7 /usr/bin/python 检查Python版本 12# python -V Python 2.7.5 解决yum不能运行的问题 因为yum是依赖python2.6.6运行的，所以需要对yum做一些修改 12# vim /usr/bin/yum 将第一行的#!/usr/bin/python修改为#!/usr/bin/python2.6 遇到问题 ImportError: cannot import name HTTPSHandler 123456789101112原因在于openssl,openssl-devel两个文件包未正确安装。用下来的命令来安装：yum install openssl -yyum install openssl-devel -y安装完成后，重新安装python:# cd Python-2.7.5 # ./configure # make all # make install # make clean # make distclean RuntimeError: Compression requires the (missing) zlib module 123456789101112yum install zlibyum install zlib-devel安装完成后，重新编译 python2.7【不需要删除，只需要重新编译，make，安装就行了】# cd Python-2.7.5 # ./configure # make all # make install # make clean # make distclean 缺少setuptools包 下载setuptools包 1# wget http://pypi.python.org/packages/source/s/setuptools/setuptools-2.0.tar.gz 解压setuptools包 12# tar zxvf setuptools-2.0.tar.gz# cd setuptools-2.0 编译setuptools 1# python setup.py build 开始执行setuptools安装 1# python setup.py install pip安装mysql-python报致命错误：my_config.h：没有那个文件或目录 1只需要在 yum install mysql-devel 安装MySQLdb 下载MySQL-python-1.2.3.tar.gz，解压缩 进入下载MySQL-python-1.2.3，编辑site.cfg，把mysql_config那一行取消注释，并改成你自己系统安装的mysql_config路径 python setup.py install]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CRONTAB]]></title>
+    <url>%2F2016%2F03%2F09%2Fcrontab%2F</url>
+    <content type="text"><![CDATA[Crontab是一个用于设置周期性被执行的任务的工具。 被周期性执行的任务我们称为Cron Job 周期性执行的任务列表我们称为Cron Table 检测cron服务 检查Crontab工具是否安装：crontab -l 检查crond服务是否启动：service crond status 安装cron 12# yum install vixie-cron# yum install crontabs crond系统服务 每分钟都会从配置文件刷新定时任务 crontab的配置文件格式 1* * * * * COMMAND 第一个*表示分钟0~59 第二个*表示小时0~23 第三个*表示日期1~31 第四个*表示月份1~12 第五个*表示星期0~7（0或者7表示星期天） 例子 每分钟都打印当前时间到一个日志文件中 1*/1 * * * * date &gt;&gt; /tmp/log.txt 每晚的21：30重启apache 130 21 * * * service httpd restart 每月1、10、22日的4：45重启apache 145 4 1,10,22 * * service httpd restart 每月1到10号的4：45重启apache 145 4 1-10 * * service httpd restart 每隔两分钟重启apache 1*/2 * * * * service httpd restart 晚上11点到早上7点之间，每隔一小时重启apache 10 23-7/1 * * * service httpd restart 每天18：00至23：00之间每隔30分钟重启apache 1230,30 18-23 * * * service httpd restart0-59/30 18-23 * * * service httpd restart *表示任何时候都匹配 A,B,C表示A或者B或者C时执行命令 A-B表示A到B之间时执行命令 */A表示每A分钟（小时等）执行一次命令 crontab工具使用 crontab -help crontab配置文件 全局（系统）配置文件 123456/etc/crontab/etc/cron.d目录下的文件可以认为是系统配置文件的补充/var/spool/cron/rootcrontab操作实际上是操作此目录下的文件 crontab日志 1/var/log/cron文件保存着cron的任务执行记录 其他 不断显示文件最后几行 1tail -f /tmp/log.txt]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[cheat命令]]></title>
+    <url>%2F2016%2F03%2F08%2Fcheat%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[cheat命令简单来说，就是告诉你一个命令如何使用。 cheat命令依赖于Python和pip。 安装需要root权限su #切换到root用户 通过git下载cheat 1. 安装python 1# yum install python 2. 安装pip 1# yum install python-pip 3. 安装git 1# yum install 4. 安装Python依赖文件 1# pip install docopt pygments 5. 从github克隆项目 1# git clone http://github.com/chrisallenlane/cheat.git 6. 切换到cheat路径，进行安装 12# cd cheat# python setup.py install 7. 运行 1# cheat -v]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日常Linux Shell命令]]></title>
+    <url>%2F2016%2F03%2F07%2F%E6%97%A5%E5%B8%B8Linux%20Shell%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[检查远程端口是否对bash开放 1echo &gt;/dev/tcp/8.8.8.8/53 &amp;&amp; echo "open" 让进程转入后台 1Ctrl + z 将进程转到前台 1fg 产生随机的十六进制数，其中n是字符数 1openssl rand -hex n 在当前shell里执行一个文件里的命令 1source /home/user/file.name 截取前5个字符 1￥&#123;variable:0:5&#125; SHH debug 模式 1shh -vvv user@ip_address SHH with pem key 1shh user@ip_address -i key.pem 用wget抓取完整的网站目录结构，存放到本地目录中 1wget -r --no -parent --reject "index.html*" http://hostname/ -p /home/user/dirs 一次创建多个目录 1mkdir -p /home/user/&#123;test,test1,test2&#125; 列出包括子进程的进程树 1ps axwef 创建war文件 1jar -cvf name.war file 测试硬盘写入速度 1dd if=/dev/zero of=/tmp/output.img bs=8k count =256k; rm -rf /tmp/output.img 测试硬盘读取速度 1hdparm -Tt /dev/sda 获取文本的md5 hash 1echo -n "text" | md5sum 检查xml格式 1xmllint --noout file.xml 将tar.gz提取到新目录里 1tar zxvf package.tar.gz -C new_dir 使用curl获取HTTP头信息 1curl -I http://www.example.com 修改文件或者目录的时间戳（YYMMDDhhmm） 1touch -t 0712250000 file 用wget命令执行ftp下载 1wget -m ftp://username:password@hostname 生成随机密码 1LANG=c &lt; /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c$&#123;1:-16&#125;;echo; 快速备份一个文件 1cp some_file_name&#123;,.bkp&#125; 访问windows共享目录 1smbclient -U "DOMAIN\user" //dc.domain.com/share/test/dir 执行历史记录里的命令（这里是第100行） 1！100 解压 1unzip package_name.zip -d dir_name 输入多行文字(CTRL + d 退出): 1cat &gt; test.txt 创建空文件或清空一个现有文件： 1\&gt; test.txt 与Ubuntu NTP server同步时间： 1ntpdate ntp.ubuntu.com 用netstat显示所有tcp4监听端口： 1netstat -lnt4 | awk '&#123;print $4&#125;' | cut -f2 -d: | grep -o '[0-9]*' qcow2镜像文件转换： 1qemu-img convert -f qcow2 -O raw precise-server-cloudimg-amd64-disk1.img \precise-server-cloudimg-amd64-disk1.raw 重复运行文件，显示其输出（缺省是2秒一次）： 1watch ps -ef 所有用户列表： 1getent passwd Mount root in read/write mode: 1mount -o remount,rw / 挂载一个目录（这是不能使用链接的情况）: 1mount --bind /source /destination 动态更新DNS server: 1234nsupdate &lt; &lt;EOFupdate add $HOST 86400 A $IPsendEOF 递归grep所有目录： 1grep -r "some_text" /path/to/dir 列出前10个最大的文件： 1lsof / | awk '&#123; if($7 &gt; 1048576) print $7/1048576 "MB "$9 &#125;' | sort -n -u | tail 显示剩余内存(MB): 1free -m | grep cache | awk '/[0-9]/&#123; print $4" MB" &#125;' 打开Vim并跳到文件末： 1vim + some_file_name Git 克隆指定分支(master): 1git clone git@github.com:name/app.git -b master Git 切换到其它分支(develop): 1git checkout develop Git 删除分支(myfeature): 1git branch -d myfeature Git 删除远程分支 1git push origin :branchName Git 将新分支推送到远程服务器： 1git push -u origin mynewfeature 打印历史记录中最后一次cat命令： 1!cat:p 运行历史记录里最后一次cat命令： 1!cat 找出/home/user下所有空子目录: 1find /home/user -maxdepth 1 -type d -empty 获取test.txt文件中第50-60行内容： 1&lt; test.txt sed -n '50,60p' 运行最后一个命令(如果最后一个命令是mkdir /root/test, 下面将会运行: sudo mkdir /root/test)： 1sudo !! 创建临时RAM文件系统 – ramdisk (先创建/tmpram目录): 1mount -t tmpfs tmpfs /tmpram -o size=512m Grep whole words: 1grep -w "name" test.txt 在需要提升权限的情况下往一个文件里追加文本： 1echo "some text" | sudo tee -a /path/file 列出所有kill signal参数: 1kill -l 在bash历史记录里禁止记录最后一次会话： 1kill -9 $$ 扫描网络寻找开放的端口： 1nmap -p 8081 172.20.0.0/16 设置git email: 1git config --global user.email "me@example.com" To sync with master if you have unpublished commits: 1git pull --rebase origin master 将所有文件名中含有”txt”的文件移入/home/user目录: 1find -iname "*txt*" -exec mv -v &#123;&#125; /home/user \; 将文件按行并列显示： 1paste test.txt test1.txt shell里的进度条: 1pv data.log 使用netcat将数据发送到Graphite server: 1echo "hosts.sampleHost 10 `date +%s`" | nc 192.168.200.2 3000 将tabs转换成空格： 1expand test.txt &gt; test1.txt Skip bash history: 1&lt; space &gt;cmd 去之前的工作目录： 1cd - 拆分大体积的tar.gz文件(每个100MB)，然后合并回去： 12split –b 100m /path/to/large/archive /path/to/output/filescat files* &gt; archive 使用curl获取HTTP status code: 1curl -sL -w "%&#123;http_code&#125;\\n" www.example.com -o /dev/null 设置root密码，强化MySQL安全安装: 1/usr/bin/mysql_secure_installation 当Ctrl + c不好使时: 1Ctrl + \ 获取文件owner: 1stat -c %U file.txt block设备列表： 1lsblk -f 找出文件名结尾有空格的文件： 1find . -type f -exec egrep -l " +$" &#123;&#125; \; 找出文件名有tab缩进符的文件 1find . -type f -exec egrep -l $'\t' &#123;&#125; \; 用”=”打印出横线:全选复制放进笔记 1printf '%100s\n' | tr ' ' =]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux目录结构]]></title>
+    <url>%2F2016%2F03%2F06%2FLinux%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[12345678910111213141516/--- /bin User Binaries /sbin System Binaries /etc Configuration Files 配置文件保存目录 /dev Device Files 设备文件保存目录 /proc Process Information /var Variable Files /tmp Temporary Files /usr User Programs /home Home Directories 普通用户的家目录 /boot Boot Loader Files 启动目录，启动相关文件 /lib System Libraries 系统库保存目录 /opt Optional add-on Apps /mnt Mount Directory 系统挂载目录 /media Removable Devices 挂载目录 /srv Service Data root---启动Linux时使用的一些核心文件。如操作系统内核、引导程序Grub等。 home---存储普通用户的个人文件 ftp---用户所有服务 httpd samba bin---系统启动时需要的的执行文件 sbin---可执行程序的目录，但大多存放涉及系统文件管理的命令。只有root权限才能执行。 proc---虚拟，存在Linux内核镜像；保存所有内核参数以及系统配置信息 1---进程编号 usr---用户目录，存放用户级的文件 bin---几乎所有用户所用的命令，另外存在与/bin,/usr/local/bin sbin---系统管理员命令，与用户相关，例如大部分服务器程序 include---存放C/C++头文件的目录 lib---固定的程序数据 local---本地安装软件保存位置 man---手工生成的目录 info---信息文档 doc---不同包文档信息 tmp boot---引导加载器所需文件，系统所需图片保存于此 lib---根文件系统目录下程序和核心模块的公共库 modules---可加载模块，系统崩溃后重启所需模块 dev---设备文件目录 etc---配置文件 skel---home目录建立，该目录初始化 sysconfig---网络，时间，键盘等配置目录 var file lib---该目录下的文件在系统运行时，会改变 local---安装在/usr/local的程序数据，变化的 lock---文件使用特定外设或文件，为其上锁，其他文件暂时不能访问 log---记录日志 run---系统运行合法信息 spool---打印机、邮件、代理服务器等假脱机目录 tmp catman---缓存目录 mnt---临时用于挂载文件系统的地方。一般情况下这个目录是空的，而我们将要挂载分区时在这个目录下建立目录，再将我们将要访问的设备挂载在这个目录上，这样我们就可以访问文件了。 tmp---临时文件目录，系统启动后的临时文件存放在/var/tmp lost+fount---在文件系统修复时恢复的文件]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux网络]]></title>
+    <url>%2F2016%2F03%2F05%2FLinux%E7%BD%91%E7%BB%9C%2F</url>
+    <content type="text"><![CDATA[ifconfig命令 12345ifconfig#查看与配置网络状态命令ifconfig ech0 192.168.0.200 netmask 255.255.255.0#临时设置ech0网卡的IP地址与子网掩码 关闭和启动网卡 12345ifdown 网卡设备名#禁用该网卡设备ifup 网卡设备名#启用该网卡设备 查询网络状态 12345678netstat 选项选项： -t 列出TCP协议端口 -u 列出UDP协议端口 -n 不使用域名与服务名，而使用IP地址和端口号 -l 仅列出在监听状态网络服务 -a 列出所有的网络连接 -r 列出路由列表，功能和route命令一致 route命令 12345route -n#查看路由列表route add default gw 192.168.1.1#临时设定网关 域名解析命令 12nslookup [主机名或IP]#进行域名与IP地址解析 ping命令 12345ping [选项] ip或域名#探测指定IP或域名的网络状态选项： -c 次数：指定ping包的次数 telnet命令 12telnet [域名或IP] [端口]#远程管理与端口探测命令 traceroute 12345traceroute [选项] IP或域名#路由跟踪命令选项： -n 使用IP，不使用域名，速度更快 wget命令 12wget url#下载命令 tcpdump命令 123456tcpdump -i ech0 -nnx port 21选项： -i 指定网卡接口 -nn 将数据包的域名与服务转为IP的端口 -X 以十六进制和ASCII码显示数据包内容 port 指定监听的端口 网卡信息文件 1234567891011121314vi /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE='eth0' 网卡设备名NM_CONTROLLED='yes' 是否可以由Network Manager图形管理工具托管ONBOOT='yes' 是否随网络服务启动，eth0生效IPADDR='10.105.93.229' IP地址NETMASK='255.255.192.0' 子网掩码GATEWAY='10.105.64.1' 网关BOOTPROTO=none 是否自动获取IP（none,static,dhcp）HWADDR=00:0c:29:17:c4:09 MAC地址TYPE=Ethernet 类型为以太网UUID="xxxxxx" 唯一识别码DNS1=xxxxxxx DNS 主机名文件 1234vi /etc/sysconfig/networkhostname [主机名]#查看与临时设置主机名命令 DNS配置文件 123vi /etc/resolv.conf#nameserver 202.106.0.20#search localhost 启动网卡 12service network restart#重启网络服务]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux系统7个运行级别(runlevel)]]></title>
+    <url>%2F2016%2F03%2F05%2FLinux%E7%B3%BB%E7%BB%9F7%E4%B8%AA%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[VI编辑器]]></title>
+    <url>%2F2016%2F03%2F04%2FVI%E7%BC%96%E8%BE%91%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[Visual Interface(可视化接口) VI ——&gt; VIM VIM支持多级撤销 VIM可以跨平台运行 VIM支持语法高亮 VIM支持图形界面 vi三种模式 一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。 编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、r、R”等字母之后才会进入编辑模式。注意，通常在Linux中，按下上述字符时，画面的左下方会出现“INSERT或REPLACE”的字样，才可以输入任何字到文件中。如果要回到一般模式时，则必须要按下Esc键才可退出编辑模式。 命令行模式：在一般模式中，输入“:或/或?”就可以将光标移到最下面的那一行，在这个模式中，你可以搜索数据，而且读取、存盘、大量删除字符、离开vi、显示行号等操作都是在此模式下实现的。 操作模式 Command Mode - 命令模式 Insert Mode - 输入模式 Last Line Mode - 底行模式（尾行，末行） 12345678vim + test.txt#打开test.txt文本，光标置于最后一行vim +3 test.txt#打开test.txt文本，光标置于第三行vim +/hello test.txt#打开test.txt文本，光标置于第一次出现hello的那一行，可以通过按n来切换hello所在的不同行 常用指令 12345678910111213141516171819202122232425262728底行模式常用命令-:w 将内容的修改从内存写入硬盘中-:q 退出当前VI编辑器-:! 强制执行-:ls 列出当前编辑器打开的文件-:n 切换到后一个文件-:N 切换到前一个文件-:15 把光标快速定位到15行- /xxx 从光标位置向后搜索xxx字符串- ?xxx 从光标位置向前搜索xxx字符串- h 光标左移- j 光标下移- k 光标上移- l 光标右移- ctrl + f 向下翻页（front）- ctrl + b 向上翻页（back）- ctrl + d 向下翻半页（down）- ctrl + u 向上翻半页（up）dd 删除光标所在行o 在光标所在行的下方插入一行并切换到输入模式yy 复制光标所在的行p 在光标所在行的下方粘贴P 在光标所在行的上方粘贴]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux用户]]></title>
+    <url>%2F2016%2F03%2F04%2FLinux%E7%94%A8%E6%88%B7%2F</url>
+    <content type="text"><![CDATA[12345678910111213141516/etc/group 存储当前系统中所有用户组信息Group : x : 123 :abc,def,xyz组名称 : 组密码占位符 : 组编码 : 组中用户名列表/etc/gshadow 存储当前系统中用户组的密码信息Group : * : : abc,def,xyz组名称 : 组密码 : 组管理 : 组中用户名列表/etc/passwd 存储当前系统中所有用户的信息user : x : 123 : 456 : xxxxxxx : /home/user : /bin/bash用户名 : 密码占位符 ： 用户编码 : 用户组编码 : 用户注释信息 : 用户主目录 : shell类型/etc/shadow 存储当前系统中所有用户的密码信息 groupadd groupmod useradd usermod 12345678passwd -l username#锁定用户账号passwd -u username#解锁用户账号passwd -d username#无密码登陆 12345chfn username#设置用户资料，依次输入用户资料finger username#显示用户资料]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用360镜像解决Wordpress一直加载fonts.googleapis.com问题]]></title>
+    <url>%2F2016%2F03%2F03%2Fwp%2F</url>
+    <content type="text"><![CDATA[PS:360镜像已停用 进入wordpress/wp-content/themes/ 找到相对应的主题中的functions.php 1234567891011121314/** * Return the Google font stylesheet URL if available. * * The use of Open Sans by default is localized. For languages that use * characters not supported by the font, the font can be disabled. * * @since Twenty Twelve 1.2 * * @return string Font stylesheet or empty string if disabled. */function twentytwelve_get_font_url() &#123;......$font_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' 将https://fonts.googleapis.com/css替换成https://fonts.useso.com/css即可 同理，wp-includes目录下script-loader.php也进行替换]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[yum源文件]]></title>
+    <url>%2F2016%2F03%2F02%2Fyum%E6%BA%90%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[将所有软件包放到官方服务器上。当进行yum在线安装时，可以自动解决依赖性问题。 路径 1cd /etc/yum.repos.d 基本文件 1CentOS-Base.repo 文件内容 12345678910111213141516171819nano /etc/yum.repos.d/CentOS-Base.repo[base]name=CentOS-$releasever - Basefailovermethod=prioritybaseurl=http://mirrors.aliyun.com/centos/$releasever/os/$basearch/ http://mirrors.aliyuncs.com/centos/$releasever/os/$basearch/gpgcheck=1gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6http://mirrors.aliyuncs.com/centos/RPM-GPG-KEY-CentOS-6[base] 容器名称，一定要放在[]中name 容器说明，可以自己随便写mirrorlist 镜像站点，这个可以注释掉baseurl 我们的yum源服务器的地址。默认是CentOS官方的yum源服务器，是可以使用的，如果你觉得慢可以改成你喜欢的yum源地址enabled 此容器是否生效，如果不写或者写成enable=1都是生效，写成enable=0就是不生效gpfcheck 如果是1是指RPM的数字证书生效，如果是0则不生效gpgkey 数字证书的公钥文件保存地址，不用修改 挂载光盘 12345#建立挂载点mkdir /mnt/cdrom#挂载光盘mount /dev/cdrom /mnt/cdrom 使网络的yum源失效 12345#进入yum源目录cd /etc/yum.repos.d#修改yum源文件后缀名，使其失效mv CentOS-Base.repo CentOS-Base.repo.bak nano CentOS-Media.repo 1234567891011- [c6-media]- name=CentOS-$releasever - Media#地址为自己的光盘挂载地址- baseurl=file:///mnt/cdrom#注释掉这两个不存在的地址- # file:///media/cdrom- # file:///media/cdrecorder- gpgcheck=1#把enabled=0改为enabled=1,让这个yum源配置文件生效- enable=1- gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6 常用的yum命令 查询 12345#查询所有可用软件包列表yum list#搜索服务器上所有和关键字相关的包yum search 关键字 安装 123456yum -y install 包名选项 - install 安装 - -y 自动回答yes例如： yum -y install gcc 升级 1234yum -y update 包名选项： - update 升级 - -y 自动回答yes 卸载 1234yum -y remove 包名选项： - remove 卸载 - -y 自动回答yes 服务器使用最小化安装。用什么软件安装什么。尽量不卸载 yum软件组管理命令 1234567891011121314#列出所有可用的软件组列表yum grouplist#安装指定软件组，组名可以由grouplist查询出来yum groupinstall 软件组名#注意：软件组名必须是英文#英文语系LANG=en_US#中文语系LANG=zh_CN.utf8#卸载指定软件组yum goupremove]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常见端口号]]></title>
+    <url>%2F2016%2F03%2F01%2F%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7%2F</url>
+    <content type="text"><![CDATA[FTP（文件传输协议）：端口号 20 21 SSH（安全shell协议）：端口号 22 telnet（远程登录协议）：端口号 23 DNS（域名系统）：端口号 53 http（超文本传输协议）：端口号 80 SMTP（简单邮件传输协议）：端口号 25 POP3（邮局协议3代）：端口号 110 查看本机启用端口 1234netstat -an选项： -a：查看所有连接和监听端口 -n：显示IP地址和端口号，而不显示域名和服务器名]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F02%2F24%2FPython%20import%E6%A8%A1%E5%9D%97%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[##python包含子目录中的模块方法比较简单，关键是能够在sys.path里面找到通向模块文件的路径。 ####下面将具体介绍几种常用情况: 主程序与模块程序在同一目录下: 如下面程序结构: `-- src |-- mod1.py `-- test1.py 若在程序test1.py中导入模块mod1, 则直接使用import mod1或from mod1 import *; 主程序所在目录是模块所在目录的父(或祖辈)目录 如下面程序结构: `-- src |-- mod1.py |-- mod2 | `-- mod2.py `-- test1.py 若在程序test1.py中导入模块mod2, 需要在mod2文件夹中建立空文件__init__.py文件(也可以在该文件中自定义输出模块接口); 然后使用 from mod2.mod2 import * 或import mod2.mod2. 主程序导入上层目录中模块或其他目录(平级)下的模块 如下面程序结构: `-- src |-- mod1.py |-- mod2 | `-- mod2.py |-- sub | `-- test2.py `-- test1.py 若在程序test2.py中导入模块mod1和mod2。首先需要在mod2下建立__init__.py文件(同(2))，src下不必建立该文件。然后调用方式如下: 下面程序执行方式均在程序文件所在目录下执行，如test2.py是在cd sub;之后执行python test2.py 而test1.py是在cd src;之后执行python test1.py; 不保证在src目录下执行python sub/test2.py成功。 import sys sys.path.append(&quot;..&quot;) import mod1 import mod2.mod2 从(3)可以看出，导入模块关键是能够根据sys.path环境变量的值，找到具体模块的路径。这里仅介绍上面三种简单情况。]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F02%2F24%2FPython%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[#Python函数 通过str类的swapcase方法可以快速实现大写便小写、小写变大写的功能。 In [1]: s = 'Hello' In [2]: s.swapcase() Out[2]: 'hELLO' 字符串自动补零 In [1]: &quot;5&quot;.zfill(10) Out[1]: &quot;0000000005&quot;]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F02%2F24%2FRequests%2F</url>
+    <content type="text"><![CDATA[#Requests ##Requests Requests：HTTP for Humans 完美代替urllib2模块 更多的自动化 更友好的用户体验 更完善的功能 ##Requests安装 Windows：pip install requests Linux：sudo pip install requests ##第三方库安装技巧 少用easy_install，因为只能安装不能卸载 多用pip方式安装 Python第三方包下载 ##第一个网页爬虫 Requests获取网页源代码 Requests与正则表达式 ##正则表达式 使用Requests获取网页源代码，在使用正则表达式匹配出感兴趣的内容，这就是单线程简单爬虫的基本原理。]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F02%2F21%2Frobots%E5%8D%8F%E8%AE%AE%2F</url>
+    <content type="text"><![CDATA[#robots协议 Robots协议（也称为爬虫协议、机器人协议等）的全称是“网络爬虫排除标准”（Robots Exclusion Protocol），网站通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取。 ##简介 robots.txt文件是一个文本文件，使用任何一个常见的文本编辑器编辑。 robots.txt是一个协议，而不是一个命令。 robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。 robots.txt文件告诉蜘蛛程序在服务器上什么文件是可以被查看的。 当一个搜索蜘蛛访问一个站点时，它会首先检查该站点根目录下是否存在robots.txt，如果存在，搜索机器人就会按照该文件中的内容来确定访问的范围；如果该文件不存在，所有的搜索蜘蛛将能够访问网站上所有没有被口令保护的页面。 ##原则 Robots协议是国际互联网界通行的道德规范，基于以下原则建立： 搜索技术应服务于人类，同时尊重信息提供者的意愿，并维护其隐私权； 网站有义务保护其使用者的个人信息和隐私不被侵犯。 ##文件写法 User-agent: * 这里的*代表的所有的搜索引擎种类，*是一个通配符 Disallow: /admin/ 这里定义是禁止爬寻admin目录下面的目录 Disallow: /require/ 这里定义是禁止爬寻require目录下面的目录 Disallow: /ABC/ 这里定义是禁止爬寻ABC目录下面的目录 Disallow: /cgi-bin/*.htm 禁止访问/cgi-bin/目录下的所有以&quot;.htm&quot;为后缀的URL(包含子目录)。 Disallow: /*?* 禁止访问网站中所有包含问号 (?) 的网址 Disallow: /.jpg$ 禁止抓取网页所有的.jpg格式的图片 Disallow:/ab/adc.html 禁止爬取ab文件夹下面的adc.html文件。 Allow: /cgi-bin/ 这里定义是允许爬寻cgi-bin目录下面的目录 Allow: /tmp 这里定义是允许爬寻tmp的整个目录 Allow: .htm$ 仅允许访问以&quot;.htm&quot;为后缀的URL。 Allow: .gif$ 允许抓取网页和gif格式图片 Sitemap: 网站地图 告诉爬虫这个页面是网站地图]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F02%2F19%2FPython%E9%81%8D%E5%8E%86%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[###Python遍历一个文件夹下的所有文件 import os.path rootdir = &quot;d:\data&quot; # 指明被遍历的文件夹 for parent,dirnames,filenames in os.walk(rootdir): #三个参数：分别返回1.父目录 2.所有文件夹名字（不含路径） 3.所有文件名字 for dirname in dirnames: #输出文件夹信息 print &quot;parent is: &quot; + parent print &quot;dirname is: &quot; + dirname for filename in filenames: #输出文件信息 print &quot;parent is: &quot; + parent print &quot;filename is:&quot; + filename print &quot;the full name of the file is:&quot; + os.path.join(parent,filename) #输出文件路径信息]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[changed myself first]]></title>
+    <url>%2F2016%2F02%2F14%2Fchanged%2F</url>
+    <content type="text"><![CDATA[When I was young and free and my imagination had no limits, I dreamed of changing the world. As I grew older and wiser, I discovered the world would not change, so I shortened my sights somewhat and decided to change only my country. But it, too, seemed immovable. As I grewinto my twilight years, in one last desperate attempt, I settled for changing only my family, those closest to me, but alas, they would have none of it. And now, as Ilie on my death bed, I suddenly realize: If I had only changed myself first, then by example I would have changed my family.From their in spiration and encouragement, I would then have been able to better my country,and who knows, I may have even changed the world. 当我年轻的时候，我的想象力从没有受到过限制，我梦想改变这个世界。 当我成熟以后，我发现我不能改变这个世界，我将目光缩短了些，决定只改变我的国家。 当我进入暮年后，我发现我不能改变我的国家，我的最后愿望仅仅是改变一下我的家庭。但是，这也不可能。 当我躺在床上，行将就木时，我突然意识到： 如果一开始我仅仅去改变我自己，然后作为一个榜样，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情。然后谁知道呢？我甚至可能改变这个世界。]]></content>
+      <tags>
+        <tag>think</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[读书的目的]]></title>
+    <url>%2F2016%2F02%2F06%2F%E8%AF%BB%E4%B9%A6%E7%9A%84%E7%9B%AE%E7%9A%84%2F</url>
+    <content type="text"><![CDATA[书虽然不能帮你解决问题，却能给你一个更好的视角。 你的问题主要在于：书读得不多而想得太多。 读书的根本目的是为了让自己明白世界，看清自己，让自己在无所依靠或者无所事事的时候，有一种严肃的力量推动着你往前走。 书读得多了，内心才不会决堤。是指人的情商积累和阅读相关。 读书多了，容颜自然改变。 读书，不是为了拿文凭或发财，而是成为一个温度懂情趣会思考的人。 当我还是个孩子时我吃了很多的食物，大部分已经一去不复返而且被我忘掉了，但可以肯定的是，它们中的一部分已经长成我的骨头和肉。阅读对你的思想的改变也是如此。]]></content>
+      <categories>
+        <category>think</category>
+      </categories>
+      <tags>
+        <tag>think</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F01%2F31%2FPython%2F</url>
+    <content type="text"><![CDATA[#Python ##特点 优雅 明确 简单 ##适合领域 Web网站和各种网络服务 系统工具和脚本 把其他语言开发的模块包装起来方便使用]]></content>
+  </entry>
+</search>
