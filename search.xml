@@ -1,6 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[生产者消费者模式]]></title>
+    <url>%2F2017%2F10%2F21%2Fpython%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[生产者的工作是产生一块数据，放到buffer中，如此循环。与此同时，消费者在消耗这些数据（例如从buffer中把它们移除），每次一块。 线程概念 Condition:线程中的条件 wait():在条件实例过程中可用的wait() notify():在条件实例中可用的notify() 生产者和消费者是并发运行的，生产者和消费者是线程分离的。 设定一个全局变量，可以被生产者和消费者线程修改，生产者生产数据并把它加入到队列，消费者消耗这些数据(把数据移出)。 队列是一个共享变量，把它放到lock程序块内，以防发生竞态条件。 在加入数据前，生产者检查队列是否为满。 如果不为满，生产者可以继续正常流程。 如果为满，生产者必须等待，调用condition实例的wait()。 消费者可以运行。消费者消耗队列，并产生一个空余位置。 然后消费者notify生产者。 当消费者释放lock，消费者可以acquire这个lock然后往队列中加入数据。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546from threading import Thread, Conditionimport timeimport randomqueue = []MAX_NUM = 10condition = Condition()class ProducerThread(Thread): def run(self): #nums = range(5) num = 1 global queue while True: condition.acquire() if len(queue) == MAX_NUM: print "Queue full, producer is waiting" condition.wait() print "Space in queue, Consumer notified the producer" #num = random.choice(nums) queue.append(num) print "Produced", num num = num + 1 condition.notify() condition.release() time.sleep(random.random()*10)class ConsumerThread(Thread): def run(self): global queue while True: condition.acquire() if not queue: print "Nothing in queue, consumer is waiting" condition.wait() print "Producer added something to queue and notified the consumer" num = queue.pop(0) print "Consumed", num condition.notify() condition.release() time.sleep(random.random()*10)ProducerThread().start()ConsumerThread().start()]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python文件处理]]></title>
+    <url>%2F2017%2F10%2F20%2FPython%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86%2F</url>
+    <content type="text"><![CDATA[Python文件打开方式 文件打开方法：open(name[,mode[buf]]) name:文件路径 mode:打开方式 buf:缓冲buffering大小 'r' 只读方式打开 文件必须存在 'w' 只写方式打开 文件不存在创建文件，文件存在则情况文件内容 'a' 追加方式打开 文件不存在创建文件 'r+'/'w+' 读写方式打开 'a+' 追加和读写方式打开 'rb','wb','ab','rb+','wb+','ab+':二进制方式打开 python读取方式 read([size]):读取文件（读取size个字节，默认读取全部） readline([size]):读取一行 readlines([size]):读取完文件，返回每一行所组成的列表 python写入方式 write(str):将字符串写入文件 writelines(sequence_of_strings):写多行到文件 # -*- encoding:utf-8 -*- #以写的方式打开 f = open(&quot;1.txt&quot;,'w') f.write(&quot;test write&quot;) f.close()]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python模块]]></title>
+    <url>%2F2017%2F10%2F19%2Fpython%E6%A8%A1%E5%9D%97%2F</url>
+    <content type="text"><![CDATA[包、模块、类和函数之间的关系 一个python文件就是一个模块 模块由代码、函数、或类组成 sys.path from module_name import function_name]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python函数]]></title>
+    <url>%2F2017%2F10%2F18%2FPython%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[通过str类的swapcase方法可以快速实现大写便小写、小写变大写的功能。 In [1]: s = 'Hello' In [2]: s.swapcase() Out[2]: 'hELLO' 字符串自动补零 In [1]: &quot;5&quot;.zfill(10) Out[1]: &quot;0000000005&quot;]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python遍历一个文件夹下的所有文件]]></title>
+    <url>%2F2017%2F10%2F17%2FPython%E9%81%8D%E5%8E%86%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[123456789101112import os.pathrootdir = "d:\data" # 指明被遍历的文件夹for parent,dirnames,filenames in os.walk(rootdir): #三个参数：分别返回1.父目录 2.所有文件夹名字（不含路径） 3.所有文件名字 for dirname in dirnames: #输出文件夹信息 print "parent is: " + parent print "dirname is: " + dirname for filename in filenames: #输出文件信息 print "parent is: " + parent print "filename is:" + filename print "the full name of the file is:" + os.path.join(parent,filename) #输出文件路径信息]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python爬虫基础]]></title>
+    <url>%2F2017%2F10%2F16%2Fpython%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[get方法抓取网页 import urllib2 url=&quot;http://www.baidu.com&quot; response = urllib2.urlopen(url) print response.read() post方法抓取页面 import urllib import urllib2 url = &quot;http://pay.fjut.edu.cn/user.php&quot; form = {'act':'act_login','username':'Arvin','password':'password'} form_data = urllib.urlencode(form) request = urllib2.Request(url,form_data) response = urllib2.urlopen(request) print response.read() Python安装模块 cmd进入E:\Program Files\Python\Scripts pip install 模块名 python爬取one 123456789101112131415161718192021222324252627282930313233343536373839# -*- coding: utf-8 -*- #import requestsimport bs4import reresponse = requests.get('http://wufazhuce.com')soup = bs4.BeautifulSoup(response.text,"html.parser")#print soup.find_all('img')[1]['src']#print soup.find_all('a')[1]['href']#for i in soup.find_all("img",class_="fp-one-imagen"):# print ifor i in soup.find_all("div",class_="item active"): print i.find_all('img')[0]['src'] print i.find_all('a')[1].string#for i in soup.find_all("div",class_="fp-one-cita",limit=1):# print i#for i in soup.find_all(href=re.compile("http://wufazhuce.com/one")):# print i#for i in soup.find_all(id='carousel-one'):# print i#for i in soup.find_all('a'):# print i#for child in soup.body.children:# print child]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python POP3获取邮件]]></title>
+    <url>%2F2017%2F10%2F15%2Fpython%20POP3%E8%8E%B7%E5%8F%96%E9%82%AE%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[POP协议（Post Office Protocol,邮局协议），默认使用110端口。 IMAP4协议。 服务器端-客户端工作模式。 python标准库中支持POP3协议的实现是poplib模块。 典型邮件客户端获取邮件的步骤 使用DNS协议来解析POP3服务器的IP地址 使用TCP协议来连接邮件服务器的110端口（默认情况下） 当客户端连接上POP3服务器后，将通过USER命令来传送邮箱账号，通过PASS命令来传送邮箱密码。提供这些信息来完成用户认证 当完成用户认证后，可以使用STAT命令来获取POP3服务器中此账号的邮箱统计资料，包括邮件的总数和邮件的大小 同时可以使用LIST命令列出POP3服务器中的已有邮件数量 邮件客户端可以通过RETR命令来获取邮件，并使用DELE命令来设置删除标志 所有的文件获取完毕后，可以使用QUIT命令中断和POP3邮件服务器的连接。同时，服务器会删除已设置为删除标志的邮件 poplib中类 POP3类和POP3_SSL类 POP_SSL类为POP3类的子类，实现了基于SSL的邮件传输 POP3类对象中定义的方法 set_debuglevel 设置调试信息级别 getwelcome 获取服务器的欢迎信息 user 发送邮箱名 pass_ 发送邮箱密码，锁定邮箱 stat 获取邮箱的统计信息 list 获取邮箱的邮件列表信息 retr 获取特定的邮箱 dele 设置邮件的删除标志 rset 删除所有邮件的删除标记 noop 不做任何事情，在为了保持连接的时候使用 quit 中断连接，解锁邮箱]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python MySQLdb]]></title>
+    <url>%2F2017%2F10%2F14%2FPython%20MySQLdb%2F</url>
+    <content type="text"><![CDATA[Python MySQLdb安装错误解决 ImportError: this is MySQLdb version (1, 2, 4, 'beta', 4), but _mysql is ver 解决办法：删除\Lib\site-packages下所有的mysqldb，重新安装 MySQLdb.Connect(参数) host 字符串 MySQL服务器地址 port 数字 MySQL服务器端口号 user 字符串 用户名 passwd 字符串 密码 db 字符串 数据库名称 charset 字符串 连接编码 connection对象支持的方法 cursor() 使用该连接创建并返回游标 commit() 提交当前事务 rollback() 回滚当前事务 close() 关闭连接 cursor对象支持的方法 execute(opp[,args]) 执行一个数据库查询命令 fetchone() 取的结果集的下一行 fetchmany(size) 获取结果集的下几行 fetchall() 获取结果集中剩下的所有行 rowcount 最近一次execute返回数据的行数或影响行数 close() 关闭游标对象 fetch*()方法：移动rownumber，返回数据 事务：访问和更新数据库的一个程序执行单元 原子性：事务中包括的诸操作要么都做，要么都不做 一致性：事务必须使数据库从一致性状态变到另一个一致性 隔离性：一个事务的执行不能被其他事务干扰 持久性：事务一旦提交，它对数据库的改变就是永久性的 开发中使用事务 关闭自动commit：设置conn.autocommit(False) 正常结束事务：conn.commit() 异常结束事务：conn.rollback() ##程序 ####查询 # -- coding: utf-8 -- # import MySQLdb conn = MySQLdb.Connect( host = 'xxx.xxx.xxx.xxx', port = 3306, user = 'nebula', passwd = 'xxxxxx', db = 'one', charset = 'utf8' ) cursor = conn.cursor() sql = &quot;select * from quotations&quot; cursor.execute(sql) #输出返回条数 print cursor.rowcount #输出返回第一条 rs = cursor.fetchone() print rs[1] for i in rs: print i #输出之后三条 #rs = cursor.fetchmany(3) #print rs #输出之后所有 #rs = cursor.fetchall() #print rs cursor.close() conn.close() ####增删改 # -- coding: utf-8 -- # import MySQLdb conn = MySQLdb.Connect( host = 'xxx.xxx.xxx.xxx', port = 3306, user = 'nebula', passwd = 'xxxxxx', db = 'one', charset = 'utf8' ) cursor = conn.cursor() conn.autocommit(False) sql_insert = &quot;insert into quotations(content) values('test')&quot; sql_update = &quot;update quotations set content='test_update' where id=3&quot; sql_delete = &quot;delete from quotations where id&gt;2&quot; try: #cursor.execute(sql_insert) #print cursor.rowcount cursor.execute(sql_update) print cursor.rowcount cursor.execute(sql_delete) print cursor.rowcount conn.commit() except Exception as e: print e conn.rollback() finally: cursor.close() conn.close()]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python import模块方法]]></title>
+    <url>%2F2017%2F10%2F13%2FPython%20import%E6%A8%A1%E5%9D%97%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[python包含子目录中的模块方法比较简单，关键是能够在sys.path里面找到通向模块文件的路径。 下面将具体介绍几种常用情况: 主程序与模块程序在同一目录下: 如下面程序结构: `-- src |-- mod1.py `-- test1.py 若在程序test1.py中导入模块mod1, 则直接使用import mod1或from mod1 import *; 主程序所在目录是模块所在目录的父(或祖辈)目录 如下面程序结构: `-- src |-- mod1.py |-- mod2 | `-- mod2.py `-- test1.py 若在程序test1.py中导入模块mod2, 需要在mod2文件夹中建立空文件__init__.py文件(也可以在该文件中自定义输出模块接口); 然后使用 from mod2.mod2 import * 或import mod2.mod2. 主程序导入上层目录中模块或其他目录(平级)下的模块 如下面程序结构: `-- src |-- mod1.py |-- mod2 | `-- mod2.py |-- sub | `-- test2.py `-- test1.py 若在程序test2.py中导入模块mod1和mod2。首先需要在mod2下建立__init__.py文件(同(2))，src下不必建立该文件。然后调用方式如下: 下面程序执行方式均在程序文件所在目录下执行，如test2.py是在cd sub;之后执行python test2.py 而test1.py是在cd src;之后执行python test1.py; 不保证在src目录下执行python sub/test2.py成功。 import sys sys.path.append(&quot;..&quot;) import mod1 import mod2.mod2 从(3)可以看出，导入模块关键是能够根据sys.path环境变量的值，找到具体模块的路径。这里仅介绍上面三种简单情况。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Python第十二天]]></title>
     <url>%2F2017%2F10%2F12%2FPython%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%A4%A9%2F</url>
     <content type="text"><![CDATA[生成列表 要生成list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]，我们可以用range(1, 11)。 &gt;&gt;&gt; range(1, 11) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 列表生成式则可以用一行语句代替循环生成上面的list。 &gt;&gt;&gt; [x * x for x in range(1, 11)] [1, 4, 9, 16, 25, 36, 49, 64, 81, 100] 写列表生成式时，把要生成的元素 x * x 放到前面，后面跟 for 循环，就可以把list创建出来。 print [x*(x+1) for x in range(1,100,2)] 复杂表达式 使用for循环的迭代不仅可以迭代普通的list，还可以迭代dict。 tds = ['&lt;tr&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;/tr&gt;' % (name, score) for name, score in d.iteritems()] print '&lt;table&gt;' print '&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;&lt;tr&gt;' print '\n'.join(tds) print '&lt;/table&gt;' 字符串可以通过 % 进行格式化，用指定的参数替代 %s。字符串的join()方法可以把一个 list 拼接成一个字符串。 d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 } def generate_tr(name, score): return '&lt;tr&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td style=&quot;color:red&quot;&gt;&gt;%s&lt;/td&gt;&lt;/tr&gt;' % (name, score) tds = [generate_tr(name, score) for name, score in d.iteritems()] print '&lt;table border=&quot;1&quot;&gt;' print '&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;&lt;tr&gt;' print '\n'.join(tds) print '&lt;/table&gt;' 条件过滤 列表生成式的 for 循环后面还可以加上 if 判断。 &gt;&gt;&gt; [x * x for x in range(1, 11) if x % 2 == 0] [4, 16, 36, 64, 100] isinstance(x, str) 可以判断变量 x 是否是字符串； 字符串的 upper() 方法可以返回大写的字母。 def toUppers(L): return [s.upper() for s in L if isinstance(s,str)] print toUppers(['Hello', 'world', 101]) 多层表达式 for循环可以嵌套，因此，在列表生成式中，也可以用多层 for 循环来生成列表。 &gt;&gt;&gt; [m + n for m in 'ABC' for n in '123'] ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']]]></content>
@@ -111,9 +210,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python第一天]]></title>
-    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%B8%80%E5%A4%A9%2F</url>
-    <content type="text"><![CDATA[Python可以处理任意大小的整数 整数运算永远是精确的，包括除法。浮点运算可能会有四舍五入的误差 在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来。 空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。 print语句也可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出。 print会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符串是这样拼起来的。 Python的注释以 # 开头，后面的文字直到行尾都算注释 在Python程序中，变量是用一个变量名表示，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头。 在Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量。 这种变量本身类型不固定的语言称之为动态语言，与之对应的是静态语言。 如果字符串本身包含'这时，可以用&quot; &quot;括起来表示。 类似的，如果字符串包含&quot;，我们就可以用' '括起来表示。 如果字符串既包含'又包含&quot;，就需要对字符串的某些特殊字符进行“转义”，Python字符串用\进行转义。]]></content>
+    <title><![CDATA[Python第二天]]></title>
+    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%BA%8C%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[raw字符串与多行字符串 如果一个字符串包含很多需要转义字符，对每一个字符串都进行转义会很麻烦。在字符串前面加个前缀r，这是表示这是一个raw字符串，里面的字符串不需要转义了。 print r'\\(~\_~)/ \\(~_~)/' 但是r'...'表示法不能表示多行字符串，也不能表示包含'和&quot;的字符串，如果要表示多行字符串，可以用'''...'''表示。 print r'''&quot;To be, or not to be&quot;: that is the question. Whether it's nobler in the mind to suffer.''' Unicode字符串 ASCII编码 GB2312编码 Unicode编码，两个字节表示一个字符，原有的英文编码从单字节变成双字节，只需要把高字节全部填为0就可以。 Python以Unicode表示的字符串用u'...'表示 Unicode字符串除了多一个u之外，与普通的字符串没啥区别，转义字符和多行表示法仍然有效。 如果中文字符串在Python环境遇到UnicodeDecodeError，这是因为.py文件保存格式的问题。可以在第一行添加注释# -*- coding: utf-8 -*- # 整数和浮点数 Pyhton的整数运算结果仍然是整数，浮点数运算结果仍然是浮点数。 整数和浮点数混合运算结果就变成了浮点数 Python的整数除法，即使除不尽，结果仍然是整数，余数直接扔掉 布尔类型 与运算 True and True # ==&gt; True True and False # ==&gt; False False and True # ==&gt; False False and False # ==&gt; False 或运算 True or True # ==&gt; True True or False # ==&gt; True False or True # ==&gt; True False or False # ==&gt; False 非运算 not True # ==&gt; False not False # ==&gt; True Python把0、空字符串''、None看出Flase，其他数值和非空字符串都看成True 短路计算 在计算 a and b 时，如果 a 是 False，则根据与运算法则，整个结果必定为 False，因此返回 a；如果 a 是 True，则整个计算结果必定取决与 b，因此返回 b。 在计算 a or b 时，如果 a 是 True，则根据或运算法则，整个计算结果必定为 True，因此返回 a；如果 a 是 False，则整个计算结果必定取决于 b，因此返回 b。]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -122,9 +221,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python第二天]]></title>
-    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%BA%8C%E5%A4%A9%2F</url>
-    <content type="text"><![CDATA[raw字符串与多行字符串 如果一个字符串包含很多需要转义字符，对每一个字符串都进行转义会很麻烦。在字符串前面加个前缀r，这是表示这是一个raw字符串，里面的字符串不需要转义了。 print r'\\(~\_~)/ \\(~_~)/' 但是r'...'表示法不能表示多行字符串，也不能表示包含'和&quot;的字符串，如果要表示多行字符串，可以用'''...'''表示。 print r'''&quot;To be, or not to be&quot;: that is the question. Whether it's nobler in the mind to suffer.''' Unicode字符串 ASCII编码 GB2312编码 Unicode编码，两个字节表示一个字符，原有的英文编码从单字节变成双字节，只需要把高字节全部填为0就可以。 Python以Unicode表示的字符串用u'...'表示 Unicode字符串除了多一个u之外，与普通的字符串没啥区别，转义字符和多行表示法仍然有效。 如果中文字符串在Python环境遇到UnicodeDecodeError，这是因为.py文件保存格式的问题。可以在第一行添加注释# -*- coding: utf-8 -*- # 整数和浮点数 Pyhton的整数运算结果仍然是整数，浮点数运算结果仍然是浮点数。 整数和浮点数混合运算结果就变成了浮点数 Python的整数除法，即使除不尽，结果仍然是整数，余数直接扔掉 布尔类型 与运算 True and True # ==&gt; True True and False # ==&gt; False False and True # ==&gt; False False and False # ==&gt; False 或运算 True or True # ==&gt; True True or False # ==&gt; True False or True # ==&gt; True False or False # ==&gt; False 非运算 not True # ==&gt; False not False # ==&gt; True Python把0、空字符串''、None看出Flase，其他数值和非空字符串都看成True 短路计算 在计算 a and b 时，如果 a 是 False，则根据与运算法则，整个结果必定为 False，因此返回 a；如果 a 是 True，则整个计算结果必定取决与 b，因此返回 b。 在计算 a or b 时，如果 a 是 True，则根据或运算法则，整个计算结果必定为 True，因此返回 a；如果 a 是 False，则整个计算结果必定取决于 b，因此返回 b。]]></content>
+    <title><![CDATA[Python第一天]]></title>
+    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%B8%80%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[Python可以处理任意大小的整数 整数运算永远是精确的，包括除法。浮点运算可能会有四舍五入的误差 在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来。 空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。 print语句也可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出。 print会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符串是这样拼起来的。 Python的注释以 # 开头，后面的文字直到行尾都算注释 在Python程序中，变量是用一个变量名表示，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头。 在Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量。 这种变量本身类型不固定的语言称之为动态语言，与之对应的是静态语言。 如果字符串本身包含'这时，可以用&quot; &quot;括起来表示。 类似的，如果字符串包含&quot;，我们就可以用' '括起来表示。 如果字符串既包含'又包含&quot;，就需要对字符串的某些特殊字符进行“转义”，Python字符串用\进行转义。]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -226,17 +325,17 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[RBAC]]></title>
-    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
-    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[GUID——全局唯一标识符]]></title>
     <url>%2F2017%2F04%2F11%2FGUID%2F</url>
     <content type="text"><![CDATA[理论 GUID(Globally Unique Identifier)是一个128位整数（16字节），可用于所有需要唯一标识符的计算机和网络。此标识符重复的可能性非常小。 GUID是由网卡上的标识数字（每个网卡都有唯一的标识号）以及CPU时钟的唯一数字生成的一个16字节的二进制值。 GUID的格式为“xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”,其中每一个x是0-9或a-f范围内的一个十六进制的数字。 世界上的任何两台计算机都不会生成重复的GUID值（概率很小）。 GUID主要用于在拥有多个节点、多台计算机的网络或系统中，分配必须具有唯一性的表示符。 在Windows平台上，GUID应用非常广泛：注册表、类及接口标识、数据库、甚至自动生成的机器名、目录名等。 Time 时间戳。将objectid的前4位进行提取，然后按照十六进制转为十进制，这个数字就是一个时间戳。通过时间戳的转换，可以很容易看清时间格式。 Machine 机器码。接下来的三个字节是所在主机的唯一标识符，一般是机器主机的散列值，这样就确保了不同主机生成不同的机器hash值，确保在分布式中不造成冲突，这也就是在同一台机器生成的objectid中间的字符串都是一模一样的原因。 PID 进程ID。上面的Machine是为了确保在不同机器产生的objectId不冲突，而pid就是为了在同一台机器不同的mongodb进程产生了objectId不冲突，接下来的两位就是产生objectId的进程标识符。 INC 自增计数器。前面的九个字节是保证了一秒内不同机器不同进程生成objectId不冲突，最后面的三个字节是一个自动增加的计数器，用来确保在同一秒内产生的objectId也不会发现冲突，允许2^24等于16777216条记录的唯一性。 &quot;Big Bang&quot; was caused when two GUIDs collided.]]></content>
       <tags>
         <tag>GUID</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[RBAC]]></title>
+    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
+    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
   </entry>
   <entry>
     <title><![CDATA[Spring Boot]]></title>
@@ -268,9 +367,42 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Java加解密]]></title>
+    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
+    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hosts]]></title>
+    <url>%2F2016%2F10%2F18%2FHosts%2F</url>
+    <content type="text"><![CDATA[Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统再会将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
+      <categories>
+        <category>http</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[EL表达式]]></title>
     <url>%2F2016%2F10%2F18%2FEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[1$&#123;表达式&#125; &quot;.&quot;与&quot;[]&quot;运算符 12$&#123;user.sex&#125; &lt;==&gt; $&#123;user["sex"]&#125;$&#123;bookList[0].price&#125; EL变量 JSP内置对象 EL名称 Page PageScope Request RequestScope Session SessionScope Application ApplicationScope]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hibernate]]></title>
+    <url>%2F2016%2F10%2F18%2Fhibernate%2F</url>
+    <content type="text"><![CDATA[hibernate.cfg.xml常用配置 1234567891011121314151617181920212223242526272829303132333435363738394041&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;&lt;!--声明Hibernate配置文件的开始--&gt;&lt;hibernate-configuration&gt; &lt;!--表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存HIbernate的配置信息，以及对Session的操作--&gt; &lt;session-factory&gt; &lt;!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序--&gt; &lt;property name="connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; &lt;!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，hibernate是数据库名--&gt; &lt;property name="connection.url"&gt; jdbc:mysql://115.29.52.104:3306/ssh?useUnicode=true&amp;amp;characterEncoding=utf8 &lt;/property&gt; &lt;!--连接数据库是用户名--&gt; &lt;property name="connection.username"&gt;nebula&lt;/property&gt; &lt;!--连接数据库是密码--&gt; &lt;property name="connection.password"&gt;314159&lt;/property&gt; &lt;!--数据库连接池的大小--&gt; &lt;property name="hibernate.connection.pool.size"&gt;20&lt;/property&gt; &lt;!-- 显示SQL语句 --&gt; &lt;property name="show_sql"&gt;true&lt;/property&gt; &lt;property name="format_sql"&gt;true&lt;/property&gt; &lt;!-- create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表 create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。 update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据 model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。 --&gt; &lt;property name="hbm2ddl.auto"&gt;update&lt;/property&gt; &lt;!-- 定义方言 --&gt; &lt;property name="dialect"&gt; org.hibernate.dialect.MySQLDialect &lt;/property&gt; &lt;!--指定映射文件为“site/nebulas/bean/User.hbm.xml”--&gt; &lt;mapping resource="site/nebulas/bean/User.hbm.xml"&gt;&lt;/mapping&gt; &lt;/session-factory&gt;&lt;/hibernate-configuration&gt; User.hbm.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&lt;?xml version="1.0"?&gt;&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;&lt;!-- &lt;hibernate-mapping&gt;一般不去配置，采用默认即可。 default-cascade="none"：默认的级联风格，表与表联动。 default-lazy="true"：默认延迟加载 --&gt;&lt;hibernate-mapping&gt; &lt;!-- &lt;class&gt;：使用class元素定义一个持久化类。 name="site.nebulas.bean.User"：持久化类的java全限定名； table="user"：对应数据库表名； mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除； dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段； dynamic-update="false"：默认为false，动态插入非空值字段； select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新； optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)、 none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作； --&gt; &lt;class name="site.nebulas.bean.User" table="user" dynamic-insert="true" dynamic-update="true" optimistic-lock="version"&gt; &lt;!-- &lt;id&gt;：定义了该属性到数据库表主键字段的映射。 name="userId"：标识属性的名字； column="userId"：表主键字段的名字，如果不填写与name一样； --&gt; &lt;id name="id"&gt; &lt;!-- &lt;generator&gt;：指定主键由什么生成，推荐使用uuid（随机生成唯一通用的表示符，实体类的ID必须是String）， native（让数据库自动选择用什么生成（根据底层数据库的能力选择identity，sequence或hilo中的一种））， assigned（指用户手工填入，默认）。 --&gt; &lt;generator class="identity"/&gt; &lt;/id&gt; &lt;!-- &lt;version/&gt;：使用版本控制来处理并发，要开启optimistic-lock="version"和dynamic-update="true"。 name="version"：持久化类的属性名，column="version"：指定持有版本号的字段名； &lt;version name="version" column="version"/&gt; --&gt; &lt;!-- &lt;property&gt;：为类定义一个持久化的javaBean风格的属性。 name="name"：标识属性的名字，以小写字母开头； column="name"：表主键字段的名字，如果不填写与name一样； update="true"/insert="true"：默认为true，表示可以被更新或插入； --&gt; &lt;property name="name" column="name" /&gt; &lt;property name="password" column="password"/&gt; &lt;property name="createTime" column="createTime"/&gt; &lt;!-- 组件映射：把多个属性打包在一起当一个属性使用，用来把类的粒度变小。 &lt;component name="属性，这里指对象"&gt; &lt;property name="name1"&gt;&lt;/property&gt; &lt;property name="name2"&gt;&lt;/property&gt; &lt;/component&gt; --&gt; &lt;!-- &lt;join&gt;:一个对象映射多个表，该元素必须放在所有&lt;property&gt;之后。 &lt;join table="tbl_test：子表名"&gt; &lt;key column="uuid：子表主键"&gt;&lt;/key&gt; &lt;property name="name1：对象属性" column="name：子表字段"&gt;&lt;/property&gt; &lt;/join&gt; --&gt; &lt;/class&gt;&lt;/hibernate-mapping&gt; session save() update() delete() createQuery() transaction]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -287,39 +419,6 @@
       </categories>
       <tags>
         <tag>OAuth</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hosts]]></title>
-    <url>%2F2016%2F10%2F18%2FHosts%2F</url>
-    <content type="text"><![CDATA[Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统再会将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
-      <categories>
-        <category>http</category>
-      </categories>
-      <tags>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[hibernate]]></title>
-    <url>%2F2016%2F10%2F18%2Fhibernate%2F</url>
-    <content type="text"><![CDATA[hibernate.cfg.xml常用配置 1234567891011121314151617181920212223242526272829303132333435363738394041&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;&lt;!--声明Hibernate配置文件的开始--&gt;&lt;hibernate-configuration&gt; &lt;!--表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存HIbernate的配置信息，以及对Session的操作--&gt; &lt;session-factory&gt; &lt;!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序--&gt; &lt;property name="connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; &lt;!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，hibernate是数据库名--&gt; &lt;property name="connection.url"&gt; jdbc:mysql://115.29.52.104:3306/ssh?useUnicode=true&amp;amp;characterEncoding=utf8 &lt;/property&gt; &lt;!--连接数据库是用户名--&gt; &lt;property name="connection.username"&gt;nebula&lt;/property&gt; &lt;!--连接数据库是密码--&gt; &lt;property name="connection.password"&gt;314159&lt;/property&gt; &lt;!--数据库连接池的大小--&gt; &lt;property name="hibernate.connection.pool.size"&gt;20&lt;/property&gt; &lt;!-- 显示SQL语句 --&gt; &lt;property name="show_sql"&gt;true&lt;/property&gt; &lt;property name="format_sql"&gt;true&lt;/property&gt; &lt;!-- create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表 create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。 update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据 model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。 --&gt; &lt;property name="hbm2ddl.auto"&gt;update&lt;/property&gt; &lt;!-- 定义方言 --&gt; &lt;property name="dialect"&gt; org.hibernate.dialect.MySQLDialect &lt;/property&gt; &lt;!--指定映射文件为“site/nebulas/bean/User.hbm.xml”--&gt; &lt;mapping resource="site/nebulas/bean/User.hbm.xml"&gt;&lt;/mapping&gt; &lt;/session-factory&gt;&lt;/hibernate-configuration&gt; User.hbm.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&lt;?xml version="1.0"?&gt;&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;&lt;!-- &lt;hibernate-mapping&gt;一般不去配置，采用默认即可。 default-cascade="none"：默认的级联风格，表与表联动。 default-lazy="true"：默认延迟加载 --&gt;&lt;hibernate-mapping&gt; &lt;!-- &lt;class&gt;：使用class元素定义一个持久化类。 name="site.nebulas.bean.User"：持久化类的java全限定名； table="user"：对应数据库表名； mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除； dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段； dynamic-update="false"：默认为false，动态插入非空值字段； select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新； optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)、 none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作； --&gt; &lt;class name="site.nebulas.bean.User" table="user" dynamic-insert="true" dynamic-update="true" optimistic-lock="version"&gt; &lt;!-- &lt;id&gt;：定义了该属性到数据库表主键字段的映射。 name="userId"：标识属性的名字； column="userId"：表主键字段的名字，如果不填写与name一样； --&gt; &lt;id name="id"&gt; &lt;!-- &lt;generator&gt;：指定主键由什么生成，推荐使用uuid（随机生成唯一通用的表示符，实体类的ID必须是String）， native（让数据库自动选择用什么生成（根据底层数据库的能力选择identity，sequence或hilo中的一种））， assigned（指用户手工填入，默认）。 --&gt; &lt;generator class="identity"/&gt; &lt;/id&gt; &lt;!-- &lt;version/&gt;：使用版本控制来处理并发，要开启optimistic-lock="version"和dynamic-update="true"。 name="version"：持久化类的属性名，column="version"：指定持有版本号的字段名； &lt;version name="version" column="version"/&gt; --&gt; &lt;!-- &lt;property&gt;：为类定义一个持久化的javaBean风格的属性。 name="name"：标识属性的名字，以小写字母开头； column="name"：表主键字段的名字，如果不填写与name一样； update="true"/insert="true"：默认为true，表示可以被更新或插入； --&gt; &lt;property name="name" column="name" /&gt; &lt;property name="password" column="password"/&gt; &lt;property name="createTime" column="createTime"/&gt; &lt;!-- 组件映射：把多个属性打包在一起当一个属性使用，用来把类的粒度变小。 &lt;component name="属性，这里指对象"&gt; &lt;property name="name1"&gt;&lt;/property&gt; &lt;property name="name2"&gt;&lt;/property&gt; &lt;/component&gt; --&gt; &lt;!-- &lt;join&gt;:一个对象映射多个表，该元素必须放在所有&lt;property&gt;之后。 &lt;join table="tbl_test：子表名"&gt; &lt;key column="uuid：子表主键"&gt;&lt;/key&gt; &lt;property name="name1：对象属性" column="name：子表字段"&gt;&lt;/property&gt; &lt;/join&gt; --&gt; &lt;/class&gt;&lt;/hibernate-mapping&gt; session save() update() delete() createQuery() transaction]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Java加解密]]></title>
-    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
-    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -412,28 +511,43 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2F2016%2F04%2F29%2Fpython%20POP3%E8%8E%B7%E5%8F%96%E9%82%AE%E4%BB%B6%2F</url>
-    <content type="text"><![CDATA[#python POP3获取邮件 POP协议（Post Office Protocol,邮局协议），默认使用110端口。 IMAP4协议。 服务器端-客户端工作模式。 python标准库中支持POP3协议的实现是poplib模块。 ##典型邮件客户端获取邮件的步骤 使用DNS协议来解析POP3服务器的IP地址 使用TCP协议来连接邮件服务器的110端口（默认情况下） 当客户端连接上POP3服务器后，将通过USER命令来传送邮箱账号，通过PASS命令来传送邮箱密码。提供这些信息来完成用户认证 当完成用户认证后，可以使用STAT命令来获取POP3服务器中此账号的邮箱统计资料，包括邮件的总数和邮件的大小 同时可以使用LIST命令列出POP3服务器中的已有邮件数量 邮件客户端可以通过RETR命令来获取邮件，并使用DELE命令来设置删除标志 所有的文件获取完毕后，可以使用QUIT命令中断和POP3邮件服务器的连接。同时，服务器会删除已设置为删除标志的邮件 ##poplib中类 POP3类和POP3_SSL类 POP_SSL类为POP3类的子类，实现了基于SSL的邮件传输 ##POP3类对象中定义的方法 set_debuglevel 设置调试信息级别 getwelcome 获取服务器的欢迎信息 user 发送邮箱名 pass_ 发送邮箱密码，锁定邮箱 stat 获取邮箱的统计信息 list 获取邮箱的邮件列表信息 retr 获取特定的邮箱 dele 设置邮件的删除标志 rset 删除所有邮件的删除标记 noop 不做任何事情，在为了保持连接的时候使用 quit 中断连接，解锁邮箱]]></content>
+    <url>%2F2016%2F05%2F11%2F%E6%97%B6%E9%99%90%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[#时限调度算法 ###时限调度算法是一种以满足用户要求的时限为调度原则的算法。在实时系统中的用户要求时限有两种，即处理开始时限和处理结束时限。时限调度算法可以使用任一种时限。时限调度算法可用于周期性调度与非周期性调度两种。 ###时限调度算法所需要的相关输入信息有以下几种： 任务就绪时间或事件到达时间指的是进程进入就绪状态，可以被调度执行的时间。对于周期性任务来说，该时间是可以预知的，而且时间间隔是周期性的。对于非周期性任务来说，这些时间可能是可预知的，但大部分时候是不可预知的，需要事件发生来驱动。 开始时限处理机必须开始对任务进行处理的时限。 完成时限指的是任务必须完成的时间 处理时间完成相关任务所需占用处理机的时间。 资源需求除了处理机之处，另外还需要的其他硬软件资源。如果所处理的任务有处理机之外的其他资源需求，则调度算法要相对复杂得多。 优先级可由分析计算后获得，也可根据时限要求，由用户指定。 时限调度算法的基本思想是：按用户的时限要求顺序设置优先级，优先级高者占据处理机，也就是说，时限要求最近的任务优先占有处理机。时限调度是抢先式的。抢先式时限调度算法必须把新到达任务的时限要求和当前正在执行任务的时限要求进行比较，如果新到达任务的时限要求更近，则应执行新到达的任务。 ###下面是用时限调度算法调度周期性实时任务的例子。 设实时系统从两个不同的数据源DA和DB周期性地收集数据并进行处理，其中DA的时限要求以30 ms为周期，DB的时限要求以75 ms为周期。设DA所需处理时限为15 ms，DB所需处理时限为38 ms，则与DA和DB有关进程的事件发生时限（就绪时限），执行时限以及结束时限如图4.11所示。 图4.11 周期性任务的预计发生、执行与结束时限 如果使用时限调度算法，并按最近结束时限优先级最高的方法进行排列，可以给出图4.11所示各进程的调度顺序和相对时间。（如图4.12） 图4.12 时限调度算法给出的调度顺序 如图4.12所示，在开始时，进程DA（1）和DB（1）的结束时限比较结果，DA（1）的结束时限最近，从而调度进程DA（1）执行。DA（1）的实际结束时间为15，小于30的时限要求。紧接着，进程DB（1）被调度执行。在执行到时间为30 ms时，进程DA（2）进入就绪状态。由于DA（2）的结束时限为60，近于DB（1）的结束时限75，从而DB（1）被DA（2）抢先。DA（2）的实际结束时间为45，小于要求时限60。 在DA（2）结束之后，DB（1）再次占有处理机继续执行，当DB（1）执行到时间为60 ms时，进程DA（3）进入就绪状态。但是，由于DA（3）的结束时限为90，远于DB（1）的结束时限75，从而DB（1）继续执行。 时限调度算法也可以用于非周期性任务调度。 频率单调调度算法是一种被广泛用于多周期性实时处理的调度算法。 频率单调调度算法的基本原理是频率越低（周期越长）的任务的优先级越低。 另外，设任务周期问题，任务的执行时间为C，则使用频率单调调度算法的必要条件是C≤ T。 已经证明，对于n(n≥1)个周期的不同任务来说，设每个周期为Ti，其相应任务的执行时间为Ci，则使用频率单调调度算法的充分条件是 例如，对于由3个周期组成的实时任务序列来说，其执行时间与周期之比应是： 如果进程执行时间与周期比之和大于n(21/n-1)，则用户所要求的时限无法保证。]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2F2016%2F04%2F29%2Fpython%E6%A8%A1%E5%9D%97%2F</url>
-    <content type="text"><![CDATA[#python模块 ##包、模块、类和函数之间的关系 一个python文件就是一个模块 模块由代码、函数、或类组成 sys.path from module_name import function_name]]></content>
+    <url>%2F2016%2F04%2F21%2F%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%2F</url>
+    <content type="text"><![CDATA[#数据分析 ##什么是数据分析 基于现有的业务知识和统计学基础知识及基本思想的理解与掌握，通过数据库及统计分析工具对数据的调取与处理、分析，达到对现有问题or主题的探索与剖析，最终实现业务问题的解决or优化。 ##数据分析需要的知识、技能及工具 业务知识 业务分析能力 数据分析能力 数据提取能力 数据处理及展现能力 较强的沟通能力]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2F2016%2F04%2F23%2Fpython%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[#python 生产者消费者模式 生产者的工作是产生一块数据，放到buffer中，如此循环。与此同时，消费者在消耗这些数据（例如从buffer中把它们移除），每次一块。 ##线程概念 Condition:线程中的条件 wait():在条件实例过程中可用的wait() notify():在条件实例中可用的notify() 生产者和消费者是并发运行的，生产者和消费者是线程分离的。 设定一个全局变量，可以被生产者和消费者线程修改，生产者生产数据并把它加入到队列，消费者消耗这些数据(把数据移出)。 队列是一个共享变量，把它放到lock程序块内，以防发生竞态条件。 在加入数据前，生产者检查队列是否为满。 如果不为满，生产者可以继续正常流程。 如果为满，生产者必须等待，调用condition实例的wait()。 消费者可以运行。消费者消耗队列，并产生一个空余位置。 然后消费者notify生产者。 当消费者释放lock，消费者可以acquire这个lock然后往队列中加入数据。 from threading import Thread, Condition import time import random queue = [] MAX_NUM = 10 condition = Condition() class ProducerThread(Thread): def run(self): #nums = range(5) num = 1 global queue while True: condition.acquire() if len(queue) == MAX_NUM: print &quot;Queue full, producer is waiting&quot; condition.wait() print &quot;Space in queue, Consumer notified the producer&quot; #num = random.choice(nums) queue.append(num) print &quot;Produced&quot;, num num = num + 1 condition.notify() condition.release() time.sleep(random.random()*10) class ConsumerThread(Thread): def run(self): global queue while True: condition.acquire() if not queue: print &quot;Nothing in queue, consumer is waiting&quot; condition.wait() print &quot;Producer added something to queue and notified the consumer&quot; num = queue.pop(0) print &quot;Consumed&quot;, num condition.notify() condition.release() time.sleep(random.random()*10) ProducerThread().start() ConsumerThread().start()]]></content>
+    <url>%2F2016%2F04%2F21%2F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[#排序算法 ##冒泡排序 相邻的数据进行两两比较，小数放在前面，大数放在后面，这样一趟下来，最小的数就被排在了第一位，第二趟也是如此，如此类推，直到所有的数据排序完成。 ##选择排序 先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。 ##插入排序 将数据分为两部分，有序部分与无序部分，一开始有序部分包含第1个元素，依次将无序的元素插入到有序部分，直到所有元素有序。插入排序又分为直接插入排序、二分插入排序、链表插入等，这里只讨论直接插入排序。它是稳定的排序算法，时间复杂度为O(n^2)。 ##快速排序 快速排序是目前在实践中非常高效的一种排序算法，它不是稳定的排序算法，平均时间复杂度为O(nlogn)，最差情况下复杂度为O(n^2)。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。 ##归并排序 归并排序具体工作原理如下（假设序列共有n个元素）： 将序列每相邻两个数字进行归并操作（merge)，形成floor(n/2)个序列，排序后每个序列包含两个元素 将上述序列再次归并，形成floor(n/4)个序列，每个序列包含四个元素 重复步骤2，直到所有元素排序完毕 归并排序是稳定的排序算法，其时间复杂度为O(nlogn)，如果是使用链表的实现的话，空间复杂度可以达到O(1)，但如果是使用数组来存储数据的话，在归并的过程中，需要临时空间来存储归并好的数据，所以空间复杂度为O(n) ##堆排序 堆排序的时间复杂度为O(nlogn) 算法原理（以最大堆为例） 先将初始数据R[1..n]建成一个最大堆，此堆为初始的无序区 再将关键字最大的记录R[1]（即堆顶）和无序区的最后一个记录R[n]交换，由此得到新的无序区R[1..n-1]和有序区R[n]，且满足R[1..n-1].keys≤R[n].key 由于交换后新的根R[1]可能违反堆性质，故应将当前无序区R[1..n-1]调整为堆。 重复2、3步骤，直到无序区只有一个元素为止。]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2F2016%2F04%2F21%2FPython%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86%2F</url>
-    <content type="text"><![CDATA[#Python文件打开方式 文件打开方法：open(name[,mode[buf]]) name:文件路径 mode:打开方式 buf:缓冲buffering大小 'r' 只读方式打开 文件必须存在 'w' 只写方式打开 文件不存在创建文件，文件存在则情况文件内容 'a' 追加方式打开 文件不存在创建文件 'r+'/'w+' 读写方式打开 'a+' 追加和读写方式打开 'rb','wb','ab','rb+','wb+','ab+':二进制方式打开 ##python读取方式 read([size]):读取文件（读取size个字节，默认读取全部） readline([size]):读取一行 readlines([size]):读取完文件，返回每一行所组成的列表 ##python写入方式 write(str):将字符串写入文件 writelines(sequence_of_strings):写多行到文件 # -*- encoding:utf-8 -*- #以写的方式打开 f = open(&quot;1.txt&quot;,'w') f.write(&quot;test write&quot;) f.close()]]></content>
+    <url>%2F2016%2F04%2F21%2FMySQL%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[#MySQL数据类型 ##整型 &lt;table&gt; &lt;tr&gt; &lt;td&gt;类型&lt;/td&gt; &lt;td&gt;大小&lt;/td&gt; &lt;td&gt;范围（有符号）&lt;/td&gt; &lt;td&gt;范围（无符号）&lt;/td&gt; &lt;td&gt;用途&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;TINYINT&lt;/td&gt; &lt;td&gt;1 字节&lt;/td&gt; &lt;td&gt;(-128，127)&lt;/td&gt; &lt;td&gt;(0，255) &lt;/td&gt; &lt;td&gt;小整数值&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;SMALLINT&lt;/td&gt; &lt;td&gt;2 字节&lt;/td&gt; &lt;td&gt;(-32 768，32 767)&lt;/td&gt; &lt;td&gt;(0，65 535)&lt;/td&gt; &lt;td&gt;大整数值&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;MEDIUMINT&lt;/td&gt; &lt;td&gt;3 字节&lt;/td&gt; &lt;td&gt;(-8 388 608，8 388 607)&lt;/td&gt; &lt;td&gt;(0，16 777 215)&lt;/td&gt; &lt;td&gt;大整数值&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;INT或INTEGER&lt;/td&gt; &lt;td&gt;4 字节&lt;/td&gt; &lt;td&gt;(-2 147 483 648，2 147 483 647)&lt;/td&gt; &lt;td&gt;(0，4 294 967 295)&lt;/td&gt; &lt;td&gt;大整数值&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;BIGINT&lt;/td&gt; &lt;td&gt;8 字节&lt;/td&gt; &lt;td&gt;(-9 233 372 036 854 775 808，9 223 372 036 854 775 807)&lt;/td&gt; &lt;td&gt;(0，18 446 744 073 709 551 615)&lt;/td&gt; &lt;td&gt;极大整数值&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; ##浮点型 &lt;table&gt; &lt;tr&gt; &lt;td width=&quot;10%&quot;&gt;类型&lt;/td&gt; &lt;td width=&quot;10%&quot;&gt;大小&lt;/td&gt; &lt;td width=&quot;30%&quot;&gt;范围（有符号）&lt;/td&gt; &lt;td width=&quot;30%&quot;&gt;范围（无符号）&lt;/td&gt; &lt;td width=&quot;20%&quot;&gt;用途&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FLOAT&lt;/td&gt; &lt;td&gt;4 字节&lt;/td&gt; &lt;td&gt;(-3.402 823 466 E+38，1.175 494 351 E-38)，0，(1.175 494 351 E-38，3.402 823 466 351 E+38)&lt;/td&gt; &lt;td&gt;0，(1.175 494 351 E-38，3.402 823 466 E+38)&lt;/td&gt; &lt;td&gt;单精度&lt;br&gt;浮点数值&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DOUBLE&lt;/td&gt; &lt;td&gt;8 字节&lt;/td&gt; &lt;td&gt;(1.797 693 134 862 315 7 E+308，2.225 073 858 507 201 4 E-308)，0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308)&lt;/td&gt; &lt;td&gt;0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308)&lt;/td&gt; &lt;td&gt;双精度&lt;br&gt;浮点数值&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DECIMAL&lt;/td&gt; &lt;td&gt;对DECIMAL(M,D) ，如果M&gt;D，为M+2否则为D+2&lt;/td&gt; &lt;td&gt;依赖于M和D的值&lt;/td&gt; &lt;td&gt;依赖于M和D的值&lt;/td&gt; &lt;td&gt;小数值&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; ##日期和时间类型 &lt;table&gt; &lt;tr&gt; &lt;th width=&quot;10%&quot;&gt;类型&lt;/th &gt; &lt;th width=&quot;10%&quot;&gt;大小&lt;br&gt;(字节)&lt;/th &gt; &lt;th width=&quot;40%&quot;&gt;范围&lt;/th &gt; &lt;th &gt;格式&lt;/th &gt; &lt;th &gt;用途&lt;/th &gt; &lt;/tr&gt; &lt;tr&gt; &lt;td width=&quot;10%&quot;&gt;DATE&lt;/td&gt; &lt;td width=&quot;10%&quot;&gt;3&lt;/td&gt; &lt;td width=&quot;40%&quot;&gt;1000-01-01/9999-12-31&lt;/td&gt; &lt;td&gt;YYYY-MM-DD&lt;/td&gt; &lt;td&gt;日期值&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td width=&quot;10%&quot;&gt;TIME&lt;/td&gt; &lt;td width=&quot;10%&quot;&gt;3&lt;/td&gt; &lt;td width=&quot;40%&quot;&gt;'-838:59:59'/'838:59:59'&lt;/td&gt; &lt;td&gt;HH:MM:SS&lt;/td&gt; &lt;td&gt;时间值或持续时间&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td width=&quot;10%&quot;&gt;YEAR&lt;/td&gt; &lt;td width=&quot;10%&quot;&gt;1&lt;/td&gt; &lt;td width=&quot;40%&quot;&gt;1901/2155&lt;/td&gt; &lt;td&gt;YYYY&lt;/td&gt; &lt;td&gt;年份值&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td width=&quot;10%&quot;&gt;DATETIME&lt;/td&gt; &lt;td width=&quot;10%&quot;&gt;8&lt;/td&gt; &lt;td width=&quot;40%&quot;&gt;1000-01-01 00:00:00/9999-12-31 23:59:59&lt;/td&gt; &lt;td&gt;YYYY-MM-DD HH:MM:SS&lt;/td&gt; &lt;td&gt;混合日期和时间值&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td width=&quot;10%&quot;&gt;TIMESTAMP&lt;/td&gt; &lt;td width=&quot;10%&quot;&gt;8&lt;/td&gt; &lt;td width=&quot;40%&quot;&gt;1970-01-01 00:00:00/2037 年某时&lt;/td&gt; &lt;td&gt;YYYYMMDD HHMMSS&lt;/td&gt; &lt;td&gt;混合日期和时间值，时间戳&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; ##字符串类型 &lt;table&gt; &lt;tr&gt; &lt;th width=&quot;20%&quot;&gt;类型&lt;/th&gt; &lt;th width=&quot;25%&quot;&gt;大小&lt;/th&gt; &lt;th width=&quot;55%&quot;&gt;用途&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;CHAR&lt;/td&gt; &lt;td&gt;0-255字节&lt;/td&gt; &lt;td&gt;定长字符串&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;VARCHAR&lt;/td&gt; &lt;td&gt;0-65535 字节&lt;/td&gt; &lt;td&gt;变长字符串&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;TINYBLOB&lt;/td&gt; &lt;td&gt;0-255字节&lt;/td&gt; &lt;td&gt;不超过 255 个字符的二进制字符串&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;TINYTEXT&lt;/td&gt; &lt;td&gt;0-255字节&lt;/td&gt; &lt;td&gt;短文本字符串&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;BLOB&lt;/td&gt; &lt;td&gt;0-65 535字节&lt;/td&gt; &lt;td&gt;二进制形式的长文本数据&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;TEXT&lt;/td&gt; &lt;td&gt;0-65 535字节&lt;/td&gt; &lt;td&gt;长文本数据&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;MEDIUMBLOB&lt;/td&gt; &lt;td&gt;0-16 777 215字节&lt;/td&gt; &lt;td&gt;二进制形式的中等长度文本数据&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;MEDIUMTEXT&lt;/td&gt; &lt;td&gt;0-16 777 215字节&lt;/td&gt; &lt;td&gt;中等长度文本数据&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;LONGBLOB&lt;/td&gt; &lt;td&gt;0-4 294 967 295字节&lt;/td&gt; &lt;td&gt;二进制形式的极大文本数据&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;LONGTEXT&lt;/td&gt; &lt;td&gt;0-4 294 967 295字节&lt;/td&gt; &lt;td&gt;极大文本数据&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;]]></content>
   </entry>
   <entry>
     <title></title>
-    <url>%2F2016%2F04%2F08%2FPython%20MySQLdb%2F</url>
-    <content type="text"><![CDATA[#Python MySQLdb ##Python MySQLdb安装错误解决 ImportError: this is MySQLdb version (1, 2, 4, 'beta', 4), but _mysql is ver 解决办法：删除\Lib\site-packages下所有的mysqldb，重新安装 ##MySQLdb.Connect(参数) host 字符串 MySQL服务器地址 port 数字 MySQL服务器端口号 user 字符串 用户名 passwd 字符串 密码 db 字符串 数据库名称 charset 字符串 连接编码 ##connection对象支持的方法 cursor() 使用该连接创建并返回游标 commit() 提交当前事务 rollback() 回滚当前事务 close() 关闭连接 ##cursor对象支持的方法 execute(opp[,args]) 执行一个数据库查询命令 fetchone() 取的结果集的下一行 fetchmany(size) 获取结果集的下几行 fetchall() 获取结果集中剩下的所有行 rowcount 最近一次execute返回数据的行数或影响行数 close() 关闭游标对象 fetch*()方法：移动rownumber，返回数据 ##事务：访问和更新数据库的一个程序执行单元 原子性：事务中包括的诸操作要么都做，要么都不做 一致性：事务必须使数据库从一致性状态变到另一个一致性 隔离性：一个事务的执行不能被其他事务干扰 持久性：事务一旦提交，它对数据库的改变就是永久性的 ##开发中使用事务 关闭自动commit：设置conn.autocommit(False) 正常结束事务：conn.commit() 异常结束事务：conn.rollback() ##程序 ####查询 # -- coding: utf-8 -- # import MySQLdb conn = MySQLdb.Connect( host = 'xxx.xxx.xxx.xxx', port = 3306, user = 'nebula', passwd = 'xxxxxx', db = 'one', charset = 'utf8' ) cursor = conn.cursor() sql = &quot;select * from quotations&quot; cursor.execute(sql) #输出返回条数 print cursor.rowcount #输出返回第一条 rs = cursor.fetchone() print rs[1] for i in rs: print i #输出之后三条 #rs = cursor.fetchmany(3) #print rs #输出之后所有 #rs = cursor.fetchall() #print rs cursor.close() conn.close() ####增删改 # -- coding: utf-8 -- # import MySQLdb conn = MySQLdb.Connect( host = 'xxx.xxx.xxx.xxx', port = 3306, user = 'nebula', passwd = 'xxxxxx', db = 'one', charset = 'utf8' ) cursor = conn.cursor() conn.autocommit(False) sql_insert = &quot;insert into quotations(content) values('test')&quot; sql_update = &quot;update quotations set content='test_update' where id=3&quot; sql_delete = &quot;delete from quotations where id&gt;2&quot; try: #cursor.execute(sql_insert) #print cursor.rowcount cursor.execute(sql_update) print cursor.rowcount cursor.execute(sql_delete) print cursor.rowcount conn.commit() except Exception as e: print e conn.rollback() finally: cursor.close() conn.close()]]></content>
+    <url>%2F2016%2F04%2F15%2FMySQL%E7%BB%B4%E6%8A%A4%E5%92%8C%E4%BC%98%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[#MySQL维护和优化 维护数据字典 维护索引 维护表结构 在适当的时候对表进行水平拆分或垂直拆分 ##维护数据字典 使用第三方工具对数据字典进行维护 利用数据库本身的备注字段来维护数据字典 导出数据字典 ##选择适合列建立索引 出现在WHERE从句，GROUP BY从句，ORDER BY 从句中的列 可选择性高的列要放到索引的前面 索引中不要包括太长的数据类型 ##维护索引 索引并不是越多越好，过多的索引不但会降低写效率而且会降低读的效率 定期维护索引碎片 在SQL语句中不要使用强制索引关键字 ##维护表结构 使用在线变更表结构的工具 同时对数据字典进行维护 控制标的宽度和大小 ##数据库中适合的操作 批量操作 VS 逐条操作 禁止使用Select * 这样的查询 控制使用用户自定义函数 不要使用数据库中的全文索引]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F15%2FMySQL%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1%2F</url>
+    <content type="text"><![CDATA[##MySQL常用的存储引擎 MyISAM MRG_MYISAM Innodb Archive Ndb cluster ##表及字段的命名规则 可读性原则：使用大写和小写来格式化的库对象名字以获得良好的可读性。例如：使用CustAddress而不是custaddress来提高可读性。（这里要注意有些DBMS系统对表名的大小写是敏感的） 表意性原则：对象的名字应该能够描述它所标识的对象。例如：对于表的名称应该能够体现表中存储的数据内容；对于存储过程，存储过程名称应该能够体现存储过程的功能。 长名原则：尽可能少使用或者不使用缩写，适用于数据库（DATABASH）名之外的任一对象。 ##字段类型的选择原则 在对数据进行比较（查询条件、JOIN条件及排序）操作时：同样的数据，字符处理往往比数字处理慢。 在数据库中，数据处理以页为单位，列的长度越小，利于性能的提升。 ##char与varchar如何选择 如果列中要存储的数据长度差不多是一致的，则应该考虑用char；否则应该考虑用varchar。 如果列中的最大数据长度小于50Byte,则一般也考虑用char。（当然，如果这个列很少用，则基于节省空间和减少I/O的考虑，还是可以选择用varchar） 一般不宜定义大于50Byte的char类型列。 ##decimal与float decimal用于存储精度数据，而float只能用于存储非精确数据。故精确数据只能选择用decimal类型。 由于float的存储空间开销一般比decimal小（精确到7位小数只需要4个字节，而精确到15位小数只需要8字节）故非精确数据优先选择float类型。 ##时间类型如何存储 使用int来存储时间字段的优缺点 优点：字段长度比datetime小 缺点：使用不方便，要进行函数转换 限制：只能存储到2038-1-19 11：14：07即2147483648 需要存储的时间粒度 年 月 日 小时 分 秒 周 ##如何选择主键 区分业务主键和数据库主键 业务主键用于标识业务数据，进行表与表之间的关联；数据库主键为了优化数据库存储（Innodb会生成6个字节的隐含主键） 跟数据库的类型，考虑主键是否要顺序增长 有些数据库是按主键的顺序逻辑存储的 主键的字段类型所占空间要尽可能小 对于使用聚集索引方式存储的表，每个索引后都会附加主键信息 ##避免使用外键约束 降低数据导入的效率 增加维护成本 虽然不建议使用外键约束，但是相关联的列一定要建立索引 ##避免使用触发器 降低数据导入的效率 可能会出现意想不到的数据异常 是业务逻辑变得复杂 ##关于余留字段 无法准确的知道预留字段的类型 无法准确的知道预留字段中所存储的内容 后期维护预留字段所需要的成本，同增加一个字段所需要的成本是相同的 严禁使用预留字段 ##反范式化 反范式化是正对范式化而言的，在前面介绍了数据库设计的第三范式，所谓的反范式化就是为了性能和读取效率的考虑而适当的对第三范式的要求进行违反，而允许存在少量的数据冗余，换句话来说反范式化就是使用空间来换取时间。]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F11%2F%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%2F</url>
+    <content type="text"><![CDATA[#数据库设计 需求分析 逻辑设计 物理设计 维护优化 ##需求分析 了解系统中所需要存储的数据 了解数据的存储特点 了解数据的生命周期 ##要清楚一些问题 实体及实体之间的关系（1对1，1对多，多对多） 实体所包含的属性有什么 哪些属性或属性的组合可以唯一标识一个实体 ##名称解释 关系：一个关系对应通常所说的一张表 元组：表中的一行即为一个元组 属性：表中的一列即一个属性；每个属性都有一个名称，称为属性名。 候选码：表中的某个属性组，它可以是唯一确定一个元组。 主码：一个关系有多个候选码，选定其中一个为主码。 域：属性的取值范围。 分量：元组中的一个属性值。 ##第一范式 定义：数据库表中的所有字段都是单一属性，不可再分的。 这个单一属性是由基本的数据类型所构成的，如整数，浮点数，字符串等 换句话说：第一范式要求数据库中的表都是二维表。 ##第二范式 定义：数据库中的表不存在非关键字段对任一候选关键字段的部分函数依赖。 部分函数依赖是指存在着组合关键字中的某一关键字决定非关键字的情况。 换句话说：所有单关键字段的表都符合第二范式。 ##第三范式 定义：第三范式是在第二范式的基础之上定义的，如果数据表中不存在非关键字段对任意候选关键字段的传递函数依赖则符合第三范式。 ##BC范式 定义：在第三范式的基础之上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖则符合BC范式。 也就是说如果是复合关键字，则复合关键字之间也不能存在函数依赖关系。]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2016%2F04%2F09%2FMySQL%E6%B8%85%E7%A9%BA%E8%A1%A8%E9%87%8D%E6%96%B0%E8%B5%8B%E5%80%BC%2F</url>
+    <content type="text"><![CDATA[##mysql清空表重新赋值 truncate table quotations; truncate table image_links;]]></content>
   </entry>
   <entry>
     <title></title>
@@ -449,11 +563,6 @@
     <title></title>
     <url>%2F2016%2F03%2F31%2Fshell%E7%BC%96%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[#shell编程 ##变量名规则 变量名必须以字母或下划线打头，名字中间只能由字母、数字和下划线组成 变量名的长度不得超过255个字符 变量名的有效范围必须是唯一的 在Bash中，变量的默认类型都是字符串型 ##变量安装存储数据分类 字符串型 整型 浮点型 日期型 ##变量的分类 用户自定义变量：变量自定义 环境变量：这种变量中主要保存的是和系统操作环境相关的数据。。变量可以自定义，但是对系统生效的环境变量名和变量作用是固定的 位置参数变量：这种变量主要是用来向脚本当中传递参数或数据的，变量名不能自定义，变量作用是固定的 预定义变量：是Bash中已经定义好的变量，变量名不能自定义，变量作用也是固定的 ##变量调用 echo $变量名 例如 echo $x name=&quot;hello&quot; echo $name ##变量叠加 x=123 x=&quot;$x&quot;456 x=${x}789 ##变量查看 set #查看所有变量 选项： -u 如果设定此选项，调用未声明变量时会报错（默认无任何提示） env #查看环境变量 ##环境变量 用户自定义的变量只能在当前的shell中生效 环境变量在当前shell和这个shell的所有子shell中生效 对系统生效的环境变量名和变量作用是固定的 ##设置环境变量 export 变量名=变量值 或 变量名=变量值 export 变量名 ##删除环境变量 unset 变量名 ##常用环境变量 HOSTNAME:主机名 SHELL:当前的shell TERM:终端环境 HISTSIZEL:历史命令条数 SSH_CLIENT:当前操作环境是ssh连接的，这里记录客户端ip SSH_TTY:ssh连接的终端时pst/1 USER:当前登录的用户 ##PATH环境变量 PATH变量：系统查找命令的路径 echo $PATH #查看PATH环境变量 PATH=&quot;$PATH&quot;:/root/sh #增加PATH变量的值 ##PS1环境变量 PS1变量：命令提示符设置 \d 显示日期，格式为“星期 月 日” \H 显示完整的主机名。如默认主机名“localhost.localdomain” \t 显示24小时制时间，格式为“HH：MM：SS” \A 显示24小时制时间，格式为“HH：MM” \u 显示当前用户名 \w 显示当前所在目录的完整名称 \W 显示当前所在目录的最后一个目录 $ 提示符。如果是root用户会显示提示符为“#”，如果是普通用户显示提示符为“$” ##当前语系查询 locale #查询当前系统语系 LANG 定义系统主语系的变量 LC_ALL 定义整体语系的变量 ##语系变量LANG echo $LANG #查看系统当前语系 locale -a | more #查看Linux支持的所有语系 ##查询系统默认语系 cat /etc/sysconfig/i18n ##位置参数变量 $n n为数字，$0表示命令本身，$1-$9代表第一到第九个参数，十以上的参数需要用大括号包含，如${10} $* 这个变量代表命令行中所有参数，$*把所有的参数看成一个整体 $@ 这个变量也代表命令中所有的参数，不过$@把每个参数区分对待 $# 这个变量代表命令中所有参数的个数 例子 num1=$1 num2=$2 sum=$(($num1 + $num2)) #变量sum的和是num1加num2 echo $sum #打印变量sum的值 #!/bin/bash echo &quot;A total of $# parameters&quot; #使用$#代表所有参数的个数 echo &quot;The parameters is:$*&quot; #使用$*代表所有的参数 echo &quot;The parameters is:$@&quot; #使用$@也代表所有参数 $*与$@的区别 #!/bin/bash for i in &quot;$*&quot; #$*中的所有参数看成是一个整体，所以这个for循环只会循环一次 do echo &quot;The parameters is:$i&quot; done for y in &quot;$@&quot; #$@中的所有参数看成是独立的，所以&quot;$@&quot;中有几个参数，就会循环几次 do echo &quot;The parameters is:$y&quot; done ##预定义变量 $? 最后一次执行的命令的返回状态。如果这个变量的值是0，证明上一个命令正确执行；如果这个值为非0（具体是哪个数，由命令自己来决定），则证明上一个命令执行不正确。 $$ 当前进程的进程号（PID） $! 后台运行的最后一个进程的进程号（PID） ##接受键盘输入 read [选项] [变量名] 选项 -p “提示信息”：在等待read输入时，输入提示信息 -t 秒数：read命令会一直等待用户输入，使用此选项可以指定等待时间 -n 字符数：read命令只接受指定的字符数， 就会执行 -s 隐藏输入的数据，适用于机密信息的输入 ##其他 pstree #查看进程树]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2016%2F03%2F23%2F20160321%2F</url>
-    <content type="text"><![CDATA[##get方法抓取网页 import urllib2 url=&quot;http://www.baidu.com&quot; response = urllib2.urlopen(url) print response.read() ##post方法抓取页面 import urllib import urllib2 url = &quot;http://pay.fjut.edu.cn/user.php&quot; form = {'act':'act_login','username':'Arvin','password':'password'} form_data = urllib.urlencode(form) request = urllib2.Request(url,form_data) response = urllib2.urlopen(request) print response.read() #Python安装模块 cmd进入E:\Program Files\Python\Scripts pip install 模块名 #python爬取one # -- coding: utf-8 -- # import requests import bs4 import re response = requests.get('http://wufazhuce.com') soup = bs4.BeautifulSoup(response.text,&quot;html.parser&quot;) #print soup.find_all('img')[1]['src'] #print soup.find_all('a')[1]['href'] #for i in soup.find_all(&quot;img&quot;,class_=&quot;fp-one-imagen&quot;): # print i for i in soup.find_all(&quot;div&quot;,class_=&quot;item active&quot;): print i.find_all('img')[0]['src'] print i.find_all('a')[1].string #for i in soup.find_all(&quot;div&quot;,class_=&quot;fp-one-cita&quot;,limit=1): # print i #for i in soup.find_all(href=re.compile(&quot;http://wufazhuce.com/one&quot;)): # print i #for i in soup.find_all(id='carousel-one'): # print i #for i in soup.find_all('a'): # print i #for child in soup.body.children: # print child]]></content>
   </entry>
   <entry>
     <title></title>
@@ -551,17 +660,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux网络]]></title>
-    <url>%2F2016%2F03%2F05%2FLinux%E7%BD%91%E7%BB%9C%2F</url>
-    <content type="text"><![CDATA[ifconfig命令 12345ifconfig#查看与配置网络状态命令ifconfig ech0 192.168.0.200 netmask 255.255.255.0#临时设置ech0网卡的IP地址与子网掩码 关闭和启动网卡 12345ifdown 网卡设备名#禁用该网卡设备ifup 网卡设备名#启用该网卡设备 查询网络状态 12345678netstat 选项选项： -t 列出TCP协议端口 -u 列出UDP协议端口 -n 不使用域名与服务名，而使用IP地址和端口号 -l 仅列出在监听状态网络服务 -a 列出所有的网络连接 -r 列出路由列表，功能和route命令一致 route命令 12345route -n#查看路由列表route add default gw 192.168.1.1#临时设定网关 域名解析命令 12nslookup [主机名或IP]#进行域名与IP地址解析 ping命令 12345ping [选项] ip或域名#探测指定IP或域名的网络状态选项： -c 次数：指定ping包的次数 telnet命令 12telnet [域名或IP] [端口]#远程管理与端口探测命令 traceroute 12345traceroute [选项] IP或域名#路由跟踪命令选项： -n 使用IP，不使用域名，速度更快 wget命令 12wget url#下载命令 tcpdump命令 123456tcpdump -i ech0 -nnx port 21选项： -i 指定网卡接口 -nn 将数据包的域名与服务转为IP的端口 -X 以十六进制和ASCII码显示数据包内容 port 指定监听的端口 网卡信息文件 1234567891011121314vi /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE='eth0' 网卡设备名NM_CONTROLLED='yes' 是否可以由Network Manager图形管理工具托管ONBOOT='yes' 是否随网络服务启动，eth0生效IPADDR='10.105.93.229' IP地址NETMASK='255.255.192.0' 子网掩码GATEWAY='10.105.64.1' 网关BOOTPROTO=none 是否自动获取IP（none,static,dhcp）HWADDR=00:0c:29:17:c4:09 MAC地址TYPE=Ethernet 类型为以太网UUID="xxxxxx" 唯一识别码DNS1=xxxxxxx DNS 主机名文件 1234vi /etc/sysconfig/networkhostname [主机名]#查看与临时设置主机名命令 DNS配置文件 123vi /etc/resolv.conf#nameserver 202.106.0.20#search localhost 启动网卡 12service network restart#重启网络服务]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Linux系统7个运行级别(runlevel)]]></title>
     <url>%2F2016%2F03%2F05%2FLinux%E7%B3%BB%E7%BB%9F7%E4%B8%AA%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%2F</url>
     <content type="text"><![CDATA[运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动]]></content>
@@ -573,9 +671,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[VI编辑器]]></title>
-    <url>%2F2016%2F03%2F04%2FVI%E7%BC%96%E8%BE%91%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[Visual Interface(可视化接口) VI ——&gt; VIM VIM支持多级撤销 VIM可以跨平台运行 VIM支持语法高亮 VIM支持图形界面 vi三种模式 一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。 编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、r、R”等字母之后才会进入编辑模式。注意，通常在Linux中，按下上述字符时，画面的左下方会出现“INSERT或REPLACE”的字样，才可以输入任何字到文件中。如果要回到一般模式时，则必须要按下Esc键才可退出编辑模式。 命令行模式：在一般模式中，输入“:或/或?”就可以将光标移到最下面的那一行，在这个模式中，你可以搜索数据，而且读取、存盘、大量删除字符、离开vi、显示行号等操作都是在此模式下实现的。 操作模式 Command Mode - 命令模式 Insert Mode - 输入模式 Last Line Mode - 底行模式（尾行，末行） 12345678vim + test.txt#打开test.txt文本，光标置于最后一行vim +3 test.txt#打开test.txt文本，光标置于第三行vim +/hello test.txt#打开test.txt文本，光标置于第一次出现hello的那一行，可以通过按n来切换hello所在的不同行 常用指令 12345678910111213141516171819202122232425262728底行模式常用命令-:w 将内容的修改从内存写入硬盘中-:q 退出当前VI编辑器-:! 强制执行-:ls 列出当前编辑器打开的文件-:n 切换到后一个文件-:N 切换到前一个文件-:15 把光标快速定位到15行- /xxx 从光标位置向后搜索xxx字符串- ?xxx 从光标位置向前搜索xxx字符串- h 光标左移- j 光标下移- k 光标上移- l 光标右移- ctrl + f 向下翻页（front）- ctrl + b 向上翻页（back）- ctrl + d 向下翻半页（down）- ctrl + u 向上翻半页（up）dd 删除光标所在行o 在光标所在行的下方插入一行并切换到输入模式yy 复制光标所在的行p 在光标所在行的下方粘贴P 在光标所在行的上方粘贴]]></content>
+    <title><![CDATA[Linux网络]]></title>
+    <url>%2F2016%2F03%2F05%2FLinux%E7%BD%91%E7%BB%9C%2F</url>
+    <content type="text"><![CDATA[ifconfig命令 12345ifconfig#查看与配置网络状态命令ifconfig ech0 192.168.0.200 netmask 255.255.255.0#临时设置ech0网卡的IP地址与子网掩码 关闭和启动网卡 12345ifdown 网卡设备名#禁用该网卡设备ifup 网卡设备名#启用该网卡设备 查询网络状态 12345678netstat 选项选项： -t 列出TCP协议端口 -u 列出UDP协议端口 -n 不使用域名与服务名，而使用IP地址和端口号 -l 仅列出在监听状态网络服务 -a 列出所有的网络连接 -r 列出路由列表，功能和route命令一致 route命令 12345route -n#查看路由列表route add default gw 192.168.1.1#临时设定网关 域名解析命令 12nslookup [主机名或IP]#进行域名与IP地址解析 ping命令 12345ping [选项] ip或域名#探测指定IP或域名的网络状态选项： -c 次数：指定ping包的次数 telnet命令 12telnet [域名或IP] [端口]#远程管理与端口探测命令 traceroute 12345traceroute [选项] IP或域名#路由跟踪命令选项： -n 使用IP，不使用域名，速度更快 wget命令 12wget url#下载命令 tcpdump命令 123456tcpdump -i ech0 -nnx port 21选项： -i 指定网卡接口 -nn 将数据包的域名与服务转为IP的端口 -X 以十六进制和ASCII码显示数据包内容 port 指定监听的端口 网卡信息文件 1234567891011121314vi /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE='eth0' 网卡设备名NM_CONTROLLED='yes' 是否可以由Network Manager图形管理工具托管ONBOOT='yes' 是否随网络服务启动，eth0生效IPADDR='10.105.93.229' IP地址NETMASK='255.255.192.0' 子网掩码GATEWAY='10.105.64.1' 网关BOOTPROTO=none 是否自动获取IP（none,static,dhcp）HWADDR=00:0c:29:17:c4:09 MAC地址TYPE=Ethernet 类型为以太网UUID="xxxxxx" 唯一识别码DNS1=xxxxxxx DNS 主机名文件 1234vi /etc/sysconfig/networkhostname [主机名]#查看与临时设置主机名命令 DNS配置文件 123vi /etc/resolv.conf#nameserver 202.106.0.20#search localhost 启动网卡 12service network restart#重启网络服务]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -587,6 +685,17 @@
     <title><![CDATA[Linux用户]]></title>
     <url>%2F2016%2F03%2F04%2FLinux%E7%94%A8%E6%88%B7%2F</url>
     <content type="text"><![CDATA[12345678910111213141516/etc/group 存储当前系统中所有用户组信息Group : x : 123 :abc,def,xyz组名称 : 组密码占位符 : 组编码 : 组中用户名列表/etc/gshadow 存储当前系统中用户组的密码信息Group : * : : abc,def,xyz组名称 : 组密码 : 组管理 : 组中用户名列表/etc/passwd 存储当前系统中所有用户的信息user : x : 123 : 456 : xxxxxxx : /home/user : /bin/bash用户名 : 密码占位符 ： 用户编码 : 用户组编码 : 用户注释信息 : 用户主目录 : shell类型/etc/shadow 存储当前系统中所有用户的密码信息 groupadd groupmod useradd usermod 12345678passwd -l username#锁定用户账号passwd -u username#解锁用户账号passwd -d username#无密码登陆 12345chfn username#设置用户资料，依次输入用户资料finger username#显示用户资料]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[VI编辑器]]></title>
+    <url>%2F2016%2F03%2F04%2FVI%E7%BC%96%E8%BE%91%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[Visual Interface(可视化接口) VI ——&gt; VIM VIM支持多级撤销 VIM可以跨平台运行 VIM支持语法高亮 VIM支持图形界面 vi三种模式 一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。 编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、r、R”等字母之后才会进入编辑模式。注意，通常在Linux中，按下上述字符时，画面的左下方会出现“INSERT或REPLACE”的字样，才可以输入任何字到文件中。如果要回到一般模式时，则必须要按下Esc键才可退出编辑模式。 命令行模式：在一般模式中，输入“:或/或?”就可以将光标移到最下面的那一行，在这个模式中，你可以搜索数据，而且读取、存盘、大量删除字符、离开vi、显示行号等操作都是在此模式下实现的。 操作模式 Command Mode - 命令模式 Insert Mode - 输入模式 Last Line Mode - 底行模式（尾行，末行） 12345678vim + test.txt#打开test.txt文本，光标置于最后一行vim +3 test.txt#打开test.txt文本，光标置于第三行vim +/hello test.txt#打开test.txt文本，光标置于第一次出现hello的那一行，可以通过按n来切换hello所在的不同行 常用指令 12345678910111213141516171819202122232425262728底行模式常用命令-:w 将内容的修改从内存写入硬盘中-:q 退出当前VI编辑器-:! 强制执行-:ls 列出当前编辑器打开的文件-:n 切换到后一个文件-:N 切换到前一个文件-:15 把光标快速定位到15行- /xxx 从光标位置向后搜索xxx字符串- ?xxx 从光标位置向前搜索xxx字符串- h 光标左移- j 光标下移- k 光标上移- l 光标右移- ctrl + f 向下翻页（front）- ctrl + b 向上翻页（back）- ctrl + d 向下翻半页（down）- ctrl + u 向上翻半页（up）dd 删除光标所在行o 在光标所在行的下方插入一行并切换到输入模式yy 复制光标所在的行p 在光标所在行的下方粘贴P 在光标所在行的上方粘贴]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -629,16 +738,6 @@
   </entry>
   <entry>
     <title></title>
-    <url>%2F2016%2F02%2F24%2FPython%20import%E6%A8%A1%E5%9D%97%E6%96%B9%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[##python包含子目录中的模块方法比较简单，关键是能够在sys.path里面找到通向模块文件的路径。 ####下面将具体介绍几种常用情况: 主程序与模块程序在同一目录下: 如下面程序结构: `-- src |-- mod1.py `-- test1.py 若在程序test1.py中导入模块mod1, 则直接使用import mod1或from mod1 import *; 主程序所在目录是模块所在目录的父(或祖辈)目录 如下面程序结构: `-- src |-- mod1.py |-- mod2 | `-- mod2.py `-- test1.py 若在程序test1.py中导入模块mod2, 需要在mod2文件夹中建立空文件__init__.py文件(也可以在该文件中自定义输出模块接口); 然后使用 from mod2.mod2 import * 或import mod2.mod2. 主程序导入上层目录中模块或其他目录(平级)下的模块 如下面程序结构: `-- src |-- mod1.py |-- mod2 | `-- mod2.py |-- sub | `-- test2.py `-- test1.py 若在程序test2.py中导入模块mod1和mod2。首先需要在mod2下建立__init__.py文件(同(2))，src下不必建立该文件。然后调用方式如下: 下面程序执行方式均在程序文件所在目录下执行，如test2.py是在cd sub;之后执行python test2.py 而test1.py是在cd src;之后执行python test1.py; 不保证在src目录下执行python sub/test2.py成功。 import sys sys.path.append(&quot;..&quot;) import mod1 import mod2.mod2 从(3)可以看出，导入模块关键是能够根据sys.path环境变量的值，找到具体模块的路径。这里仅介绍上面三种简单情况。]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2016%2F02%2F24%2FPython%E5%87%BD%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[#Python函数 通过str类的swapcase方法可以快速实现大写便小写、小写变大写的功能。 In [1]: s = 'Hello' In [2]: s.swapcase() Out[2]: 'hELLO' 字符串自动补零 In [1]: &quot;5&quot;.zfill(10) Out[1]: &quot;0000000005&quot;]]></content>
-  </entry>
-  <entry>
-    <title></title>
     <url>%2F2016%2F02%2F24%2FRequests%2F</url>
     <content type="text"><![CDATA[#Requests ##Requests Requests：HTTP for Humans 完美代替urllib2模块 更多的自动化 更友好的用户体验 更完善的功能 ##Requests安装 Windows：pip install requests Linux：sudo pip install requests ##第三方库安装技巧 少用easy_install，因为只能安装不能卸载 多用pip方式安装 Python第三方包下载 ##第一个网页爬虫 Requests获取网页源代码 Requests与正则表达式 ##正则表达式 使用Requests获取网页源代码，在使用正则表达式匹配出感兴趣的内容，这就是单线程简单爬虫的基本原理。]]></content>
   </entry>
@@ -646,11 +745,6 @@
     <title></title>
     <url>%2F2016%2F02%2F21%2Frobots%E5%8D%8F%E8%AE%AE%2F</url>
     <content type="text"><![CDATA[#robots协议 Robots协议（也称为爬虫协议、机器人协议等）的全称是“网络爬虫排除标准”（Robots Exclusion Protocol），网站通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取。 ##简介 robots.txt文件是一个文本文件，使用任何一个常见的文本编辑器编辑。 robots.txt是一个协议，而不是一个命令。 robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。 robots.txt文件告诉蜘蛛程序在服务器上什么文件是可以被查看的。 当一个搜索蜘蛛访问一个站点时，它会首先检查该站点根目录下是否存在robots.txt，如果存在，搜索机器人就会按照该文件中的内容来确定访问的范围；如果该文件不存在，所有的搜索蜘蛛将能够访问网站上所有没有被口令保护的页面。 ##原则 Robots协议是国际互联网界通行的道德规范，基于以下原则建立： 搜索技术应服务于人类，同时尊重信息提供者的意愿，并维护其隐私权； 网站有义务保护其使用者的个人信息和隐私不被侵犯。 ##文件写法 User-agent: * 这里的*代表的所有的搜索引擎种类，*是一个通配符 Disallow: /admin/ 这里定义是禁止爬寻admin目录下面的目录 Disallow: /require/ 这里定义是禁止爬寻require目录下面的目录 Disallow: /ABC/ 这里定义是禁止爬寻ABC目录下面的目录 Disallow: /cgi-bin/*.htm 禁止访问/cgi-bin/目录下的所有以&quot;.htm&quot;为后缀的URL(包含子目录)。 Disallow: /*?* 禁止访问网站中所有包含问号 (?) 的网址 Disallow: /.jpg$ 禁止抓取网页所有的.jpg格式的图片 Disallow:/ab/adc.html 禁止爬取ab文件夹下面的adc.html文件。 Allow: /cgi-bin/ 这里定义是允许爬寻cgi-bin目录下面的目录 Allow: /tmp 这里定义是允许爬寻tmp的整个目录 Allow: .htm$ 仅允许访问以&quot;.htm&quot;为后缀的URL。 Allow: .gif$ 允许抓取网页和gif格式图片 Sitemap: 网站地图 告诉爬虫这个页面是网站地图]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2016%2F02%2F19%2FPython%E9%81%8D%E5%8E%86%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%2F</url>
-    <content type="text"><![CDATA[###Python遍历一个文件夹下的所有文件 import os.path rootdir = &quot;d:\data&quot; # 指明被遍历的文件夹 for parent,dirnames,filenames in os.walk(rootdir): #三个参数：分别返回1.父目录 2.所有文件夹名字（不含路径） 3.所有文件名字 for dirname in dirnames: #输出文件夹信息 print &quot;parent is: &quot; + parent print &quot;dirname is: &quot; + dirname for filename in filenames: #输出文件信息 print &quot;parent is: &quot; + parent print &quot;filename is:&quot; + filename print &quot;the full name of the file is:&quot; + os.path.join(parent,filename) #输出文件路径信息]]></content>
   </entry>
   <entry>
     <title><![CDATA[changed myself first]]></title>
@@ -670,10 +764,5 @@
       <tags>
         <tag>think</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F2016%2F01%2F31%2FPython%2F</url>
-    <content type="text"><![CDATA[#Python ##特点 优雅 明确 简单 ##适合领域 Web网站和各种网络服务 系统工具和脚本 把其他语言开发的模块包装起来方便使用]]></content>
   </entry>
 </search>
