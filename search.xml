@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[springboot系列]]></title>
-    <url>%2F2017%2F11%2F17%2Fspringboot%E7%B3%BB%E5%88%97%2F</url>
+    <title><![CDATA[Python系列]]></title>
+    <url>%2F2017%2F11%2F17%2FPython%E7%B3%BB%E5%88%97%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringBoot系列]]></title>
+    <url>%2F2017%2F11%2F17%2FSpringBoot%E7%B3%BB%E5%88%97%2F</url>
     <content type="text"><![CDATA[springboot]]></content>
       <categories>
         <category>Spring Boot</category>
@@ -380,17 +385,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[RBAC]]></title>
+    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
+    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[GUID——全局唯一标识符]]></title>
     <url>%2F2017%2F04%2F11%2FGUID%2F</url>
     <content type="text"><![CDATA[理论 GUID(Globally Unique Identifier)是一个128位整数（16字节），可用于所有需要唯一标识符的计算机和网络。此标识符重复的可能性非常小。 GUID是由网卡上的标识数字（每个网卡都有唯一的标识号）以及CPU时钟的唯一数字生成的一个16字节的二进制值。 GUID的格式为“xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”,其中每一个x是0-9或a-f范围内的一个十六进制的数字。 世界上的任何两台计算机都不会生成重复的GUID值（概率很小）。 GUID主要用于在拥有多个节点、多台计算机的网络或系统中，分配必须具有唯一性的表示符。 在Windows平台上，GUID应用非常广泛：注册表、类及接口标识、数据库、甚至自动生成的机器名、目录名等。 Time 时间戳。将objectid的前4位进行提取，然后按照十六进制转为十进制，这个数字就是一个时间戳。通过时间戳的转换，可以很容易看清时间格式。 Machine 机器码。接下来的三个字节是所在主机的唯一标识符，一般是机器主机的散列值，这样就确保了不同主机生成不同的机器hash值，确保在分布式中不造成冲突，这也就是在同一台机器生成的objectid中间的字符串都是一模一样的原因。 PID 进程ID。上面的Machine是为了确保在不同机器产生的objectId不冲突，而pid就是为了在同一台机器不同的mongodb进程产生了objectId不冲突，接下来的两位就是产生objectId的进程标识符。 INC 自增计数器。前面的九个字节是保证了一秒内不同机器不同进程生成objectId不冲突，最后面的三个字节是一个自动增加的计数器，用来确保在同一秒内产生的objectId也不会发现冲突，允许2^24等于16777216条记录的唯一性。 &quot;Big Bang&quot; was caused when two GUIDs collided.]]></content>
       <tags>
         <tag>GUID</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RBAC]]></title>
-    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
-    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
   </entry>
   <entry>
     <title><![CDATA[Spring Boot]]></title>
@@ -422,9 +427,31 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Hosts]]></title>
+    <url>%2F2016%2F10%2F18%2FHosts%2F</url>
+    <content type="text"><![CDATA[Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统再会将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
+      <categories>
+        <category>http</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hibernate]]></title>
     <url>%2F2016%2F10%2F18%2Fhibernate%2F</url>
     <content type="text"><![CDATA[hibernate.cfg.xml常用配置 1234567891011121314151617181920212223242526272829303132333435363738394041&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;&lt;!--声明Hibernate配置文件的开始--&gt;&lt;hibernate-configuration&gt; &lt;!--表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存HIbernate的配置信息，以及对Session的操作--&gt; &lt;session-factory&gt; &lt;!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序--&gt; &lt;property name="connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; &lt;!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，hibernate是数据库名--&gt; &lt;property name="connection.url"&gt; jdbc:mysql://115.29.52.104:3306/ssh?useUnicode=true&amp;amp;characterEncoding=utf8 &lt;/property&gt; &lt;!--连接数据库是用户名--&gt; &lt;property name="connection.username"&gt;nebula&lt;/property&gt; &lt;!--连接数据库是密码--&gt; &lt;property name="connection.password"&gt;314159&lt;/property&gt; &lt;!--数据库连接池的大小--&gt; &lt;property name="hibernate.connection.pool.size"&gt;20&lt;/property&gt; &lt;!-- 显示SQL语句 --&gt; &lt;property name="show_sql"&gt;true&lt;/property&gt; &lt;property name="format_sql"&gt;true&lt;/property&gt; &lt;!-- create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表 create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。 update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据 model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。 --&gt; &lt;property name="hbm2ddl.auto"&gt;update&lt;/property&gt; &lt;!-- 定义方言 --&gt; &lt;property name="dialect"&gt; org.hibernate.dialect.MySQLDialect &lt;/property&gt; &lt;!--指定映射文件为“site/nebulas/bean/User.hbm.xml”--&gt; &lt;mapping resource="site/nebulas/bean/User.hbm.xml"&gt;&lt;/mapping&gt; &lt;/session-factory&gt;&lt;/hibernate-configuration&gt; User.hbm.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&lt;?xml version="1.0"?&gt;&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;&lt;!-- &lt;hibernate-mapping&gt;一般不去配置，采用默认即可。 default-cascade="none"：默认的级联风格，表与表联动。 default-lazy="true"：默认延迟加载 --&gt;&lt;hibernate-mapping&gt; &lt;!-- &lt;class&gt;：使用class元素定义一个持久化类。 name="site.nebulas.bean.User"：持久化类的java全限定名； table="user"：对应数据库表名； mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除； dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段； dynamic-update="false"：默认为false，动态插入非空值字段； select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新； optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)、 none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作； --&gt; &lt;class name="site.nebulas.bean.User" table="user" dynamic-insert="true" dynamic-update="true" optimistic-lock="version"&gt; &lt;!-- &lt;id&gt;：定义了该属性到数据库表主键字段的映射。 name="userId"：标识属性的名字； column="userId"：表主键字段的名字，如果不填写与name一样； --&gt; &lt;id name="id"&gt; &lt;!-- &lt;generator&gt;：指定主键由什么生成，推荐使用uuid（随机生成唯一通用的表示符，实体类的ID必须是String）， native（让数据库自动选择用什么生成（根据底层数据库的能力选择identity，sequence或hilo中的一种））， assigned（指用户手工填入，默认）。 --&gt; &lt;generator class="identity"/&gt; &lt;/id&gt; &lt;!-- &lt;version/&gt;：使用版本控制来处理并发，要开启optimistic-lock="version"和dynamic-update="true"。 name="version"：持久化类的属性名，column="version"：指定持有版本号的字段名； &lt;version name="version" column="version"/&gt; --&gt; &lt;!-- &lt;property&gt;：为类定义一个持久化的javaBean风格的属性。 name="name"：标识属性的名字，以小写字母开头； column="name"：表主键字段的名字，如果不填写与name一样； update="true"/insert="true"：默认为true，表示可以被更新或插入； --&gt; &lt;property name="name" column="name" /&gt; &lt;property name="password" column="password"/&gt; &lt;property name="createTime" column="createTime"/&gt; &lt;!-- 组件映射：把多个属性打包在一起当一个属性使用，用来把类的粒度变小。 &lt;component name="属性，这里指对象"&gt; &lt;property name="name1"&gt;&lt;/property&gt; &lt;property name="name2"&gt;&lt;/property&gt; &lt;/component&gt; --&gt; &lt;!-- &lt;join&gt;:一个对象映射多个表，该元素必须放在所有&lt;property&gt;之后。 &lt;join table="tbl_test：子表名"&gt; &lt;key column="uuid：子表主键"&gt;&lt;/key&gt; &lt;property name="name1：对象属性" column="name：子表字段"&gt;&lt;/property&gt; &lt;/join&gt; --&gt; &lt;/class&gt;&lt;/hibernate-mapping&gt; session save() update() delete() createQuery() transaction]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[EL表达式]]></title>
+    <url>%2F2016%2F10%2F18%2FEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[1$&#123;表达式&#125; &quot;.&quot;与&quot;[]&quot;运算符 12$&#123;user.sex&#125; &lt;==&gt; $&#123;user["sex"]&#125;$&#123;bookList[0].price&#125; EL变量 JSP内置对象 EL名称 Page PageScope Request RequestScope Session SessionScope Application ApplicationScope]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -441,28 +468,6 @@
       </categories>
       <tags>
         <tag>OAuth</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hosts]]></title>
-    <url>%2F2016%2F10%2F18%2FHosts%2F</url>
-    <content type="text"><![CDATA[Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统再会将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
-      <categories>
-        <category>http</category>
-      </categories>
-      <tags>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[EL表达式]]></title>
-    <url>%2F2016%2F10%2F18%2FEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[1$&#123;表达式&#125; &quot;.&quot;与&quot;[]&quot;运算符 12$&#123;user.sex&#125; &lt;==&gt; $&#123;user["sex"]&#125;$&#123;bookList[0].price&#125; EL变量 JSP内置对象 EL名称 Page PageScope Request RequestScope Session SessionScope Application ApplicationScope]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -488,17 +493,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[HTTP]]></title>
-    <url>%2F2016%2F10%2F10%2FHTTP%2F</url>
-    <content type="text"><![CDATA[端口 端口号 0~65535 get/post get获取信息 Post提交表单数据或上传文件 HTTP头 HTTP头文件是&quot;键/值&quot;对 键可能会在HTTP头文件中出现任意次数 cookie 服务端发送到客户端然后客户端稍后再返回到服务端的短字符串 URL编码 URL编码标准用%后面跟着2位的代码代表特殊字符并以&quot;+&quot;字符代替空格 通用首部字段 字段 描述 Cashe-Control 控制缓存行为 Connection 逐跳首部、连接的管理 Date 创建报文的日期时间 Pragma 报文指令 Trailer 报文末端的首部一览 Transfer-Encoding 指定报文主体的传输编码方式 Upgrade 升级为其他协议 Via 代理服务器的相关信息 Warning 错误通知 请求首部字段 字段 描述 Accept 用于告诉服务器，客户机支持的数据类型 Accept-Charset 用于告诉服务器，客户机采用的编码 Accept-Encoding 用于告诉服务器，客户机支持的数据压缩格式 Accept-Language 客户机的语言环境 Host 客户机通过这个头告诉服务器，想要访问的主机名 Referer 客户机通过这个头告诉服务器，它是从哪个资源来访问服务器的（防盗链） Authorization Web认证信息 Expect 期待服务器的特定行为 From 用户的电子邮箱地址 If-Match 比较实体标记（ETag） If-None_Match 比较实体标记（与f-Match相反） If-Range 资源未更新时发送实体Byte的范围请求 If-Modified-Since 客户机通过这个头告诉服务器，资源的缓存时间 If-Unmodified-Since 比较资源更新的时间（与If-Modified-Since相反） Max-Forwards 最大传输逐跳数 Proxy-Authorization 代理服务器要求客户端的认证信息 Range 实体的字节范围请求 TE 传输编码的优先级 User-Agent HTTP客户端程序的信息 响应首部字段 字段 描述 Accept-Ranges 是否接受字节范围请求 Age 推算资源创建经过时间 Proxy-Authenticate 代理服务器对客户端的认证信息 Retry-After 对再起发起请求的时机要求 Vary 代理服务器缓存的管理信息 WWW-Authenticate 服务器对客户端的认证信息 location 配和302状态码使用，告诉客户机找谁 Server 服务器通过这个头，告诉浏览器服务器的类型 Content-Encoding 服务器通过这个头，数据的压缩格式 Content-Length 服务器通过这个头，告诉浏览器回送数据的长度 Content-Type 服务器通过这个头，告诉浏览器回送数据的类型 Last-Modified 服务器通过这个头，告诉浏览器当前资源缓存时间 Refresh 服务器通过这个头，告诉浏览器隔多久刷新一次 Content-Disposition 服务器通过这个头，告诉浏览器以下载方式打开这个数据 Transfer-Encoding 服务器通过这个头，告诉浏览器数据的传送格式 Etag 缓存 Expires 服务器通过这个头，告诉浏览器把回送的资源缓存多长时间，-1或0，则是不缓存 Cache-Control no-cache Pragma no-cache 服务器通过以上两个头，也是控制浏览器不要缓存数据 实体首部字段 字段 描述 Allow 资源可支持的HTTP方法 Content-Encoding 实体主体使用的编码方式 Content-Language 实体主体的自然语言 Content-Length 实体主体的大小（单位:字节） Content-Location 代替对应资源的URI Content-MD5 实体主体的报文摘要 Content-Range 实体主体的位置范围 Content-Type 实体主体的媒体类型 Expires 实体主体过期的日期时间 Last-Modified 资源的最后修改日期时间 Cache-Control 缓存请求指令 指令 参数 说明 no-cache 无 强制向源服务器再次验证 no-store 无 不缓存请求或响应的任何内容 max-age = [秒] 必需 响应的最大Age值 max-stale( = [秒]) 可省略 接收已过期的响应 min-fresh = [秒] 必需 期望在指定时间内的响应任有效 no-transform 无 代理不可更改媒体类型 only-if-cached 无 从缓存获取资源 cache-extension - 新指令标记（token） 缓存响应指令 指令 参数 说明 public 无 可向任意方提供响应的缓存 private 可省略 仅向特定用户返回响应 no-cache 可 省略 缓存前必需先确认其有效性 no-store 无 不缓存或响应任何内容 no-transform 无 代理不可更改媒体类型 must-revalidate 无 可缓存但必须再向源服务器确认 proxy-revalidate 无 要求中间缓存服务器对缓存的响应有效性再进行确认 max-age = [秒] 必需 响应的最大Age值 s-maxage = [秒] 必需 公共缓存服务器响应的最大Age值 cache-extension - 新指令标记（token）]]></content>
-      <categories>
-        <category>http</category>
-      </categories>
-      <tags>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Java注解]]></title>
     <url>%2F2016%2F10%2F10%2FJava%E6%B3%A8%E8%A7%A3%2F</url>
     <content type="text"><![CDATA[JDK自带注解 @Override 覆盖/实现 @Deprecared 表示方法已经过时 @Suppvisewarnings 忽略警告 Spring注解 @Autowired @Service @Repository Mybatis注解 @InsertProvider @UpdateProvider @Options]]></content>
@@ -510,14 +504,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Servlet]]></title>
-    <url>%2F2016%2F10%2F09%2FServlet%2F</url>
-    <content type="text"><![CDATA[Servlet是JSP的前身 Servlet是在服务器上运行的小程序。一个Servlet就是一个Java类，并且可以通过“请求-响应”编程模型来访问的这个驻留在服务器内存里的Servlet程序。 Servlet实现 继承HttpServlet 重写doGet()或者doPost()方法 在web.xml中注册Servlet web.xml中配置 12345678&lt;servlet&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;servlet-class&gt;site.nebulas.servlet.HelloServlet&lt;/servlet-class&gt;&lt;/servlet&gt;&lt;servlet-mapping&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;url-pattern&gt;servlet/hello&lt;/url-pattern&gt;&lt;/servlet-mapping&gt; Servlet生命周期 在下列时刻Servlet容器装载Servlet Servlet容器启动时自动装载某些Servlet,实现它只需要在web.xml文件中的&lt;Servlet&gt;&lt;/Servlet&gt;之间添加如下代码：&lt;loadon-startup&gt;1&lt;/loadon-startup&gt;数字越小表示优先级别越高。 在Servlet容器启动后，客户首次向Servlet发送请求。 Servlet类文件被更新后，重新装载Servlet。 Servlet被装载后，Servlet容器创建一个Servlet实例并且调用Servlet的init()方法进行初始化。在Servlet的整个生命周期内，init()方法只被调用一次。 Servelt与九大内置对象 | JSP对象 | 怎样获得 | |::|::| | out | resp.getWriter | | request | service方法中的req参数 | | response | service方法中的resp参数 | | session | req.getSession()函数 | | application | getServletContext()函数 | | exception | Throwable | | page | this | | pageContext | PageContext | | Config | getServletConfig()函数 |]]></content>
+    <title><![CDATA[HTTP]]></title>
+    <url>%2F2016%2F10%2F10%2FHTTP%2F</url>
+    <content type="text"><![CDATA[端口 端口号 0~65535 get/post get获取信息 Post提交表单数据或上传文件 HTTP头 HTTP头文件是&quot;键/值&quot;对 键可能会在HTTP头文件中出现任意次数 cookie 服务端发送到客户端然后客户端稍后再返回到服务端的短字符串 URL编码 URL编码标准用%后面跟着2位的代码代表特殊字符并以&quot;+&quot;字符代替空格 通用首部字段 字段 描述 Cashe-Control 控制缓存行为 Connection 逐跳首部、连接的管理 Date 创建报文的日期时间 Pragma 报文指令 Trailer 报文末端的首部一览 Transfer-Encoding 指定报文主体的传输编码方式 Upgrade 升级为其他协议 Via 代理服务器的相关信息 Warning 错误通知 请求首部字段 字段 描述 Accept 用于告诉服务器，客户机支持的数据类型 Accept-Charset 用于告诉服务器，客户机采用的编码 Accept-Encoding 用于告诉服务器，客户机支持的数据压缩格式 Accept-Language 客户机的语言环境 Host 客户机通过这个头告诉服务器，想要访问的主机名 Referer 客户机通过这个头告诉服务器，它是从哪个资源来访问服务器的（防盗链） Authorization Web认证信息 Expect 期待服务器的特定行为 From 用户的电子邮箱地址 If-Match 比较实体标记（ETag） If-None_Match 比较实体标记（与f-Match相反） If-Range 资源未更新时发送实体Byte的范围请求 If-Modified-Since 客户机通过这个头告诉服务器，资源的缓存时间 If-Unmodified-Since 比较资源更新的时间（与If-Modified-Since相反） Max-Forwards 最大传输逐跳数 Proxy-Authorization 代理服务器要求客户端的认证信息 Range 实体的字节范围请求 TE 传输编码的优先级 User-Agent HTTP客户端程序的信息 响应首部字段 字段 描述 Accept-Ranges 是否接受字节范围请求 Age 推算资源创建经过时间 Proxy-Authenticate 代理服务器对客户端的认证信息 Retry-After 对再起发起请求的时机要求 Vary 代理服务器缓存的管理信息 WWW-Authenticate 服务器对客户端的认证信息 location 配和302状态码使用，告诉客户机找谁 Server 服务器通过这个头，告诉浏览器服务器的类型 Content-Encoding 服务器通过这个头，数据的压缩格式 Content-Length 服务器通过这个头，告诉浏览器回送数据的长度 Content-Type 服务器通过这个头，告诉浏览器回送数据的类型 Last-Modified 服务器通过这个头，告诉浏览器当前资源缓存时间 Refresh 服务器通过这个头，告诉浏览器隔多久刷新一次 Content-Disposition 服务器通过这个头，告诉浏览器以下载方式打开这个数据 Transfer-Encoding 服务器通过这个头，告诉浏览器数据的传送格式 Etag 缓存 Expires 服务器通过这个头，告诉浏览器把回送的资源缓存多长时间，-1或0，则是不缓存 Cache-Control no-cache Pragma no-cache 服务器通过以上两个头，也是控制浏览器不要缓存数据 实体首部字段 字段 描述 Allow 资源可支持的HTTP方法 Content-Encoding 实体主体使用的编码方式 Content-Language 实体主体的自然语言 Content-Length 实体主体的大小（单位:字节） Content-Location 代替对应资源的URI Content-MD5 实体主体的报文摘要 Content-Range 实体主体的位置范围 Content-Type 实体主体的媒体类型 Expires 实体主体过期的日期时间 Last-Modified 资源的最后修改日期时间 Cache-Control 缓存请求指令 指令 参数 说明 no-cache 无 强制向源服务器再次验证 no-store 无 不缓存请求或响应的任何内容 max-age = [秒] 必需 响应的最大Age值 max-stale( = [秒]) 可省略 接收已过期的响应 min-fresh = [秒] 必需 期望在指定时间内的响应任有效 no-transform 无 代理不可更改媒体类型 only-if-cached 无 从缓存获取资源 cache-extension - 新指令标记（token） 缓存响应指令 指令 参数 说明 public 无 可向任意方提供响应的缓存 private 可省略 仅向特定用户返回响应 no-cache 可 省略 缓存前必需先确认其有效性 no-store 无 不缓存或响应任何内容 no-transform 无 代理不可更改媒体类型 must-revalidate 无 可缓存但必须再向源服务器确认 proxy-revalidate 无 要求中间缓存服务器对缓存的响应有效性再进行确认 max-age = [秒] 必需 响应的最大Age值 s-maxage = [秒] 必需 公共缓存服务器响应的最大Age值 cache-extension - 新指令标记（token）]]></content>
       <categories>
-        <category>java</category>
+        <category>http</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -535,6 +529,17 @@
     <title><![CDATA[pom.xml]]></title>
     <url>%2F2016%2F10%2F09%2Fpom%2F</url>
     <content type="text"><![CDATA[依赖范围（scope） compile : 默认的范围，编译测试运行都有效 provided : 在编译和测试时有效 runtime : 在测试和运行时有效 test : 只在测试时有效 system : 与本机系统相关联，可移植性差 import : 导入的范围，它只使用在dependencyManagement中，表示从其它的pom中导入dependecy的配置 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081&lt;!-- 指定当前pom的版本 --&gt;&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;&lt;groupId&gt;反写的公司网址+项目名&lt;/groupId&gt;&lt;artifacId&gt;项目名+模块名&lt;/artifacId&gt;&lt;!-- 0.0.1 第一个0表示大版本号 第二个0表示分支版本号 第三个0表示小版本号 snapshot快照 alpha内部测试 beta公测 Release稳定 GA正式发布 --&gt;&lt;version&gt;&lt;/version&gt;&lt;!-- 默认是jar war zip pom --&gt;&lt;packaging&gt;&lt;/packaging&gt;&lt;!-- 项目描述名 --&gt;&lt;name&gt;&lt;/name&gt;&lt;!-- 项目地址 --&gt;&lt;url&gt;&lt;/url&gt;&lt;!-- 项目描述 --&gt;&lt;description&gt;&lt;/description&gt;&lt;developers&gt;&lt;/developers&gt;&lt;licenses&gt;&lt;/licenses&gt;&lt;organization&gt;&lt;/organization&gt;&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;&lt;/groupId&gt; &lt;artifacId&gt;&lt;/artifacId&gt; &lt;version&gt;&lt;/version&gt; &lt;type&gt;&lt;/type&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;!-- 设置依赖是否可选 --&gt; &lt;optional&gt;&lt;/optional&gt; &lt;!-- 排除依赖传递列表 --&gt; &lt;exclusions&gt; &lt;exclusion&gt;&lt;/exclusion&gt; &lt;/exclusions&gt; &lt;/dependency&gt;&lt;/dependencies&gt;&lt;!-- 依赖的管理 --&gt;&lt;dependencyManagement&gt; &lt;dependencies&gt; &lt;dependency&gt;&lt;/dependency&gt; &lt;/dependencies&gt;&lt;/dependencyManagement&gt;&lt;!-- 插件管理 --&gt;&lt;build&gt; &lt;!-- 插件列表 --&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;&lt;/groupId&gt; &lt;artifacId&gt;&lt;/artifacId&gt; &lt;version&gt;&lt;/version&gt; &lt;/plugin&gt; &lt;/plugins&gt;&lt;/build&gt;&lt;!-- --&gt;&lt;parent&gt;&lt;/parent&gt;&lt;!-- --&gt;&lt;modules&gt; &lt;module&gt;&lt;/module&gt;&lt;/modules&gt;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Servlet]]></title>
+    <url>%2F2016%2F10%2F09%2FServlet%2F</url>
+    <content type="text"><![CDATA[Servlet是JSP的前身 Servlet是在服务器上运行的小程序。一个Servlet就是一个Java类，并且可以通过“请求-响应”编程模型来访问的这个驻留在服务器内存里的Servlet程序。 Servlet实现 继承HttpServlet 重写doGet()或者doPost()方法 在web.xml中注册Servlet web.xml中配置 12345678&lt;servlet&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;servlet-class&gt;site.nebulas.servlet.HelloServlet&lt;/servlet-class&gt;&lt;/servlet&gt;&lt;servlet-mapping&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;url-pattern&gt;servlet/hello&lt;/url-pattern&gt;&lt;/servlet-mapping&gt; Servlet生命周期 在下列时刻Servlet容器装载Servlet Servlet容器启动时自动装载某些Servlet,实现它只需要在web.xml文件中的&lt;Servlet&gt;&lt;/Servlet&gt;之间添加如下代码：&lt;loadon-startup&gt;1&lt;/loadon-startup&gt;数字越小表示优先级别越高。 在Servlet容器启动后，客户首次向Servlet发送请求。 Servlet类文件被更新后，重新装载Servlet。 Servlet被装载后，Servlet容器创建一个Servlet实例并且调用Servlet的init()方法进行初始化。在Servlet的整个生命周期内，init()方法只被调用一次。 Servelt与九大内置对象 | JSP对象 | 怎样获得 | |::|::| | out | resp.getWriter | | request | service方法中的req参数 | | response | service方法中的resp参数 | | session | req.getSession()函数 | | application | getServletContext()函数 | | exception | Throwable | | page | this | | pageContext | PageContext | | Config | getServletConfig()函数 |]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -715,9 +720,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux网络]]></title>
-    <url>%2F2016%2F03%2F05%2FLinux%E7%BD%91%E7%BB%9C%2F</url>
-    <content type="text"><![CDATA[ifconfig命令 12345ifconfig#查看与配置网络状态命令ifconfig ech0 192.168.0.200 netmask 255.255.255.0#临时设置ech0网卡的IP地址与子网掩码 关闭和启动网卡 12345ifdown 网卡设备名#禁用该网卡设备ifup 网卡设备名#启用该网卡设备 查询网络状态 12345678netstat 选项选项： -t 列出TCP协议端口 -u 列出UDP协议端口 -n 不使用域名与服务名，而使用IP地址和端口号 -l 仅列出在监听状态网络服务 -a 列出所有的网络连接 -r 列出路由列表，功能和route命令一致 route命令 12345route -n#查看路由列表route add default gw 192.168.1.1#临时设定网关 域名解析命令 12nslookup [主机名或IP]#进行域名与IP地址解析 ping命令 12345ping [选项] ip或域名#探测指定IP或域名的网络状态选项： -c 次数：指定ping包的次数 telnet命令 12telnet [域名或IP] [端口]#远程管理与端口探测命令 traceroute 12345traceroute [选项] IP或域名#路由跟踪命令选项： -n 使用IP，不使用域名，速度更快 wget命令 12wget url#下载命令 tcpdump命令 123456tcpdump -i ech0 -nnx port 21选项： -i 指定网卡接口 -nn 将数据包的域名与服务转为IP的端口 -X 以十六进制和ASCII码显示数据包内容 port 指定监听的端口 网卡信息文件 1234567891011121314vi /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE='eth0' 网卡设备名NM_CONTROLLED='yes' 是否可以由Network Manager图形管理工具托管ONBOOT='yes' 是否随网络服务启动，eth0生效IPADDR='10.105.93.229' IP地址NETMASK='255.255.192.0' 子网掩码GATEWAY='10.105.64.1' 网关BOOTPROTO=none 是否自动获取IP（none,static,dhcp）HWADDR=00:0c:29:17:c4:09 MAC地址TYPE=Ethernet 类型为以太网UUID="xxxxxx" 唯一识别码DNS1=xxxxxxx DNS 主机名文件 1234vi /etc/sysconfig/networkhostname [主机名]#查看与临时设置主机名命令 DNS配置文件 123vi /etc/resolv.conf#nameserver 202.106.0.20#search localhost 启动网卡 12service network restart#重启网络服务]]></content>
+    <title><![CDATA[Linux系统7个运行级别(runlevel)]]></title>
+    <url>%2F2016%2F03%2F05%2FLinux%E7%B3%BB%E7%BB%9F7%E4%B8%AA%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -726,9 +731,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux系统7个运行级别(runlevel)]]></title>
-    <url>%2F2016%2F03%2F05%2FLinux%E7%B3%BB%E7%BB%9F7%E4%B8%AA%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%2F</url>
-    <content type="text"><![CDATA[运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动]]></content>
+    <title><![CDATA[Linux网络]]></title>
+    <url>%2F2016%2F03%2F05%2FLinux%E7%BD%91%E7%BB%9C%2F</url>
+    <content type="text"><![CDATA[ifconfig命令 12345ifconfig#查看与配置网络状态命令ifconfig ech0 192.168.0.200 netmask 255.255.255.0#临时设置ech0网卡的IP地址与子网掩码 关闭和启动网卡 12345ifdown 网卡设备名#禁用该网卡设备ifup 网卡设备名#启用该网卡设备 查询网络状态 12345678netstat 选项选项： -t 列出TCP协议端口 -u 列出UDP协议端口 -n 不使用域名与服务名，而使用IP地址和端口号 -l 仅列出在监听状态网络服务 -a 列出所有的网络连接 -r 列出路由列表，功能和route命令一致 route命令 12345route -n#查看路由列表route add default gw 192.168.1.1#临时设定网关 域名解析命令 12nslookup [主机名或IP]#进行域名与IP地址解析 ping命令 12345ping [选项] ip或域名#探测指定IP或域名的网络状态选项： -c 次数：指定ping包的次数 telnet命令 12telnet [域名或IP] [端口]#远程管理与端口探测命令 traceroute 12345traceroute [选项] IP或域名#路由跟踪命令选项： -n 使用IP，不使用域名，速度更快 wget命令 12wget url#下载命令 tcpdump命令 123456tcpdump -i ech0 -nnx port 21选项： -i 指定网卡接口 -nn 将数据包的域名与服务转为IP的端口 -X 以十六进制和ASCII码显示数据包内容 port 指定监听的端口 网卡信息文件 1234567891011121314vi /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE='eth0' 网卡设备名NM_CONTROLLED='yes' 是否可以由Network Manager图形管理工具托管ONBOOT='yes' 是否随网络服务启动，eth0生效IPADDR='10.105.93.229' IP地址NETMASK='255.255.192.0' 子网掩码GATEWAY='10.105.64.1' 网关BOOTPROTO=none 是否自动获取IP（none,static,dhcp）HWADDR=00:0c:29:17:c4:09 MAC地址TYPE=Ethernet 类型为以太网UUID="xxxxxx" 唯一识别码DNS1=xxxxxxx DNS 主机名文件 1234vi /etc/sysconfig/networkhostname [主机名]#查看与临时设置主机名命令 DNS配置文件 123vi /etc/resolv.conf#nameserver 202.106.0.20#search localhost 启动网卡 12service network restart#重启网络服务]]></content>
       <categories>
         <category>Linux</category>
       </categories>
