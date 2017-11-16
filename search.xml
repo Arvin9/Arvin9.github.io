@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[centos安装docker]]></title>
+    <url>%2F2017%2F11%2F16%2Fcentos%E5%AE%89%E8%A3%85docker%2F</url>
+    <content type="text"><![CDATA[安装命令 123yum install https://get.docker.com/rpm/1.7.1/centos-6/RPMS/x86_64/docker-engine-1.7.1-1.el6.x86_64.rpmyum install https://yum.dockerproject.org/repo/main/centos/7/Packages/docker-engine-1.9.0-1.el7.centos.x86_64.rpm dockrt0出错解决 123rm -rf /var/lib/docker/networksystemctl start docker]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Android Studio]]></title>
     <url>%2F2017%2F11%2F15%2FAndroid-Studio%2F</url>
     <content type="text"><![CDATA[项目目录 目录 说明 .gradle 自动生成目录 .idea 自动生成目录 app 项目中的代码、资源等内容 build 编译时自动生成的文件 gradle gradle wrapper的配置文件 .gitignore 将指定的目录或文件排除在版本控制之外 build.gradle 项目全局的gradle构建脚本 gradle.properties 全局的gradle配置文件 gradlew 命令行界面执行gradle命令，linux、mac系统下 gradlew.bat 命令行界面执行gradle命令，windows系统下 HelloWorld.iml 标识这是一个IntelliJ IDEA项目 local.properties 指定本机的Android SDK路径 settings.gradle 指定项目所有引入的模块 app目录 目录 说明 build 编译时自动生成的文件 libs 第三方jar包 androidTest 用来编写Android Test用例 java java代码 res 项目中所有用到的资源文件 AndroiManifest.xml 整个项目的配置文件，项目中的四大组件都需要在这个文件注册 test Unit Test测试用例 .gitignore 将指定的目录或文件排除在版本控制之外 app.iml 项目标识 buil.grale 项目相关配置 proguar-rules.pro 指定项目代码混淆规则]]></content>
@@ -336,17 +347,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[RBAC]]></title>
+    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
+    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[GUID——全局唯一标识符]]></title>
     <url>%2F2017%2F04%2F11%2FGUID%2F</url>
     <content type="text"><![CDATA[理论 GUID(Globally Unique Identifier)是一个128位整数（16字节），可用于所有需要唯一标识符的计算机和网络。此标识符重复的可能性非常小。 GUID是由网卡上的标识数字（每个网卡都有唯一的标识号）以及CPU时钟的唯一数字生成的一个16字节的二进制值。 GUID的格式为“xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”,其中每一个x是0-9或a-f范围内的一个十六进制的数字。 世界上的任何两台计算机都不会生成重复的GUID值（概率很小）。 GUID主要用于在拥有多个节点、多台计算机的网络或系统中，分配必须具有唯一性的表示符。 在Windows平台上，GUID应用非常广泛：注册表、类及接口标识、数据库、甚至自动生成的机器名、目录名等。 Time 时间戳。将objectid的前4位进行提取，然后按照十六进制转为十进制，这个数字就是一个时间戳。通过时间戳的转换，可以很容易看清时间格式。 Machine 机器码。接下来的三个字节是所在主机的唯一标识符，一般是机器主机的散列值，这样就确保了不同主机生成不同的机器hash值，确保在分布式中不造成冲突，这也就是在同一台机器生成的objectid中间的字符串都是一模一样的原因。 PID 进程ID。上面的Machine是为了确保在不同机器产生的objectId不冲突，而pid就是为了在同一台机器不同的mongodb进程产生了objectId不冲突，接下来的两位就是产生objectId的进程标识符。 INC 自增计数器。前面的九个字节是保证了一秒内不同机器不同进程生成objectId不冲突，最后面的三个字节是一个自动增加的计数器，用来确保在同一秒内产生的objectId也不会发现冲突，允许2^24等于16777216条记录的唯一性。 &quot;Big Bang&quot; was caused when two GUIDs collided.]]></content>
       <tags>
         <tag>GUID</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RBAC]]></title>
-    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
-    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
   </entry>
   <entry>
     <title><![CDATA[Spring Boot]]></title>
@@ -378,6 +389,28 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[hibernate]]></title>
+    <url>%2F2016%2F10%2F18%2Fhibernate%2F</url>
+    <content type="text"><![CDATA[hibernate.cfg.xml常用配置 1234567891011121314151617181920212223242526272829303132333435363738394041&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;&lt;!--声明Hibernate配置文件的开始--&gt;&lt;hibernate-configuration&gt; &lt;!--表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存HIbernate的配置信息，以及对Session的操作--&gt; &lt;session-factory&gt; &lt;!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序--&gt; &lt;property name="connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; &lt;!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，hibernate是数据库名--&gt; &lt;property name="connection.url"&gt; jdbc:mysql://115.29.52.104:3306/ssh?useUnicode=true&amp;amp;characterEncoding=utf8 &lt;/property&gt; &lt;!--连接数据库是用户名--&gt; &lt;property name="connection.username"&gt;nebula&lt;/property&gt; &lt;!--连接数据库是密码--&gt; &lt;property name="connection.password"&gt;314159&lt;/property&gt; &lt;!--数据库连接池的大小--&gt; &lt;property name="hibernate.connection.pool.size"&gt;20&lt;/property&gt; &lt;!-- 显示SQL语句 --&gt; &lt;property name="show_sql"&gt;true&lt;/property&gt; &lt;property name="format_sql"&gt;true&lt;/property&gt; &lt;!-- create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表 create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。 update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据 model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。 --&gt; &lt;property name="hbm2ddl.auto"&gt;update&lt;/property&gt; &lt;!-- 定义方言 --&gt; &lt;property name="dialect"&gt; org.hibernate.dialect.MySQLDialect &lt;/property&gt; &lt;!--指定映射文件为“site/nebulas/bean/User.hbm.xml”--&gt; &lt;mapping resource="site/nebulas/bean/User.hbm.xml"&gt;&lt;/mapping&gt; &lt;/session-factory&gt;&lt;/hibernate-configuration&gt; User.hbm.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&lt;?xml version="1.0"?&gt;&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;&lt;!-- &lt;hibernate-mapping&gt;一般不去配置，采用默认即可。 default-cascade="none"：默认的级联风格，表与表联动。 default-lazy="true"：默认延迟加载 --&gt;&lt;hibernate-mapping&gt; &lt;!-- &lt;class&gt;：使用class元素定义一个持久化类。 name="site.nebulas.bean.User"：持久化类的java全限定名； table="user"：对应数据库表名； mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除； dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段； dynamic-update="false"：默认为false，动态插入非空值字段； select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新； optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)、 none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作； --&gt; &lt;class name="site.nebulas.bean.User" table="user" dynamic-insert="true" dynamic-update="true" optimistic-lock="version"&gt; &lt;!-- &lt;id&gt;：定义了该属性到数据库表主键字段的映射。 name="userId"：标识属性的名字； column="userId"：表主键字段的名字，如果不填写与name一样； --&gt; &lt;id name="id"&gt; &lt;!-- &lt;generator&gt;：指定主键由什么生成，推荐使用uuid（随机生成唯一通用的表示符，实体类的ID必须是String）， native（让数据库自动选择用什么生成（根据底层数据库的能力选择identity，sequence或hilo中的一种））， assigned（指用户手工填入，默认）。 --&gt; &lt;generator class="identity"/&gt; &lt;/id&gt; &lt;!-- &lt;version/&gt;：使用版本控制来处理并发，要开启optimistic-lock="version"和dynamic-update="true"。 name="version"：持久化类的属性名，column="version"：指定持有版本号的字段名； &lt;version name="version" column="version"/&gt; --&gt; &lt;!-- &lt;property&gt;：为类定义一个持久化的javaBean风格的属性。 name="name"：标识属性的名字，以小写字母开头； column="name"：表主键字段的名字，如果不填写与name一样； update="true"/insert="true"：默认为true，表示可以被更新或插入； --&gt; &lt;property name="name" column="name" /&gt; &lt;property name="password" column="password"/&gt; &lt;property name="createTime" column="createTime"/&gt; &lt;!-- 组件映射：把多个属性打包在一起当一个属性使用，用来把类的粒度变小。 &lt;component name="属性，这里指对象"&gt; &lt;property name="name1"&gt;&lt;/property&gt; &lt;property name="name2"&gt;&lt;/property&gt; &lt;/component&gt; --&gt; &lt;!-- &lt;join&gt;:一个对象映射多个表，该元素必须放在所有&lt;property&gt;之后。 &lt;join table="tbl_test：子表名"&gt; &lt;key column="uuid：子表主键"&gt;&lt;/key&gt; &lt;property name="name1：对象属性" column="name：子表字段"&gt;&lt;/property&gt; &lt;/join&gt; --&gt; &lt;/class&gt;&lt;/hibernate-mapping&gt; session save() update() delete() createQuery() transaction]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java加解密]]></title>
+    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
+    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[EL表达式]]></title>
     <url>%2F2016%2F10%2F18%2FEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[1$&#123;表达式&#125; &quot;.&quot;与&quot;[]&quot;运算符 12$&#123;user.sex&#125; &lt;==&gt; $&#123;user["sex"]&#125;$&#123;bookList[0].price&#125; EL变量 JSP内置对象 EL名称 Page PageScope Request RequestScope Session SessionScope Application ApplicationScope]]></content>
@@ -400,17 +433,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hibernate]]></title>
-    <url>%2F2016%2F10%2F18%2Fhibernate%2F</url>
-    <content type="text"><![CDATA[hibernate.cfg.xml常用配置 1234567891011121314151617181920212223242526272829303132333435363738394041&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;&lt;!--声明Hibernate配置文件的开始--&gt;&lt;hibernate-configuration&gt; &lt;!--表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存HIbernate的配置信息，以及对Session的操作--&gt; &lt;session-factory&gt; &lt;!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序--&gt; &lt;property name="connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; &lt;!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，hibernate是数据库名--&gt; &lt;property name="connection.url"&gt; jdbc:mysql://115.29.52.104:3306/ssh?useUnicode=true&amp;amp;characterEncoding=utf8 &lt;/property&gt; &lt;!--连接数据库是用户名--&gt; &lt;property name="connection.username"&gt;nebula&lt;/property&gt; &lt;!--连接数据库是密码--&gt; &lt;property name="connection.password"&gt;314159&lt;/property&gt; &lt;!--数据库连接池的大小--&gt; &lt;property name="hibernate.connection.pool.size"&gt;20&lt;/property&gt; &lt;!-- 显示SQL语句 --&gt; &lt;property name="show_sql"&gt;true&lt;/property&gt; &lt;property name="format_sql"&gt;true&lt;/property&gt; &lt;!-- create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表 create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。 update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据 model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。 --&gt; &lt;property name="hbm2ddl.auto"&gt;update&lt;/property&gt; &lt;!-- 定义方言 --&gt; &lt;property name="dialect"&gt; org.hibernate.dialect.MySQLDialect &lt;/property&gt; &lt;!--指定映射文件为“site/nebulas/bean/User.hbm.xml”--&gt; &lt;mapping resource="site/nebulas/bean/User.hbm.xml"&gt;&lt;/mapping&gt; &lt;/session-factory&gt;&lt;/hibernate-configuration&gt; User.hbm.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&lt;?xml version="1.0"?&gt;&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;&lt;!-- &lt;hibernate-mapping&gt;一般不去配置，采用默认即可。 default-cascade="none"：默认的级联风格，表与表联动。 default-lazy="true"：默认延迟加载 --&gt;&lt;hibernate-mapping&gt; &lt;!-- &lt;class&gt;：使用class元素定义一个持久化类。 name="site.nebulas.bean.User"：持久化类的java全限定名； table="user"：对应数据库表名； mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除； dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段； dynamic-update="false"：默认为false，动态插入非空值字段； select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新； optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)、 none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作； --&gt; &lt;class name="site.nebulas.bean.User" table="user" dynamic-insert="true" dynamic-update="true" optimistic-lock="version"&gt; &lt;!-- &lt;id&gt;：定义了该属性到数据库表主键字段的映射。 name="userId"：标识属性的名字； column="userId"：表主键字段的名字，如果不填写与name一样； --&gt; &lt;id name="id"&gt; &lt;!-- &lt;generator&gt;：指定主键由什么生成，推荐使用uuid（随机生成唯一通用的表示符，实体类的ID必须是String）， native（让数据库自动选择用什么生成（根据底层数据库的能力选择identity，sequence或hilo中的一种））， assigned（指用户手工填入，默认）。 --&gt; &lt;generator class="identity"/&gt; &lt;/id&gt; &lt;!-- &lt;version/&gt;：使用版本控制来处理并发，要开启optimistic-lock="version"和dynamic-update="true"。 name="version"：持久化类的属性名，column="version"：指定持有版本号的字段名； &lt;version name="version" column="version"/&gt; --&gt; &lt;!-- &lt;property&gt;：为类定义一个持久化的javaBean风格的属性。 name="name"：标识属性的名字，以小写字母开头； column="name"：表主键字段的名字，如果不填写与name一样； update="true"/insert="true"：默认为true，表示可以被更新或插入； --&gt; &lt;property name="name" column="name" /&gt; &lt;property name="password" column="password"/&gt; &lt;property name="createTime" column="createTime"/&gt; &lt;!-- 组件映射：把多个属性打包在一起当一个属性使用，用来把类的粒度变小。 &lt;component name="属性，这里指对象"&gt; &lt;property name="name1"&gt;&lt;/property&gt; &lt;property name="name2"&gt;&lt;/property&gt; &lt;/component&gt; --&gt; &lt;!-- &lt;join&gt;:一个对象映射多个表，该元素必须放在所有&lt;property&gt;之后。 &lt;join table="tbl_test：子表名"&gt; &lt;key column="uuid：子表主键"&gt;&lt;/key&gt; &lt;property name="name1：对象属性" column="name：子表字段"&gt;&lt;/property&gt; &lt;/join&gt; --&gt; &lt;/class&gt;&lt;/hibernate-mapping&gt; session save() update() delete() createQuery() transaction]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Hosts]]></title>
     <url>%2F2016%2F10%2F18%2FHosts%2F</url>
     <content type="text"><![CDATA[Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统再会将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
@@ -419,17 +441,6 @@
       </categories>
       <tags>
         <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Java加解密]]></title>
-    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
-    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
