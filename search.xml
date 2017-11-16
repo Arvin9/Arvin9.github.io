@@ -276,9 +276,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python第一天]]></title>
-    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%B8%80%E5%A4%A9%2F</url>
-    <content type="text"><![CDATA[Python可以处理任意大小的整数 整数运算永远是精确的，包括除法。浮点运算可能会有四舍五入的误差 在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来。 空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。 print语句也可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出。 print会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符串是这样拼起来的。 Python的注释以 # 开头，后面的文字直到行尾都算注释 在Python程序中，变量是用一个变量名表示，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头。 在Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量。 这种变量本身类型不固定的语言称之为动态语言，与之对应的是静态语言。 如果字符串本身包含'这时，可以用&quot; &quot;括起来表示。 类似的，如果字符串包含&quot;，我们就可以用' '括起来表示。 如果字符串既包含'又包含&quot;，就需要对字符串的某些特殊字符进行“转义”，Python字符串用\进行转义。]]></content>
+    <title><![CDATA[Python第二天]]></title>
+    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%BA%8C%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[raw字符串与多行字符串 如果一个字符串包含很多需要转义字符，对每一个字符串都进行转义会很麻烦。在字符串前面加个前缀r，这是表示这是一个raw字符串，里面的字符串不需要转义了。 print r'\\(~\_~)/ \\(~_~)/' 但是r'...'表示法不能表示多行字符串，也不能表示包含'和&quot;的字符串，如果要表示多行字符串，可以用'''...'''表示。 print r'''&quot;To be, or not to be&quot;: that is the question. Whether it's nobler in the mind to suffer.''' Unicode字符串 ASCII编码 GB2312编码 Unicode编码，两个字节表示一个字符，原有的英文编码从单字节变成双字节，只需要把高字节全部填为0就可以。 Python以Unicode表示的字符串用u'...'表示 Unicode字符串除了多一个u之外，与普通的字符串没啥区别，转义字符和多行表示法仍然有效。 如果中文字符串在Python环境遇到UnicodeDecodeError，这是因为.py文件保存格式的问题。可以在第一行添加注释# -*- coding: utf-8 -*- # 整数和浮点数 Pyhton的整数运算结果仍然是整数，浮点数运算结果仍然是浮点数。 整数和浮点数混合运算结果就变成了浮点数 Python的整数除法，即使除不尽，结果仍然是整数，余数直接扔掉 布尔类型 与运算 True and True # ==&gt; True True and False # ==&gt; False False and True # ==&gt; False False and False # ==&gt; False 或运算 True or True # ==&gt; True True or False # ==&gt; True False or True # ==&gt; True False or False # ==&gt; False 非运算 not True # ==&gt; False not False # ==&gt; True Python把0、空字符串''、None看出Flase，其他数值和非空字符串都看成True 短路计算 在计算 a and b 时，如果 a 是 False，则根据与运算法则，整个结果必定为 False，因此返回 a；如果 a 是 True，则整个计算结果必定取决与 b，因此返回 b。 在计算 a or b 时，如果 a 是 True，则根据或运算法则，整个计算结果必定为 True，因此返回 a；如果 a 是 False，则整个计算结果必定取决于 b，因此返回 b。]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -287,9 +287,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python第二天]]></title>
-    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%BA%8C%E5%A4%A9%2F</url>
-    <content type="text"><![CDATA[raw字符串与多行字符串 如果一个字符串包含很多需要转义字符，对每一个字符串都进行转义会很麻烦。在字符串前面加个前缀r，这是表示这是一个raw字符串，里面的字符串不需要转义了。 print r'\\(~\_~)/ \\(~_~)/' 但是r'...'表示法不能表示多行字符串，也不能表示包含'和&quot;的字符串，如果要表示多行字符串，可以用'''...'''表示。 print r'''&quot;To be, or not to be&quot;: that is the question. Whether it's nobler in the mind to suffer.''' Unicode字符串 ASCII编码 GB2312编码 Unicode编码，两个字节表示一个字符，原有的英文编码从单字节变成双字节，只需要把高字节全部填为0就可以。 Python以Unicode表示的字符串用u'...'表示 Unicode字符串除了多一个u之外，与普通的字符串没啥区别，转义字符和多行表示法仍然有效。 如果中文字符串在Python环境遇到UnicodeDecodeError，这是因为.py文件保存格式的问题。可以在第一行添加注释# -*- coding: utf-8 -*- # 整数和浮点数 Pyhton的整数运算结果仍然是整数，浮点数运算结果仍然是浮点数。 整数和浮点数混合运算结果就变成了浮点数 Python的整数除法，即使除不尽，结果仍然是整数，余数直接扔掉 布尔类型 与运算 True and True # ==&gt; True True and False # ==&gt; False False and True # ==&gt; False False and False # ==&gt; False 或运算 True or True # ==&gt; True True or False # ==&gt; True False or True # ==&gt; True False or False # ==&gt; False 非运算 not True # ==&gt; False not False # ==&gt; True Python把0、空字符串''、None看出Flase，其他数值和非空字符串都看成True 短路计算 在计算 a and b 时，如果 a 是 False，则根据与运算法则，整个结果必定为 False，因此返回 a；如果 a 是 True，则整个计算结果必定取决与 b，因此返回 b。 在计算 a or b 时，如果 a 是 True，则根据或运算法则，整个计算结果必定为 True，因此返回 a；如果 a 是 False，则整个计算结果必定取决于 b，因此返回 b。]]></content>
+    <title><![CDATA[Python第一天]]></title>
+    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%B8%80%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[Python可以处理任意大小的整数 整数运算永远是精确的，包括除法。浮点运算可能会有四舍五入的误差 在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来。 空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。 print语句也可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出。 print会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符串是这样拼起来的。 Python的注释以 # 开头，后面的文字直到行尾都算注释 在Python程序中，变量是用一个变量名表示，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头。 在Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量。 这种变量本身类型不固定的语言称之为动态语言，与之对应的是静态语言。 如果字符串本身包含'这时，可以用&quot; &quot;括起来表示。 类似的，如果字符串包含&quot;，我们就可以用' '括起来表示。 如果字符串既包含'又包含&quot;，就需要对字符串的某些特殊字符进行“转义”，Python字符串用\进行转义。]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -391,17 +391,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[RBAC]]></title>
+    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
+    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[GUID——全局唯一标识符]]></title>
     <url>%2F2017%2F04%2F11%2FGUID%2F</url>
     <content type="text"><![CDATA[理论 GUID(Globally Unique Identifier)是一个128位整数（16字节），可用于所有需要唯一标识符的计算机和网络。此标识符重复的可能性非常小。 GUID是由网卡上的标识数字（每个网卡都有唯一的标识号）以及CPU时钟的唯一数字生成的一个16字节的二进制值。 GUID的格式为“xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”,其中每一个x是0-9或a-f范围内的一个十六进制的数字。 世界上的任何两台计算机都不会生成重复的GUID值（概率很小）。 GUID主要用于在拥有多个节点、多台计算机的网络或系统中，分配必须具有唯一性的表示符。 在Windows平台上，GUID应用非常广泛：注册表、类及接口标识、数据库、甚至自动生成的机器名、目录名等。 Time 时间戳。将objectid的前4位进行提取，然后按照十六进制转为十进制，这个数字就是一个时间戳。通过时间戳的转换，可以很容易看清时间格式。 Machine 机器码。接下来的三个字节是所在主机的唯一标识符，一般是机器主机的散列值，这样就确保了不同主机生成不同的机器hash值，确保在分布式中不造成冲突，这也就是在同一台机器生成的objectid中间的字符串都是一模一样的原因。 PID 进程ID。上面的Machine是为了确保在不同机器产生的objectId不冲突，而pid就是为了在同一台机器不同的mongodb进程产生了objectId不冲突，接下来的两位就是产生objectId的进程标识符。 INC 自增计数器。前面的九个字节是保证了一秒内不同机器不同进程生成objectId不冲突，最后面的三个字节是一个自动增加的计数器，用来确保在同一秒内产生的objectId也不会发现冲突，允许2^24等于16777216条记录的唯一性。 &quot;Big Bang&quot; was caused when two GUIDs collided.]]></content>
       <tags>
         <tag>GUID</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RBAC]]></title>
-    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
-    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
   </entry>
   <entry>
     <title><![CDATA[Spring Boot]]></title>
@@ -433,17 +433,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[OAuth]]></title>
-    <url>%2F2016%2F10%2F18%2FOAuth2.0%2F</url>
-    <content type="text"><![CDATA[OAuth is short for Open Authorization OAuth协议为用户资源授权提供了一个安全的、开放而简易的标准。与以往的授权方式不同之处是OAuth的授权不会使第三方触及到用户的账号信息（如用户名与密码），即第三方无需使用用户的用户名与密码就可以申请获得该用户的资源授权，因此OAuth是安全的。 工作原理 第三方登录 获取Request Token 获取Access Token 后续API访问 Refresh Token刷新Access Token 请求OAuth登陆页面 Request Token URL 未授权的令牌请求服务地址]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>OAuth</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Hosts]]></title>
     <url>%2F2016%2F10%2F18%2FHosts%2F</url>
     <content type="text"><![CDATA[Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统再会将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
@@ -452,17 +441,6 @@
       </categories>
       <tags>
         <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Java加解密]]></title>
-    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
-    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -488,9 +466,42 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[OAuth]]></title>
+    <url>%2F2016%2F10%2F18%2FOAuth2.0%2F</url>
+    <content type="text"><![CDATA[OAuth is short for Open Authorization OAuth协议为用户资源授权提供了一个安全的、开放而简易的标准。与以往的授权方式不同之处是OAuth的授权不会使第三方触及到用户的账号信息（如用户名与密码），即第三方无需使用用户的用户名与密码就可以申请获得该用户的资源授权，因此OAuth是安全的。 工作原理 第三方登录 获取Request Token 获取Access Token 后续API访问 Refresh Token刷新Access Token 请求OAuth登陆页面 Request Token URL 未授权的令牌请求服务地址]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>OAuth</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java加解密]]></title>
+    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
+    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[事务]]></title>
     <url>%2F2016%2F10%2F17%2F%E4%BA%8B%E7%89%A9%2F</url>
     <content type="text"><![CDATA[事务指的是逻辑上的一组操作，这组操作要么全部成功，要么全部失败。 事物的特性 原子性 原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发送，要么都不发生 一致性 一致性指事务前后的数据的完整性必须保持一致 隔离性 隔离性指多个用户并发访问数据库时，一个用户的事务不能被其他用户的事务所干扰，多个并发事务之间的数据要相互隔离 持久性 持久性指的是一个事务一旦被提交，它对数据库中的改变就是永久性的即使是数据库发生故障也不应该对其有任何影响 Spring事务管理 PlatformTransactionManager 事务管理器 TransactionDefinition 事务定义信息（隔离、传播、超时、只读） TransactionStatus 事务具体运行状态]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java注解]]></title>
+    <url>%2F2016%2F10%2F10%2FJava%E6%B3%A8%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[JDK自带注解 @Override 覆盖/实现 @Deprecared 表示方法已经过时 @Suppvisewarnings 忽略警告 Spring注解 @Autowired @Service @Repository Mybatis注解 @InsertProvider @UpdateProvider @Options]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -507,17 +518,6 @@
       </categories>
       <tags>
         <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Java注解]]></title>
-    <url>%2F2016%2F10%2F10%2FJava%E6%B3%A8%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[JDK自带注解 @Override 覆盖/实现 @Deprecared 表示方法已经过时 @Suppvisewarnings 忽略警告 Spring注解 @Autowired @Service @Repository Mybatis注解 @InsertProvider @UpdateProvider @Options]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -726,9 +726,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux网络]]></title>
-    <url>%2F2016%2F03%2F05%2FLinux%E7%BD%91%E7%BB%9C%2F</url>
-    <content type="text"><![CDATA[ifconfig命令 12345ifconfig#查看与配置网络状态命令ifconfig ech0 192.168.0.200 netmask 255.255.255.0#临时设置ech0网卡的IP地址与子网掩码 关闭和启动网卡 12345ifdown 网卡设备名#禁用该网卡设备ifup 网卡设备名#启用该网卡设备 查询网络状态 12345678netstat 选项选项： -t 列出TCP协议端口 -u 列出UDP协议端口 -n 不使用域名与服务名，而使用IP地址和端口号 -l 仅列出在监听状态网络服务 -a 列出所有的网络连接 -r 列出路由列表，功能和route命令一致 route命令 12345route -n#查看路由列表route add default gw 192.168.1.1#临时设定网关 域名解析命令 12nslookup [主机名或IP]#进行域名与IP地址解析 ping命令 12345ping [选项] ip或域名#探测指定IP或域名的网络状态选项： -c 次数：指定ping包的次数 telnet命令 12telnet [域名或IP] [端口]#远程管理与端口探测命令 traceroute 12345traceroute [选项] IP或域名#路由跟踪命令选项： -n 使用IP，不使用域名，速度更快 wget命令 12wget url#下载命令 tcpdump命令 123456tcpdump -i ech0 -nnx port 21选项： -i 指定网卡接口 -nn 将数据包的域名与服务转为IP的端口 -X 以十六进制和ASCII码显示数据包内容 port 指定监听的端口 网卡信息文件 1234567891011121314vi /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE='eth0' 网卡设备名NM_CONTROLLED='yes' 是否可以由Network Manager图形管理工具托管ONBOOT='yes' 是否随网络服务启动，eth0生效IPADDR='10.105.93.229' IP地址NETMASK='255.255.192.0' 子网掩码GATEWAY='10.105.64.1' 网关BOOTPROTO=none 是否自动获取IP（none,static,dhcp）HWADDR=00:0c:29:17:c4:09 MAC地址TYPE=Ethernet 类型为以太网UUID="xxxxxx" 唯一识别码DNS1=xxxxxxx DNS 主机名文件 1234vi /etc/sysconfig/networkhostname [主机名]#查看与临时设置主机名命令 DNS配置文件 123vi /etc/resolv.conf#nameserver 202.106.0.20#search localhost 启动网卡 12service network restart#重启网络服务]]></content>
+    <title><![CDATA[Linux系统7个运行级别(runlevel)]]></title>
+    <url>%2F2016%2F03%2F05%2FLinux%E7%B3%BB%E7%BB%9F7%E4%B8%AA%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -737,9 +737,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux系统7个运行级别(runlevel)]]></title>
-    <url>%2F2016%2F03%2F05%2FLinux%E7%B3%BB%E7%BB%9F7%E4%B8%AA%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%2F</url>
-    <content type="text"><![CDATA[运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动 运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆 运行级别2：多用户状态(没有NFS) 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式 运行级别4：系统未使用，保留 运行级别5：X11控制台，登陆后进入图形GUI模式 运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动]]></content>
+    <title><![CDATA[Linux网络]]></title>
+    <url>%2F2016%2F03%2F05%2FLinux%E7%BD%91%E7%BB%9C%2F</url>
+    <content type="text"><![CDATA[ifconfig命令 12345ifconfig#查看与配置网络状态命令ifconfig ech0 192.168.0.200 netmask 255.255.255.0#临时设置ech0网卡的IP地址与子网掩码 关闭和启动网卡 12345ifdown 网卡设备名#禁用该网卡设备ifup 网卡设备名#启用该网卡设备 查询网络状态 12345678netstat 选项选项： -t 列出TCP协议端口 -u 列出UDP协议端口 -n 不使用域名与服务名，而使用IP地址和端口号 -l 仅列出在监听状态网络服务 -a 列出所有的网络连接 -r 列出路由列表，功能和route命令一致 route命令 12345route -n#查看路由列表route add default gw 192.168.1.1#临时设定网关 域名解析命令 12nslookup [主机名或IP]#进行域名与IP地址解析 ping命令 12345ping [选项] ip或域名#探测指定IP或域名的网络状态选项： -c 次数：指定ping包的次数 telnet命令 12telnet [域名或IP] [端口]#远程管理与端口探测命令 traceroute 12345traceroute [选项] IP或域名#路由跟踪命令选项： -n 使用IP，不使用域名，速度更快 wget命令 12wget url#下载命令 tcpdump命令 123456tcpdump -i ech0 -nnx port 21选项： -i 指定网卡接口 -nn 将数据包的域名与服务转为IP的端口 -X 以十六进制和ASCII码显示数据包内容 port 指定监听的端口 网卡信息文件 1234567891011121314vi /etc/sysconfig/network-scripts/ifcfg-eth0DEVICE='eth0' 网卡设备名NM_CONTROLLED='yes' 是否可以由Network Manager图形管理工具托管ONBOOT='yes' 是否随网络服务启动，eth0生效IPADDR='10.105.93.229' IP地址NETMASK='255.255.192.0' 子网掩码GATEWAY='10.105.64.1' 网关BOOTPROTO=none 是否自动获取IP（none,static,dhcp）HWADDR=00:0c:29:17:c4:09 MAC地址TYPE=Ethernet 类型为以太网UUID="xxxxxx" 唯一识别码DNS1=xxxxxxx DNS 主机名文件 1234vi /etc/sysconfig/networkhostname [主机名]#查看与临时设置主机名命令 DNS配置文件 123vi /etc/resolv.conf#nameserver 202.106.0.20#search localhost 启动网卡 12service network restart#重启网络服务]]></content>
       <categories>
         <category>Linux</category>
       </categories>

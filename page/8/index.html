@@ -442,32 +442,92 @@ var _hmt = _hmt || [];
       
         
           
+            <ul>
+<li>Crontab是一个用于设置周期性被执行的任务的工具。</li>
+<li>被周期性执行的任务我们称为Cron Job</li>
+<li>周期性执行的任务列表我们称为Cron Table</li>
+</ul>
+<h2>检测cron服务</h2>
+<ul>
+<li>检查Crontab工具是否安装：crontab -l</li>
+<li>检查crond服务是否启动：service crond status</li>
+</ul>
+<h2>安装cron</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># yum install vixie-cron</span></div><div class="line"><span class="comment"># yum install crontabs</span></div></pre></td></tr></table></figure></p>
+<h2>crond系统服务</h2>
+<ul>
+<li>每分钟都会从配置文件刷新定时任务</li>
+</ul>
+<h2>crontab的配置文件格式</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* * * * * COMMAND</div></pre></td></tr></table></figure></p>
+<ul>
+<li>第一个<code>*</code>表示分钟0~59</li>
+<li>第二个<code>*</code>表示小时0~23</li>
+<li>第三个<code>*</code>表示日期1~31</li>
+<li>第四个<code>*</code>表示月份1~12</li>
+<li>第五个<code>*</code>表示星期0~7（0或者7表示星期天）</li>
+</ul>
+<h1>例子</h1>
+<ul>
+<li>
+<p>每分钟都打印当前时间到一个日志文件中
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * date &gt;&gt; /tmp/log.txt</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>每晚的21：30重启apache
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">30 21 * * * service httpd restart</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>每月1、10、22日的4：45重启apache
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">45 4 1,10,22 * * service httpd restart</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>每月1到10号的4：45重启apache
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">45 4 1-10 * * service httpd restart</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>每隔两分钟重启apache
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/2 * * * * service httpd restart</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>晚上11点到早上7点之间，每隔一小时重启apache
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 23-7/1 * * * service httpd restart</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>每天18：00至23：00之间每隔30分钟重启apache
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">0,30 18-23 * * * service httpd restart</div><div class="line"></div><div class="line">0-59/30 18-23 * * * service httpd restart</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p><code>*</code>表示任何时候都匹配</p>
+</li>
+<li>
+<p><code>A,B,C</code>表示A或者B或者C时执行命令</p>
+</li>
+<li>
+<p><code>A-B</code>表示A到B之间时执行命令</p>
+</li>
+<li>
+<p><code>*/A</code>表示每A分钟（小时等）执行一次命令</p>
+</li>
+</ul>
+<h2>crontab工具使用</h2>
+<ul>
+<li>crontab -help</li>
+</ul>
+<h2>crontab配置文件</h2>
+<ul>
+<li>全局（系统）配置文件
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/etc/crontab</div><div class="line"></div><div class="line">/etc/cron.d目录下的文件可以认为是系统配置文件的补充</div><div class="line"></div><div class="line">/var/spool/cron/root</div><div class="line">crontab操作实际上是操作此目录下的文件</div></pre></td></tr></table></figure></li>
+</ul>
+<h2>crontab日志</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/var/<span class="built_in">log</span>/cron文件保存着cron的任务执行记录</div></pre></td></tr></table></figure></p>
+<h1>其他</h1>
+<ul>
+<li>不断显示文件最后几行
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail -f /tmp/log.txt</div></pre></td></tr></table></figure></li>
+</ul>
+
           
-Crontab是一个用于设置周期性被执行的任务的工具。
-被周期性执行的任务我们称为Cron Job
-周期性执行的任务列表我们称为Cron Table
-
-检测cron服务
-
-检查Crontab工具是否安装：crontab -l
-检查crond服务是否启动：service crond status
-
-安装cron
-12# yum install vixie-cron# yum install crontabs
-crond系统服务
-
-每分钟都会从配置文件刷新定时任务
-
-crontab的配置文件格式
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/09/crontab/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -630,41 +690,43 @@ crontab的配置文件格式
       
         
           
+            <ul>
+<li>
+<p>cheat命令简单来说，就是告诉你一个命令如何使用。</p>
+</li>
+<li>
+<p>cheat命令依赖于Python和pip。</p>
+</li>
+<li>
+<p>安装需要root权限<code>su #</code>切换到root用户</p>
+</li>
+<li>
+<p>通过git下载cheat</p>
+<pre><code>1. 安装python
+</code></pre>
+</li>
+</ul>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># yum install python</span></div></pre></td></tr></table></figure></p>
+<pre><code>	2. 安装pip
+</code></pre>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># yum install python-pip</span></div></pre></td></tr></table></figure></p>
+<pre><code>	3. 安装git
+</code></pre>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># yum install</span></div></pre></td></tr></table></figure></p>
+<pre><code>	4. 安装Python依赖文件
+</code></pre>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># pip install docopt pygments</span></div></pre></td></tr></table></figure></p>
+<pre><code>	5. 从github克隆项目
+</code></pre>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># git clone http://github.com/chrisallenlane/cheat.git</span></div></pre></td></tr></table></figure></p>
+<pre><code>	6. 切换到cheat路径，进行安装
+</code></pre>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># cd cheat</span></div><div class="line"><span class="comment"># python setup.py install</span></div></pre></td></tr></table></figure></p>
+<pre><code>	7. 运行
+</code></pre>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># cheat -v</span></div></pre></td></tr></table></figure></p>
+
           
-
-cheat命令简单来说，就是告诉你一个命令如何使用。
-
-
-cheat命令依赖于Python和pip。
-
-
-安装需要root权限su #切换到root用户
-
-
-通过git下载cheat
-1. 安装python
-
-
-
-1# yum install python
-	2. 安装pip
-
-1# yum install python-pip
-	3. 安装git
-
-1# yum install
-	4. 安装Python依赖文件
-
-1# pip install docopt pygments
-	5. 从gi
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/08/cheat命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -827,28 +889,154 @@ cheat命令依赖于Python和pip。
       
         
           
-          检查远程端口是否对bash开放
-1echo &gt;/dev/tcp/8.8.8.8/53 &amp;&amp; echo "open"
-让进程转入后台
-1Ctrl + z
-将进程转到前台
-1fg
-产生随机的十六进制数，其中n是字符数
-1openssl rand -hex n
-在当前shell里执行一个文件里的命令
-1source /home/user/file.name
-截取前5个字符
-1￥&#123;variable:0:5&#125;
-SHH debug 模式
-1shh -vvv user
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/07/日常Linux Shell命令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2>检查远程端口是否对bash开放</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> &gt;/dev/tcp/8.8.8.8/53 &amp;&amp; <span class="built_in">echo</span> <span class="string">"open"</span></div></pre></td></tr></table></figure></p>
+<h2>让进程转入后台</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Ctrl + z</div></pre></td></tr></table></figure></p>
+<h2>将进程转到前台</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">fg</span></div></pre></td></tr></table></figure></p>
+<h2>产生随机的十六进制数，其中n是字符数</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">openssl rand -hex n</div></pre></td></tr></table></figure></p>
+<h2>在当前shell里执行一个文件里的命令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /home/user/file.name</div></pre></td></tr></table></figure></p>
+<h2>截取前5个字符</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">￥&#123;variable:0:5&#125;</div></pre></td></tr></table></figure></p>
+<h2>SHH debug 模式</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shh -vvv user@ip_address</div></pre></td></tr></table></figure></p>
+<h2>SHH with pem key</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">shh user@ip_address -i key.pem</div></pre></td></tr></table></figure></p>
+<h2>用wget抓取完整的网站目录结构，存放到本地目录中</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -r --no -parent --reject <span class="string">"index.html*"</span> http://hostname/ -p /home/user/<span class="built_in">dirs</span></div></pre></td></tr></table></figure></p>
+<h2>一次创建多个目录</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir -p /home/user/&#123;<span class="built_in">test</span>,test1,test2&#125;</div></pre></td></tr></table></figure></p>
+<h2>列出包括子进程的进程树</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps axwef</div></pre></td></tr></table></figure></p>
+<h2>创建war文件</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jar -cvf name.war file</div></pre></td></tr></table></figure></p>
+<h2>测试硬盘写入速度</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dd <span class="keyword">if</span>=/dev/zero of=/tmp/output.img bs=8k count =256k; rm -rf /tmp/output.img</div></pre></td></tr></table></figure></p>
+<h2>测试硬盘读取速度</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hdparm -Tt /dev/sda</div></pre></td></tr></table></figure></p>
+<h2>获取文本的md5 hash</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> -n <span class="string">"text"</span> | md5sum</div></pre></td></tr></table></figure></p>
+<h2>检查xml格式</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xmllint --noout file.xml</div></pre></td></tr></table></figure></p>
+<h2>将tar.gz提取到新目录里</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf package.tar.gz -C new_dir</div></pre></td></tr></table></figure></p>
+<h2>使用curl获取HTTP头信息</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -I http://www.example.com</div></pre></td></tr></table></figure></p>
+<h2>修改文件或者目录的时间戳（YYMMDDhhmm）</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch -t 0712250000 file</div></pre></td></tr></table></figure></p>
+<h2>用wget命令执行ftp下载</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget -m ftp://username:password@hostname</div></pre></td></tr></table></figure></p>
+<h2>生成随机密码</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LANG=c &lt; /dev/urandom tr -dc _A-Z<span class="_">-a</span>-z-0-9 | head -c<span class="variable">$&#123;1:-16&#125;</span>;<span class="built_in">echo</span>;</div></pre></td></tr></table></figure></p>
+<h2>快速备份一个文件</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp some_file_name&#123;,.bkp&#125;</div></pre></td></tr></table></figure></p>
+<h2>访问windows共享目录</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">smbclient -U <span class="string">"DOMAIN\user"</span> //dc.domain.com/share/<span class="built_in">test</span>/dir</div></pre></td></tr></table></figure></p>
+<h2>执行历史记录里的命令（这里是第100行）</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">！100</div></pre></td></tr></table></figure></p>
+<h2>解压</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip package_name.zip -d dir_name</div></pre></td></tr></table></figure></p>
+<h2>输入多行文字(CTRL + d 退出):</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat &gt; test.txt</div></pre></td></tr></table></figure></p>
+<h2>创建空文件或清空一个现有文件：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\&gt; test.txt</div></pre></td></tr></table></figure></p>
+<h2>与Ubuntu NTP server同步时间：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ntpdate ntp.ubuntu.com</div></pre></td></tr></table></figure></p>
+<h2>用netstat显示所有tcp4监听端口：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -lnt4 | awk <span class="string">'&#123;print $4&#125;'</span> | cut -f2 -d: | grep -o <span class="string">'[0-9]*'</span></div></pre></td></tr></table></figure></p>
+<h2>qcow2镜像文件转换：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">qemu-img convert -f qcow2 -O raw precise-server-cloudimg-amd64-disk1.img \precise-server-cloudimg-amd64-disk1.raw</div></pre></td></tr></table></figure></p>
+<h2>重复运行文件，显示其输出（缺省是2秒一次）：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">watch ps -ef</div></pre></td></tr></table></figure></p>
+<h2>所有用户列表：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getent passwd</div></pre></td></tr></table></figure></p>
+<h2>Mount root in read/write mode:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount -o remount,rw /</div></pre></td></tr></table></figure></p>
+<h2>挂载一个目录（这是不能使用链接的情况）:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount --<span class="built_in">bind</span> /<span class="built_in">source</span> /destination</div></pre></td></tr></table></figure></p>
+<h2>动态更新DNS server:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">nsupdate &lt; &lt;EOF</div><div class="line">update add <span class="variable">$HOST</span> 86400 A <span class="variable">$IP</span></div><div class="line">send</div><div class="line">EOF</div></pre></td></tr></table></figure></p>
+<h2>递归grep所有目录：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -r <span class="string">"some_text"</span> /path/to/dir</div></pre></td></tr></table></figure></p>
+<h2>列出前10个最大的文件：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof / | awk <span class="string">'&#123; if($7 &gt; 1048576) print $7/1048576 "MB "$9 &#125;'</span> | sort -n -u | tail</div></pre></td></tr></table></figure></p>
+<h2>显示剩余内存(MB):</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">free -m | grep cache | awk <span class="string">'/[0-9]/&#123; print $4" MB" &#125;'</span></div></pre></td></tr></table></figure></p>
+<h2>打开Vim并跳到文件末：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim + some_file_name</div></pre></td></tr></table></figure></p>
+<h2>Git 克隆指定分支(master):</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git@github.com:name/app.git -b master</div></pre></td></tr></table></figure></p>
+<h2>Git 切换到其它分支(develop):</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout develop</div></pre></td></tr></table></figure></p>
+<h2>Git 删除分支(myfeature):</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d myfeature</div></pre></td></tr></table></figure></p>
+<h2>Git 删除远程分支</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin :branchName</div></pre></td></tr></table></figure></p>
+<h2>Git 将新分支推送到远程服务器：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push -u origin mynewfeature</div></pre></td></tr></table></figure></p>
+<h2>打印历史记录中最后一次cat命令：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">!cat:p</div></pre></td></tr></table></figure></p>
+<h2>运行历史记录里最后一次cat命令：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">!cat</div></pre></td></tr></table></figure></p>
+<h2>找出/home/user下所有空子目录:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find /home/user -maxdepth 1 -<span class="built_in">type</span> d -empty</div></pre></td></tr></table></figure></p>
+<h2>获取test.txt文件中第50-60行内容：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt; test.txt sed -n <span class="string">'50,60p'</span></div></pre></td></tr></table></figure></p>
+<h2>运行最后一个命令(如果最后一个命令是mkdir /root/test, 下面将会运行: sudo mkdir /root/test)：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo !!</div></pre></td></tr></table></figure></p>
+<h2>创建临时RAM文件系统 – ramdisk (先创建/tmpram目录):</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mount -t tmpfs tmpfs /tmpram -o size=512m</div></pre></td></tr></table></figure></p>
+<h2>Grep whole words:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep -w <span class="string">"name"</span> test.txt</div></pre></td></tr></table></figure></p>
+<h2>在需要提升权限的情况下往一个文件里追加文本：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"some text"</span> | sudo tee -a /path/file</div></pre></td></tr></table></figure></p>
+<h2>列出所有kill signal参数:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">kill</span> -l</div></pre></td></tr></table></figure></p>
+<h2>在bash历史记录里禁止记录最后一次会话：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">kill</span> -9 $$</div></pre></td></tr></table></figure></p>
+<h2>扫描网络寻找开放的端口：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap -p 8081 172.20.0.0/16</div></pre></td></tr></table></figure></p>
+<h2>设置git email:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global user.email <span class="string">"me@example.com"</span></div></pre></td></tr></table></figure></p>
+<h2>To sync with master if you have unpublished commits:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull --rebase origin master</div></pre></td></tr></table></figure></p>
+<h2>将所有文件名中含有”txt”的文件移入/home/user目录:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -iname <span class="string">"*txt*"</span> -<span class="built_in">exec</span> mv -v &#123;&#125; /home/user \;</div></pre></td></tr></table></figure></p>
+<h2>将文件按行并列显示：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">paste test.txt test1.txt</div></pre></td></tr></table></figure></p>
+<h2>shell里的进度条:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pv data.log</div></pre></td></tr></table></figure></p>
+<h2>使用netcat将数据发送到Graphite server:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"hosts.sampleHost 10 `date +%s`"</span> | nc 192.168.200.2 3000</div></pre></td></tr></table></figure></p>
+<h2>将tabs转换成空格：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">expand test.txt &gt; test1.txt</div></pre></td></tr></table></figure></p>
+<h2>Skip bash history:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt; space &gt;cmd</div></pre></td></tr></table></figure></p>
+<h2>去之前的工作目录：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> -</div></pre></td></tr></table></figure></p>
+<h2>拆分大体积的tar.gz文件(每个100MB)，然后合并回去：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">split –b 100m /path/to/large/archive /path/to/output/files</div><div class="line">cat files* &gt; archive</div></pre></td></tr></table></figure></p>
+<h2>使用curl获取HTTP status code:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -sL -w <span class="string">"%&#123;http_code&#125;\\n"</span> www.example.com -o /dev/null</div></pre></td></tr></table></figure></p>
+<h2>设置root密码，强化MySQL安全安装:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/mysql_secure_installation</div></pre></td></tr></table></figure></p>
+<h2>当Ctrl + c不好使时:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Ctrl + \</div></pre></td></tr></table></figure></p>
+<h2>获取文件owner:</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">stat</span> -c %U file.txt</div></pre></td></tr></table></figure></p>
+<h2>block设备列表：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsblk -f</div></pre></td></tr></table></figure></p>
+<h2>找出文件名结尾有空格的文件：</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -<span class="built_in">type</span> f -<span class="built_in">exec</span> egrep -l <span class="string">" +$"</span> &#123;&#125; \;</div></pre></td></tr></table></figure></p>
+<h2>找出文件名有tab缩进符的文件</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -<span class="built_in">type</span> f -<span class="built_in">exec</span> egrep -l $<span class="string">'\t'</span> &#123;&#125; \;</div></pre></td></tr></table></figure></p>
+<h2>用”=”打印出横线:全选复制放进笔记</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">printf</span> <span class="string">'%100s\n'</span> | tr <span class="string">' '</span> =</div></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -1011,15 +1199,68 @@ SHH debug 模式
       
         
           
-          12345678910111213141516/---	/bin		User Binaries			/sbin		System Binaries	/etc		Configuration Files		配置文件保存目录	/dev		Device Files		设备文件保存目录	/proc		Process Information	/var		Variable Files	/tmp		Temporary Files	/usr		User Programs	/home		Home Directorie
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/06/Linux目录结构/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">/---</div><div class="line">	/bin		User Binaries		</div><div class="line">	/sbin		System Binaries</div><div class="line">	/etc		Configuration Files		配置文件保存目录</div><div class="line">	/dev		Device Files		设备文件保存目录</div><div class="line">	/proc		Process Information</div><div class="line">	/var		Variable Files</div><div class="line">	/tmp		Temporary Files</div><div class="line">	/usr		User Programs</div><div class="line">	/home		Home Directories		普通用户的家目录</div><div class="line">	/boot		Boot Loader Files		启动目录，启动相关文件</div><div class="line">	/lib		System Libraries		系统库保存目录</div><div class="line">	/opt		Optional add-on Apps</div><div class="line">	/mnt		Mount Directory		系统挂载目录</div><div class="line">	/media		Removable Devices		挂载目录</div><div class="line">	/srv		Service Data</div></pre></td></tr></table></figure></p>
+<ul>
+<li>root---启动Linux时使用的一些核心文件。如操作系统内核、引导程序Grub等。</li>
+<li>home---存储普通用户的个人文件
+<ul>
+<li>ftp---用户所有服务</li>
+<li>httpd</li>
+<li>samba</li>
+</ul>
+</li>
+<li>bin---系统启动时需要的的执行文件</li>
+<li>sbin---可执行程序的目录，但大多存放涉及系统文件管理的命令。只有root权限才能执行。</li>
+<li>proc---虚拟，存在Linux内核镜像；保存所有内核参数以及系统配置信息
+<ul>
+<li>1---进程编号</li>
+</ul>
+</li>
+<li>usr---用户目录，存放用户级的文件
+<ul>
+<li>bin---几乎所有用户所用的命令，另外存在与/bin,/usr/local/bin</li>
+<li>sbin---系统管理员命令，与用户相关，例如大部分服务器程序</li>
+<li>include---存放C/C++头文件的目录</li>
+<li>lib---固定的程序数据</li>
+<li>local---本地安装软件保存位置</li>
+<li>man---手工生成的目录</li>
+<li>info---信息文档</li>
+<li>doc---不同包文档信息</li>
+<li>tmp</li>
+</ul>
+</li>
+<li>boot---引导加载器所需文件，系统所需图片保存于此</li>
+<li>lib---根文件系统目录下程序和核心模块的公共库
+<ul>
+<li>modules---可加载模块，系统崩溃后重启所需模块</li>
+</ul>
+</li>
+<li>dev---设备文件目录</li>
+<li>etc---配置文件
+<ul>
+<li>skel---home目录建立，该目录初始化</li>
+<li>sysconfig---网络，时间，键盘等配置目录</li>
+</ul>
+</li>
+<li>var
+<ul>
+<li>file</li>
+<li>lib---该目录下的文件在系统运行时，会改变</li>
+<li>local---安装在/usr/local的程序数据，变化的</li>
+<li>lock---文件使用特定外设或文件，为其上锁，其他文件暂时不能访问</li>
+<li>log---记录日志</li>
+<li>run---系统运行合法信息</li>
+<li>spool---打印机、邮件、代理服务器等假脱机目录</li>
+<li>tmp</li>
+<li>catman---缓存目录</li>
+</ul>
+</li>
+<li>mnt---临时用于挂载文件系统的地方。一般情况下这个目录是空的，而我们将要挂载分区时在这个目录下建立目录，再将我们将要访问的设备挂载在这个目录上，这样我们就可以访问文件了。</li>
+<li>tmp---临时文件目录，系统启动后的临时文件存放在/var/tmp</li>
+<li>lost+fount---在文件系统修复时恢复的文件</li>
+</ul>
+
+          
         
       
     </div>
@@ -1182,24 +1423,17 @@ SHH debug 模式
       
         
           
-          
-运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动
-运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆
-运行级别2：多用户状态(没有NFS)
-运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式
-运行级别4：系统未使用，保留
-运行级别5：X11控制台，登陆后进入图形GUI模式
-运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动
+            <ul>
+<li>运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动</li>
+<li>运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登陆</li>
+<li>运行级别2：多用户状态(没有NFS)</li>
+<li>运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式</li>
+<li>运行级别4：系统未使用，保留</li>
+<li>运行级别5：X11控制台，登陆后进入图形GUI模式</li>
+<li>运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动</li>
+</ul>
 
-
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/05/Linux系统7个运行级别/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1362,20 +1596,36 @@ SHH debug 模式
       
         
           
-          ifconfig命令
-12345ifconfig#查看与配置网络状态命令ifconfig ech0 192.168.0.200 netmask 255.255.255.0#临时设置ech0网卡的IP地址与子网掩码
-关闭和启动网卡
-12345ifdown	网卡设备名#禁用该网卡设备ifup 网卡设备名#启用该网卡设备
-查询网络状态
-12345678netstat 选项选项：	-t		列出TCP协议端口	-u		列出UDP协议端口	-n		不使用域名与服务名，而使用IP地址和端口号	-l		仅列出在
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/05/Linux网络/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2>ifconfig命令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ifconfig</div><div class="line"><span class="comment">#查看与配置网络状态命令</span></div><div class="line"></div><div class="line">ifconfig ech0 192.168.0.200 netmask 255.255.255.0</div><div class="line"><span class="comment">#临时设置ech0网卡的IP地址与子网掩码</span></div></pre></td></tr></table></figure></p>
+<h2>关闭和启动网卡</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ifdown	网卡设备名</div><div class="line"><span class="comment">#禁用该网卡设备</span></div><div class="line"></div><div class="line">ifup 网卡设备名</div><div class="line"><span class="comment">#启用该网卡设备</span></div></pre></td></tr></table></figure></p>
+<h2>查询网络状态</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">netstat 选项</div><div class="line">选项：</div><div class="line">	-t		列出TCP协议端口</div><div class="line">	-u		列出UDP协议端口</div><div class="line">	-n		不使用域名与服务名，而使用IP地址和端口号</div><div class="line">	-l		仅列出在监听状态网络服务</div><div class="line">	-a		列出所有的网络连接</div><div class="line">	-r		列出路由列表，功能和route命令一致</div></pre></td></tr></table></figure></p>
+<h2>route命令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">route -n</div><div class="line"><span class="comment">#查看路由列表</span></div><div class="line"></div><div class="line">route add default gw 192.168.1.1</div><div class="line"><span class="comment">#临时设定网关</span></div></pre></td></tr></table></figure></p>
+<h2>域名解析命令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nslookup [主机名或IP]</div><div class="line"><span class="comment">#进行域名与IP地址解析</span></div></pre></td></tr></table></figure></p>
+<h2>ping命令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ping [选项] ip或域名</div><div class="line"><span class="comment">#探测指定IP或域名的网络状态</span></div><div class="line"></div><div class="line">选项：</div><div class="line">	-c 次数：指定ping包的次数</div></pre></td></tr></table></figure></p>
+<h2>telnet命令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">telnet [域名或IP] [端口]</div><div class="line"><span class="comment">#远程管理与端口探测命令</span></div></pre></td></tr></table></figure></p>
+<h2>traceroute</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">traceroute [选项] IP或域名</div><div class="line"><span class="comment">#路由跟踪命令</span></div><div class="line"></div><div class="line">选项：</div><div class="line">	-n	使用IP，不使用域名，速度更快</div></pre></td></tr></table></figure></p>
+<h2>wget命令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget url</div><div class="line"><span class="comment">#下载命令</span></div></pre></td></tr></table></figure></p>
+<h2>tcpdump命令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">tcpdump -i ech0 -nnx port 21</div><div class="line">选项：</div><div class="line">	-i		指定网卡接口</div><div class="line">	-nn		将数据包的域名与服务转为IP的端口</div><div class="line">	-X		以十六进制和ASCII码显示数据包内容</div><div class="line">	port	指定监听的端口</div></pre></td></tr></table></figure></p>
+<h2>网卡信息文件</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0</div><div class="line"></div><div class="line">DEVICE=<span class="string">'eth0'</span>				网卡设备名</div><div class="line">NM_CONTROLLED=<span class="string">'yes'</span>			是否可以由Network Manager图形管理工具托管</div><div class="line">ONBOOT=<span class="string">'yes'</span>				是否随网络服务启动，eth0生效</div><div class="line">IPADDR=<span class="string">'10.105.93.229'</span>		IP地址</div><div class="line">NETMASK=<span class="string">'255.255.192.0'</span>		子网掩码</div><div class="line">GATEWAY=<span class="string">'10.105.64.1'</span>		网关</div><div class="line"></div><div class="line">BOOTPROTO=none				是否自动获取IP（none,static,dhcp）</div><div class="line">HWADDR=00:0c:29:17:c4:09	MAC地址</div><div class="line">TYPE=Ethernet				类型为以太网</div><div class="line">UUID=<span class="string">"xxxxxx"</span>				唯一识别码</div><div class="line">DNS1=xxxxxxx				DNS</div></pre></td></tr></table></figure></p>
+<h2>主机名文件</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">vi /etc/sysconfig/network</div><div class="line"></div><div class="line">hostname [主机名]</div><div class="line"><span class="comment">#查看与临时设置主机名命令</span></div></pre></td></tr></table></figure></p>
+<h2>DNS配置文件</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vi /etc/resolv.conf</div><div class="line"><span class="comment">#nameserver 202.106.0.20</span></div><div class="line"><span class="comment">#search localhost</span></div></pre></td></tr></table></figure></p>
+<h2>启动网卡</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service network restart</div><div class="line"><span class="comment">#重启网络服务</span></div></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -1538,32 +1788,40 @@ SHH debug 模式
       
         
           
+            <ul>
+<li>Visual Interface(可视化接口)</li>
+<li>VI ——&gt; VIM
+<ul>
+<li>VIM支持多级撤销</li>
+<li>VIM可以跨平台运行</li>
+<li>VIM支持语法高亮</li>
+<li>VIM支持图形界面</li>
+</ul>
+</li>
+</ul>
+<h2>vi三种模式</h2>
+<ul>
+<li>
+<p>一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。</p>
+</li>
+<li>
+<p>编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、r、R”等字母之后才会进入编辑模式。注意，通常在Linux中，按下上述字符时，画面的左下方会出现“INSERT或REPLACE”的字样，才可以输入任何字到文件中。如果要回到一般模式时，则必须要按下Esc键才可退出编辑模式。</p>
+</li>
+<li>
+<p>命令行模式：在一般模式中，输入“:或/或?”就可以将光标移到最下面的那一行，在这个模式中，你可以搜索数据，而且读取、存盘、大量删除字符、离开vi、显示行号等操作都是在此模式下实现的。</p>
+</li>
+</ul>
+<h2>操作模式</h2>
+<ul>
+<li>Command Mode - 命令模式</li>
+<li>Insert Mode - 输入模式</li>
+<li>Last Line Mode - 底行模式（尾行，末行）</li>
+</ul>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">vim + test.txt</div><div class="line"><span class="comment">#打开test.txt文本，光标置于最后一行</span></div><div class="line"></div><div class="line">vim +3 test.txt</div><div class="line"><span class="comment">#打开test.txt文本，光标置于第三行</span></div><div class="line"></div><div class="line">vim +/hello test.txt</div><div class="line"><span class="comment">#打开test.txt文本，光标置于第一次出现hello的那一行，可以通过按n来切换hello所在的不同行</span></div></pre></td></tr></table></figure></p>
+<h2>常用指令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">底行模式常用命令</div><div class="line">-:w			将内容的修改从内存写入硬盘中</div><div class="line">-:q			退出当前VI编辑器</div><div class="line">-:!			强制执行</div><div class="line">-:ls		列出当前编辑器打开的文件</div><div class="line">-:n			切换到后一个文件</div><div class="line">-:N			切换到前一个文件</div><div class="line">-:15		把光标快速定位到15行</div><div class="line">- /xxx		从光标位置向后搜索xxx字符串</div><div class="line">- ?xxx		从光标位置向前搜索xxx字符串</div><div class="line"></div><div class="line"></div><div class="line">- h			光标左移</div><div class="line">- j			光标下移</div><div class="line">- k			光标上移</div><div class="line">- l			光标右移</div><div class="line">- ctrl + f	向下翻页（front）</div><div class="line">- ctrl + b	向上翻页（back）</div><div class="line">- ctrl + d	向下翻半页（down）</div><div class="line">- ctrl + u	向上翻半页（up）</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">dd		删除光标所在行</div><div class="line">o		在光标所在行的下方插入一行并切换到输入模式</div><div class="line">yy		复制光标所在的行</div><div class="line">p		在光标所在行的下方粘贴</div><div class="line">P		在光标所在行的上方粘贴</div></pre></td></tr></table></figure></p>
+
           
-Visual Interface(可视化接口)
-VI ——&gt; VIM
-
-VIM支持多级撤销
-VIM可以跨平台运行
-VIM支持语法高亮
-VIM支持图形界面
-
-
-
-vi三种模式
-
-
-一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。
-
-
-编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/04/VI编辑器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1726,15 +1984,17 @@ vi三种模式
       
         
           
-          12345678910111213141516/etc/group 存储当前系统中所有用户组信息Group	:	x	:	123	:abc,def,xyz组名称	:	组密码占位符	:	组编码	:	组中用户名列表/etc/gshadow 存储当前系统中用户组的密码信息Group	:	*	:		:	abc,def,xyz组名称	:	组密码	:	组管理	:	组中用户名列表/etc/passwd 存储当前系统中所有用户的信息user	:	x	:	123	:	456	:	xxxxxxx	:	/home/us
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/04/Linux用户/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">/etc/group 存储当前系统中所有用户组信息</div><div class="line"></div><div class="line">Group	:	x	:	123	:abc,def,xyz</div><div class="line">组名称	:	组密码占位符	:	组编码	:	组中用户名列表</div><div class="line"></div><div class="line"></div><div class="line">/etc/gshadow 存储当前系统中用户组的密码信息</div><div class="line">Group	:	*	:		:	abc,def,xyz</div><div class="line">组名称	:	组密码	:	组管理	:	组中用户名列表</div><div class="line"></div><div class="line"></div><div class="line">/etc/passwd 存储当前系统中所有用户的信息</div><div class="line">user	:	x	:	123	:	456	:	xxxxxxx	:	/home/user	:	/bin/bash</div><div class="line">用户名	:	密码占位符	：	用户编码	:	用户组编码	:	用户注释信息	:	用户主目录	:	shell类型</div><div class="line"></div><div class="line">/etc/shadow 存储当前系统中所有用户的密码信息</div></pre></td></tr></table></figure></p>
+<ul>
+<li>groupadd</li>
+<li>groupmod</li>
+<li>useradd</li>
+<li>usermod</li>
+</ul>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">passwd -l username</div><div class="line"><span class="comment">#锁定用户账号</span></div><div class="line"></div><div class="line">passwd -u username</div><div class="line"><span class="comment">#解锁用户账号</span></div><div class="line"></div><div class="line">passwd -d username</div><div class="line"><span class="comment">#无密码登陆</span></div></pre></td></tr></table></figure></p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">chfn username</div><div class="line"><span class="comment">#设置用户资料，依次输入用户资料</span></div><div class="line"></div><div class="line">finger username</div><div class="line"><span class="comment">#显示用户资料</span></div></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -1897,24 +2157,26 @@ vi三种模式
       
         
           
+            <blockquote>
+<p>PS:360镜像已停用</p>
+</blockquote>
+<ul>
+<li>
+<p>进入<code>wordpress/wp-content/themes/</code></p>
+</li>
+<li>
+<p>找到相对应的主题中的<code>functions.php</code>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Return the Google font stylesheet URL <span class="keyword">if</span> available.</div><div class="line"> *</div><div class="line"> * The use of Open Sans by default is localized. For languages that use</div><div class="line"> * characters not supported by the font, the font can be disabled.</div><div class="line"> *</div><div class="line"> * @since Twenty Twelve 1.2</div><div class="line"> *</div><div class="line"> * @<span class="built_in">return</span> string Font stylesheet or empty string <span class="keyword">if</span> disabled.</div><div class="line"> */</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">twentytwelve_get_font_url</span></span>() &#123;</div><div class="line">...</div><div class="line">...</div><div class="line"><span class="variable">$font_url</span> = add_query_arg( <span class="variable">$query_args</span>, <span class="string">'https://fonts.googleapis.com/css'</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>将<code>https://fonts.googleapis.com/css</code>替换成<code>https://fonts.useso.com/css</code>即可</p>
+</li>
+<li>
+<p>同理，<code>wp-includes</code>目录下<code>script-loader.php</code>也进行替换</p>
+</li>
+</ul>
+
           
-PS:360镜像已停用
-
-
-
-进入wordpress/wp-content/themes/
-
-
-找到相对应的主题中的functions.php
-1234567891011121314/** * Return the Google font stylesheet URL if available. * * The use of Open Sans by default is localized. For languages that use * characters not supported 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/03/wp/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -2077,29 +2339,61 @@ PS:360镜像已停用
       
         
           
+            <ul>
+<li>
+<p>将所有软件包放到官方服务器上。当进行yum在线安装时，可以自动解决依赖性问题。</p>
+</li>
+<li>
+<p>路径
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/yum.repos.d</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>基本文件
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CentOS-Base.repo</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>文件内容
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">nano /etc/yum.repos.d/CentOS-Base.repo</div><div class="line"></div><div class="line">[base]</div><div class="line">name=CentOS-<span class="variable">$releasever</span> - Base</div><div class="line">failovermethod=priority</div><div class="line">baseurl=http://mirrors.aliyun.com/centos/<span class="variable">$releasever</span>/os/<span class="variable">$basearch</span>/</div><div class="line">        http://mirrors.aliyuncs.com/centos/<span class="variable">$releasever</span>/os/<span class="variable">$basearch</span>/</div><div class="line">gpgcheck=1</div><div class="line">gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6</div><div class="line">http://mirrors.aliyuncs.com/centos/RPM-GPG-KEY-CentOS-6</div><div class="line"></div><div class="line"></div><div class="line">[base]		容器名称，一定要放在[]中</div><div class="line">name		容器说明，可以自己随便写</div><div class="line">mirrorlist	镜像站点，这个可以注释掉</div><div class="line">baseurl		我们的yum源服务器的地址。默认是CentOS官方的yum源服务器，是可以使用的，如果你觉得慢可以改成你喜欢的yum源地址</div><div class="line">enabled		此容器是否生效，如果不写或者写成<span class="built_in">enable</span>=1都是生效，写成<span class="built_in">enable</span>=0就是不生效</div><div class="line">gpfcheck	如果是1是指RPM的数字证书生效，如果是0则不生效</div><div class="line">gpgkey		数字证书的公钥文件保存地址，不用修改</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>挂载光盘
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#建立挂载点</span></div><div class="line">mkdir /mnt/cdrom</div><div class="line"></div><div class="line"><span class="comment">#挂载光盘</span></div><div class="line">mount /dev/cdrom /mnt/cdrom</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>使网络的yum源失效
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#进入yum源目录</span></div><div class="line"><span class="built_in">cd</span> /etc/yum.repos.d</div><div class="line"></div><div class="line"><span class="comment">#修改yum源文件后缀名，使其失效</span></div><div class="line">mv CentOS-Base.repo CentOS-Base.repo.bak</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>nano CentOS-Media.repo
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- [c6-media]</div><div class="line">- name=CentOS-<span class="variable">$releasever</span> - Media</div><div class="line"><span class="comment">#地址为自己的光盘挂载地址</span></div><div class="line">- baseurl=file:///mnt/cdrom</div><div class="line"><span class="comment">#注释掉这两个不存在的地址</span></div><div class="line">- <span class="comment">#		file:///media/cdrom</span></div><div class="line">- <span class="comment">#		file:///media/cdrecorder</span></div><div class="line">- gpgcheck=1</div><div class="line"><span class="comment">#把enabled=0改为enabled=1,让这个yum源配置文件生效</span></div><div class="line">- <span class="built_in">enable</span>=1</div><div class="line">- gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6</div></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h2>常用的yum命令</h2>
+<ul>
+<li>
+<p>查询
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#查询所有可用软件包列表</span></div><div class="line">yum list</div><div class="line"></div><div class="line"><span class="comment">#搜索服务器上所有和关键字相关的包</span></div><div class="line">yum search 关键字</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>安装
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">yum -y install 包名</div><div class="line">选项</div><div class="line">	- install		安装</div><div class="line">	-  -y			自动回答yes</div><div class="line"></div><div class="line">例如： yum -y install gcc</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>升级
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yum -y update 包名</div><div class="line">选项：</div><div class="line">	- update		升级</div><div class="line">	- -y			自动回答yes</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>卸载
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yum -y remove 包名</div><div class="line">选项：</div><div class="line">	- remove		卸载</div><div class="line">	- -y			自动回答yes</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>服务器使用最小化安装。用什么软件安装什么。尽量不卸载</p>
+</li>
+</ul>
+<h2>yum软件组管理命令</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#列出所有可用的软件组列表</span></div><div class="line">yum grouplist</div><div class="line"></div><div class="line"><span class="comment">#安装指定软件组，组名可以由grouplist查询出来</span></div><div class="line">yum groupinstall 软件组名</div><div class="line"><span class="comment">#注意：软件组名必须是英文</span></div><div class="line"></div><div class="line"><span class="comment">#英文语系</span></div><div class="line">LANG=en_US</div><div class="line"><span class="comment">#中文语系</span></div><div class="line">LANG=zh_CN.utf8</div><div class="line"></div><div class="line"><span class="comment">#卸载指定软件组</span></div><div class="line">yum goupremove</div></pre></td></tr></table></figure></p>
+
           
-
-将所有软件包放到官方服务器上。当进行yum在线安装时，可以自动解决依赖性问题。
-
-
-路径
-1cd /etc/yum.repos.d
-
-
-基本文件
-1CentOS-Base.repo
-
-
-文件内容
-12345678910111213141516171819nano /etc/yum.repos.d/CentOS-Base.repo[base]name=CentOS-$releasever - Basefailovermethod=prioritybaseurl=http://mirrors.a
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/02/yum源文件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>

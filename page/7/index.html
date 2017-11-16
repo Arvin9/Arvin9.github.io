@@ -420,41 +420,59 @@ var _hmt = _hmt || [];
       
         
           
-          #数据库设计
+            <p>#数据库设计</p>
+<h2></h2>
+<ol>
+<li>需求分析</li>
+<li>逻辑设计</li>
+<li>物理设计</li>
+<li>维护优化</li>
+</ol>
+<p>##需求分析</p>
+<ul>
+<li>了解系统中所需要存储的数据</li>
+<li>了解数据的存储特点</li>
+<li>了解数据的生命周期</li>
+</ul>
+<p>##要清楚一些问题</p>
+<ul>
+<li>实体及实体之间的关系（1对1，1对多，多对多）</li>
+<li>实体所包含的属性有什么</li>
+<li>哪些属性或属性的组合可以唯一标识一个实体</li>
+</ul>
+<p>##名称解释</p>
+<ul>
+<li>关系：一个关系对应通常所说的一张表</li>
+<li>元组：表中的一行即为一个元组</li>
+<li>属性：表中的一列即一个属性；每个属性都有一个名称，称为属性名。</li>
+<li>候选码：表中的某个属性组，它可以是唯一确定一个元组。</li>
+<li>主码：一个关系有多个候选码，选定其中一个为主码。</li>
+<li>域：属性的取值范围。</li>
+<li>分量：元组中的一个属性值。</li>
+</ul>
+<p>##第一范式</p>
+<ul>
+<li>定义：数据库表中的所有字段都是单一属性，不可再分的。</li>
+<li>这个单一属性是由基本的数据类型所构成的，如整数，浮点数，字符串等</li>
+<li>换句话说：第一范式要求数据库中的表都是二维表。</li>
+</ul>
+<p>##第二范式</p>
+<ul>
+<li>定义：数据库中的表不存在非关键字段对任一候选关键字段的部分函数依赖。</li>
+<li>部分函数依赖是指存在着组合关键字中的某一关键字决定非关键字的情况。</li>
+<li>换句话说：所有单关键字段的表都符合第二范式。</li>
+</ul>
+<p>##第三范式</p>
+<ul>
+<li>定义：第三范式是在第二范式的基础之上定义的，如果数据表中不存在非关键字段对任意候选关键字段的传递函数依赖则符合第三范式。</li>
+</ul>
+<p>##BC范式</p>
+<ul>
+<li>定义：在第三范式的基础之上，数据库表中如果不存在任何字段对任一候选关键字段的传递函数依赖则符合BC范式。</li>
+<li>也就是说如果是复合关键字，则复合关键字之间也不能存在函数依赖关系。</li>
+</ul>
 
-
-需求分析
-逻辑设计
-物理设计
-维护优化
-
-##需求分析
-
-了解系统中所需要存储的数据
-了解数据的存储特点
-了解数据的生命周期
-
-##要清楚一些问题
-
-实体及实体之间的关系（1对1，1对多，多对多）
-实体所包含的属性有什么
-哪些属性或属性的组合可以唯一标识一个实体
-
-##名称解释
-
-关系：一个关系对应通常所说的一张表
-元组：表中的一行即为一个元组
-属性：表中的一列即一个属性；每个属性都有一个名称，称为属性名。
-候选码：表中的某个属性组，它可以是唯一确定一个元组。
-主码：一个关系有
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/11/数据库设计/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -595,18 +613,11 @@ var _hmt = _hmt || [];
       
         
           
-          ##mysql清空表重新赋值
+            <p>##mysql清空表重新赋值
 	truncate table quotations;
-	truncate table image_links;
+	truncate table image_links;</p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/09/MySQL清空表重新赋值/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -747,34 +758,50 @@ var _hmt = _hmt || [];
       
         
           
-          #shell环境变量配置文件
+            <p>#shell环境变量配置文件
 ##source命令
-	source 配置文件
-. 配置文件
+	source 配置文件</p>
+<pre><code>. 配置文件
 
 #修改配置文件后，必须注销重新登录后才能生效，使用source命令可以不用重新登录 
-
-
-
-
-PATH、HISTSIZE、PS1、HOSTNAME等环境变量写入对应的环境变量配置文件
-
-
-环境变量配置文件中主要是定义对系统操作环境生效的系统环境变量，如PATH等
-/etc/profile
+</code></pre>
+<h2></h2>
+<ul>
+<li>
+<p>PATH、HISTSIZE、PS1、HOSTNAME等环境变量写入对应的环境变量配置文件</p>
+</li>
+<li>
+<p>环境变量配置文件中主要是定义对系统操作环境生效的系统环境变量，如PATH等</p>
+<pre><code>/etc/profile
 /etc/profile.d/*.sh
 ~/.bash_profile
 ~/.bashrc
 /etc/bashrc
+</code></pre>
+</li>
+</ul>
+<p>##/etc/profile的作用</p>
+<ul>
+<li>USER变量</li>
+<li>LOGNAME变量</li>
+<li>MAIL变量</li>
+<li>PATH变量</li>
+<li>HOSTNAME变量</li>
+<li>HISTSIZE变量</li>
+<li>umask</li>
+<li>调用/etc/profile.d/*.sh文件</li>
+</ul>
+<p>##umask权限
+	umask
+	#查看系统默认权限</p>
+<pre><code>注意：
+* 文件最高权限为666
+* 目录最高权限为777
+* 权限不能使用数字进行换算，而必须使用字母
+* umask定义权限，是系统默认权限中准备丢弃的权限
+</code></pre>
 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/06/shell环境变量配置文件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -915,7 +942,7 @@ PATH、HISTSIZE、PS1、HOSTNAME等环境变量写入对应的环境变量配置
       
         
           
-          #shell运算符
+            <p>#shell运算符
 ##declare声明变量类型
 	declare [+/-][选项] 变量名
 	选项：
@@ -925,19 +952,15 @@ PATH、HISTSIZE、PS1、HOSTNAME等环境变量写入对应的环境变量配置
 		-i:将变量声明为整数型（integer）
 		-x:将变量声明为环境变量
 		-r:将变量声明为只读变量
-		-p:显示指定变量的被声明类型
-##expr或let数值运算工具
+		-p:显示指定变量的被声明类型</p>
+<p>##expr或let数值运算工具
 	dd=$(expr $aa + $bb)
-	#dd的值是aa和bb的和。注意“+”号左右两侧必须有空格。
-##&quot;
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/06/shell运算符/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+	#dd的值是aa和bb的和。注意“+”号左右两侧必须有空格。</p>
+<p>##&quot;$((运算式))&quot;或&quot;$[运算式]&quot;
+	ff=$(( $aa+$bb ))
+	gg=$[ $aa+$bb ]</p>
+
+          
         
       
     </div>
@@ -1078,34 +1101,155 @@ PATH、HISTSIZE、PS1、HOSTNAME等环境变量写入对应的环境变量配置
       
         
           
-          #shell编程
-##变量名规则
+            <p>#shell编程
+##变量名规则</p>
+<ul>
+<li>变量名必须以字母或下划线打头，名字中间只能由字母、数字和下划线组成</li>
+<li>变量名的长度不得超过255个字符</li>
+<li>变量名的有效范围必须是唯一的</li>
+<li>在Bash中，变量的默认类型都是字符串型</li>
+</ul>
+<p>##变量安装存储数据分类</p>
+<ul>
+<li>字符串型</li>
+<li>整型</li>
+<li>浮点型</li>
+<li>日期型</li>
+</ul>
+<p>##变量的分类</p>
+<ul>
+<li>用户自定义变量：变量自定义</li>
+<li>环境变量：这种变量中主要保存的是和系统操作环境相关的数据。。变量可以自定义，但是对系统生效的环境变量名和变量作用是固定的</li>
+<li>位置参数变量：这种变量主要是用来向脚本当中传递参数或数据的，变量名不能自定义，变量作用是固定的</li>
+<li>预定义变量：是Bash中已经定义好的变量，变量名不能自定义，变量作用也是固定的</li>
+</ul>
+<p>##变量调用
+	echo $变量名
+	例如
+		echo $x</p>
+<pre><code>	name=&quot;hello&quot;
+	echo $name
+</code></pre>
+<p>##变量叠加
+	x=123
+	x=&quot;$x&quot;456
+	x=${x}789</p>
+<p>##变量查看
+	set
+	#查看所有变量
+	选项：
+		-u	如果设定此选项，调用未声明变量时会报错（默认无任何提示）
+	env
+	#查看环境变量</p>
+<p>##环境变量</p>
+<ul>
+<li>用户自定义的变量只能在当前的shell中生效</li>
+<li>环境变量在当前shell和这个shell的所有子shell中生效</li>
+<li>对系统生效的环境变量名和变量作用是固定的</li>
+</ul>
+<p>##设置环境变量
+	export 变量名=变量值
+	或
+	变量名=变量值
+	export 变量名</p>
+<p>##删除环境变量
+	unset 变量名</p>
+<p>##常用环境变量
+	HOSTNAME:主机名
+	SHELL:当前的shell
+	TERM:终端环境
+	HISTSIZEL:历史命令条数
+	SSH_CLIENT:当前操作环境是ssh连接的，这里记录客户端ip
+	SSH_TTY:ssh连接的终端时pst/1
+	USER:当前登录的用户</p>
+<p>##PATH环境变量
+	PATH变量：系统查找命令的路径</p>
+<pre><code>echo $PATH
+#查看PATH环境变量
 
-变量名必须以字母或下划线打头，名字中间只能由字母、数字和下划线组成
-变量名的长度不得超过255个字符
-变量名的有效范围必须是唯一的
-在Bash中，变量的默认类型都是字符串型
+PATH=&quot;$PATH&quot;:/root/sh
+#增加PATH变量的值
+</code></pre>
+<p>##PS1环境变量
+	PS1变量：命令提示符设置
+		\d		显示日期，格式为“星期 月 日”
+		\H		显示完整的主机名。如默认主机名“localhost.localdomain”
+		\t		显示24小时制时间，格式为“HH：MM：SS”
+		\A		显示24小时制时间，格式为“HH：MM”
+		\u		显示当前用户名
+		\w		显示当前所在目录的完整名称
+		\W		显示当前所在目录的最后一个目录
+		$		提示符。如果是root用户会显示提示符为“#”，如果是普通用户显示提示符为“$”</p>
+<p>##当前语系查询
+	locale
+	#查询当前系统语系
+	LANG	定义系统主语系的变量
+	LC_ALL	定义整体语系的变量</p>
+<p>##语系变量LANG
+	echo $LANG
+	#查看系统当前语系</p>
+<pre><code>locale -a | more
+#查看Linux支持的所有语系
+</code></pre>
+<p>##查询系统默认语系
+	cat /etc/sysconfig/i18n</p>
+<p>##位置参数变量
+	$n		n为数字，$0表示命令本身，$1-$9代表第一到第九个参数，十以上的参数需要用大括号包含，如${10}</p>
+<pre><code>$*		这个变量代表命令行中所有参数，$*把所有的参数看成一个整体
 
-##变量安装存储数据分类
+$@		这个变量也代表命令中所有的参数，不过$@把每个参数区分对待
 
-字符串型
-整型
-浮点型
-日期型
+$#		这个变量代表命令中所有参数的个数
 
-##变量的分类
 
-用户自定义变量：变量自定义
-环境变量：这种变量中主要保存的是和系统操作环境相关的数据。。变量可以自定义，但是对系统生效的环境变量名和变量作用是固定的
-位置参数变量：这种变量主要是用来向脚本当中传递参数或数据的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/31/shell编程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+例子
+num1=$1
+num2=$2
+sum=$(($num1 + $num2))
+#变量sum的和是num1加num2
+echo $sum
+#打印变量sum的值
+
+
+#!/bin/bash
+echo &quot;A total of $# parameters&quot;
+#使用$#代表所有参数的个数
+echo &quot;The parameters is:$*&quot;
+#使用$*代表所有的参数
+echo &quot;The parameters is:$@&quot;
+#使用$@也代表所有参数
+
+
+$*与$@的区别
+#!/bin/bash
+for i in &quot;$*&quot;
+#$*中的所有参数看成是一个整体，所以这个for循环只会循环一次
+	do
+		echo &quot;The parameters is:$i&quot;
+	done
+
+for y in &quot;$@&quot;
+#$@中的所有参数看成是独立的，所以&quot;$@&quot;中有几个参数，就会循环几次
+	do
+		echo &quot;The parameters is:$y&quot;
+	done
+</code></pre>
+<p>##预定义变量
+	$?		最后一次执行的命令的返回状态。如果这个变量的值是0，证明上一个命令正确执行；如果这个值为非0（具体是哪个数，由命令自己来决定），则证明上一个命令执行不正确。
+	$$		当前进程的进程号（PID）
+	$!		后台运行的最后一个进程的进程号（PID）</p>
+<p>##接受键盘输入
+	read [选项] [变量名]
+	选项
+		-p		“提示信息”：在等待read输入时，输入提示信息
+		-t		秒数：read命令会一直等待用户输入，使用此选项可以指定等待时间
+		-n		字符数：read命令只接受指定的字符数， 就会执行
+		-s		隐藏输入的数据，适用于机密信息的输入</p>
+<p>##其他
+	pstree
+	#查看进程树</p>
+
+          
         
       
     </div>
@@ -1246,26 +1390,137 @@ PATH、HISTSIZE、PS1、HOSTNAME等环境变量写入对应的环境变量配置
       
         
           
-          #Shell
-##什么是Shell
-
-Shell是一个命令解释器，他为用户提供一个向Linux内核发送请求以便运行程序的界面系统级程序，用户可以用Shell来启动、挂起、停止甚至是编写一些程序。
-Shell还是一个功能相当强大的编程语言，易编写，易调试，灵活性较强。Shell是解释执行的脚本语言，在Shell中可以直接调用Linux系统命令。
-
-##Linux支持的Shell
-	/etc/shells
-##echo输出命令
+            <p>#Shell
+##什么是Shell</p>
+<ul>
+<li>Shell是一个命令解释器，他为用户提供一个向Linux内核发送请求以便运行程序的界面系统级程序，用户可以用Shell来启动、挂起、停止甚至是编写一些程序。</li>
+<li>Shell还是一个功能相当强大的编程语言，易编写，易调试，灵活性较强。Shell是解释执行的脚本语言，在Shell中可以直接调用Linux系统命令。</li>
+</ul>
+<p>##Linux支持的Shell
+	/etc/shells</p>
+<p>##echo输出命令
 	echo [选项] [输出内容]
 	选项：
-		-e：支持反斜杠控制的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/20/Shell/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+		-e：支持反斜杠控制的字符转换</p>
+<pre><code>echo -e &quot;\e[1;31m 你好 \e[0m&quot;
+
+#30m=黑色，31m=红色，32m=绿色，33m=黄色
+#34m=蓝色，35m=洋红，36m=青色，37m=白色
+</code></pre>
+<p>##第一个脚本
+	#!/bin/bash
+	#The first program</p>
+<pre><code>echo -e &quot;\e[1;34m 第一个脚本 \e[0m&quot;
+</code></pre>
+<p>##脚本执行</p>
+<pre><code>赋予执行权限，直接运行
+	chmod 755 hello.sh
+	./hello.sh
+
+通过Bash调用执行脚本
+	bash hello.sh
+</code></pre>
+<p>##查看和设定别名
+	alias
+	#查看系统中所有的命令别名</p>
+<pre><code>alias 别名='原命令'
+#设定命令别名
+</code></pre>
+<p>##别名永久生效与删除别名
+	vi ~/.bashrc
+	#写入环境变量配置文件</p>
+<pre><code>unalias 别名
+#删除别名
+</code></pre>
+<p>##命令生效顺序
+	第一顺位执行用绝对路径或相对路径执行的命令
+	第二顺位执行别名
+	第三顺位执行Bash的内部命令
+	第四顺位执行按照$PATH环境变量定义的目录查找顺序找到的第一个命令</p>
+<p>##常用快捷键
+	ctrl+c	强制终止当前命令
+	ctrl+l	清屏
+	ctrl+a	光标移动到命令首行
+	ctrl+e	光标移动到命令尾行
+	ctrl+u	从光标所在位置删除到首行
+	ctrl+z	把命令放入后台
+	ctrl+r	在历史命令中搜索</p>
+<p>##历史命令
+	history [选项] [历史命令保存文件]
+	选项：
+		-c：清空历史命令
+		-w：把缓存中的历史命令写入历史命令保存文件~/.bash_history</p>
+<pre><code>历史命令默认会保存1000条，可以在环境变量配置文件/etc/profile中进行修改
+
+使用上、下箭头调用以前的历史命令
+使用&quot;!n&quot;重复执行第n条历史命令
+使用&quot;!!&quot;重复执行上一条命令
+使用&quot;!字符串&quot;	重复执行最后一条以该字符串开头的命令
+</code></pre>
+<p>##命令与文件的补全
+	在Bash中，命令与文件补全是非常方便与常用的功能，我们只要在输入命令或文件时，按&quot;Tab&quot;键就会自动进行补全</p>
+<p>##输出重定向</p>
+<ul>
+<li>
+<p>标准输出重定向</p>
+<pre><code>命令 &gt; 文件			以覆盖的方式，把命令的正确输出输出到指定的文件或设备中
+
+命令 &gt;&gt; 文件			以追加的方式，把命令的正确输出输出到指定的文件或设备中
+</code></pre>
+</li>
+<li>
+<p>标准错误输出重定向</p>
+<pre><code>错误命令 2&gt;文件		以覆盖的方式，把命令的错误输出输出到指定的文件或设备中
+
+错误的命令 2&gt;&gt;文件	以最佳的方式，把命令的错误输出输出到指定的文件或设备中
+</code></pre>
+</li>
+<li>
+<p>正确输出和错误输出同时保持</p>
+<pre><code>命令 &gt; 文件 2&gt;&amp;1		以覆盖的方式，把正确输出和错误输出都保存到同一个文件当中
+
+命令 &gt;&gt; 文件 2&gt;&amp;1	以追加的方式，把正确输出和错误输出都保存到同一个文件当中
+
+命令 &amp;&gt;文件			以覆盖的方式，把正确输出和错误输出都保存到同一个文件当中
+
+命令 &amp;&gt;&gt;文件			以追加的方式，把正确输出和错误输出都保存到同一个文件当中
+
+命令&gt;&gt;文件1 2&gt;&gt;文件2	把正确的输出追加到文件1中，把错误的输出追加到文件2中
+</code></pre>
+</li>
+</ul>
+<p>##输入重定向
+	wc [选项] [文件名]
+	选项：
+		-c	统计字节数
+		-w	统计单词数
+		-l	统计行数</p>
+<pre><code>命令 &lt; 文件		把文件作为命令的输入
+
+命令 &lt;&lt; 标识符
+</code></pre>
+<p>##多命令顺序执行
+	；		命令1;命令2		多个命令顺序执行，命令之间没有任何逻辑关系
+	&amp;&amp;		命令1&amp;&amp;命令2		逻辑与，当命令1正确执行则命令2才会执行，当命令1执行不正确，则命令2不会执行
+	||		命令1||命令2		逻辑或，当命令1执行不正确命令2才会执行，当命令1正确执行则命令2不会执行</p>
+<p>##管道符
+	命令1 | 命令2
+	#命令1的正确输出作为命令2的操作对象</p>
+<p>##通配符
+	?		匹配一个任意字符
+	*		匹配0个或任意多个任意字符，也就是可以匹配任何内容
+	[]		匹配中括号中任意一个字符。例如：[abc]代表一定匹配一个字符，或者是a，或者是b，或者时c
+	[-]		匹配中括号中任意一个字符，-代表一个范围。例如：[a-z]代表匹配一个小写的字符
+	[^]		逻辑非，表示匹配不是中括号内的一个字符。例如：[^0-9]代表匹配一个不是数字的字符
+##Bash中的其他特殊符号
+	'		单引号，在单引号中所有的特殊符号，如&quot;$&quot;和&quot;<code>&quot;（反引号）都没有特殊含义 	&quot;&quot;		双引号，在双引号中特殊符号都没有特殊含义，但是&quot;$&quot;、&quot;</code>&quot;和&quot;&quot;是例外，拥有&quot;调用变量的值&quot;、&quot;引用命令&quot;和&quot;转义符&quot;的特殊含义
+	``		反引号，反引号括起来的内容时系统命令，在Bash中会先执行它。和$()作用一样，不过推荐使用$(),因为反引号非常容易看错。
+	$()		和反引号作用一样，用来引用系统命令
+	#		在shel脚本中，#开头的行代表注释
+	$		用于调用变量的值，如需要调用变量name的值时，需要用$name的方式得到变量的值
+	\		转义符，跟在\之后的特殊符号将失去特殊含义，变为普通字符，如$将输出&quot;$&quot;符号，而不当做是变量引用</p>
+
+          
         
       
     </div>
@@ -1428,21 +1683,14 @@ Shell还是一个功能相当强大的编程语言，易编写，易调试，灵
       
         
           
-          
-cd /var/spool/cron
-vim root
-编辑root
-12*/1 * * * * date &gt;&gt; /tmp/backuplog.txt 2&gt;&amp;130 4 * * * cd /var/lib;tar -zcvf /home/nebula/backup/mysqlbackup.tar.gz mysql/* &gt;&gt; /tmp/backuplog.txt 2&gt;&amp;1
+            <ol>
+<li><code>cd /var/spool/cron</code></li>
+<li><code>vim root</code></li>
+<li>编辑<code>root</code>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * date &gt;&gt; /tmp/backuplog.txt 2&gt;&amp;1</div><div class="line">30 4 * * * <span class="built_in">cd</span> /var/lib;tar -zcvf /home/nebula/backup/mysqlbackup.tar.gz mysql/* &gt;&gt; /tmp/backuplog.txt 2&gt;&amp;1</div></pre></td></tr></table></figure></li>
+</ol>
 
-
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/13/Linux环境下备份MySQL/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1605,15 +1853,9 @@ vim root
       
         
           
-          1234567891011121314151617df	查看磁盘分区使用情况	-l	仅显示本地磁盘（默认）	-a	显示所有文件系统的磁盘使用情况，包含比如/proc/	-h	以1024进制计算最适合的单位显示磁盘容量	-H	以1000进制计算最适合的单位显示磁盘容量	-T	显示磁盘分区类型	-t	显示指定类型文件系统的磁盘分区	-x	不显示指定类型文件系统的磁盘分区du	统计磁盘上的文件大小	-b	以byte为单位统计文件	-k	以KB为单位统计文件	-m	以MB为单位统计文件	-h	按照102
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/12/Linux磁盘分区/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">df	查看磁盘分区使用情况</div><div class="line">	-l	仅显示本地磁盘（默认）</div><div class="line">	-a	显示所有文件系统的磁盘使用情况，包含比如/proc/</div><div class="line">	-h	以1024进制计算最适合的单位显示磁盘容量</div><div class="line">	-H	以1000进制计算最适合的单位显示磁盘容量</div><div class="line">	-T	显示磁盘分区类型</div><div class="line">	-t	显示指定类型文件系统的磁盘分区</div><div class="line">	-x	不显示指定类型文件系统的磁盘分区</div><div class="line"></div><div class="line"></div><div class="line">du	统计磁盘上的文件大小</div><div class="line">	-b	以byte为单位统计文件</div><div class="line">	-k	以KB为单位统计文件</div><div class="line">	-m	以MB为单位统计文件</div><div class="line">	-h	按照1024进制以最适合的单位统计文件</div><div class="line">	-H	按照1000进制以最适合的单位统计文件</div><div class="line">	-s	指定统计目标</div></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -1776,21 +2018,23 @@ vim root
       
         
           
+            <ol>
+<li>
+<p>将域名解析到服务器IP地址</p>
+</li>
+<li>
+<p>进入<code>/etc/httpd/conf</code>目录，修改httpd.conf文件，添加如下
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;VirtualHost xxx.xxx.xxx.xxx&gt;</div><div class="line">  		DocumentRoot /var/www/html/</div><div class="line">  		ServerName xxx.xxx.xxx.xxx</div><div class="line">&lt;/VirtualHost&gt;</div><div class="line"></div><div class="line">&lt;VirtualHost xxx.xxx.xxx.xxx&gt;</div><div class="line">    DocumentRoot /var/www/html/wordpress/</div><div class="line">    ServerName www.example.com</div><div class="line">&lt;/VirtualHost&gt;</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>重启httpd<code>service httpd restart</code></p>
+</li>
+<li>
+<p>进入WordPress的常规设置，将WordPress(URL)和站点地址（URL）修改成域名。</p>
+</li>
+</ol>
+
           
-
-将域名解析到服务器IP地址
-
-
-进入/etc/httpd/conf目录，修改httpd.conf文件，添加如下
-123456789&lt;VirtualHost xxx.xxx.xxx.xxx&gt;  		DocumentRoot /var/www/html/  		ServerName xxx.xxx.xxx.xxx&lt;/VirtualHost&gt;&lt;VirtualHost xxx.xxx.xxx.xxx&gt;    DocumentRoot /var/www/html/w
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/11/Linux绑定域名/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1953,31 +2197,86 @@ vim root
       
         
           
-          Linux将Python2.6升级至2.7
+            <h2>Linux将Python2.6升级至2.7</h2>
+<ol>
+<li>
+<p>查看当前Python版本
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># python -V  </span></div><div class="line">Python 2.6.6</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>下载Python2.7.5源码
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wget http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>解压源代码包
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># tar xvf Python-2.7.5.tgz</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>进入解压目录并安装
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># cd Python-2.7.5  </span></div><div class="line"><span class="comment"># ./configure  </span></div><div class="line"><span class="comment"># make all  </span></div><div class="line"><span class="comment"># make install  </span></div><div class="line"><span class="comment"># make clean  </span></div><div class="line"><span class="comment"># make distclean</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>将系统默认的python设置为python2.7.5
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># rm /usr/bin/python  </span></div><div class="line"><span class="comment"># ln -s /usr/local/bin/python2.7 /usr/bin/python</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>检查Python版本
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># python -V  </span></div><div class="line">Python 2.7.5</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>解决yum不能运行的问题</p>
+</li>
+</ol>
+<blockquote>
+<p>因为yum是依赖python2.6.6运行的，所以需要对yum做一些修改</p>
+</blockquote>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vim /usr/bin/yum  </span></div><div class="line">将第一行的<span class="comment">#!/usr/bin/python修改为#!/usr/bin/python2.6</span></div></pre></td></tr></table></figure></p>
+<h2>遇到问题</h2>
+<ul>
+<li>
+<p>ImportError: cannot import name HTTPSHandler
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">原因在于openssl,openssl-devel两个文件包未正确安装。用下来的命令来安装：</div><div class="line"></div><div class="line">yum install openssl -y</div><div class="line">yum install openssl-devel -y</div><div class="line"></div><div class="line">安装完成后，重新安装python:</div><div class="line"><span class="comment"># cd Python-2.7.5  </span></div><div class="line"><span class="comment"># ./configure  </span></div><div class="line"><span class="comment"># make all  </span></div><div class="line"><span class="comment"># make install  </span></div><div class="line"><span class="comment"># make clean  </span></div><div class="line"><span class="comment"># make distclean</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>RuntimeError: Compression requires the (missing) zlib module
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">yum install zlib</div><div class="line"></div><div class="line">yum install zlib-devel</div><div class="line"></div><div class="line">安装完成后，重新编译 python2.7【不需要删除，只需要重新编译，make，安装就行了】</div><div class="line"></div><div class="line"><span class="comment"># cd Python-2.7.5  </span></div><div class="line"><span class="comment"># ./configure  </span></div><div class="line"><span class="comment"># make all  </span></div><div class="line"><span class="comment"># make install  </span></div><div class="line"><span class="comment"># make clean  </span></div><div class="line"><span class="comment"># make distclean</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>缺少setuptools包</p>
+<ol>
+<li>
+<p>下载setuptools包
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wget http://pypi.python.org/packages/source/s/setuptools/setuptools-2.0.tar.gz</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>解压setuptools包
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># tar zxvf setuptools-2.0.tar.gz</span></div><div class="line"><span class="comment"># cd setuptools-2.0</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>编译setuptools
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># python setup.py build</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>开始执行setuptools安装
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># python setup.py install</span></div></pre></td></tr></table></figure></p>
+</li>
+</ol>
+</li>
+<li>
+<p>pip安装mysql-python报致命错误：my_config.h：没有那个文件或目录
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">只需要在 yum install mysql-devel</div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>安装MySQLdb</p>
+<ol>
+<li>下载MySQL-python-1.2.3.tar.gz，解压缩</li>
+<li>进入下载MySQL-python-1.2.3，编辑site.cfg，把mysql_config那一行取消注释，并改成你自己系统安装的mysql_config路径</li>
+<li>python setup.py install</li>
+</ol>
+</li>
+</ul>
 
-
-查看当前Python版本
-12# python -V  Python 2.6.6
-
-
-下载Python2.7.5源码
-1# wget http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz
-
-
-解压源代码包
-1# tar xvf Python-2.7.5.tgz
-
-
-进入解压目录并安装
-123456# cd Python-2.7.5  # ./configure  # make all  # make
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/10/Linux安装Python2.7环境/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>

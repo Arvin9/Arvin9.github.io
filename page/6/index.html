@@ -442,35 +442,106 @@ var _hmt = _hmt || [];
       
         
           
-          Struts
+            <h2>Struts</h2>
+<ul>
+<li>Struts是流行和成熟的基于MVC设计模式的Web应用程序框架</li>
+</ul>
+<h2>Struts2</h2>
+<ul>
+<li>Struts2不是一个全新的框架，因此稳定性、性能等各方面都有很好的保证，同时吸收了Struts1和WebWork两者的优势。</li>
+</ul>
+<h2>Struts2的环境需求</h2>
+<ul>
+<li>Servlet API 2.4</li>
+<li>JSP API 2.0</li>
+<li>Java 5</li>
+</ul>
+<h2>jar包</h2>
+<ul>
+<li>struts2-convention-plugin-2.3.15.3.jar 注解开发jar包</li>
+</ul>
+<h2>Struts2配置</h2>
+<ol>
+<li>配置依赖Struts2的基本jar包</li>
+<li>配置web.xml,加载Struts2过滤器</li>
+<li>加载Struts2的配置文件Struts.xml到src目录</li>
+<li>开发Struts中的Action类，类中必须有execute方法</li>
+</ol>
+<h2>web.xml——Struts2过滤器</h2>
+<ul>
+<li>任何MVC框架都需要与Web应用整合，这就不得不借助于web.xml文件，只有配置在web.xml文件中Servlet才会被应用加载。</li>
+<li>通常，所有的MVC框架都需要Web应用加载一个核心控制器，对于Struts2框架而言，需要加载StrutsPrepareAndExecuteFilter，只要Web应用负责加载StrutsPrepareAndExecuteFilter，StrutsPrepareAndExecuteFilter将会加载Struts2框架。</li>
+</ul>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line"><span class="tag">	<span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/javaee"</span></span></div><div class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"</span></span></div><div class="line"><span class="tag">	<span class="attr">version</span>=<span class="string">"3.0"</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span></div><div class="line">			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.jsp<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2>Struts.xml</h2>
+<ul>
+<li>struts2的核心配置文件，在开发过程中利用率最高。</li>
+<li>该文件主要负责管理应用中的Action映射，以及该Action包含的Result定义等。
+<ol>
+<li>全局属性</li>
+<li>用户请求和响应Action之间的对应关系</li>
+<li>Action可能用到的参数和返回结果</li>
+<li>各种拦截器配置</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>
+<p>include
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- include节点试试struts2中组件化的方式，可以将每个功能模块独立到一个xml配置文件中，然后用include节点引用 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"struts-default.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>package
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- package提供了将多个Action组织为一个模块的方式</span></div><div class="line"><span class="comment">	package的名字必须是唯一的</span></div><div class="line"><span class="comment">	package可以扩展</span></div><div class="line"><span class="comment">	当一个package扩展自另一个package时该package会在本身配置的基础上加入扩展的package的配置</span></div><div class="line"><span class="comment">	父package必须在子package前配置</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">	name:package名称</span></div><div class="line"><span class="comment">	extends:继承父package名称</span></div><div class="line"><span class="comment">	abstract:设置package的属性为抽象的，抽象的package不能定义action 值true:flase</span></div><div class="line"><span class="comment">	namespace:定义package命名空间，该命名空间影响到url的地址，例如此命名空间为/test那么访问的是地址为http://localhost:8080/struts2/test/xx.action</span></div><div class="line"><span class="comment"> --&gt;</span></div><div class="line"></div><div class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></div><div class="line"><span class="meta">	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</span></div><div class="line"><span class="meta">	"http://struts.apache.org/dtds/struts-2.3.dtd"&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line"></div><div class="line"></div><div class="line">	<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"helloAction"</span> <span class="attr">class</span>=<span class="string">"site.nebulas.action.HelloAction"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"hello"</span>&gt;</span>/jsps/helloAction.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--  </span></div><div class="line"><span class="comment">	&lt;package name="users" namespace="/users" extends="default"&gt;</span></div><div class="line"><span class="comment">		&lt;action name="*_*" class="action.&#123;1&#125;Action" method="&#123;2&#125;"&gt;</span></div><div class="line"><span class="comment">			&lt;result name="login_success"&gt;/users/Users_login_success.jsp&lt;/result&gt;</span></div><div class="line"><span class="comment">			&lt;result name="login_failure"&gt;/users/Users_login.jsp&lt;/result&gt;</span></div><div class="line"><span class="comment">			&lt;result name="logout_success"&gt;/users/Users_login.jsp&lt;/result&gt;</span></div><div class="line"><span class="comment">			&lt;result name="input"&gt;/users/Users_login.jsp&lt;/result&gt;</span></div><div class="line"><span class="comment">		&lt;/action&gt;</span></div><div class="line"><span class="comment">	&lt;/package&gt;</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>interceptors 拦截器
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!-- 定义拦截器</span></div><div class="line"><span class="comment">		name:拦截器名称</span></div><div class="line"><span class="comment">		class:拦截器类路径</span></div><div class="line"><span class="comment">	 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">"timer"</span> <span class="attr">class</span>=<span class="string">"site.nebulas.timer"</span>&gt;</span><span class="tag">&lt;/<span class="name">interceptor</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="comment">&lt;!-- 定义拦截器栈 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">interceptor-stack</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"timer"</span>&gt;</span><span class="tag">&lt;/<span class="name">interceptor-ref</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"logger"</span>&gt;</span><span class="tag">&lt;/<span class="name">interceptor-ref</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">interceptor-stack</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 定义默认的拦截器 每个Action都会自动引用，如果Action中引用了其他拦截器，默认拦截器将无效 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">default-interceptor-ref</span> <span class="attr">name</span>=<span class="string">"mystack"</span>&gt;</span><span class="tag">&lt;/<span class="name">default-interceptor-ref</span>&gt;</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>global-results
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 全局results配置 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">global-results</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"input"</span>&gt;</span>/input.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">global-results</span>&gt;</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>action
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Action配置一个Action可以被多层映射（只要action配置中的name不同）</span></div><div class="line"><span class="comment">	name:action名称</span></div><div class="line"><span class="comment">	class:对应的类路径</span></div><div class="line"><span class="comment">	method:调用Action中的方法名</span></div><div class="line"><span class="comment"> --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"hello"</span> <span class="attr">class</span>=<span class="string">"site.nebulas.Action.LoginAcrion"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>result
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 节点配置</span></div><div class="line"><span class="comment">	name:result名称和Action中返回值相同</span></div><div class="line"><span class="comment">	type:result类型不写则选用superpackage的type struts-default.xml中的默认为dispatcher</span></div><div class="line"><span class="comment"> --&gt;</span></div></pre></td></tr></table></figure></p>
+</li>
+<li>
+<p>param
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 参数设置</span></div><div class="line"><span class="comment">	name:对应Action中的get/set方法</span></div><div class="line"><span class="comment"> --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"url"</span>&gt;</span>http://www.sina.com<span class="tag">&lt;/<span class="name">param</span>&gt;</span></div></pre></td></tr></table></figure></p>
+</li>
+</ul>
+<h2>struts.properties</h2>
+<ul>
+<li>struts2框架的全局属性文件，自动加载</li>
+<li>该文件包含很多key-value对。</li>
+<li>该文件完全可以配置在struts.xml文件中，使用constant元素。</li>
+</ul>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#指定默认编码集，对于请求参数带有中午的情况应该设置GBK或GB2312，默认值UTF-8</div><div class="line">struts.i18n.encoding=GB2312</div></pre></td></tr></table></figure></p>
+<h2>Servlet API</h2>
+<ul>
+<li>doGet()</li>
+<li>doPost()</li>
+</ul>
+<h2>接收参数</h2>
+<ul>
+<li>
+<p>使用Action的属性接收参数</p>
+</li>
+<li>
+<p>使用DomainModel接收参数</p>
+</li>
+<li>
+<p>使用ModelDriven接收参数</p>
+</li>
+</ul>
+<h2>Struts2注解</h2>
 
-Struts是流行和成熟的基于MVC设计模式的Web应用程序框架
-
-Struts2
-
-Struts2不是一个全新的框架，因此稳定性、性能等各方面都有很好的保证，同时吸收了Struts1和WebWork两者的优势。
-
-Struts2的环境需求
-
-Servlet API 2.4
-JSP API 2.0
-Java 5
-
-jar包
-
-struts2-convention-plugin-2.3.15.3.jar 注解开发jar包
-
-Struts2配置
-
-配置依赖Struts2的基本jar包
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/09/struts2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -633,28 +704,50 @@ Struts2配置
       
         
           
+            <blockquote>
+<p>Servlet是JSP的前身</p>
+</blockquote>
+<blockquote>
+<p>Servlet是在服务器上运行的小程序。一个Servlet就是一个Java类，并且可以通过“请求-响应”编程模型来访问的这个驻留在服务器内存里的Servlet程序。</p>
+</blockquote>
+<h2>Servlet实现</h2>
+<ol>
+<li>继承HttpServlet</li>
+<li>重写doGet()或者doPost()方法</li>
+<li>在web.xml中注册Servlet</li>
+</ol>
+<h2>web.xml中配置</h2>
+<p><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>site.nebulas.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>servlet/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2>Servlet生命周期</h2>
+<h3>在下列时刻Servlet容器装载Servlet</h3>
+<ul>
+<li>
+<p>Servlet容器启动时自动装载某些Servlet,实现它只需要在web.xml文件中的&lt;Servlet&gt;&lt;/Servlet&gt;之间添加如下代码：&lt;loadon-startup&gt;1&lt;/loadon-startup&gt;数字越小表示优先级别越高。</p>
+</li>
+<li>
+<p>在Servlet容器启动后，客户首次向Servlet发送请求。</p>
+</li>
+<li>
+<p>Servlet类文件被更新后，重新装载Servlet。</p>
+</li>
+<li>
+<p>Servlet被装载后，Servlet容器创建一个Servlet实例并且调用Servlet的init()方法进行初始化。在Servlet的整个生命周期内，init()方法只被调用一次。</p>
+</li>
+</ul>
+<h2>Servelt与九大内置对象</h2>
+<p>| JSP对象 | 怎样获得 |
+|::|::|
+| out | resp.getWriter |
+| request | service方法中的req参数 |
+| response | service方法中的resp参数 |
+| session | req.getSession()函数 |
+| application | getServletContext()函数 |
+| exception | Throwable |
+| page | this |
+| pageContext | PageContext |
+| Config | getServletConfig()函数 |</p>
+
           
-Servlet是JSP的前身
-
-
-Servlet是在服务器上运行的小程序。一个Servlet就是一个Java类，并且可以通过“请求-响应”编程模型来访问的这个驻留在服务器内存里的Servlet程序。
-
-Servlet实现
-
-继承HttpServlet
-重写doGet()或者doPost()方法
-在web.xml中注册Servlet
-
-web.xml中配置
-12345678&lt;servlet&gt;	&lt;servlet-name&gt;hello&lt;/servlet-name&gt;
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/09/Servlet/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -817,39 +910,70 @@ web.xml中配置
       
         
           
-          ##进程
+            <p>##进程</p>
+<ul>
+<li>动态性：程序（任务）的执行过程</li>
+<li>持有资源（共享内存，共享文件）和线程</li>
+</ul>
+<p>##线程</p>
+<ul>
+<li>线程是系统中最小的执行单元</li>
+<li>同一进程中有多个线程</li>
+<li>线程共享进程的资源</li>
+<li>互斥</li>
+<li>同步</li>
+</ul>
+<p>##Java支持</p>
+<ul>
+<li>class Thread</li>
+<li>interface Runnable</li>
+<li>public void run()</li>
+</ul>
+<p>##Thread常用方法</p>
+<ul>
+<li>Thread():创建线程</li>
+<li>Thread(String name):创建线程</li>
+<li>Thread(Runnable target):创建线程</li>
+<li>Thread(Runnable target,String name):创建线程</li>
+<li>void start():启动线程</li>
+<li>static void sleep(long millis):线程休眠</li>
+<li>static void sleep(long millis,int nanos):线程休眠</li>
+<li>void join():使其他线程等待当前线程终止</li>
+<li>void join(long millis):使其他线程等待当前线程终止</li>
+<li>void join(long millis,int nanos):使其他线程等待当前线程终止</li>
+<li>static void yield():当前运行线程释放处理器资源</li>
+<li>static Thread currentThread():返回当前运行的线程引用</li>
+<li>可见性及volatile关键字</li>
+<li>线程的互斥synchronized</li>
+<li>线程的同步wait/notifyAll</li>
+</ul>
+<p>##Java Memory Mode</p>
+<ul>
+<li>JMM描述了Java线程如何通过内存进行交互</li>
+<li>happens-before</li>
+<li>synchonized,volatile &amp; final</li>
+</ul>
+<p>##Lock &amp; Condition</p>
+<ul>
+<li>Java锁机制和等待条件的高层实现</li>
+<li>java.util.concurrent.locks</li>
+</ul>
+<p>##线程的安全性</p>
+<ul>
+<li>原子性与可见性</li>
+<li>java.util.concurrent.atomic</li>
+<li>synchronized &amp; volatile</li>
+<li>DeadLocks</li>
+</ul>
+<p>##多线程编程常用的交互模型</p>
+<ul>
+<li>Producer-Consumer模型</li>
+<li>Read-Write Lock模型</li>
+<li>Future模型</li>
+<li>Worker Thread模型</li>
+</ul>
 
-动态性：程序（任务）的执行过程
-持有资源（共享内存，共享文件）和线程
-
-##线程
-
-线程是系统中最小的执行单元
-同一进程中有多个线程
-线程共享进程的资源
-互斥
-同步
-
-##Java支持
-
-class Thread
-interface Runnable
-public void run()
-
-##Thread常用方法
-
-Thread():创建线程
-Thread(String name):创建线程
-Thread(Runnable target):创建线程
-Thread(Runnable t
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/08/多线程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1012,31 +1136,64 @@ Thread(Runnable t
       
         
           
+            <blockquote>
+<p>在学习WebSocket的时候，发现node.js的socket.io模块对WebSocket进行了封装更加方便开发者使用，便开始学习socket.io并以在线聊天室作为学习项目。</p>
+</blockquote>
+<h3>开发语言、环境</h3>
+<ul>
+<li>node.js</li>
+<li>win7</li>
+</ul>
+<h3>node.js</h3>
+<blockquote>
+<p>node.js是一个JavaScript运行环境，简单的说就是运行在服务端的node.js</p>
+</blockquote>
+<ul>
+<li>基础教程推荐<a href="http://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="external">Node.js菜鸟教程</a></li>
+<li>安装包推荐4.6.0LTS<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js官网</a></li>
+<li>本项目代码主要参考<a href="http://socket.io/get-started/chat/" target="_blank" rel="external">socket.io官网的例子</a></li>
+<li>界面则采用CSS框架<a href="http://v3.bootcss.com/" target="_blank" rel="external">bootstrap</a></li>
+</ul>
+<blockquote>
+<p>node.js是通过事件和回调来支持并发的，所以很好的理解它的事件机制有助于接下来的编程。</p>
+</blockquote>
+<h3>业务逻辑</h3>
+<ol>
+<li>用户需登录后才能发生消息，如未登陆则弹出登陆框</li>
+<li>用户发送消息，服务端接收后转发给所有用户</li>
+<li>当有用户离线，服务端群发询问还有谁在线，并更新用户列表</li>
+</ol>
+<h3>项目目录结构</h3>
+<pre><code>chat
+  --node_modules
+  --static
+  --views
+  app.js
+</code></pre>
+<ul>
+<li>node_modules主要是存放node.js的各种模块</li>
+<li>static用来存放一些静态资源，这里放的是bootstrap</li>
+<li>views用来存放页面，本项目放的是chat.html</li>
+<li>app.js则是服务端，监听各种事件并处理</li>
+</ul>
+<h3>express模块</h3>
+<blockquote>
+<p>express是一个基于Node.js平台的极简、灵活的 web 应用开发框架，它提供一系列强大的特性，帮助你创建各种 Web 和移动设备应用。</p>
+</blockquote>
+<ul>
+<li>本聊天室的应用</li>
+</ul>
+<p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>).Server(app);</div><div class="line"><span class="keyword">var</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(http);</div><div class="line"></div><div class="line"><span class="keyword">var</span> userList = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"></div><div class="line">app.use(<span class="string">"/static"</span>,express.static(__dirname + <span class="string">'/static'</span>));</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</div><div class="line">  res.sendFile(__dirname + <span class="string">'/views/chat.html'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3>代码</h3>
+<blockquote>
+<p>代码主要在chat.html和app.js两个文件</p>
+</blockquote>
+<h4>app.js</h4>
+<p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>).Server(app);</div><div class="line"><span class="keyword">var</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(http);</div><div class="line"></div><div class="line"><span class="keyword">var</span> userList = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"></div><div class="line">app.use(<span class="string">"/static"</span>,express.static(__dirname + <span class="string">'/static'</span>));</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</div><div class="line">  res.sendFile(__dirname + <span class="string">'/views/chat.html'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">socket</span>)</span>&#123;</div><div class="line">	<span class="comment">//绑定用户登录事件</span></div><div class="line">	socket.on(<span class="string">'userLogin'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">userName</span>)</span>&#123;</div><div class="line">	  userList.push(userName);</div><div class="line">	  io.emit(<span class="string">'userLoginList'</span>, userList);</div><div class="line">	&#125;);</div><div class="line">	<span class="comment">//绑定用户发送消息事件</span></div><div class="line">	socket.on(<span class="string">'chat message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">userName, msg</span>)</span>&#123;</div><div class="line">	  <span class="comment">//</span></div><div class="line">	  io.emit(<span class="string">'chat message'</span>, userName, msg);</div><div class="line">	&#125;);</div><div class="line">	<span class="comment">//绑定断开连接事件</span></div><div class="line">	socket.on(<span class="string">'disconnect'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	  <span class="built_in">console</span>.log(<span class="string">'disconnect'</span>);</div><div class="line">	  <span class="comment">//有人断开连接，询问还有谁在线，更新用户列表</span></div><div class="line">	  userList = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">	  io.emit(<span class="string">'who_online'</span>);</div><div class="line">	&#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">http.listen(<span class="number">8765</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'listening on *:8765'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h4>chat.html</h4>
+<p><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">title</span>&gt;</span>聊天室<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1"</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/static/css/bootstrap.min.css"</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/static/css/bootstrap-theme.min.css"</span>&gt;</span></div><div class="line"></div><div class="line">	  <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page-header"</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>聊天室 <span class="tag">&lt;<span class="name">small</span>&gt;</span>——畅所欲言<span class="tag">&lt;/<span class="name">small</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-3 panel panel-default"</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span> <span class="attr">id</span>=<span class="string">"userListDiv"</span> <span class="attr">style</span>=<span class="string">"overflow-y:auto;height:350px;"</span>&gt;</span></div><div class="line"></div><div class="line">	          <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-striped"</span> <span class="attr">id</span>=<span class="string">"userList"</span>&gt;</span></div><div class="line"></div><div class="line">	          <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">	      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-9 panel panel-default"</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span> <span class="attr">id</span>=<span class="string">"messagesDiv"</span> <span class="attr">style</span>=<span class="string">"overflow-y:auto;height:350px;"</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-striped"</span> <span class="attr">id</span>=<span class="string">"messages"</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"></div><div class="line">	        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">	    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"form"</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-offset-3 col-xs-7"</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"m"</span> <span class="attr">class</span>=<span class="string">"form-control"</span>  <span class="attr">autocomplete</span>=<span class="string">"off"</span> /&gt;</span></div><div class="line">	        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-1"</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span>&gt;</span>Send<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">	  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myModal"</span> <span class="attr">class</span>=<span class="string">"modal fade bs-example-modal-sm"</span> <span class="attr">tabindex</span>=<span class="string">"-1"</span> <span class="attr">role</span>=<span class="string">"dialog"</span> <span class="attr">aria-labelledby</span>=<span class="string">"mySmallModalLabel"</span> <span class="attr">aria-hidden</span>=<span class="string">"true"</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-dialog modal-sm"</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-content"</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-header"</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"close"</span> <span class="attr">data-dismiss</span>=<span class="string">"modal"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">aria-hidden</span>=<span class="string">"true"</span>&gt;</span>&amp;times;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"sr-only"</span>&gt;</span>Close<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;<span class="name">h4</span> <span class="attr">class</span>=<span class="string">"modal-title"</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-body"</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"form"</span> <span class="attr">role</span>=<span class="string">"form"</span>&gt;</span></div><div class="line">	            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></div><div class="line">	              <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> <span class="attr">id</span>=<span class="string">"inputUserName"</span> <span class="attr">placeholder</span>=<span class="string">"用户名"</span>&gt;</span></div><div class="line">	            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"modal-footer"</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span> <span class="attr">data-dismiss</span>=<span class="string">"modal"</span>&gt;</span>取消<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">	          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> <span class="attr">id</span>=<span class="string">"login"</span>&gt;</span>确定<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">	        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">	  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/socket.io/socket.io.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/js/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/js/bootstrap.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	    <span class="keyword">var</span> userName = <span class="string">''</span>;</span></div><div class="line"><span class="javascript">	    <span class="keyword">var</span> userList = <span class="keyword">new</span> <span class="built_in">Array</span>();</span></div><div class="line"><span class="javascript">	    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">	      $(<span class="string">'#myModal'</span>).modal(<span class="string">'show'</span>);</span></div><div class="line"><span class="undefined">	    &#125;);</span></div><div class="line"><span class="javascript">	    <span class="comment">//用户登录</span></span></div><div class="line"><span class="javascript">	    $(<span class="string">'#login'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">	      userName = $(<span class="string">'#inputUserName'</span>).val();</span></div><div class="line"><span class="javascript">	      <span class="keyword">if</span>(!userName) <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="javascript">	      socket.emit(<span class="string">'userLogin'</span>, userName);</span></div><div class="line"><span class="javascript">	      $(<span class="string">'#myModal'</span>).modal(<span class="string">'hide'</span>);</span></div><div class="line"><span class="undefined">	    &#125;);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">	    <span class="keyword">var</span> socket = io();</span></div><div class="line"><span class="javascript">	    <span class="comment">//用户发送消息</span></span></div><div class="line"><span class="javascript">	    $(<span class="string">'form'</span>).submit(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">	      <span class="keyword">if</span>(!userName) &#123;</span></div><div class="line"><span class="javascript">	        $(<span class="string">'#myModal'</span>).modal(<span class="string">'show'</span>);</span></div><div class="line"><span class="javascript">	        <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">	      &#125;</span></div><div class="line"><span class="javascript">	      socket.emit(<span class="string">'chat message'</span>, userName, $(<span class="string">'#m'</span>).val());</span></div><div class="line"><span class="javascript">	      $(<span class="string">'#m'</span>).val(<span class="string">''</span>);</span></div><div class="line"><span class="javascript">	      <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">	    &#125;);</span></div><div class="line"><span class="javascript">	    <span class="comment">//绑定用户登录列表事件</span></span></div><div class="line"><span class="javascript">	    socket.on(<span class="string">'userLoginList'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">userList</span>)</span>&#123;</span></div><div class="line"><span class="javascript">	      $(<span class="string">'#userList'</span>).empty();</span></div><div class="line"><span class="javascript">	      <span class="keyword">for</span> (i=<span class="number">0</span>, len=userList.length; i&lt;len; i++)&#123;</span></div><div class="line"><span class="javascript">	        $(<span class="string">'#userList'</span>).append($(<span class="string">'&lt;tr&gt;'</span>).append($(<span class="string">'&lt;td&gt;'</span>).text(userList[i])));</span></div><div class="line"><span class="undefined">	      &#125;</span></div><div class="line"><span class="javascript">	      <span class="built_in">document</span>.getElementById(<span class="string">'userListDiv'</span>).scrollTop=<span class="built_in">document</span>.getElementById(<span class="string">'userListDiv'</span>).scrollHeight;</span></div><div class="line"><span class="undefined">	    &#125;);</span></div><div class="line"><span class="javascript">	    <span class="comment">//绑定用户发送信息事件</span></span></div><div class="line"><span class="javascript">	    socket.on(<span class="string">'chat message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">userName,msg</span>)</span>&#123;</span></div><div class="line"><span class="javascript">	      $(<span class="string">'#messages'</span>).append($(<span class="string">'&lt;tr&gt;'</span>).append($(<span class="string">'&lt;td&gt;'</span>).html(showMessage(userName,msg))));</span></div><div class="line"><span class="javascript">	      <span class="built_in">document</span>.getElementById(<span class="string">'messagesDiv'</span>).scrollTop=<span class="built_in">document</span>.getElementById(<span class="string">'messagesDiv'</span>).scrollHeight;</span></div><div class="line"><span class="undefined">	    &#125;);</span></div><div class="line"><span class="javascript">	    <span class="comment">//绑定用户在线事件</span></span></div><div class="line"><span class="javascript">	    socket.on(<span class="string">'who_online'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">	      socket.emit(<span class="string">'userLogin'</span>, userName);</span></div><div class="line"><span class="undefined">	    &#125;);</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">	    <span class="function"><span class="keyword">function</span> <span class="title">showMessage</span>(<span class="params">userName,msg</span>)</span>&#123;</span></div><div class="line"><span class="javascript">	      <span class="keyword">var</span> content = <span class="string">'&lt;span class="label label-info"&gt;'</span>+ currentTime() +<span class="string">'&lt;/span&gt;'</span>+</span></div><div class="line"><span class="xml">	      '<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"label label-primary"</span>&gt;</span>'+ userName +'<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span>' +</span></div><div class="line"><span class="javascript">	      <span class="string">'&lt;strong&gt;'</span>+ msg +<span class="string">'&lt;/strong&gt;'</span>;</span></div><div class="line"><span class="javascript">	      <span class="keyword">return</span> content;</span></div><div class="line"><span class="undefined">	    &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">	    <span class="function"><span class="keyword">function</span> <span class="title">currentTime</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">	      <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span></div><div class="line"><span class="javascript">	      <span class="keyword">var</span> year = date.getFullYear();</span></div><div class="line"><span class="javascript">	      <span class="keyword">var</span> month = date.getMonth()+<span class="number">1</span>;</span></div><div class="line"><span class="javascript">	      <span class="keyword">var</span> d = date.getDate();</span></div><div class="line"><span class="javascript">	      <span class="keyword">var</span> h = date.getHours();</span></div><div class="line"><span class="javascript">	      <span class="keyword">var</span> m = date.getMinutes();</span></div><div class="line"><span class="javascript">	      <span class="keyword">var</span> s = date.getSeconds();</span></div><div class="line"><span class="javascript">	      month = month&gt;<span class="number">9</span>?month:(<span class="string">'0'</span>+month);</span></div><div class="line"><span class="javascript">	      d = d&gt;<span class="number">9</span>?d:(<span class="string">'0'</span>+d);</span></div><div class="line"><span class="javascript">	      h = h&gt;<span class="number">9</span>?h:(<span class="string">'0'</span>+h);</span></div><div class="line"><span class="javascript">	      m = m&gt;<span class="number">9</span>?m:(<span class="string">'0'</span>+m);</span></div><div class="line"><span class="javascript">	      s = s&gt;<span class="number">9</span>?s:(<span class="string">'0'</span>+s);</span></div><div class="line"><span class="javascript">	      <span class="keyword">var</span> time = <span class="string">''</span>+year+<span class="string">'-'</span>+month+<span class="string">'-'</span>+d+<span class="string">' '</span>+h+<span class="string">':'</span>+m+<span class="string">':'</span>+s;</span></div><div class="line"><span class="javascript">	      <span class="keyword">return</span> time;      </span></div><div class="line"><span class="undefined">	    &#125;</span></div><div class="line"><span class="undefined">	  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+
           
-在学习WebSocket的时候，发现node.js的socket.io模块对WebSocket进行了封装更加方便开发者使用，便开始学习socket.io并以在线聊天室作为学习项目。
-
-开发语言、环境
-
-node.js
-win7
-
-node.js
-
-node.js是一个JavaScript运行环境，简单的说就是运行在服务端的node.js
-
-
-基础教程推荐Node.js菜鸟教程
-安装包推荐4.6.0LTSNode.js官网
-本项目代码主要参考socket.io官网的例子
-界面则采用CSS框架bo
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/07/在线聊天室/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1177,19 +1334,55 @@ node.js是一个JavaScript运行环境，简单的说就是运行在服务端的
       
         
           
-          #时限调度算法
-###时限调度算法是一种以满足用户要求的时限为调度原则的算法。在实时系统中的用户要求时限有两种，即处理开始时限和处理结束时限。时限调度算法可以使用任一种时限。时限调度算法可用于周期性调度与非周期性调度两种。
-###时限调度算法所需要的相关输入信息有以下几种：
+            <p>#时限调度算法
+###时限调度算法是一种以满足用户要求的时限为调度原则的算法。在实时系统中的用户要求时限有两种，即处理开始时限和处理结束时限。时限调度算法可以使用任一种时限。时限调度算法可用于周期性调度与非周期性调度两种。</p>
+<p>###时限调度算法所需要的相关输入信息有以下几种：</p>
+<ol>
+<li>任务就绪时间或事件到达时间指的是进程进入就绪状态，可以被调度执行的时间。对于周期性任务来说，该时间是可以预知的，而且时间间隔是周期性的。对于非周期性任务来说，这些时间可能是可预知的，但大部分时候是不可预知的，需要事件发生来驱动。</li>
+<li>开始时限处理机必须开始对任务进行处理的时限。</li>
+<li>完成时限指的是任务必须完成的时间</li>
+<li>处理时间完成相关任务所需占用处理机的时间。</li>
+<li>资源需求除了处理机之处，另外还需要的其他硬软件资源。如果所处理的任务有处理机之外的其他资源需求，则调度算法要相对复杂得多。</li>
+<li>优先级可由分析计算后获得，也可根据时限要求，由用户指定。
+时限调度算法的基本思想是：按用户的时限要求顺序设置优先级，优先级高者占据处理机，也就是说，时限要求最近的任务优先占有处理机。时限调度是抢先式的。抢先式时限调度算法必须把新到达任务的时限要求和当前正在执行任务的时限要求进行比较，如果新到达任务的时限要求更近，则应执行新到达的任务。
+###下面是用时限调度算法调度周期性实时任务的例子。</li>
+</ol>
+<blockquote>
+<p>设实时系统从两个不同的数据源DA和DB周期性地收集数据并进行处理，其中DA的时限要求以30 ms为周期，DB的时限要求以75 ms为周期。设DA所需处理时限为15 ms，DB所需处理时限为38 ms，则与DA和DB有关进程的事件发生时限（就绪时限），执行时限以及结束时限如图4.11所示。</p>
+</blockquote>
+<p><img src="http://www.nebulas.site/wp-content/uploads/2016/05/%E5%9B%BE%E7%89%871.png" alt="">图4.11 周期性任务的预计发生、执行与结束时限</p>
+<blockquote>
+<p>如果使用时限调度算法，并按最近结束时限优先级最高的方法进行排列，可以给出图4.11所示各进程的调度顺序和相对时间。（如图4.12）
+<img src="http://www.nebulas.site/wp-content/uploads/2016/05/%E5%9B%BE%E7%89%872.png" alt="">
+图4.12 时限调度算法给出的调度顺序</p>
+</blockquote>
+<blockquote>
+<p>如图4.12所示，在开始时，进程DA（1）和DB（1）的结束时限比较结果，DA（1）的结束时限最近，从而调度进程DA（1）执行。DA（1）的实际结束时间为15，小于30的时限要求。紧接着，进程DB（1）被调度执行。在执行到时间为30 ms时，进程DA（2）进入就绪状态。由于DA（2）的结束时限为60，近于DB（1）的结束时限75，从而DB（1）被DA（2）抢先。DA（2）的实际结束时间为45，小于要求时限60。</p>
+</blockquote>
+<blockquote>
+<p>在DA（2）结束之后，DB（1）再次占有处理机继续执行，当DB（1）执行到时间为60 ms时，进程DA（3）进入就绪状态。但是，由于DA（3）的结束时限为90，远于DB（1）的结束时限75，从而DB（1）继续执行。
+时限调度算法也可以用于非周期性任务调度。
+频率单调调度算法是一种被广泛用于多周期性实时处理的调度算法。
+频率单调调度算法的基本原理是频率越低（周期越长）的任务的优先级越低。
+另外，设任务周期问题，任务的执行时间为C，则使用频率单调调度算法的必要条件是C≤ T。</p>
+</blockquote>
+<blockquote>
+<p>已经证明，对于n(n≥1)个周期的不同任务来说，设每个周期为Ti，其相应任务的执行时间为Ci，则使用频率单调调度算法的充分条件是</p>
+</blockquote>
+<blockquote>
+<p><img src="http://www.nebulas.site/wp-content/uploads/2016/05/%E5%9B%BE%E7%89%873.png" alt=""></p>
+</blockquote>
+<blockquote>
+<p>例如，对于由3个周期组成的实时任务序列来说，其执行时间与周期之比应是：</p>
+</blockquote>
+<blockquote>
+<p><img src="http://www.nebulas.site/wp-content/uploads/2016/05/%E5%9B%BE%E7%89%874.png" alt=""></p>
+</blockquote>
+<blockquote>
+<p>如果进程执行时间与周期比之和大于n(21/n-1)，则用户所要求的时限无法保证。</p>
+</blockquote>
 
-任务就绪时间或事件到达时间指的是进程进入就绪状态，可以被调度执行的时间。对于周期性任务来说，该时间是可以预知的，而且时间间隔是周期性的。对于非周期性任务来说，这些时间可能是可预知的，但大部分时候是不可预知的，需要事件发生来
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/05/11/时限调度算法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1330,29 +1523,22 @@ node.js是一个JavaScript运行环境，简单的说就是运行在服务端的
       
         
           
-          #数据分析
-##什么是数据分析
-
-基于现有的业务知识和统计学基础知识及基本思想的理解与掌握，通过数据库及统计分析工具对数据的调取与处理、分析，达到对现有问题or主题的探索与剖析，最终实现业务问题的解决or优化。
-
-##数据分析需要的知识、技能及工具
-
-业务知识
-业务分析能力
-数据分析能力
-数据提取能力
-数据处理及展现能力
-较强的沟通能力
-
+            <p>#数据分析
+##什么是数据分析</p>
+<ul>
+<li>基于现有的业务知识和统计学基础知识及基本思想的理解与掌握，通过数据库及统计分析工具对数据的调取与处理、分析，达到对现有问题or主题的探索与剖析，最终实现业务问题的解决or优化。</li>
+</ul>
+<p>##数据分析需要的知识、技能及工具</p>
+<ul>
+<li>业务知识</li>
+<li>业务分析能力</li>
+<li>数据分析能力</li>
+<li>数据提取能力</li>
+<li>数据处理及展现能力</li>
+<li>较强的沟通能力</li>
+</ul>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/21/数据分析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1493,27 +1679,51 @@ node.js是一个JavaScript运行环境，简单的说就是运行在服务端的
       
         
           
-          #排序算法
+            <p>#排序算法
+<img src="http://www.nebulas.site/wp-content/uploads/2016/04/640.webp_.jpg" alt="">
+##冒泡排序</p>
+<ul>
+<li>相邻的数据进行两两比较，小数放在前面，大数放在后面，这样一趟下来，最小的数就被排在了第一位，第二趟也是如此，如此类推，直到所有的数据排序完成。</li>
+</ul>
+<p>##选择排序</p>
+<ul>
+<li>先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</li>
+</ul>
+<p>##插入排序</p>
+<ul>
+<li>将数据分为两部分，有序部分与无序部分，一开始有序部分包含第1个元素，依次将无序的元素插入到有序部分，直到所有元素有序。插入排序又分为直接插入排序、二分插入排序、链表插入等，这里只讨论直接插入排序。它是稳定的排序算法，时间复杂度为O(n^2)。</li>
+</ul>
+<p>##快速排序</p>
+<ul>
+<li>快速排序是目前在实践中非常高效的一种排序算法，它不是稳定的排序算法，平均时间复杂度为O(nlogn)，最差情况下复杂度为O(n^2)。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</li>
+</ul>
+<p>##归并排序</p>
+<ul>
+<li>
+<p>归并排序具体工作原理如下（假设序列共有n个元素）：</p>
+<ul>
+<li>将序列每相邻两个数字进行归并操作（merge)，形成floor(n/2)个序列，排序后每个序列包含两个元素</li>
+<li>将上述序列再次归并，形成floor(n/4)个序列，每个序列包含四个元素</li>
+<li>重复步骤2，直到所有元素排序完毕</li>
+<li>归并排序是稳定的排序算法，其时间复杂度为O(nlogn)，如果是使用链表的实现的话，空间复杂度可以达到O(1)，但如果是使用数组来存储数据的话，在归并的过程中，需要临时空间来存储归并好的数据，所以空间复杂度为O(n)</li>
+</ul>
+</li>
+</ul>
+<p>##堆排序</p>
+<ul>
+<li>
+<p>堆排序的时间复杂度为O(nlogn)</p>
+<ul>
+<li>算法原理（以最大堆为例）</li>
+<li>先将初始数据R[1..n]建成一个最大堆，此堆为初始的无序区</li>
+<li>再将关键字最大的记录R[1]（即堆顶）和无序区的最后一个记录R[n]交换，由此得到新的无序区R[1..n-1]和有序区R[n]，且满足R[1..n-1].keys≤R[n].key</li>
+<li>由于交换后新的根R[1]可能违反堆性质，故应将当前无序区R[1..n-1]调整为堆。</li>
+<li>重复2、3步骤，直到无序区只有一个元素为止。</li>
+</ul>
+</li>
+</ul>
 
-##冒泡排序
-
-相邻的数据进行两两比较，小数放在前面，大数放在后面，这样一趟下来，最小的数就被排在了第一位，第二趟也是如此，如此类推，直到所有的数据排序完成。
-
-##选择排序
-
-先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。
-
-##插入排序
-
-将数据分为两部分，有序部分与无序部分，一开始有序部分包含第1个元素，依次将无序的元素插入到有序部分，直到所有元素有序
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/21/排序算法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1654,7 +1864,7 @@ node.js是一个JavaScript运行环境，简单的说就是运行在服务端的
       
         
           
-          #MySQL数据类型
+            <p>#MySQL数据类型
 ##整型
 &lt;table&gt;
 	&lt;tr&gt;
@@ -1666,15 +1876,176 @@ node.js是一个JavaScript运行环境，简单的说就是运行在服务端的
 	&lt;/tr&gt;
 	&lt;tr&gt;
 		&lt;td&gt;TINYINT&lt;/td&gt;
-		&lt;td&gt;
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/21/MySQL数据类型/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+		&lt;td&gt;1 字节&lt;/td&gt;
+		&lt;td&gt;(-128，127)&lt;/td&gt;
+		&lt;td&gt;(0，255)	&lt;/td&gt;
+		&lt;td&gt;小整数值&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;SMALLINT&lt;/td&gt;
+		&lt;td&gt;2 字节&lt;/td&gt;
+		&lt;td&gt;(-32 768，32 767)&lt;/td&gt;
+		&lt;td&gt;(0，65 535)&lt;/td&gt;
+		&lt;td&gt;大整数值&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;MEDIUMINT&lt;/td&gt;
+		&lt;td&gt;3 字节&lt;/td&gt;
+		&lt;td&gt;(-8 388 608，8 388 607)&lt;/td&gt;
+		&lt;td&gt;(0，16 777 215)&lt;/td&gt;
+		&lt;td&gt;大整数值&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;INT或INTEGER&lt;/td&gt;
+		&lt;td&gt;4 字节&lt;/td&gt;
+		&lt;td&gt;(-2 147 483 648，2 147 483 647)&lt;/td&gt;
+		&lt;td&gt;(0，4 294 967 295)&lt;/td&gt;
+		&lt;td&gt;大整数值&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;BIGINT&lt;/td&gt;
+		&lt;td&gt;8 字节&lt;/td&gt;
+		&lt;td&gt;(-9 233 372 036 854 775 808，9 223 372 036 854 775 807)&lt;/td&gt;
+		&lt;td&gt;(0，18 446 744 073 709 551 615)&lt;/td&gt;
+		&lt;td&gt;极大整数值&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</p>
+<p>##浮点型
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td width=&quot;10%&quot;&gt;类型&lt;/td&gt;
+		&lt;td width=&quot;10%&quot;&gt;大小&lt;/td&gt;
+		&lt;td width=&quot;30%&quot;&gt;范围（有符号）&lt;/td&gt;
+		&lt;td width=&quot;30%&quot;&gt;范围（无符号）&lt;/td&gt;
+		&lt;td width=&quot;20%&quot;&gt;用途&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;FLOAT&lt;/td&gt;
+		&lt;td&gt;4 字节&lt;/td&gt;
+		&lt;td&gt;(-3.402 823 466 E+38，1.175 494 351 E-38)，0，(1.175 494 351 E-38，3.402 823 466 351 E+38)&lt;/td&gt;
+		&lt;td&gt;0，(1.175 494 351 E-38，3.402 823 466 E+38)&lt;/td&gt;
+		&lt;td&gt;单精度&lt;br&gt;浮点数值&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;DOUBLE&lt;/td&gt;
+		&lt;td&gt;8 字节&lt;/td&gt;
+		&lt;td&gt;(1.797 693 134 862 315 7 E+308，2.225 073 858 507 201 4 E-308)，0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308)&lt;/td&gt;
+		&lt;td&gt;0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308)&lt;/td&gt;
+		&lt;td&gt;双精度&lt;br&gt;浮点数值&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;DECIMAL&lt;/td&gt;
+		&lt;td&gt;对DECIMAL(M,D) ，如果M&gt;D，为M+2否则为D+2&lt;/td&gt;
+		&lt;td&gt;依赖于M和D的值&lt;/td&gt;
+		&lt;td&gt;依赖于M和D的值&lt;/td&gt;
+		&lt;td&gt;小数值&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</p>
+<p>##日期和时间类型</p>
+<p>&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th width=&quot;10%&quot;&gt;类型&lt;/th &gt;
+		&lt;th width=&quot;10%&quot;&gt;大小&lt;br&gt;(字节)&lt;/th &gt;
+		&lt;th width=&quot;40%&quot;&gt;范围&lt;/th &gt;
+		&lt;th &gt;格式&lt;/th &gt;
+		&lt;th &gt;用途&lt;/th &gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td width=&quot;10%&quot;&gt;DATE&lt;/td&gt;
+		&lt;td width=&quot;10%&quot;&gt;3&lt;/td&gt;
+		&lt;td width=&quot;40%&quot;&gt;1000-01-01/9999-12-31&lt;/td&gt;
+		&lt;td&gt;YYYY-MM-DD&lt;/td&gt;
+		&lt;td&gt;日期值&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td width=&quot;10%&quot;&gt;TIME&lt;/td&gt;
+		&lt;td width=&quot;10%&quot;&gt;3&lt;/td&gt;
+		&lt;td width=&quot;40%&quot;&gt;'-838:59:59'/'838:59:59'&lt;/td&gt;
+		&lt;td&gt;HH:MM:SS&lt;/td&gt;
+		&lt;td&gt;时间值或持续时间&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td width=&quot;10%&quot;&gt;YEAR&lt;/td&gt;
+		&lt;td width=&quot;10%&quot;&gt;1&lt;/td&gt;
+		&lt;td width=&quot;40%&quot;&gt;1901/2155&lt;/td&gt;
+		&lt;td&gt;YYYY&lt;/td&gt;
+		&lt;td&gt;年份值&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td width=&quot;10%&quot;&gt;DATETIME&lt;/td&gt;
+		&lt;td width=&quot;10%&quot;&gt;8&lt;/td&gt;
+		&lt;td width=&quot;40%&quot;&gt;1000-01-01 00:00:00/9999-12-31 23:59:59&lt;/td&gt;
+		&lt;td&gt;YYYY-MM-DD HH:MM:SS&lt;/td&gt;
+		&lt;td&gt;混合日期和时间值&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td width=&quot;10%&quot;&gt;TIMESTAMP&lt;/td&gt;
+		&lt;td width=&quot;10%&quot;&gt;8&lt;/td&gt;
+		&lt;td width=&quot;40%&quot;&gt;1970-01-01 00:00:00/2037 年某时&lt;/td&gt;
+		&lt;td&gt;YYYYMMDD HHMMSS&lt;/td&gt;
+		&lt;td&gt;混合日期和时间值，时间戳&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</p>
+<p>##字符串类型
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th width=&quot;20%&quot;&gt;类型&lt;/th&gt;
+		&lt;th width=&quot;25%&quot;&gt;大小&lt;/th&gt;
+		&lt;th width=&quot;55%&quot;&gt;用途&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;CHAR&lt;/td&gt;
+		&lt;td&gt;0-255字节&lt;/td&gt;
+		&lt;td&gt;定长字符串&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;VARCHAR&lt;/td&gt;
+		&lt;td&gt;0-65535 字节&lt;/td&gt;
+		&lt;td&gt;变长字符串&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;TINYBLOB&lt;/td&gt;
+		&lt;td&gt;0-255字节&lt;/td&gt;
+		&lt;td&gt;不超过 255 个字符的二进制字符串&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;TINYTEXT&lt;/td&gt;
+		&lt;td&gt;0-255字节&lt;/td&gt;
+		&lt;td&gt;短文本字符串&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;BLOB&lt;/td&gt;
+		&lt;td&gt;0-65 535字节&lt;/td&gt;
+		&lt;td&gt;二进制形式的长文本数据&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;TEXT&lt;/td&gt;
+		&lt;td&gt;0-65 535字节&lt;/td&gt;
+		&lt;td&gt;长文本数据&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;MEDIUMBLOB&lt;/td&gt;
+		&lt;td&gt;0-16 777 215字节&lt;/td&gt;
+		&lt;td&gt;二进制形式的中等长度文本数据&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;MEDIUMTEXT&lt;/td&gt;
+		&lt;td&gt;0-16 777 215字节&lt;/td&gt;
+		&lt;td&gt;中等长度文本数据&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;LONGBLOB&lt;/td&gt;
+		&lt;td&gt;0-4 294 967 295字节&lt;/td&gt;
+		&lt;td&gt;二进制形式的极大文本数据&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;LONGTEXT&lt;/td&gt;
+		&lt;td&gt;0-4 294 967 295字节&lt;/td&gt;
+		&lt;td&gt;极大文本数据&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</p>
+
+          
         
       
     </div>
@@ -1815,38 +2186,46 @@ node.js是一个JavaScript运行环境，简单的说就是运行在服务端的
       
         
           
-          #MySQL维护和优化
+            <p>#MySQL维护和优化</p>
+<ul>
+<li>维护数据字典</li>
+<li>维护索引</li>
+<li>维护表结构</li>
+<li>在适当的时候对表进行水平拆分或垂直拆分</li>
+</ul>
+<p>##维护数据字典</p>
+<ol>
+<li>使用第三方工具对数据字典进行维护</li>
+<li>利用数据库本身的备注字段来维护数据字典</li>
+<li>导出数据字典</li>
+</ol>
+<p>##选择适合列建立索引</p>
+<ol>
+<li>出现在WHERE从句，GROUP BY从句，ORDER BY 从句中的列</li>
+<li>可选择性高的列要放到索引的前面</li>
+<li>索引中不要包括太长的数据类型</li>
+</ol>
+<p>##维护索引</p>
+<ol>
+<li>索引并不是越多越好，过多的索引不但会降低写效率而且会降低读的效率</li>
+<li>定期维护索引碎片</li>
+<li>在SQL语句中不要使用强制索引关键字</li>
+</ol>
+<p>##维护表结构</p>
+<ol>
+<li>使用在线变更表结构的工具</li>
+<li>同时对数据字典进行维护</li>
+<li>控制标的宽度和大小</li>
+</ol>
+<p>##数据库中适合的操作</p>
+<ol>
+<li>批量操作 VS 逐条操作</li>
+<li>禁止使用Select * 这样的查询</li>
+<li>控制使用用户自定义函数</li>
+<li>不要使用数据库中的全文索引</li>
+</ol>
 
-维护数据字典
-维护索引
-维护表结构
-在适当的时候对表进行水平拆分或垂直拆分
-
-##维护数据字典
-
-使用第三方工具对数据字典进行维护
-利用数据库本身的备注字段来维护数据字典
-导出数据字典
-
-##选择适合列建立索引
-
-出现在WHERE从句，GROUP BY从句，ORDER BY 从句中的列
-可选择性高的列要放到索引的前面
-索引中不要包括太长的数据类型
-
-##维护索引
-
-索引并不是越多越好，过多的索引不但会降低写效率而且会降低读的效率
-定期维护索引碎片
-在SQL语句中不要使用
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/15/MySQL维护和优化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1987,27 +2366,98 @@ node.js是一个JavaScript运行环境，简单的说就是运行在服务端的
       
         
           
-          ##MySQL常用的存储引擎
+            <p>##MySQL常用的存储引擎</p>
+<ul>
+<li>MyISAM</li>
+<li>MRG_MYISAM</li>
+<li>Innodb</li>
+<li>Archive</li>
+<li>Ndb cluster</li>
+</ul>
+<p>##表及字段的命名规则</p>
+<ol>
+<li>可读性原则：使用大写和小写来格式化的库对象名字以获得良好的可读性。例如：使用CustAddress而不是custaddress来提高可读性。（这里要注意有些DBMS系统对表名的大小写是敏感的）</li>
+<li>表意性原则：对象的名字应该能够描述它所标识的对象。例如：对于表的名称应该能够体现表中存储的数据内容；对于存储过程，存储过程名称应该能够体现存储过程的功能。</li>
+<li>长名原则：尽可能少使用或者不使用缩写，适用于数据库（DATABASH）名之外的任一对象。</li>
+</ol>
+<p>##字段类型的选择原则</p>
+<ol>
+<li>在对数据进行比较（查询条件、JOIN条件及排序）操作时：同样的数据，字符处理往往比数字处理慢。</li>
+<li>在数据库中，数据处理以页为单位，列的长度越小，利于性能的提升。</li>
+</ol>
+<p>##char与varchar如何选择</p>
+<ol>
+<li>如果列中要存储的数据长度差不多是一致的，则应该考虑用char；否则应该考虑用varchar。</li>
+<li>如果列中的最大数据长度小于50Byte,则一般也考虑用char。（当然，如果这个列很少用，则基于节省空间和减少I/O的考虑，还是可以选择用varchar）</li>
+<li>一般不宜定义大于50Byte的char类型列。</li>
+</ol>
+<p>##decimal与float</p>
+<ol>
+<li>decimal用于存储精度数据，而float只能用于存储非精确数据。故精确数据只能选择用decimal类型。</li>
+<li>由于float的存储空间开销一般比decimal小（精确到7位小数只需要4个字节，而精确到15位小数只需要8字节）故非精确数据优先选择float类型。</li>
+</ol>
+<p>##时间类型如何存储</p>
+<ol>
+<li>
+<p>使用int来存储时间字段的优缺点</p>
+<ul>
+<li>优点：字段长度比datetime小</li>
+<li>缺点：使用不方便，要进行函数转换</li>
+<li>限制：只能存储到2038-1-19 11：14：07即2147483648</li>
+</ul>
+</li>
+<li>
+<p>需要存储的时间粒度</p>
+<pre><code>年 月 日 小时 分 秒 周
+</code></pre>
+</li>
+</ol>
+<p>##如何选择主键</p>
+<ol>
+<li>
+<p>区分业务主键和数据库主键</p>
+<ul>
+<li>业务主键用于标识业务数据，进行表与表之间的关联；数据库主键为了优化数据库存储（Innodb会生成6个字节的隐含主键）</li>
+</ul>
+</li>
+<li>
+<p>跟数据库的类型，考虑主键是否要顺序增长</p>
+<ul>
+<li>有些数据库是按主键的顺序逻辑存储的</li>
+</ul>
+</li>
+<li>
+<p>主键的字段类型所占空间要尽可能小</p>
+<ul>
+<li>对于使用聚集索引方式存储的表，每个索引后都会附加主键信息</li>
+</ul>
+</li>
+</ol>
+<p>##避免使用外键约束</p>
+<ol>
+<li>降低数据导入的效率</li>
+<li>增加维护成本</li>
+<li>虽然不建议使用外键约束，但是相关联的列一定要建立索引</li>
+</ol>
+<p>##避免使用触发器</p>
+<ol>
+<li>降低数据导入的效率</li>
+<li>可能会出现意想不到的数据异常</li>
+<li>是业务逻辑变得复杂</li>
+</ol>
+<p>##关于余留字段</p>
+<ol>
+<li>无法准确的知道预留字段的类型</li>
+<li>无法准确的知道预留字段中所存储的内容</li>
+<li>后期维护预留字段所需要的成本，同增加一个字段所需要的成本是相同的</li>
+<li>严禁使用预留字段</li>
+</ol>
+<p>##反范式化</p>
+<ul>
+<li>反范式化是正对范式化而言的，在前面介绍了数据库设计的第三范式，所谓的反范式化就是为了性能和读取效率的考虑而适当的对第三范式的要求进行违反，而允许存在少量的数据冗余，换句话来说反范式化就是使用空间来换取时间。</li>
+</ul>
 
-MyISAM
-MRG_MYISAM
-Innodb
-Archive
-Ndb cluster
-
-##表及字段的命名规则
-
-可读性原则：使用大写和小写来格式化的库对象名字以获得良好的可读性。例如：使用CustAddress而不是custaddress来提高可读性。（这里要注意有些DBMS系统对表名的大小写是敏感的）
-表意性原则：对象的名字应该能够描述它所标识的对象。例如：对于表的名称应该能够体现表中存储的数据内容；对于存储过程，存储过程名称应该能够体现存储过程的功能。
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/15/MySQL物理设计/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>

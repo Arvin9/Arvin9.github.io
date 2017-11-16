@@ -442,26 +442,19 @@ var _hmt = _hmt || [];
       
         
           
-          
-FTP（文件传输协议）：端口号 20 21
-SSH（安全shell协议）：端口号 22
-telnet（远程登录协议）：端口号 23
-DNS（域名系统）：端口号 53
-http（超文本传输协议）：端口号 80
-SMTP（简单邮件传输协议）：端口号 25
-POP3（邮局协议3代）：端口号 110
+            <ul>
+<li>FTP（文件传输协议）：端口号 20 21</li>
+<li>SSH（安全shell协议）：端口号 22</li>
+<li>telnet（远程登录协议）：端口号 23</li>
+<li>DNS（域名系统）：端口号 53</li>
+<li>http（超文本传输协议）：端口号 80</li>
+<li>SMTP（简单邮件传输协议）：端口号 25</li>
+<li>POP3（邮局协议3代）：端口号 110</li>
+</ul>
+<h2>查看本机启用端口</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">netstat -an</div><div class="line">选项：</div><div class="line">	-a：查看所有连接和监听端口</div><div class="line">	-n：显示IP地址和端口号，而不显示域名和服务器名</div></pre></td></tr></table></figure></p>
 
-查看本机启用端口
-1234netstat -an选项：	-a：查看所有连接和监听端口	-n：显示IP地址和端口号，而不显示域名和服务器名
-
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/01/常见端口号/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -602,36 +595,35 @@ POP3（邮局协议3代）：端口号 110
       
         
           
-          #Requests
-##Requests
+            <p>#Requests
+##Requests</p>
+<ul>
+<li>Requests：HTTP for Humans</li>
+<li>完美代替urllib2模块</li>
+<li>更多的自动化</li>
+<li>更友好的用户体验</li>
+<li>更完善的功能
+##Requests安装</li>
+<li>Windows：pip install requests</li>
+<li>Linux：sudo pip install requests</li>
+</ul>
+<p>##第三方库安装技巧</p>
+<ul>
+<li>少用easy_install，因为只能安装不能卸载</li>
+<li>多用pip方式安装</li>
+<li><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs" target="_blank" rel="external">Python第三方包下载</a></li>
+</ul>
+<p>##第一个网页爬虫</p>
+<ul>
+<li>Requests获取网页源代码</li>
+<li>Requests与正则表达式</li>
+</ul>
+<p>##正则表达式</p>
+<ul>
+<li>使用Requests获取网页源代码，在使用正则表达式匹配出感兴趣的内容，这就是单线程简单爬虫的基本原理。</li>
+</ul>
 
-Requests：HTTP for Humans
-完美代替urllib2模块
-更多的自动化
-更友好的用户体验
-更完善的功能
-##Requests安装
-Windows：pip install requests
-Linux：sudo pip install requests
-
-##第三方库安装技巧
-
-少用easy_install，因为只能安装不能卸载
-多用pip方式安装
-Python第三方包下载
-
-##第一个网页爬虫
-
-Requests获取网页源代码
-Re
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/02/24/Requests/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -772,24 +764,40 @@ Re
       
         
           
-          #robots协议
+            <p>#robots协议</p>
+<ul>
+<li>Robots协议（也称为爬虫协议、机器人协议等）的全称是“网络爬虫排除标准”（Robots Exclusion Protocol），网站通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取。</li>
+</ul>
+<p>##简介</p>
+<ul>
+<li>robots.txt文件是一个文本文件，使用任何一个常见的文本编辑器编辑。</li>
+<li>robots.txt是一个协议，而不是一个命令。</li>
+<li>robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。</li>
+<li>robots.txt文件告诉蜘蛛程序在服务器上什么文件是可以被查看的。</li>
+<li>当一个搜索蜘蛛访问一个站点时，它会首先检查该站点根目录下是否存在robots.txt，如果存在，搜索机器人就会按照该文件中的内容来确定访问的范围；如果该文件不存在，所有的搜索蜘蛛将能够访问网站上所有没有被口令保护的页面。</li>
+</ul>
+<p>##原则
+Robots协议是国际互联网界通行的道德规范，基于以下原则建立：</p>
+<ol>
+<li>搜索技术应服务于人类，同时尊重信息提供者的意愿，并维护其隐私权；</li>
+<li>网站有义务保护其使用者的个人信息和隐私不被侵犯。</li>
+</ol>
+<p>##文件写法</p>
+<pre><code>User-agent: * 这里的*代表的所有的搜索引擎种类，*是一个通配符
+Disallow: /admin/ 这里定义是禁止爬寻admin目录下面的目录
+Disallow: /require/ 这里定义是禁止爬寻require目录下面的目录
+Disallow: /ABC/ 这里定义是禁止爬寻ABC目录下面的目录
+Disallow: /cgi-bin/*.htm 禁止访问/cgi-bin/目录下的所有以&quot;.htm&quot;为后缀的URL(包含子目录)。
+Disallow: /*?* 禁止访问网站中所有包含问号 (?) 的网址
+Disallow: /.jpg$ 禁止抓取网页所有的.jpg格式的图片
+Disallow:/ab/adc.html 禁止爬取ab文件夹下面的adc.html文件。
+Allow: /cgi-bin/　这里定义是允许爬寻cgi-bin目录下面的目录
+Allow: /tmp 这里定义是允许爬寻tmp的整个目录
+Allow: .htm$ 仅允许访问以&quot;.htm&quot;为后缀的URL。
+Allow: .gif$ 允许抓取网页和gif格式图片
+Sitemap: 网站地图 告诉爬虫这个页面是网站地图</code></pre>
 
-Robots协议（也称为爬虫协议、机器人协议等）的全称是“网络爬虫排除标准”（Robots Exclusion Protocol），网站通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取。
-
-##简介
-
-robots.txt文件是一个文本文件，使用任何一个常见的文本编辑器编辑。
-robots.txt是一个协议，而不是一个命令。
-robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。
-robots.txt文件告诉蜘蛛程序在服务器上什么文件是可以被查
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/02/21/robots协议/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -930,19 +938,36 @@ robots.txt文件告诉蜘蛛程序在服务器上什么文件是可以被查
       
         
           
+            <blockquote>
+<p>When I was young and free and my imagination had no limits, I dreamed of changing the world.</p>
+</blockquote>
+<blockquote>
+<p>As I grew older and wiser, I discovered the world would not change, so I shortened my sights somewhat and decided to change only my country. But it, too, seemed immovable.</p>
+</blockquote>
+<blockquote>
+<p>As I grewinto my twilight years, in one last desperate attempt, I settled for changing only my family, those closest to me, but alas, they would have none of it.</p>
+</blockquote>
+<blockquote>
+<p>And now, as Ilie on my death bed, I suddenly realize:</p>
+</blockquote>
+<blockquote>
+<p>If I had only changed myself first, then by example I would have changed my family.From their in spiration and encouragement, I would then have been able to better my country,and who knows, I may have even changed the world.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>当我年轻的时候，我的想象力从没有受到过限制，我梦想改变这个世界。</p>
+</blockquote>
+<blockquote>
+<p>当我成熟以后，我发现我不能改变这个世界，我将目光缩短了些，决定只改变我的国家。</p>
+</blockquote>
+<blockquote>
+<p>当我进入暮年后，我发现我不能改变我的国家，我的最后愿望仅仅是改变一下我的家庭。但是，这也不可能。</p>
+</blockquote>
+<blockquote>
+<p>当我躺在床上，行将就木时，我突然意识到： 如果一开始我仅仅去改变我自己，然后作为一个榜样，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情。然后谁知道呢？我甚至可能改变这个世界。</p>
+</blockquote>
+
           
-When I was young and free and my imagination had no limits, I dreamed of changing the world.
-
-
-As I grew older and wiser, I discovered the world would not change, so I shortened my sights somewhat and decided to change only my country. But it, too, 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/02/14/changed/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1105,22 +1130,17 @@ As I grew older and wiser, I discovered the world would not change, so I shorten
       
         
           
+            <ul>
+<li>书虽然不能帮你解决问题，却能给你一个更好的视角。</li>
+<li>你的问题主要在于：书读得不多而想得太多。</li>
+<li>读书的根本目的是为了让自己明白世界，看清自己，让自己在无所依靠或者无所事事的时候，有一种严肃的力量推动着你往前走。</li>
+<li>书读得多了，内心才不会决堤。是指人的情商积累和阅读相关。</li>
+<li>读书多了，容颜自然改变。</li>
+<li>读书，不是为了拿文凭或发财，而是成为一个温度懂情趣会思考的人。</li>
+<li>当我还是个孩子时我吃了很多的食物，大部分已经一去不复返而且被我忘掉了，但可以肯定的是，它们中的一部分已经长成我的骨头和肉。阅读对你的思想的改变也是如此。</li>
+</ul>
+
           
-书虽然不能帮你解决问题，却能给你一个更好的视角。
-你的问题主要在于：书读得不多而想得太多。
-读书的根本目的是为了让自己明白世界，看清自己，让自己在无所依靠或者无所事事的时候，有一种严肃的力量推动着你往前走。
-书读得多了，内心才不会决堤。是指人的情商积累和阅读相关。
-读书多了，容颜自然改变。
-读书，不是为了拿文凭或发财，而是成为一个温度懂情趣会思考的人。
-当我还是个孩子时我吃了很多的食物，大部分已经一去不复返而且被我忘掉了，但可以肯定的是，它们中的一部分已经长成我的骨头和肉。阅读对你的思想的改变
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/02/06/读书的目的/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>

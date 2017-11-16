@@ -442,30 +442,23 @@ var _hmt = _hmt || [];
       
         
           
-          
-
-通过str类的swapcase方法可以快速实现大写便小写、小写变大写的功能。
-In [1]: s = 'Hello'
+            <ul>
+<li>
+<p>通过str类的swapcase方法可以快速实现大写便小写、小写变大写的功能。</p>
+<pre><code>In [1]: s = 'Hello'
 In [2]: s.swapcase()
 Out[2]: 'hELLO'
-
-
-
-字符串自动补零
-In [1]: &quot;5&quot;.zfill(10)
+</code></pre>
+</li>
+<li>
+<p>字符串自动补零</p>
+<pre><code>In [1]: &quot;5&quot;.zfill(10)
 Out[1]: &quot;0000000005&quot;
-
-
-
+</code></pre>
+</li>
+</ul>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/18/Python函数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -628,15 +621,9 @@ Out[1]: &quot;0000000005&quot;
       
         
           
-          123456789101112import os.pathrootdir = "d:\data"                                   # 指明被遍历的文件夹for parent,dirnames,filenames in os.walk(rootdir):    #三个参数：分别返回1.父目录 2.所有文件夹名字（不含路径） 3.所有文件名字	for dirname in  dirnames:                       #输出文件夹信息		pri
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/17/Python遍历一个文件夹下的所有文件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os.path</div><div class="line">rootdir = <span class="string">"d:\data"</span>                                   <span class="comment"># 指明被遍历的文件夹</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> parent,dirnames,filenames <span class="keyword">in</span> os.walk(rootdir):    <span class="comment">#三个参数：分别返回1.父目录 2.所有文件夹名字（不含路径） 3.所有文件名字</span></div><div class="line">	<span class="keyword">for</span> dirname <span class="keyword">in</span>  dirnames:                       <span class="comment">#输出文件夹信息</span></div><div class="line">		<span class="keyword">print</span> <span class="string">"parent is: "</span> + parent</div><div class="line">		<span class="keyword">print</span>  <span class="string">"dirname is: "</span> + dirname</div><div class="line"></div><div class="line">	<span class="keyword">for</span> filename <span class="keyword">in</span> filenames:                        <span class="comment">#输出文件信息</span></div><div class="line">		<span class="keyword">print</span> <span class="string">"parent is: "</span> + parent</div><div class="line">		<span class="keyword">print</span> <span class="string">"filename is:"</span> + filename</div><div class="line">		<span class="keyword">print</span> <span class="string">"the full name of the file is:"</span> + os.path.join(parent,filename) <span class="comment">#输出文件路径信息</span></div></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -799,27 +786,33 @@ Out[1]: &quot;0000000005&quot;
       
         
           
-          get方法抓取网页
-import urllib2
+            <h2>get方法抓取网页</h2>
+<pre><code>import urllib2
 
 url=&quot;http://www.baidu.com&quot;
 response = urllib2.urlopen(url)
 print response.read()
-
-post方法抓取页面
-import urllib
+</code></pre>
+<h2>post方法抓取页面</h2>
+<pre><code>import urllib
 import urllib2
 
 url = &quot;http://pay.fjut.edu.cn/user.php&quot;
-form = {'act':'act_login','username':'Arv
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/16/python爬虫基础/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+form = {'act':'act_login','username':'Arvin','password':'password'}
+form_data = urllib.urlencode(form)
+request = urllib2.Request(url,form_data)
+response = urllib2.urlopen(request)
+print response.read()
+</code></pre>
+<h2>Python安装模块</h2>
+<ol>
+<li>cmd进入<code>E:\Program Files\Python\Scripts</code></li>
+<li><code>pip install 模块名</code></li>
+</ol>
+<h2>python爬取one</h2>
+<p><figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*- #</span></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> bs4</div><div class="line"><span class="keyword">import</span> re</div><div class="line">response = requests.get(<span class="string">'http://wufazhuce.com'</span>)</div><div class="line">soup = bs4.BeautifulSoup(response.text,<span class="string">"html.parser"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#print soup.find_all('img')[1]['src']</span></div><div class="line"></div><div class="line"><span class="comment">#print soup.find_all('a')[1]['href']</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#for i in soup.find_all("img",class_="fp-one-imagen"):</span></div><div class="line"><span class="comment">#    print i</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> soup.find_all(<span class="string">"div"</span>,class_=<span class="string">"item active"</span>):</div><div class="line">    <span class="keyword">print</span> i.find_all(<span class="string">'img'</span>)[<span class="number">0</span>][<span class="string">'src'</span>]</div><div class="line">    <span class="keyword">print</span> i.find_all(<span class="string">'a'</span>)[<span class="number">1</span>].string</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#for i in soup.find_all("div",class_="fp-one-cita",limit=1):</span></div><div class="line"><span class="comment">#    print i</span></div><div class="line"></div><div class="line"><span class="comment">#for i in soup.find_all(href=re.compile("http://wufazhuce.com/one")):</span></div><div class="line"><span class="comment">#    print i</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#for i in soup.find_all(id='carousel-one'):</span></div><div class="line"><span class="comment">#    print i</span></div><div class="line"></div><div class="line"><span class="comment">#for i in soup.find_all('a'):</span></div><div class="line"><span class="comment">#    print i</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#for child in soup.body.children:</span></div><div class="line"><span class="comment">#    print child</span></div></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -982,26 +975,43 @@ form = {'act':'act_login','username':'Arv
       
         
           
+            <ul>
+<li>POP协议（Post Office Protocol,邮局协议），默认使用110端口。</li>
+<li>IMAP4协议。</li>
+<li>服务器端-客户端工作模式。</li>
+<li>python标准库中支持POP3协议的实现是poplib模块。</li>
+</ul>
+<h2>典型邮件客户端获取邮件的步骤</h2>
+<ol>
+<li>使用DNS协议来解析POP3服务器的IP地址</li>
+<li>使用TCP协议来连接邮件服务器的110端口（默认情况下）</li>
+<li>当客户端连接上POP3服务器后，将通过USER命令来传送邮箱账号，通过PASS命令来传送邮箱密码。提供这些信息来完成用户认证</li>
+<li>当完成用户认证后，可以使用STAT命令来获取POP3服务器中此账号的邮箱统计资料，包括邮件的总数和邮件的大小</li>
+<li>同时可以使用LIST命令列出POP3服务器中的已有邮件数量</li>
+<li>邮件客户端可以通过RETR命令来获取邮件，并使用DELE命令来设置删除标志</li>
+<li>所有的文件获取完毕后，可以使用QUIT命令中断和POP3邮件服务器的连接。同时，服务器会删除已设置为删除标志的邮件</li>
+</ol>
+<h2>poplib中类</h2>
+<ul>
+<li>POP3类和POP3_SSL类</li>
+<li>POP_SSL类为POP3类的子类，实现了基于SSL的邮件传输</li>
+</ul>
+<h2>POP3类对象中定义的方法</h2>
+<ul>
+<li><code>set_debuglevel</code>	设置调试信息级别</li>
+<li><code>getwelcome</code>	获取服务器的欢迎信息</li>
+<li><code>user</code>	发送邮箱名</li>
+<li><code>pass_</code>	发送邮箱密码，锁定邮箱</li>
+<li><code>stat</code>	获取邮箱的统计信息</li>
+<li><code>list</code>	获取邮箱的邮件列表信息</li>
+<li><code>retr</code>	获取特定的邮箱</li>
+<li><code>dele</code>	设置邮件的删除标志</li>
+<li><code>rset</code>	删除所有邮件的删除标记</li>
+<li><code>noop</code>	不做任何事情，在为了保持连接的时候使用</li>
+<li><code>quit</code>	中断连接，解锁邮箱</li>
+</ul>
+
           
-POP协议（Post Office Protocol,邮局协议），默认使用110端口。
-IMAP4协议。
-服务器端-客户端工作模式。
-python标准库中支持POP3协议的实现是poplib模块。
-
-典型邮件客户端获取邮件的步骤
-
-使用DNS协议来解析POP3服务器的IP地址
-使用TCP协议来连接邮件服务器的110端口（默认情况下）
-当客户端连接上POP3服务器后，将通过USER命令来传送邮箱账号，通过PASS命令来传送邮箱密码。提供这些信息来完成用户认证
-当完成用户认证后，可以使用STAT命
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/15/python POP3获取邮件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1164,25 +1174,128 @@ python标准库中支持POP3协议的实现是poplib模块。
       
         
           
-          Python MySQLdb安装错误解决
-ImportError: this is MySQLdb version (1, 2, 4, 'beta', 4), but _mysql is ver
+            <h2>Python MySQLdb安装错误解决</h2>
+<pre><code>ImportError: this is MySQLdb version (1, 2, 4, 'beta', 4), but _mysql is ver
 
 解决办法：删除\Lib\site-packages下所有的mysqldb，重新安装
-
-MySQLdb.Connect(参数)
-host		字符串		MySQL服务器地址
+</code></pre>
+<h2>MySQLdb.Connect(参数)</h2>
+<pre><code>host		字符串		MySQL服务器地址
 port		数字			MySQL服务器端口号
 user		字符串		用户名
 passwd		字符串		密码
-db			字符串		数据
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/14/Python MySQLdb/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+db			字符串		数据库名称
+charset		字符串		连接编码
+</code></pre>
+<h2>connection对象支持的方法</h2>
+<pre><code>cursor()		使用该连接创建并返回游标
+commit()		提交当前事务
+rollback()		回滚当前事务
+close()			关闭连接
+</code></pre>
+<h2>cursor对象支持的方法</h2>
+<pre><code>execute(opp[,args])		执行一个数据库查询命令
+fetchone()				取的结果集的下一行
+fetchmany(size)			获取结果集的下几行
+fetchall()				获取结果集中剩下的所有行
+rowcount				最近一次execute返回数据的行数或影响行数
+close()					关闭游标对象
+
+
+fetch*()方法：移动rownumber，返回数据
+</code></pre>
+<h2>事务：访问和更新数据库的一个程序执行单元</h2>
+<ul>
+<li>原子性：事务中包括的诸操作要么都做，要么都不做</li>
+<li>一致性：事务必须使数据库从一致性状态变到另一个一致性</li>
+<li>隔离性：一个事务的执行不能被其他事务干扰</li>
+<li>持久性：事务一旦提交，它对数据库的改变就是永久性的</li>
+</ul>
+<h2>开发中使用事务</h2>
+<ul>
+<li>关闭自动commit：设置conn.autocommit(False)</li>
+<li>正常结束事务：conn.commit()</li>
+<li>异常结束事务：conn.rollback()</li>
+</ul>
+<p>##程序</p>
+<p>####查询
+	# -<em>- coding: utf-8 -</em>- #
+	import MySQLdb</p>
+<pre><code>conn = MySQLdb.Connect(
+                        host = 'xxx.xxx.xxx.xxx',
+                        port = 3306,
+                        user = 'nebula',
+                        passwd = 'xxxxxx',
+                        db = 'one',
+                        charset = 'utf8'
+                        )
+cursor = conn.cursor()
+
+sql = &quot;select * from quotations&quot;
+cursor.execute(sql)
+
+#输出返回条数
+print cursor.rowcount
+
+#输出返回第一条
+rs = cursor.fetchone()
+
+print rs[1]
+
+for i in rs:
+    print i
+
+#输出之后三条
+#rs = cursor.fetchmany(3)
+#print rs
+
+#输出之后所有
+#rs = cursor.fetchall()
+#print rs
+
+
+cursor.close()
+conn.close()
+</code></pre>
+<p>####增删改
+	# -<em>- coding: utf-8 -</em>- #
+	import MySQLdb</p>
+<pre><code>conn = MySQLdb.Connect(
+                        host = 'xxx.xxx.xxx.xxx',
+                        port = 3306,
+                        user = 'nebula',
+                        passwd = 'xxxxxx',
+                        db = 'one',
+                        charset = 'utf8'
+                        )
+cursor = conn.cursor()
+conn.autocommit(False)
+
+sql_insert = &quot;insert into quotations(content) values('test')&quot;
+sql_update = &quot;update quotations set content='test_update' where id=3&quot;
+sql_delete = &quot;delete from quotations where id&gt;2&quot;
+
+
+try:
+    #cursor.execute(sql_insert)
+    #print cursor.rowcount
+
+    cursor.execute(sql_update)
+    print cursor.rowcount
+
+    cursor.execute(sql_delete)
+    print cursor.rowcount
+
+    conn.commit()
+except Exception as e:
+    print e
+    conn.rollback()
+finally:
+    cursor.close()
+    conn.close()
+</code></pre>
+
+          
         
       
     </div>
@@ -1345,33 +1458,55 @@ db			字符串		数据
       
         
           
-          
-python包含子目录中的模块方法比较简单，关键是能够在sys.path里面找到通向模块文件的路径。
-
-下面将具体介绍几种常用情况:
-
-主程序与模块程序在同一目录下:
-如下面程序结构:
-
-	`-- src
+            <blockquote>
+<p>python包含子目录中的模块方法比较简单，关键是能够在sys.path里面找到通向模块文件的路径。</p>
+</blockquote>
+<h4>下面将具体介绍几种常用情况:</h4>
+<ol>
+<li>主程序与模块程序在同一目录下:
+如下面程序结构:</li>
+</ol>
+<pre><code>	`-- src
 	    |-- mod1.py
 	    `-- test1.py
 	    若在程序test1.py中导入模块mod1, 则直接使用import mod1或from mod1 import *;
+</code></pre>
+<ol start="2">
+<li>主程序所在目录是模块所在目录的父(或祖辈)目录
+如下面程序结构:</li>
+</ol>
+<pre><code>	`-- src
+	    |-- mod1.py
+	    |-- mod2
+	    |   `-- mod2.py
+	    `-- test1.py
+	    若在程序test1.py中导入模块mod2, 需要在mod2文件夹中建立空文件__init__.py文件(也可以在该文件中自定义输出模块接口); 然后使用 from mod2.mod2 import * 或import mod2.mod2.
+</code></pre>
+<ol start="3">
+<li>主程序导入上层目录中模块或其他目录(平级)下的模块
+如下面程序结构:</li>
+</ol>
+<pre><code>	`-- src
+	    |-- mod1.py
+	    |-- mod2
+	    |   `-- mod2.py
+	    |-- sub
+	    |   `-- test2.py
+	    `-- test1.py
+	    若在程序test2.py中导入模块mod1和mod2。首先需要在mod2下建立__init__.py文件(同(2))，src下不必建立该文件。然后调用方式如下:
+</code></pre>
+<p>下面程序执行方式均在程序文件所在目录下执行，如test2.py是在cd sub;之后执行python test2.py
+而test1.py是在cd src;之后执行python test1.py; 不保证在src目录下执行python sub/test2.py成功。</p>
+<pre><code>	import sys
+	sys.path.append(&quot;..&quot;)
+	import mod1
+	import mod2.mod2
+</code></pre>
+<ol start="4">
+<li>从(3)可以看出，导入模块关键是能够根据sys.path环境变量的值，找到具体模块的路径。这里仅介绍上面三种简单情况。</li>
+</ol>
 
-
-主程序所在目录是模块所在目录的父(或祖辈)目录
-如下面程序结构:
-
-	`-- src
-	
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/13/Python import模块方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1534,30 +1669,84 @@ python包含子目录中的模块方法比较简单，关键是能够在sys.path
       
         
           
-          生成列表
-
-
-要生成list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]，我们可以用range(1, 11)。
-&gt;&gt;&gt; range(1, 11)
+            <h2>生成列表</h2>
+<ul>
+<li>
+<p>要生成list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]，我们可以用range(1, 11)。</p>
+<pre><code>&gt;&gt;&gt; range(1, 11)
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-
-
-列表生成式则可以用一行语句代替循环生成上面的list。
-&gt;&gt;&gt; [x * x for x in range(1, 11)]
+</code></pre>
+</li>
+<li>
+<p>列表生成式则可以用一行语句代替循环生成上面的list。</p>
+<pre><code>&gt;&gt;&gt; [x * x for x in range(1, 11)]
 [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</code></pre>
+</li>
+<li>
+<p>写列表生成式时，把要生成的元素 x * x 放到前面，后面跟 for 循环，就可以把list创建出来。</p>
+<pre><code>print [x*(x+1) for x in range(1,100,2)]
+</code></pre>
+</li>
+</ul>
+<h2>复杂表达式</h2>
+<ul>
+<li>
+<p>使用for循环的迭代不仅可以迭代普通的list，还可以迭代dict。</p>
+<pre><code>tds = ['&lt;tr&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td&gt;%s&lt;/td&gt;&lt;/tr&gt;' % (name, score) for name, score in d.iteritems()]
+print '&lt;table&gt;'
+print '&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;&lt;tr&gt;'
+print '\n'.join(tds)
+print '&lt;/table&gt;'
+</code></pre>
+</li>
+<li>
+<p>字符串可以通过 % 进行格式化，用指定的参数替代 %s。字符串的join()方法可以把一个 list 拼接成一个字符串。</p>
+<pre><code>d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 }
+def generate_tr(name, score):
+    return '&lt;tr&gt;&lt;td&gt;%s&lt;/td&gt;&lt;td style=&quot;color:red&quot;&gt;&gt;%s&lt;/td&gt;&lt;/tr&gt;' % (name, score)
 
+tds = [generate_tr(name, score) for name, score in d.iteritems()]
+print '&lt;table border=&quot;1&quot;&gt;'
+print '&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Score&lt;/th&gt;&lt;tr&gt;'
+print '\n'.join(tds)
+print '&lt;/table&gt;'
+</code></pre>
+</li>
+</ul>
+<h2>条件过滤</h2>
+<ul>
+<li>
+<p>列表生成式的 for 循环后面还可以加上 if 判断。</p>
+<pre><code>&gt;&gt;&gt; [x * x for x in range(1, 11) if x % 2 == 0]
+[4, 16, 36, 64, 100]
+</code></pre>
+<ol>
+<li>
+<p>isinstance(x, str) 可以判断变量 x 是否是字符串；</p>
+</li>
+<li>
+<p>字符串的 upper() 方法可以返回大写的字母。</p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code>		def toUppers(L):
+		    return [s.upper() for s in L if isinstance(s,str)]
 
+		print toUppers(['Hello', 'world', 101])
+</code></pre>
+<h2>多层表达式</h2>
+<ul>
+<li>
+<p>for循环可以嵌套，因此，在列表生成式中，也可以用多层 for 循环来生成列表。</p>
+<pre><code>&gt;&gt;&gt; [m + n for m in 'ABC' for n in '123']
+['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
+</code></pre>
+</li>
+</ul>
 
-写列表生成式时，把要
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/12/Python第十二天/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1720,29 +1909,134 @@ python包含子目录中的模块方法比较简单，关键是能够在sys.path
       
         
           
-          什么是迭代
+            <h2>什么是迭代</h2>
+<ul>
+<li>
+<p>在Python中，如果给定一个list或tuple，我们可以通过for循环来遍历这个list或tuple，这种遍历我们成为迭代（Iteration）。</p>
+</li>
+<li>
+<p>在Python中，迭代是通过 for ... in 来完成的。</p>
+</li>
+<li>
+<p>Python 的 for循环不仅可以用在list或tuple上，还可以作用在其他任何可迭代对象上。</p>
+</li>
+<li>
+<p>迭代操作就是对于一个集合，无论该集合是有序还是无序，我们用 for 循环总是可以依次取出集合的每一个元素。</p>
+<ol>
+<li>有序集合：list，tuple，str和unicode；</li>
+<li>无序集合：set</li>
+<li>无序集合并且具有 key-value 对：dict</li>
+</ol>
+</li>
+<li>
+<p>迭代是一个动词，它指的是一种操作，在Python中，就是 for 循环。</p>
+</li>
+<li>
+<p>迭代与按下标访问数组最大的不同是，后者是一种具体的迭代实现方式，而前者只关心迭代结果，根本不关心迭代内部是如何实现的。</p>
+<pre><code>for i in range(1,100)[6:100:7]:
+	print i
+</code></pre>
+</li>
+</ul>
+<h2>索引迭代</h2>
+<ul>
+<li>
+<p>Python中，迭代永远是取出元素本身，而非元素的索引。</p>
+</li>
+<li>
+<p>对于有序集合，元素确实是有索引的。有的时候，我们确实想在 for 循环中拿到索引，可以使用<code>enumerate()</code>函数。</p>
+<pre><code>&gt;&gt;&gt; L = ['Adam', 'Lisa', 'Bart', 'Paul']
+&gt;&gt;&gt; for index, name in enumerate(L):
+...     print index, '-', name
+...
+0 - Adam
+1 - Lisa
+2 - Bart
+3 - Paul
+</code></pre>
+</li>
+<li>
+<p>使用 enumerate() 函数，我们可以在for循环中同时绑定索引index和元素name。</p>
+</li>
+<li>
+<p>zip()函数可以把两个 list 变成一个 list。</p>
+<pre><code>L = ['Adam', 'Lisa', 'Bart', 'Paul']
+for index, name in zip(range(1,5) , L):
+    print index, '-', name
+</code></pre>
+</li>
+</ul>
+<h2>迭代dict的value</h2>
+<ul>
+<li>
+<p>dict 对象有一个 values() 方法，这个方法把dict转换成一个包含所有value的list，这样，我们迭代的就是 dict的每一个 value。</p>
+<pre><code>d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 }
+print d.values()
+# [85, 95, 59]
+for v in d.values():
+    print v
+# 85
+# 95
+# 59
+</code></pre>
+</li>
+<li>
+<p>dict除了values()方法外，还有一个 itervalues() 方法，用 itervalues() 方法替代 values() 方法，迭代效果完全一样。</p>
+<pre><code>d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59 }
+print d.itervalues()
+# &lt;dictionary-valueiterator object at 0x106adbb50&gt;
+for v in d.itervalues():
+    print v
+# 85
+# 95
+# 59
+</code></pre>
+<ol>
+<li>
+<p>values() 方法实际上把一个 dict 转换成了包含 value 的list。</p>
+</li>
+<li>
+<p>但是 itervalues() 方法不会转换，它会在迭代过程中依次从 dict 中取出 value，所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。</p>
+</li>
+<li>
+<p>打印 itervalues() 发现它返回一个 &lt;dictionary-valueiterator&gt; 对象，这说明在Python中，for 循环可作用的迭代对象远不止 list，tuple，str，unicode，dict等，任何可迭代对象都可以作用于for循环，而内部如何迭代我们通常并不用关心。</p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code>		d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59, 'Paul': 74 }
 
+		sum = 0.0
+		for v in d.values():
+		    sum += v
+		print sum/len(d)
+</code></pre>
+<h2>迭代dict的key和value</h2>
+<ul>
+<li>
+<p>items() 方法把dict对象转换成了包含tuple的list，我们对这个list进行迭代，可以同时获得key和value。</p>
+<pre><code>&gt;&gt;&gt; for key, value in d.items():
+...     print key, ':', value
+...
+Lisa : 85
+Adam : 95
+Bart : 59
+</code></pre>
+</li>
+<li>
+<p>和 values() 有一个 itervalues() 类似， items() 也有一个对应的 iteritems()，iteritems() 不把dict转换成list，而是在迭代过程中不断给出 tuple，所以， iteritems() 不占用额外的内存。</p>
+<pre><code>d = { 'Adam': 95, 'Lisa': 85, 'Bart': 59, 'Paul': 74 }
 
-在Python中，如果给定一个list或tuple，我们可以通过for循环来遍历这个list或tuple，这种遍历我们成为迭代（Iteration）。
+sum = 0.0
+for k, v in d.items():
+    sum = sum + v
+    print k+':'+str(v)
+print 'average', ':',sum/len(d)
+</code></pre>
+</li>
+</ul>
 
-
-在Python中，迭代是通过 for ... in 来完成的。
-
-
-Python 的 for循环不仅可以用在list或tuple上，还可以作用在其他任何可迭代对象上。
-
-
-迭代操作就是对于一个集合，无论该集合是有序还是无序，我们用 for 循环总是可以依次取出集合的每一个元素。
-
-有序集合：list，tuple，str和uni
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/11/Python第十一天/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1905,32 +2199,101 @@ Python 的 for循环不仅可以用在list或tuple上，还可以作用在其他
       
         
           
-          对list进行切片
-
-
-对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符，能大大简化这种操作。
-
-
-取前3个元素，用一行代码就可以完成切片。
-&gt;&gt;&gt; L[0:3]
+            <h2>对list进行切片</h2>
+<ul>
+<li>
+<p>对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符，能大大简化这种操作。</p>
+</li>
+<li>
+<p>取前3个元素，用一行代码就可以完成切片。</p>
+<pre><code>&gt;&gt;&gt; L[0:3]
 ['Adam', 'Lisa', 'Bart']
+</code></pre>
+</li>
+<li>
+<p>L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。</p>
+</li>
+<li>
+<p>如果第一个索引是0，还可以省略。</p>
+<pre><code>&gt;&gt;&gt; L[:3]
+['Adam', 'Lisa', 'Bart']
+</code></pre>
+</li>
+<li>
+<p>只用一个 : ，表示从头到尾。</p>
+<pre><code>&gt;&gt;&gt; L[:]
+['Adam', 'Lisa', 'Bart', 'Paul']
+</code></pre>
+</li>
+<li>
+<p>因此，L[:]实际上复制出了一个新list。</p>
+</li>
+<li>
+<p>切片操作还可以指定第三个参数。第三个参数表示每N个取一个，上面的 L[::2] 会每两个元素取出一个来，也就是隔一个取一个。</p>
+<pre><code>&gt;&gt;&gt; L[::2]
+['Adam', 'Bart']
+</code></pre>
+</li>
+<li>
+<p>把list换成tuple，切片操作完全相同，只是切片的结果也变成了tuple。</p>
+<pre><code>L = range(1, 101)
 
 
+print L[0:10]
+print L[2:99:3]
+print L[4:50:5]
+</code></pre>
+</li>
+</ul>
+<h2>倒序切片</h2>
+<pre><code>&gt;&gt;&gt; L = ['Adam', 'Lisa', 'Bart', 'Paul']
 
-L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。
+&gt;&gt;&gt; L[-2:]
+['Bart', 'Paul']
 
+&gt;&gt;&gt; L[:-2]
+['Adam', 'Lisa']
 
-如果第一个索引是0，还可以省略。
-&gt;&gt;&gt; L[:3]
-['Adam', 'Lisa', '
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/10/Python第十天/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+&gt;&gt;&gt; L[-3:-1]
+['Lisa', 'Bart']
+
+&gt;&gt;&gt; L[-4:-1:2]
+['Adam', 'Bart']
+</code></pre>
+<ul>
+<li>
+<p>对于list，既然Python支持L[-1]取倒数第一个元素，那么它同样支持倒数切片。</p>
+</li>
+<li>
+<p>记住倒数第一个元素的索引是-1。倒序切片包含起始索引，不包含结束索引。</p>
+<pre><code>L = range(1, 101)
+print L[-10:]
+print L[-46::5]
+</code></pre>
+</li>
+</ul>
+<h2>对字符串切片</h2>
+<pre><code>&gt;&gt;&gt; 'ABCDEFG'[:3]
+'ABC'
+&gt;&gt;&gt; 'ABCDEFG'[-3:]
+'EFG'
+&gt;&gt;&gt; 'ABCDEFG'[::2]
+'ACEG'
+</code></pre>
+<ul>
+<li>
+<p>字符串 'xxx'和 Unicode字符串 u'xxx'也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串。</p>
+<pre><code>def firstCharUpper(s):
+    return s[0].upper()+s[1:]
+
+print firstCharUpper('hello')
+print firstCharUpper('sunday')
+print firstCharUpper('september')
+</code></pre>
+</li>
+</ul>
+
+          
         
       
     </div>
@@ -2093,32 +2456,162 @@ L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3�
       
         
           
-          函数
-
-函数调用 s = area_of_circle(x)，而函数 area_of_circle 本身只需要写一次，就可以多次调用。
-函数就是最基本的一种代码抽象的方式。
-
-调用函数
-
-要调用一个函数，需要知道函数的名称和参数。
-
-定义函数
-def square_of_sum(L):
+            <h2>函数</h2>
+<ul>
+<li>函数调用 <code>s = area_of_circle(x)</code>，而函数 area_of_circle 本身只需要写一次，就可以多次调用。</li>
+<li>函数就是最基本的一种代码抽象的方式。</li>
+</ul>
+<h2>调用函数</h2>
+<ul>
+<li>要调用一个函数，需要知道函数的名称和参数。</li>
+</ul>
+<h2>定义函数</h2>
+<pre><code>def square_of_sum(L):
 	sum = 0
 	for i in L:
     	sum += i*i
 	return sum
 
 print square_of_sum([1, 2, 3, 4, 5])
-print square_of_su
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/09/Python第九天/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+print square_of_sum([-5, 0, 5, 15, 25])
+</code></pre>
+<ul>
+<li>
+<p>在Python中，定义一个函数要使用 def 语句，依次写出函数名、括号、括号中的参数和冒号:，然后，在缩进块中编写函数体，函数的返回值用 return 语句返回。</p>
+<pre><code>def my_abs(x):
+	if x &gt;= 0:
+  		return x
+	else:
+  		return -x
+</code></pre>
+</li>
+<li>
+<p>函数体内部的语句在执行时，一旦执行到return时，函数就执行完毕，并将结果返回。因此，函数内部通过条件判断和循环可以实现非常复杂的逻辑。</p>
+</li>
+<li>
+<p>如果没有return语句，函数执行完毕后也会返回结果，只是结果为 None。</p>
+</li>
+<li>
+<p>return None可以简写为return。</p>
+</li>
+</ul>
+<h2>返回多值</h2>
+<pre><code>import math
+def move(x, y, step, angle):
+    nx = x + step * math.cos(angle)
+    ny = y - step * math.sin(angle)
+    return nx, ny
+
+&gt;&gt;&gt; x, y = move(100, 100, 60, math.pi / 6)
+&gt;&gt;&gt; print x, y
+	151.961524227 70.0
+
+&gt;&gt;&gt; r = move(100, 100, 60, math.pi / 6)
+&gt;&gt;&gt; print r
+	(151.96152422706632, 70.0)
+</code></pre>
+<ul>
+<li>
+<p>在语法上，返回一个tuple可以省略括号，而多个变量可以同时接收一个tuple，按位置赋给对应的值，所以，Python的函数返回多值其实就是返回一个tuple，但写起来更方便。</p>
+<pre><code>import math
+
+def quadratic_equation(a, b, c):
+	x1 = (-b + math.sqrt(b*b - 4*a*c))/(2*a)
+	x2 = (-b - math.sqrt(b*b - 4*a*c))/(2*a)
+	return x1 , x2
+
+print quadratic_equation(2, 3, 0)
+print quadratic_equation(1, -6, 5)
+</code></pre>
+</li>
+</ul>
+<h2>递归函数</h2>
+<pre><code>def fact(n):
+	if n==1:
+    	return 1
+	return n * fact(n - 1)
+</code></pre>
+<ul>
+<li>在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。</li>
+<li>递归函数的优点是定义简单，逻辑清晰。理论上，所有的递归函数都可以写成循环的方式，但循环的逻辑不如递归清晰。</li>
+<li>使用递归函数需要注意防止栈溢出。</li>
+</ul>
+<h2>汉若塔实例</h2>
+<pre><code>def move(n, a, b, c):
+	if n == 1:
+    	print a+' --&gt; '+c
+	else:
+    	move(n-1, a, c, b)
+    	print a+' --&gt; '+c
+    	move(n-1, b, a, c)
+
+move(4, 'A', 'B', 'C')
+</code></pre>
+<blockquote>
+<p>我们对柱子编号为a, b, c，将所有圆盘从a移到c可以描述为：</p>
+</blockquote>
+<blockquote>
+<p>如果a只有一个圆盘，可以直接移动到c；</p>
+</blockquote>
+<blockquote>
+<p>如果a有N个圆盘，可以看成a有1个圆盘（底盘） + (N-1)个圆盘，首先需要把 (N-1) 个圆盘移动到 b，然后，将 a的最后一个圆盘移动到c，再将b的(N-1)个圆盘移动到c。</p>
+</blockquote>
+<blockquote>
+<p>请编写一个函数，给定输入 n, a, b, c，打印出移动的步骤：</p>
+</blockquote>
+<blockquote>
+<p>move(n, a, b, c)</p>
+</blockquote>
+<h2>定义默认参数</h2>
+<pre><code>def power(x, n=2):
+	s = 1
+	while n &gt; 0:
+    	n = n - 1
+   		s = s * x
+	return s
+</code></pre>
+<ul>
+<li>
+<p>例如Python自带的 int() 函数，其实就有两个参数，我们既可以传一个参数，又可以传两个参数。int()函数的第二个参数是转换进制，如果不传，默认是十进制 (base=10)，如果传了，就用传入的参数。</p>
+</li>
+<li>
+<p>由于函数的参数按从左到右的顺序匹配，所以默认参数只能定义在必需参数的后面。</p>
+<pre><code>def greet(word = 'world'):
+	print 'hello,'+word
+
+greet()
+greet('Bart')
+</code></pre>
+</li>
+</ul>
+<h2>定义可变参数</h2>
+<ul>
+<li>
+<p>如果想让一个函数能接受任意个参数，我们就可以定义一个可变参数
+	def fn(*args):
+		print args</p>
+</li>
+<li>
+<p>可变参数的名字前面有个 * 号，我们可以传入0个、1个或多个参数给可变参数。</p>
+</li>
+<li>
+<p>可变参数也不是很神秘，Python解释器会把传入的一组参数组装成一个tuple传递给可变参数，因此，在函数内部，直接把变量 args 看成一个 tuple 就好了。</p>
+<pre><code>def average(*args):
+	if len(args) == 0:
+  		return 0.0
+	sum = 0.0
+	for i in args:
+  		sum += i
+	return sum/len(args)
+
+print average()
+print average(1, 2)
+print average(1, 2, 2, 3, 4)
+</code></pre>
+</li>
+</ul>
+
+          
         
       
     </div>
