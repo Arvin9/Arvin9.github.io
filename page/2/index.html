@@ -321,6 +321,188 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/15/python POP3获取邮件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nebula">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/nebula.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nebula">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/15/python POP3获取邮件/" itemprop="url">
+                  python POP3获取邮件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T21:51:37+08:00">
+                2017-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/15/python POP3获取邮件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/15/python POP3获取邮件/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/15/python POP3获取邮件/" class="leancloud_visitors" data-flag-title="python POP3获取邮件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+POP协议（Post Office Protocol,邮局协议），默认使用110端口。
+IMAP4协议。
+服务器端-客户端工作模式。
+python标准库中支持POP3协议的实现是poplib模块。
+
+典型邮件客户端获取邮件的步骤
+
+使用DNS协议来解析POP3服务器的IP地址
+使用TCP协议来连接邮件服务器的110端口（默认情况下）
+当客户端连接上POP3服务器后，将通过USER命令来传送邮箱账号，通过PASS命令来传送邮箱密码。提供这些信息来完成用户认证
+当完成用户认证后，可以使用STAT命
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/15/python POP3获取邮件/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/14/Python MySQLdb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -447,7 +629,12 @@ ImportError: this is MySQLdb version (1, 2, 4, 'beta', 4), but _mysql is ver
 
 解决办法：删除\Lib\site-packages下所有的mysqldb，重新安装
 
-MySQLdb.
+MySQLdb.Connect(参数)
+host		字符串		MySQL服务器地址
+port		数字			MySQL服务器端口号
+user		字符串		用户名
+passwd		字符串		密码
+db			字符串		数据
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -629,7 +816,14 @@ python包含子目录中的模块方法比较简单，关键是能够在sys.path
 	`-- src
 	    |-- mod1.py
 	    `-- test1.py
-	    若在程序te
+	    若在程序test1.py中导入模块mod1, 则直接使用import mod1或from mod1 import *;
+
+
+主程序所在目录是模块所在目录的父(或祖辈)目录
+如下面程序结构:
+
+	`-- src
+	
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -809,7 +1003,13 @@ python包含子目录中的模块方法比较简单，关键是能够在sys.path
 
 
 
-列表生成式则可以用一行语句代替循环生成上面的l
+列表生成式则可以用一行语句代替循环生成上面的list。
+&gt;&gt;&gt; [x * x for x in range(1, 11)]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+
+
+写列表生成式时，把要
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -989,7 +1189,12 @@ python包含子目录中的模块方法比较简单，关键是能够在sys.path
 在Python中，迭代是通过 for ... in 来完成的。
 
 
-Python 的 for循环不仅可以用在list或tuple
+Python 的 for循环不仅可以用在list或tuple上，还可以作用在其他任何可迭代对象上。
+
+
+迭代操作就是对于一个集合，无论该集合是有序还是无序，我们用 for 循环总是可以依次取出集合的每一个元素。
+
+有序集合：list，tuple，str和uni
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1172,7 +1377,12 @@ Python 的 for循环不仅可以用在list或tuple
 
 
 
-L[0:3]表
+L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。
+
+
+如果第一个索引是0，还可以省略。
+&gt;&gt;&gt; L[:3]
+['Adam', 'Lisa', '
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1354,7 +1564,13 @@ L[0:3]表
 
 定义函数
 def square_of_sum(L):
-	sum =
+	sum = 0
+	for i in L:
+    	sum += i*i
+	return sum
+
+print square_of_sum([1, 2, 3, 4, 5])
+print square_of_su
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1536,7 +1752,23 @@ s = set(['A', 'B', 'C'])
 
 
 
-se
+set会自动去掉重复的元素。
+
+
+访问set
+
+
+用 in 操作符判断。
+'Bart' in s
+
+
+
+大小写很重要，'Bart' 和 'bart'被认为是两个不同的元素。
+
+
+set特点
+
+set的内部
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1719,7 +1951,15 @@ d = {
 Python的dict有一个key对应一个value。dict通过key来查找value。
 
 
-花括号 {} 表示这是一个dict，然后按照 key: value, 写出来即
+花括号 {} 表示这是一个dict，然后按照 key: value, 写出来即可。最后一个 key: value 的逗号可以省略。
+
+
+由于dict也是集合，len() 函数可以计算任意集合的大小。
+len(d)
+
+
+
+一个 key-value 算一个，因此，dict大小为3。
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1897,191 +2137,21 @@ for name in L:
 
 
 Python的 for 循环就可以依次把list或tuple的每个元素迭代出来。
-name 这个变量是在 for 循环中定义的，意思是，依次取出list中的每一个元素，并把
+name 这个变量是在 for 循环中定义的，意思是，依次取出list中的每一个元素，并把元素赋值给 name，然后执行for循环体（就是缩进的代码块）。
+
+while循环
+N = 10
+x = 0
+while x &lt; N:
+    print x
+    x = x + 1
+
+
+w
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/06/Python第六天/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/05/Python第五天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Nebula">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/nebula.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nebula">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/05/Python第五天/" itemprop="url">
-                  Python第五天
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-05T21:51:37+08:00">
-                2017-10-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/05/Python第五天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/05/Python第五天/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/05/Python第五天/" class="leancloud_visitors" data-flag-title="Python第五天">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          if语句
-age = 20
-    if age &gt;= 18:
-	print 'your age is', age
-print 'adult'
-print 'END'
-
-
-Python代码的缩进规则。具有相同缩进的代码被视为代码块。
-缩进要严格按照Python的习惯写法：4个空格，不要使用Ta
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/05/Python第五天/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

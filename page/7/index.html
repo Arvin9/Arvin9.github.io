@@ -429,7 +429,12 @@ var _hmt = _hmt || [];
 		-a:将变量声明为数组型
 		-i:将变量声明为整数型（integer）
 		-x:将变量声明为环境变量
-		-r:将变量声明为只读
+		-r:将变量声明为只读变量
+		-p:显示指定变量的被声明类型
+##expr或let数值运算工具
+	dd=$(expr $aa + $bb)
+	#dd的值是aa和bb的和。注意“+”号左右两侧必须有空格。
+##&quot;
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -595,7 +600,9 @@ var _hmt = _hmt || [];
 
 ##变量的分类
 
-用户自定
+用户自定义变量：变量自定义
+环境变量：这种变量中主要保存的是和系统操作环境相关的数据。。变量可以自定义，但是对系统生效的环境变量名和变量作用是固定的
+位置参数变量：这种变量主要是用来向脚本当中传递参数或数据的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -748,7 +755,14 @@ var _hmt = _hmt || [];
 ##什么是Shell
 
 Shell是一个命令解释器，他为用户提供一个向Linux内核发送请求以便运行程序的界面系统级程序，用户可以用Shell来启动、挂起、停止甚至是编写一些程序。
-Shell还是一个功能相当强大的编程语言，易编写，易调试，灵活性较强。Shell是解释执行的脚本语言，在
+Shell还是一个功能相当强大的编程语言，易编写，易调试，灵活性较强。Shell是解释执行的脚本语言，在Shell中可以直接调用Linux系统命令。
+
+##Linux支持的Shell
+	/etc/shells
+##echo输出命令
+	echo [选项] [输出内容]
+	选项：
+		-e：支持反斜杠控制的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -923,8 +937,10 @@ Shell还是一个功能相当强大的编程语言，易编写，易调试，灵
 cd /var/spool/cron
 vim root
 编辑root
-12*/1 * * * * date &gt;&gt; /tmp/backuplog.txt 2&gt;&amp;130 4 * * * cd /var/lib;tar -zcvf /home/nebula/backup/mys
-          ...
+12*/1 * * * * date &gt;&gt; /tmp/backuplog.txt 2&gt;&amp;130 4 * * * cd /var/lib;tar -zcvf /home/nebula/backup/mysqlbackup.tar.gz mysql/* &gt;&gt; /tmp/backuplog.txt 2&gt;&amp;1
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/03/13/Linux环境下备份MySQL/#more" rel="contents">
@@ -1094,7 +1110,7 @@ vim root
       
         
           
-          1234567891011121314151617df	查看磁盘分区使用情况	-l	仅显示本地磁盘（默认）	-a	显示所有文件系统的磁盘使用情况，包含比如/proc/	-h	以1024进制计算最适合的单位显示磁盘容量	-H	以1000进制计算最适合的单位显示磁盘容量	-T	显示磁盘分区类型	-t	显
+          1234567891011121314151617df	查看磁盘分区使用情况	-l	仅显示本地磁盘（默认）	-a	显示所有文件系统的磁盘使用情况，包含比如/proc/	-h	以1024进制计算最适合的单位显示磁盘容量	-H	以1000进制计算最适合的单位显示磁盘容量	-T	显示磁盘分区类型	-t	显示指定类型文件系统的磁盘分区	-x	不显示指定类型文件系统的磁盘分区du	统计磁盘上的文件大小	-b	以byte为单位统计文件	-k	以KB为单位统计文件	-m	以MB为单位统计文件	-h	按照102
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1271,7 +1287,7 @@ vim root
 
 
 进入/etc/httpd/conf目录，修改httpd.conf文件，添加如下
-123456789&lt;VirtualHost xxx.xxx.xxx.xxx&gt;  		DocumentRoot /var/www/html/  		ServerName xx
+123456789&lt;VirtualHost xxx.xxx.xxx.xxx&gt;  		DocumentRoot /var/www/html/  		ServerName xxx.xxx.xxx.xxx&lt;/VirtualHost&gt;&lt;VirtualHost xxx.xxx.xxx.xxx&gt;    DocumentRoot /var/www/html/w
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1453,7 +1469,12 @@ vim root
 1# wget http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz
 
 
-解压源代码
+解压源代码包
+1# tar xvf Python-2.7.5.tgz
+
+
+进入解压目录并安装
+123456# cd Python-2.7.5  # ./configure  # make all  # make
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1634,6 +1655,13 @@ Crontab是一个用于设置周期性被执行的任务的工具。
 检查Crontab工具是否安装：crontab -l
 检查crond服务是否启动：service crond status
 
+安装cron
+12# yum install vixie-cron# yum install crontabs
+crond系统服务
+
+每分钟都会从配置文件刷新定时任务
+
+crontab的配置文件格式
 
           ...
           <!--noindex-->
@@ -1824,7 +1852,14 @@ cheat命令依赖于Python和pip。
 1# yum install python
 	2. 安装pip
 
-1# yum i
+1# yum install python-pip
+	3. 安装git
+
+1# yum install
+	4. 安装Python依赖文件
+
+1# pip install docopt pygments
+	5. 从gi
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2003,7 +2038,12 @@ cheat命令依赖于Python和pip。
 1fg
 产生随机的十六进制数，其中n是字符数
 1openssl rand -hex n
-在当前shell里执行
+在当前shell里执行一个文件里的命令
+1source /home/user/file.name
+截取前5个字符
+1￥&#123;variable:0:5&#125;
+SHH debug 模式
+1shh -vvv user
           ...
           <!--noindex-->
           <div class="post-button text-center">

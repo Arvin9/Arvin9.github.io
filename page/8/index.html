@@ -442,7 +442,7 @@ var _hmt = _hmt || [];
       
         
           
-          12345678910111213141516/---	/bin		User Binaries			/sbin		System Binaries	/etc		Configuration Files		配置文件保存目录	/dev		Device Files		设备文件保存目录	/proc		Proce
+          12345678910111213141516/---	/bin		User Binaries			/sbin		System Binaries	/etc		Configuration Files		配置文件保存目录	/dev		Device Files		设备文件保存目录	/proc		Process Information	/var		Variable Files	/tmp		Temporary Files	/usr		User Programs	/home		Home Directorie
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -619,8 +619,11 @@ var _hmt = _hmt || [];
 运行级别2：多用户状态(没有NFS)
 运行级别3：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式
 运行级别4：系统未使用，保留
-运行级别5：X11
-          ...
+运行级别5：X11控制台，登陆后进入图形GUI模式
+运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/03/05/Linux系统7个运行级别/#more" rel="contents">
@@ -793,7 +796,9 @@ var _hmt = _hmt || [];
           ifconfig命令
 12345ifconfig#查看与配置网络状态命令ifconfig ech0 192.168.0.200 netmask 255.255.255.0#临时设置ech0网卡的IP地址与子网掩码
 关闭和启动网卡
-12345ifdown	网卡设备名#禁用该网卡设备ifup 网卡设备名
+12345ifdown	网卡设备名#禁用该网卡设备ifup 网卡设备名#启用该网卡设备
+查询网络状态
+12345678netstat 选项选项：	-t		列出TCP协议端口	-u		列出UDP协议端口	-n		不使用域名与服务名，而使用IP地址和端口号	-l		仅列出在
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -964,7 +969,7 @@ var _hmt = _hmt || [];
       
         
           
-          12345678910111213141516/etc/group 存储当前系统中所有用户组信息Group	:	x	:	123	:abc,def,xyz组名称	:	组密码占位符	:	组编码	:	组中用户名列表/etc/gshadow 存储当前系统中用户组的密码信息Group	:	*	:		:	abc
+          12345678910111213141516/etc/group 存储当前系统中所有用户组信息Group	:	x	:	123	:abc,def,xyz组名称	:	组密码占位符	:	组编码	:	组中用户名列表/etc/gshadow 存储当前系统中用户组的密码信息Group	:	*	:		:	abc,def,xyz组名称	:	组密码	:	组管理	:	组中用户名列表/etc/passwd 存储当前系统中所有用户的信息user	:	x	:	123	:	456	:	xxxxxxx	:	/home/us
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1149,7 +1154,10 @@ VIM支持图形界面
 vi三种模式
 
 
-一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“
+一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。
+
+
+编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1329,7 +1337,7 @@ PS:360镜像已停用
 
 
 找到相对应的主题中的functions.php
-1234567891011121314/** * Return the Google font stylesheet URL if available. 
+1234567891011121314/** * Return the Google font stylesheet URL if available. * * The use of Open Sans by default is localized. For languages that use * characters not supported 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1514,7 +1522,7 @@ PS:360镜像已停用
 
 
 文件内容
-12345678910111213141516171819nano /etc/yum.repos.d
+12345678910111213141516171819nano /etc/yum.repos.d/CentOS-Base.repo[base]name=CentOS-$releasever - Basefailovermethod=prioritybaseurl=http://mirrors.a
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1694,8 +1702,10 @@ http（超文本传输协议）：端口号 80
 SMTP（简单邮件传输协议）：端口号 25
 POP3（邮局协议3代）：端口号 110
 
-查
-          ...
+查看本机启用端口
+1234netstat -an选项：	-a：查看所有连接和监听端口	-n：显示IP地址和端口号，而不显示域名和服务器名
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/03/01/常见端口号/#more" rel="contents">
@@ -1853,7 +1863,18 @@ Requests：HTTP for Humans
 更完善的功能
 ##Requests安装
 Windows：pip install requests
-Linux：sudo pip install r
+Linux：sudo pip install requests
+
+##第三方库安装技巧
+
+少用easy_install，因为只能安装不能卸载
+多用pip方式安装
+Python第三方包下载
+
+##第一个网页爬虫
+
+Requests获取网页源代码
+Re
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2008,7 +2029,10 @@ Robots协议（也称为爬虫协议、机器人协议等）的全称是“网�
 
 ##简介
 
-robots.txt文件是一个文本文件，使用任何一个常见的
+robots.txt文件是一个文本文件，使用任何一个常见的文本编辑器编辑。
+robots.txt是一个协议，而不是一个命令。
+robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。
+robots.txt文件告诉蜘蛛程序在服务器上什么文件是可以被查
           ...
           <!--noindex-->
           <div class="post-button text-center">

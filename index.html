@@ -493,6 +493,160 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/09/TODO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nebula">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/nebula.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nebula">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/09/TODO/" itemprop="url">
+                  TODO
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T10:57:25+08:00">
+                2017-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/09/TODO/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/09/TODO/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/09/TODO/" class="leancloud_visitors" data-flag-title="TODO">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+[ ] Spring boot
+[ ] ActiveMQ
+[ ] 爬虫
+
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/09/TODO/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/centos安装docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -615,7 +769,9 @@ var _hmt = _hmt || [];
         
           
           安装命令
-123yum install https://get.docker.com/rpm/1.7.1/centos-6/RPMS/x86_64/docker-engine-1.7.1-1.el6.x86_64.rpmyum install https://yum.dockerproject.or
+123yum install https://get.docker.com/rpm/1.7.1/centos-6/RPMS/x86_64/docker-engine-1.7.1-1.el6.x86_64.rpmyum install https://yum.dockerproject.org/repo/main/centos/7/Packages/docker-engine-1.9.0-1.el7.centos.x86_64.rpm
+dockrt0出错解决
+123rm -rf /var
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -820,7 +976,16 @@ gradle wrapper的配置文件
 将指定的目录或文件排除在版本控制之外
 
 
-b
+build.gradle
+项目全局的gradle构建脚本
+
+
+gradle.properties
+全局的gradle配置文件
+
+
+gradlew
+命令行界面执行gradle命令，linux、mac系统下
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1002,7 +1167,9 @@ notify():在条件实例中可用的notify()
 
 
 
-生产
+生产者和消费者是并发运行的，生产者和消费者是线程分离的。
+设定一个全局变量，可以被生产者和消费者线程修改，生产者生产数据并把它加入到队列，消费者消耗这些数据(把数据移出)。
+队列是一个共享变量，把它放到l
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1183,7 +1350,13 @@ buf:缓冲buffering大小
 
 'r'		只读方式打开		文件必须存在
 'w'		只写方式打开		文件不存在创建文件，文件存在则情况文件内容
-'a'		追加方式打开
+'a'		追加方式打开		文件不存在创建文件
+'r+'/'w+'	读写方式打开		
+'a+'		追加和读写方式打开
+
+'rb','wb','ab','rb+','wb+','ab+':二进制方式打开
+
+python读取方式
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1545,8 +1718,12 @@ Out[2]: 'hELLO'
 
 字符串自动补零
 In [1]: &quot;5&quot;.zfill(10)
-Out[1]: &
-          ...
+Out[1]: &quot;0000000005&quot;
+
+
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/18/Python函数/#more" rel="contents">
@@ -1716,7 +1893,7 @@ Out[1]: &
       
         
           
-          123456789101112import os.pathrootdir = "d:\data"                                   # 指明被遍历的文件夹for parent,dirnames,filenames in os.walk(rootdir):    #三
+          123456789101112import os.pathrootdir = "d:\data"                                   # 指明被遍历的文件夹for parent,dirnames,filenames in os.walk(rootdir):    #三个参数：分别返回1.父目录 2.所有文件夹名字（不含路径） 3.所有文件名字	for dirname in  dirnames:                       #输出文件夹信息		pri
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1896,191 +2073,14 @@ print response.read()
 
 post方法抓取页面
 import urllib
-import 
+import urllib2
+
+url = &quot;http://pay.fjut.edu.cn/user.php&quot;
+form = {'act':'act_login','username':'Arv
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/16/python爬虫基础/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/15/python POP3获取邮件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Nebula">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/nebula.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nebula">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/15/python POP3获取邮件/" itemprop="url">
-                  python POP3获取邮件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-15T21:51:37+08:00">
-                2017-10-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/15/python POP3获取邮件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/15/python POP3获取邮件/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/15/python POP3获取邮件/" class="leancloud_visitors" data-flag-title="python POP3获取邮件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-POP协议（Post Office Protocol,邮局协议），默认使用110端口。
-IMAP4协议。
-服务器端-客户端工作模式。
-python标准库中支持POP3协议的实现是poplib模块。
-
-典型邮件客户端获取邮件的步骤
-
-使用DNS协议来解析POP3服务器的IP地址
-使用TCP协议来连接
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/15/python POP3获取邮件/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

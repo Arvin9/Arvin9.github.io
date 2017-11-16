@@ -452,7 +452,13 @@ win7
 
 node.js
 
-node.js是一个JavaScript运行环境，
+node.js是一个JavaScript运行环境，简单的说就是运行在服务端的node.js
+
+
+基础教程推荐Node.js菜鸟教程
+安装包推荐4.6.0LTSNode.js官网
+本项目代码主要参考socket.io官网的例子
+界面则采用CSS框架bo
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -605,7 +611,7 @@ node.js是一个JavaScript运行环境，
 ###时限调度算法是一种以满足用户要求的时限为调度原则的算法。在实时系统中的用户要求时限有两种，即处理开始时限和处理结束时限。时限调度算法可以使用任一种时限。时限调度算法可用于周期性调度与非周期性调度两种。
 ###时限调度算法所需要的相关输入信息有以下几种：
 
-任务就绪时间或事件到达
+任务就绪时间或事件到达时间指的是进程进入就绪状态，可以被调度执行的时间。对于周期性任务来说，该时间是可以预知的，而且时间间隔是周期性的。对于非周期性任务来说，这些时间可能是可预知的，但大部分时候是不可预知的，需要事件发生来
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -764,8 +770,12 @@ node.js是一个JavaScript运行环境，
 业务知识
 业务分析能力
 数据分析能力
-数据提取能
-          ...
+数据提取能力
+数据处理及展现能力
+较强的沟通能力
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/04/21/数据分析/#more" rel="contents">
@@ -921,7 +931,11 @@ node.js是一个JavaScript运行环境，
 
 ##选择排序
 
-先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元
+先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。
+
+##插入排序
+
+将数据分为两部分，有序部分与无序部分，一开始有序部分包含第1个元素，依次将无序的元素插入到有序部分，直到所有元素有序
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1077,7 +1091,12 @@ node.js是一个JavaScript运行环境，
 		&lt;td&gt;类型&lt;/td&gt;
 		&lt;td&gt;大小&lt;/td&gt;
 		&lt;td&gt;范围（有符号）&lt;/td&gt;
-		&lt;td&gt;范围（无符号）&lt;/t
+		&lt;td&gt;范围（无符号）&lt;/td&gt;
+		&lt;td&gt;用途&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;TINYINT&lt;/td&gt;
+		&lt;td&gt;
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1241,7 +1260,15 @@ node.js是一个JavaScript运行环境，
 
 ##选择适合列建立索引
 
-出现在WHERE从句，GROUP BY从句，ORDER BY
+出现在WHERE从句，GROUP BY从句，ORDER BY 从句中的列
+可选择性高的列要放到索引的前面
+索引中不要包括太长的数据类型
+
+##维护索引
+
+索引并不是越多越好，过多的索引不但会降低写效率而且会降低读的效率
+定期维护索引碎片
+在SQL语句中不要使用
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1400,7 +1427,9 @@ Ndb cluster
 
 ##表及字段的命名规则
 
-可读性原则：使用大写和小写来格式化的库对象名字以获得良好的可读性。例如：使用CustAddress而不是custaddress来提高可读性。（这里要注
+可读性原则：使用大写和小写来格式化的库对象名字以获得良好的可读性。例如：使用CustAddress而不是custaddress来提高可读性。（这里要注意有些DBMS系统对表名的大小写是敏感的）
+表意性原则：对象的名字应该能够描述它所标识的对象。例如：对于表的名称应该能够体现表中存储的数据内容；对于存储过程，存储过程名称应该能够体现存储过程的功能。
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1571,7 +1600,11 @@ Ndb cluster
 
 ##名称解释
 
-
+关系：一个关系对应通常所说的一张表
+元组：表中的一行即为一个元组
+属性：表中的一列即一个属性；每个属性都有一个名称，称为属性名。
+候选码：表中的某个属性组，它可以是唯一确定一个元组。
+主码：一个关系有
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1885,7 +1918,13 @@ Ndb cluster
 PATH、HISTSIZE、PS1、HOSTNAME等环境变量写入对应的环境变量配置文件
 
 
-环境变量配置文件中
+环境变量配置文件中主要是定义对系统操作环境生效的系统环境变量，如PATH等
+/etc/profile
+/etc/profile.d/*.sh
+~/.bash_profile
+~/.bashrc
+/etc/bashrc
+
           ...
           <!--noindex-->
           <div class="post-button text-center">

@@ -321,6 +321,190 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/05/Python第五天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nebula">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/nebula.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nebula">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/05/Python第五天/" itemprop="url">
+                  Python第五天
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-05T21:51:37+08:00">
+                2017-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/05/Python第五天/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/05/Python第五天/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/05/Python第五天/" class="leancloud_visitors" data-flag-title="Python第五天">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          if语句
+age = 20
+    if age &gt;= 18:
+	print 'your age is', age
+print 'adult'
+print 'END'
+
+
+Python代码的缩进规则。具有相同缩进的代码被视为代码块。
+缩进要严格按照Python的习惯写法：4个空格，不要使用Tab，更不要混合Tab和空格，否则很容易造成因为缩进引起的语法错误。
+if 语句后接表达式，然后用:表示代码块开始。
+在Python交互环境下敲代码，还要特别留意缩进，并且退出缩进需要多敲一行回车。
+
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/05/Python第五天/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/04/Python第四天/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -447,7 +631,10 @@ var _hmt = _hmt || [];
 
 
 创建tuple和创建list唯一不同之处是用( )替代了[ ]。
-t就不能改变了，tuple没有 ap
+t就不能改变了，tuple没有 append()方法，也没有insert()和pop()方法
+获取 tuple 元素的方式和 list 是一模一样的，我们可以正常使用 t[0]，t[-1]等索引方式访问元素，但是不能赋值成别的元素
+
+创
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -628,11 +815,202 @@ list中的元素是按照顺序排列的。
 
 
 Python是动态语言，所以list中包含的元素并不要求必须都是同一种数据类型。
-L
+L = ['Michael', 100, True]
+
+
+
+一个元素也没有的list,是空list
+empty_list = []
+
+
+
+通过索引获取list中的指定元素
+
+索引从0开始，第一个元素的索
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/03/Python第三天/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/02/Python第二天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Nebula">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/nebula.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nebula">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/02/Python第二天/" itemprop="url">
+                  Python第二天
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-02T21:51:37+08:00">
+                2017-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/02/Python第二天/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/02/Python第二天/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/02/Python第二天/" class="leancloud_visitors" data-flag-title="Python第二天">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          raw字符串与多行字符串
+
+
+如果一个字符串包含很多需要转义字符，对每一个字符串都进行转义会很麻烦。在字符串前面加个前缀r，这是表示这是一个raw字符串，里面的字符串不需要转义了。
+print r'\\(~\_~)/ \\(~_~)/'
+
+
+
+但是r'...'表示法不能表示多行字符串，也不能表示包含'和&quot;的字符串，如果要表示多行字符串，可以用'''...'''表示。
+print r'''&quot;To be, or not to be&quot;: that is the quest
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/02/Python第二天/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -810,190 +1188,14 @@ Python可以处理任意大小的整数
 在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来。
 
 
-空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0
+空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。
+
+
+print语句也可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出。 print会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/02/Python第一天/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/02/Python第二天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Nebula">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/nebula.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nebula">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/02/Python第二天/" itemprop="url">
-                  Python第二天
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-02T21:51:37+08:00">
-                2017-10-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/02/Python第二天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/02/Python第二天/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/10/02/Python第二天/" class="leancloud_visitors" data-flag-title="Python第二天">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          raw字符串与多行字符串
-
-
-如果一个字符串包含很多需要转义字符，对每一个字符串都进行转义会很麻烦。在字符串前面加个前缀r，这是表示这是一个raw字符串，里面的字符串不需要转义了。
-print r'\\(~\_~)/ \\(~_~)/'
-
-
-
-但是r'...'表示法不能表示多行字符串，也不能表示包含
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/02/Python第二天/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1163,7 +1365,7 @@ print r'\\(~\_~)/ \\(~_~)/'
           
 脚本语言的第一行，目的就是指出，你想要你的这个文件中的代码用什么可执行程序去运行它，就这么简单
 
-1234567#!/usr/bin/python	是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；#!/usr/bin/env python	这种用法是为了防止操作系统用
+1234567#!/usr/bin/python	是告诉操作系统执行这个脚本的时候，调用/usr/bin下的python解释器；#!/usr/bin/env python	这种用法是为了防止操作系统用户没有将python装在默认的/usr/bin路径里。当系统看到这一行的时候，首先会到env设置里查找python的安装路径，再调用对应路径下的解释器程序完成操作。#!/usr/bin/python	
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1336,7 +1538,7 @@ print r'\\(~\_~)/ \\(~_~)/'
           
           准备
 1234# 新建/home/docker/haproxy目录放置配置文件mkdir /home/docker/haproxy# 新建haproxy.cfgvim haproxy.cfg
-12345678910111213141516171819# haproxy.cfg简单配置global  
+12345678910111213141516171819# haproxy.cfg简单配置global    daemon    maxconn 256    tune.bufsize 16384defaults    mode http    timeout connect 5000ms    time
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1493,7 +1695,13 @@ print r'\\(~\_~)/ \\(~_~)/'
 
 这里可以关注CDN的三类实现：镜像、高速缓存、专线，以及智能路由器和负载均衡；
 
-为文件头指定Expires或C
+为文件头指定Expires或Cache-Control，使内容具有缓存性。
+
+区分静态内容和动态内容，避免以后页面访问中不必要的HTTP请求。
+
+避免空的src和href
+
+留意具有这两个属性的标签如link，script，img
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1671,7 +1879,8 @@ print r'\\(~\_~)/ \\(~_~)/'
 
 异步
 
-所谓异步是不需要
+所谓异步是不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。
+当
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1855,170 +2064,18 @@ print r'\\(~\_~)/ \\(~_~)/'
 
 什么时候适合工厂模式
 
-有一组类似的对象需要创
+有一组类似的对象需要创建
+在编码时不能预见需要创建哪种类的实例
+系统需要考虑扩展性，不应依赖于产品类实例如何被创建、组合和表达的细节
+
+设计
+
+尽量松耦合，一个对象的依赖对象的变化与本身无关
+具体产品与客户端剥离，责任剥离
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/11/工厂模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Nebula">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/nebula.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Nebula">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/11/git/" itemprop="url">
-                  Git
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T20:40:51+08:00">
-                2017-04-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/11/git/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/11/git/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/04/11/git/" class="leancloud_visitors" data-flag-title="Git">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Workspace：工作区
-Index/Stage：暂存区
-Repository：仓库区（或本地仓库）
-Remote：远程仓库
-
-新建代码库
-在当前目录新建一个Git代码库
-1$ git init
-新建一个目录，将其初始化为Git代码库
-1$ git init [project-name]
-下载一个
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/11/git/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
