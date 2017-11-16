@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[springboot系列]]></title>
+    <url>%2F2017%2F11%2F17%2Fspringboot%E7%B3%BB%E5%88%97%2F</url>
+    <content type="text"><![CDATA[springboot]]></content>
+      <categories>
+        <category>Spring Boot</category>
+      </categories>
+      <tags>
+        <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[shell系列]]></title>
     <url>%2F2017%2F11%2F17%2Fshell%E7%B3%BB%E5%88%97%2F</url>
     <content type="text"></content>
@@ -433,9 +444,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Java加解密]]></title>
-    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
-    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
+    <title><![CDATA[EL表达式]]></title>
+    <url>%2F2016%2F10%2F18%2FEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[1$&#123;表达式&#125; &quot;.&quot;与&quot;[]&quot;运算符 12$&#123;user.sex&#125; &lt;==&gt; $&#123;user["sex"]&#125;$&#123;bookList[0].price&#125; EL变量 JSP内置对象 EL名称 Page PageScope Request RequestScope Session SessionScope Application ApplicationScope]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -455,9 +466,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[EL表达式]]></title>
-    <url>%2F2016%2F10%2F18%2FEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[1$&#123;表达式&#125; &quot;.&quot;与&quot;[]&quot;运算符 12$&#123;user.sex&#125; &lt;==&gt; $&#123;user["sex"]&#125;$&#123;bookList[0].price&#125; EL变量 JSP内置对象 EL名称 Page PageScope Request RequestScope Session SessionScope Application ApplicationScope]]></content>
+    <title><![CDATA[Java加解密]]></title>
+    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
+    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -499,6 +510,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Struts2]]></title>
+    <url>%2F2016%2F10%2F09%2Fstruts2%2F</url>
+    <content type="text"><![CDATA[Struts Struts是流行和成熟的基于MVC设计模式的Web应用程序框架 Struts2 Struts2不是一个全新的框架，因此稳定性、性能等各方面都有很好的保证，同时吸收了Struts1和WebWork两者的优势。 Struts2的环境需求 Servlet API 2.4 JSP API 2.0 Java 5 jar包 struts2-convention-plugin-2.3.15.3.jar 注解开发jar包 Struts2配置 配置依赖Struts2的基本jar包 配置web.xml,加载Struts2过滤器 加载Struts2的配置文件Struts.xml到src目录 开发Struts中的Action类，类中必须有execute方法 web.xml——Struts2过滤器 任何MVC框架都需要与Web应用整合，这就不得不借助于web.xml文件，只有配置在web.xml文件中Servlet才会被应用加载。 通常，所有的MVC框架都需要Web应用加载一个核心控制器，对于Struts2框架而言，需要加载StrutsPrepareAndExecuteFilter，只要Web应用负责加载StrutsPrepareAndExecuteFilter，StrutsPrepareAndExecuteFilter将会加载Struts2框架。 1234567891011121314151617181920212223&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0"&gt; &lt;filter&gt; &lt;filter-name&gt;struts2&lt;/filter-name&gt; &lt;filter-class&gt; org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;struts2&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; &lt;welcome-file-list&gt; &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt; &lt;/welcome-file-list&gt;&lt;/web-app&gt; Struts.xml struts2的核心配置文件，在开发过程中利用率最高。 该文件主要负责管理应用中的Action映射，以及该Action包含的Result定义等。 全局属性 用户请求和响应Action之间的对应关系 Action可能用到的参数和返回结果 各种拦截器配置 include 12&lt;!-- include节点试试struts2中组件化的方式，可以将每个功能模块独立到一个xml配置文件中，然后用include节点引用 --&gt;&lt;include file="struts-default.xml"&gt;&lt;/include&gt; package 12345678910111213141516171819202122232425262728293031323334353637&lt;!-- package提供了将多个Action组织为一个模块的方式 package的名字必须是唯一的 package可以扩展 当一个package扩展自另一个package时该package会在本身配置的基础上加入扩展的package的配置 父package必须在子package前配置 name:package名称 extends:继承父package名称 abstract:设置package的属性为抽象的，抽象的package不能定义action 值true:flase namespace:定义package命名空间，该命名空间影响到url的地址，例如此命名空间为/test那么访问的是地址为http://localhost:8080/struts2/test/xx.action --&gt;&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;&lt;struts&gt; &lt;package name="default" namespace="/" extends="struts-default"&gt; &lt;action name="helloAction" class="site.nebulas.action.HelloAction"&gt; &lt;result name="hello"&gt;/jsps/helloAction.jsp&lt;/result&gt; &lt;/action&gt; &lt;/package&gt;&lt;!-- &lt;package name="users" namespace="/users" extends="default"&gt; &lt;action name="*_*" class="action.&#123;1&#125;Action" method="&#123;2&#125;"&gt; &lt;result name="login_success"&gt;/users/Users_login_success.jsp&lt;/result&gt; &lt;result name="login_failure"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;result name="logout_success"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;result name="input"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;/action&gt; &lt;/package&gt;--&gt;&lt;/struts&gt; interceptors 拦截器 12345678910111213141516&lt;interceptors&gt; &lt;!-- 定义拦截器 name:拦截器名称 class:拦截器类路径 --&gt; &lt;interceptor name="timer" class="site.nebulas.timer"&gt;&lt;/interceptor&gt; &lt;!-- 定义拦截器栈 --&gt; &lt;interceptor-stack&gt; &lt;interceptor-ref name="timer"&gt;&lt;/interceptor-ref&gt; &lt;interceptor-ref name="logger"&gt;&lt;/interceptor-ref&gt; &lt;/interceptor-stack&gt;&lt;/interceptors&gt;&lt;!-- 定义默认的拦截器 每个Action都会自动引用，如果Action中引用了其他拦截器，默认拦截器将无效 --&gt;&lt;default-interceptor-ref name="mystack"&gt;&lt;/default-interceptor-ref&gt; global-results 1234&lt;!-- 全局results配置 --&gt;&lt;global-results&gt; &lt;result name="input"&gt;/input.jsp&lt;/result&gt;&lt;/global-results&gt; action 123456&lt;!-- Action配置一个Action可以被多层映射（只要action配置中的name不同） name:action名称 class:对应的类路径 method:调用Action中的方法名 --&gt;&lt;action name="hello" class="site.nebulas.Action.LoginAcrion"&gt; result 1234&lt;!-- 节点配置 name:result名称和Action中返回值相同 type:result类型不写则选用superpackage的type struts-default.xml中的默认为dispatcher --&gt; param 1234&lt;!-- 参数设置 name:对应Action中的get/set方法 --&gt;&lt;param name="url"&gt;http://www.sina.com&lt;/param&gt; struts.properties struts2框架的全局属性文件，自动加载 该文件包含很多key-value对。 该文件完全可以配置在struts.xml文件中，使用constant元素。 12#指定默认编码集，对于请求参数带有中午的情况应该设置GBK或GB2312，默认值UTF-8struts.i18n.encoding=GB2312 Servlet API doGet() doPost() 接收参数 使用Action的属性接收参数 使用DomainModel接收参数 使用ModelDriven接收参数 Struts2注解]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Servlet]]></title>
     <url>%2F2016%2F10%2F09%2FServlet%2F</url>
     <content type="text"><![CDATA[Servlet是JSP的前身 Servlet是在服务器上运行的小程序。一个Servlet就是一个Java类，并且可以通过“请求-响应”编程模型来访问的这个驻留在服务器内存里的Servlet程序。 Servlet实现 继承HttpServlet 重写doGet()或者doPost()方法 在web.xml中注册Servlet web.xml中配置 12345678&lt;servlet&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;servlet-class&gt;site.nebulas.servlet.HelloServlet&lt;/servlet-class&gt;&lt;/servlet&gt;&lt;servlet-mapping&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;url-pattern&gt;servlet/hello&lt;/url-pattern&gt;&lt;/servlet-mapping&gt; Servlet生命周期 在下列时刻Servlet容器装载Servlet Servlet容器启动时自动装载某些Servlet,实现它只需要在web.xml文件中的&lt;Servlet&gt;&lt;/Servlet&gt;之间添加如下代码：&lt;loadon-startup&gt;1&lt;/loadon-startup&gt;数字越小表示优先级别越高。 在Servlet容器启动后，客户首次向Servlet发送请求。 Servlet类文件被更新后，重新装载Servlet。 Servlet被装载后，Servlet容器创建一个Servlet实例并且调用Servlet的init()方法进行初始化。在Servlet的整个生命周期内，init()方法只被调用一次。 Servelt与九大内置对象 | JSP对象 | 怎样获得 | |::|::| | out | resp.getWriter | | request | service方法中的req参数 | | response | service方法中的resp参数 | | session | req.getSession()函数 | | application | getServletContext()函数 | | exception | Throwable | | page | this | | pageContext | PageContext | | Config | getServletConfig()函数 |]]></content>
@@ -513,17 +535,6 @@
     <title><![CDATA[pom.xml]]></title>
     <url>%2F2016%2F10%2F09%2Fpom%2F</url>
     <content type="text"><![CDATA[依赖范围（scope） compile : 默认的范围，编译测试运行都有效 provided : 在编译和测试时有效 runtime : 在测试和运行时有效 test : 只在测试时有效 system : 与本机系统相关联，可移植性差 import : 导入的范围，它只使用在dependencyManagement中，表示从其它的pom中导入dependecy的配置 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081&lt;!-- 指定当前pom的版本 --&gt;&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;&lt;groupId&gt;反写的公司网址+项目名&lt;/groupId&gt;&lt;artifacId&gt;项目名+模块名&lt;/artifacId&gt;&lt;!-- 0.0.1 第一个0表示大版本号 第二个0表示分支版本号 第三个0表示小版本号 snapshot快照 alpha内部测试 beta公测 Release稳定 GA正式发布 --&gt;&lt;version&gt;&lt;/version&gt;&lt;!-- 默认是jar war zip pom --&gt;&lt;packaging&gt;&lt;/packaging&gt;&lt;!-- 项目描述名 --&gt;&lt;name&gt;&lt;/name&gt;&lt;!-- 项目地址 --&gt;&lt;url&gt;&lt;/url&gt;&lt;!-- 项目描述 --&gt;&lt;description&gt;&lt;/description&gt;&lt;developers&gt;&lt;/developers&gt;&lt;licenses&gt;&lt;/licenses&gt;&lt;organization&gt;&lt;/organization&gt;&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;&lt;/groupId&gt; &lt;artifacId&gt;&lt;/artifacId&gt; &lt;version&gt;&lt;/version&gt; &lt;type&gt;&lt;/type&gt; &lt;scope&gt;test&lt;/scope&gt; &lt;!-- 设置依赖是否可选 --&gt; &lt;optional&gt;&lt;/optional&gt; &lt;!-- 排除依赖传递列表 --&gt; &lt;exclusions&gt; &lt;exclusion&gt;&lt;/exclusion&gt; &lt;/exclusions&gt; &lt;/dependency&gt;&lt;/dependencies&gt;&lt;!-- 依赖的管理 --&gt;&lt;dependencyManagement&gt; &lt;dependencies&gt; &lt;dependency&gt;&lt;/dependency&gt; &lt;/dependencies&gt;&lt;/dependencyManagement&gt;&lt;!-- 插件管理 --&gt;&lt;build&gt; &lt;!-- 插件列表 --&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;&lt;/groupId&gt; &lt;artifacId&gt;&lt;/artifacId&gt; &lt;version&gt;&lt;/version&gt; &lt;/plugin&gt; &lt;/plugins&gt;&lt;/build&gt;&lt;!-- --&gt;&lt;parent&gt;&lt;/parent&gt;&lt;!-- --&gt;&lt;modules&gt; &lt;module&gt;&lt;/module&gt;&lt;/modules&gt;]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Struts2]]></title>
-    <url>%2F2016%2F10%2F09%2Fstruts2%2F</url>
-    <content type="text"><![CDATA[Struts Struts是流行和成熟的基于MVC设计模式的Web应用程序框架 Struts2 Struts2不是一个全新的框架，因此稳定性、性能等各方面都有很好的保证，同时吸收了Struts1和WebWork两者的优势。 Struts2的环境需求 Servlet API 2.4 JSP API 2.0 Java 5 jar包 struts2-convention-plugin-2.3.15.3.jar 注解开发jar包 Struts2配置 配置依赖Struts2的基本jar包 配置web.xml,加载Struts2过滤器 加载Struts2的配置文件Struts.xml到src目录 开发Struts中的Action类，类中必须有execute方法 web.xml——Struts2过滤器 任何MVC框架都需要与Web应用整合，这就不得不借助于web.xml文件，只有配置在web.xml文件中Servlet才会被应用加载。 通常，所有的MVC框架都需要Web应用加载一个核心控制器，对于Struts2框架而言，需要加载StrutsPrepareAndExecuteFilter，只要Web应用负责加载StrutsPrepareAndExecuteFilter，StrutsPrepareAndExecuteFilter将会加载Struts2框架。 1234567891011121314151617181920212223&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0"&gt; &lt;filter&gt; &lt;filter-name&gt;struts2&lt;/filter-name&gt; &lt;filter-class&gt; org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;struts2&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; &lt;welcome-file-list&gt; &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt; &lt;/welcome-file-list&gt;&lt;/web-app&gt; Struts.xml struts2的核心配置文件，在开发过程中利用率最高。 该文件主要负责管理应用中的Action映射，以及该Action包含的Result定义等。 全局属性 用户请求和响应Action之间的对应关系 Action可能用到的参数和返回结果 各种拦截器配置 include 12&lt;!-- include节点试试struts2中组件化的方式，可以将每个功能模块独立到一个xml配置文件中，然后用include节点引用 --&gt;&lt;include file="struts-default.xml"&gt;&lt;/include&gt; package 12345678910111213141516171819202122232425262728293031323334353637&lt;!-- package提供了将多个Action组织为一个模块的方式 package的名字必须是唯一的 package可以扩展 当一个package扩展自另一个package时该package会在本身配置的基础上加入扩展的package的配置 父package必须在子package前配置 name:package名称 extends:继承父package名称 abstract:设置package的属性为抽象的，抽象的package不能定义action 值true:flase namespace:定义package命名空间，该命名空间影响到url的地址，例如此命名空间为/test那么访问的是地址为http://localhost:8080/struts2/test/xx.action --&gt;&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;&lt;struts&gt; &lt;package name="default" namespace="/" extends="struts-default"&gt; &lt;action name="helloAction" class="site.nebulas.action.HelloAction"&gt; &lt;result name="hello"&gt;/jsps/helloAction.jsp&lt;/result&gt; &lt;/action&gt; &lt;/package&gt;&lt;!-- &lt;package name="users" namespace="/users" extends="default"&gt; &lt;action name="*_*" class="action.&#123;1&#125;Action" method="&#123;2&#125;"&gt; &lt;result name="login_success"&gt;/users/Users_login_success.jsp&lt;/result&gt; &lt;result name="login_failure"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;result name="logout_success"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;result name="input"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;/action&gt; &lt;/package&gt;--&gt;&lt;/struts&gt; interceptors 拦截器 12345678910111213141516&lt;interceptors&gt; &lt;!-- 定义拦截器 name:拦截器名称 class:拦截器类路径 --&gt; &lt;interceptor name="timer" class="site.nebulas.timer"&gt;&lt;/interceptor&gt; &lt;!-- 定义拦截器栈 --&gt; &lt;interceptor-stack&gt; &lt;interceptor-ref name="timer"&gt;&lt;/interceptor-ref&gt; &lt;interceptor-ref name="logger"&gt;&lt;/interceptor-ref&gt; &lt;/interceptor-stack&gt;&lt;/interceptors&gt;&lt;!-- 定义默认的拦截器 每个Action都会自动引用，如果Action中引用了其他拦截器，默认拦截器将无效 --&gt;&lt;default-interceptor-ref name="mystack"&gt;&lt;/default-interceptor-ref&gt; global-results 1234&lt;!-- 全局results配置 --&gt;&lt;global-results&gt; &lt;result name="input"&gt;/input.jsp&lt;/result&gt;&lt;/global-results&gt; action 123456&lt;!-- Action配置一个Action可以被多层映射（只要action配置中的name不同） name:action名称 class:对应的类路径 method:调用Action中的方法名 --&gt;&lt;action name="hello" class="site.nebulas.Action.LoginAcrion"&gt; result 1234&lt;!-- 节点配置 name:result名称和Action中返回值相同 type:result类型不写则选用superpackage的type struts-default.xml中的默认为dispatcher --&gt; param 1234&lt;!-- 参数设置 name:对应Action中的get/set方法 --&gt;&lt;param name="url"&gt;http://www.sina.com&lt;/param&gt; struts.properties struts2框架的全局属性文件，自动加载 该文件包含很多key-value对。 该文件完全可以配置在struts.xml文件中，使用constant元素。 12#指定默认编码集，对于请求参数带有中午的情况应该设置GBK或GB2312，默认值UTF-8struts.i18n.encoding=GB2312 Servlet API doGet() doPost() 接收参数 使用Action的属性接收参数 使用DomainModel接收参数 使用ModelDriven接收参数 Struts2注解]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -726,9 +737,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux用户]]></title>
-    <url>%2F2016%2F03%2F04%2FLinux%E7%94%A8%E6%88%B7%2F</url>
-    <content type="text"><![CDATA[12345678910111213141516/etc/group 存储当前系统中所有用户组信息Group : x : 123 :abc,def,xyz组名称 : 组密码占位符 : 组编码 : 组中用户名列表/etc/gshadow 存储当前系统中用户组的密码信息Group : * : : abc,def,xyz组名称 : 组密码 : 组管理 : 组中用户名列表/etc/passwd 存储当前系统中所有用户的信息user : x : 123 : 456 : xxxxxxx : /home/user : /bin/bash用户名 : 密码占位符 ： 用户编码 : 用户组编码 : 用户注释信息 : 用户主目录 : shell类型/etc/shadow 存储当前系统中所有用户的密码信息 groupadd groupmod useradd usermod 12345678passwd -l username#锁定用户账号passwd -u username#解锁用户账号passwd -d username#无密码登陆 12345chfn username#设置用户资料，依次输入用户资料finger username#显示用户资料]]></content>
+    <title><![CDATA[VI编辑器]]></title>
+    <url>%2F2016%2F03%2F04%2FVI%E7%BC%96%E8%BE%91%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[Visual Interface(可视化接口) VI ——&gt; VIM VIM支持多级撤销 VIM可以跨平台运行 VIM支持语法高亮 VIM支持图形界面 vi三种模式 一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。 编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、r、R”等字母之后才会进入编辑模式。注意，通常在Linux中，按下上述字符时，画面的左下方会出现“INSERT或REPLACE”的字样，才可以输入任何字到文件中。如果要回到一般模式时，则必须要按下Esc键才可退出编辑模式。 命令行模式：在一般模式中，输入“:或/或?”就可以将光标移到最下面的那一行，在这个模式中，你可以搜索数据，而且读取、存盘、大量删除字符、离开vi、显示行号等操作都是在此模式下实现的。 操作模式 Command Mode - 命令模式 Insert Mode - 输入模式 Last Line Mode - 底行模式（尾行，末行） 12345678vim + test.txt#打开test.txt文本，光标置于最后一行vim +3 test.txt#打开test.txt文本，光标置于第三行vim +/hello test.txt#打开test.txt文本，光标置于第一次出现hello的那一行，可以通过按n来切换hello所在的不同行 常用指令 12345678910111213141516171819202122232425262728底行模式常用命令-:w 将内容的修改从内存写入硬盘中-:q 退出当前VI编辑器-:! 强制执行-:ls 列出当前编辑器打开的文件-:n 切换到后一个文件-:N 切换到前一个文件-:15 把光标快速定位到15行- /xxx 从光标位置向后搜索xxx字符串- ?xxx 从光标位置向前搜索xxx字符串- h 光标左移- j 光标下移- k 光标上移- l 光标右移- ctrl + f 向下翻页（front）- ctrl + b 向上翻页（back）- ctrl + d 向下翻半页（down）- ctrl + u 向上翻半页（up）dd 删除光标所在行o 在光标所在行的下方插入一行并切换到输入模式yy 复制光标所在的行p 在光标所在行的下方粘贴P 在光标所在行的上方粘贴]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -737,9 +748,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[VI编辑器]]></title>
-    <url>%2F2016%2F03%2F04%2FVI%E7%BC%96%E8%BE%91%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[Visual Interface(可视化接口) VI ——&gt; VIM VIM支持多级撤销 VIM可以跨平台运行 VIM支持语法高亮 VIM支持图形界面 vi三种模式 一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。 编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、r、R”等字母之后才会进入编辑模式。注意，通常在Linux中，按下上述字符时，画面的左下方会出现“INSERT或REPLACE”的字样，才可以输入任何字到文件中。如果要回到一般模式时，则必须要按下Esc键才可退出编辑模式。 命令行模式：在一般模式中，输入“:或/或?”就可以将光标移到最下面的那一行，在这个模式中，你可以搜索数据，而且读取、存盘、大量删除字符、离开vi、显示行号等操作都是在此模式下实现的。 操作模式 Command Mode - 命令模式 Insert Mode - 输入模式 Last Line Mode - 底行模式（尾行，末行） 12345678vim + test.txt#打开test.txt文本，光标置于最后一行vim +3 test.txt#打开test.txt文本，光标置于第三行vim +/hello test.txt#打开test.txt文本，光标置于第一次出现hello的那一行，可以通过按n来切换hello所在的不同行 常用指令 12345678910111213141516171819202122232425262728底行模式常用命令-:w 将内容的修改从内存写入硬盘中-:q 退出当前VI编辑器-:! 强制执行-:ls 列出当前编辑器打开的文件-:n 切换到后一个文件-:N 切换到前一个文件-:15 把光标快速定位到15行- /xxx 从光标位置向后搜索xxx字符串- ?xxx 从光标位置向前搜索xxx字符串- h 光标左移- j 光标下移- k 光标上移- l 光标右移- ctrl + f 向下翻页（front）- ctrl + b 向上翻页（back）- ctrl + d 向下翻半页（down）- ctrl + u 向上翻半页（up）dd 删除光标所在行o 在光标所在行的下方插入一行并切换到输入模式yy 复制光标所在的行p 在光标所在行的下方粘贴P 在光标所在行的上方粘贴]]></content>
+    <title><![CDATA[Linux用户]]></title>
+    <url>%2F2016%2F03%2F04%2FLinux%E7%94%A8%E6%88%B7%2F</url>
+    <content type="text"><![CDATA[12345678910111213141516/etc/group 存储当前系统中所有用户组信息Group : x : 123 :abc,def,xyz组名称 : 组密码占位符 : 组编码 : 组中用户名列表/etc/gshadow 存储当前系统中用户组的密码信息Group : * : : abc,def,xyz组名称 : 组密码 : 组管理 : 组中用户名列表/etc/passwd 存储当前系统中所有用户的信息user : x : 123 : 456 : xxxxxxx : /home/user : /bin/bash用户名 : 密码占位符 ： 用户编码 : 用户组编码 : 用户注释信息 : 用户主目录 : shell类型/etc/shadow 存储当前系统中所有用户的密码信息 groupadd groupmod useradd usermod 12345678passwd -l username#锁定用户账号passwd -u username#解锁用户账号passwd -d username#无密码登陆 12345chfn username#设置用户资料，依次输入用户资料finger username#显示用户资料]]></content>
       <categories>
         <category>Linux</category>
       </categories>
