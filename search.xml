@@ -243,9 +243,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python第二天]]></title>
-    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%BA%8C%E5%A4%A9%2F</url>
-    <content type="text"><![CDATA[raw字符串与多行字符串 如果一个字符串包含很多需要转义字符，对每一个字符串都进行转义会很麻烦。在字符串前面加个前缀r，这是表示这是一个raw字符串，里面的字符串不需要转义了。 print r'\\(~\_~)/ \\(~_~)/' 但是r'...'表示法不能表示多行字符串，也不能表示包含'和&quot;的字符串，如果要表示多行字符串，可以用'''...'''表示。 print r'''&quot;To be, or not to be&quot;: that is the question. Whether it's nobler in the mind to suffer.''' Unicode字符串 ASCII编码 GB2312编码 Unicode编码，两个字节表示一个字符，原有的英文编码从单字节变成双字节，只需要把高字节全部填为0就可以。 Python以Unicode表示的字符串用u'...'表示 Unicode字符串除了多一个u之外，与普通的字符串没啥区别，转义字符和多行表示法仍然有效。 如果中文字符串在Python环境遇到UnicodeDecodeError，这是因为.py文件保存格式的问题。可以在第一行添加注释# -*- coding: utf-8 -*- # 整数和浮点数 Pyhton的整数运算结果仍然是整数，浮点数运算结果仍然是浮点数。 整数和浮点数混合运算结果就变成了浮点数 Python的整数除法，即使除不尽，结果仍然是整数，余数直接扔掉 布尔类型 与运算 True and True # ==&gt; True True and False # ==&gt; False False and True # ==&gt; False False and False # ==&gt; False 或运算 True or True # ==&gt; True True or False # ==&gt; True False or True # ==&gt; True False or False # ==&gt; False 非运算 not True # ==&gt; False not False # ==&gt; True Python把0、空字符串''、None看出Flase，其他数值和非空字符串都看成True 短路计算 在计算 a and b 时，如果 a 是 False，则根据与运算法则，整个结果必定为 False，因此返回 a；如果 a 是 True，则整个计算结果必定取决与 b，因此返回 b。 在计算 a or b 时，如果 a 是 True，则根据或运算法则，整个计算结果必定为 True，因此返回 a；如果 a 是 False，则整个计算结果必定取决于 b，因此返回 b。]]></content>
+    <title><![CDATA[Python第一天]]></title>
+    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%B8%80%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[Python可以处理任意大小的整数 整数运算永远是精确的，包括除法。浮点运算可能会有四舍五入的误差 在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来。 空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。 print语句也可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出。 print会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符串是这样拼起来的。 Python的注释以 # 开头，后面的文字直到行尾都算注释 在Python程序中，变量是用一个变量名表示，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头。 在Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量。 这种变量本身类型不固定的语言称之为动态语言，与之对应的是静态语言。 如果字符串本身包含'这时，可以用&quot; &quot;括起来表示。 类似的，如果字符串包含&quot;，我们就可以用' '括起来表示。 如果字符串既包含'又包含&quot;，就需要对字符串的某些特殊字符进行“转义”，Python字符串用\进行转义。]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -254,9 +254,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Python第一天]]></title>
-    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%B8%80%E5%A4%A9%2F</url>
-    <content type="text"><![CDATA[Python可以处理任意大小的整数 整数运算永远是精确的，包括除法。浮点运算可能会有四舍五入的误差 在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来。 空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。 print语句也可以跟上多个字符串，用逗号“,”隔开，就可以连成一串输出。 print会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符串是这样拼起来的。 Python的注释以 # 开头，后面的文字直到行尾都算注释 在Python程序中，变量是用一个变量名表示，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头。 在Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量。 这种变量本身类型不固定的语言称之为动态语言，与之对应的是静态语言。 如果字符串本身包含'这时，可以用&quot; &quot;括起来表示。 类似的，如果字符串包含&quot;，我们就可以用' '括起来表示。 如果字符串既包含'又包含&quot;，就需要对字符串的某些特殊字符进行“转义”，Python字符串用\进行转义。]]></content>
+    <title><![CDATA[Python第二天]]></title>
+    <url>%2F2017%2F10%2F02%2FPython%E7%AC%AC%E4%BA%8C%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[raw字符串与多行字符串 如果一个字符串包含很多需要转义字符，对每一个字符串都进行转义会很麻烦。在字符串前面加个前缀r，这是表示这是一个raw字符串，里面的字符串不需要转义了。 print r'\\(~\_~)/ \\(~_~)/' 但是r'...'表示法不能表示多行字符串，也不能表示包含'和&quot;的字符串，如果要表示多行字符串，可以用'''...'''表示。 print r'''&quot;To be, or not to be&quot;: that is the question. Whether it's nobler in the mind to suffer.''' Unicode字符串 ASCII编码 GB2312编码 Unicode编码，两个字节表示一个字符，原有的英文编码从单字节变成双字节，只需要把高字节全部填为0就可以。 Python以Unicode表示的字符串用u'...'表示 Unicode字符串除了多一个u之外，与普通的字符串没啥区别，转义字符和多行表示法仍然有效。 如果中文字符串在Python环境遇到UnicodeDecodeError，这是因为.py文件保存格式的问题。可以在第一行添加注释# -*- coding: utf-8 -*- # 整数和浮点数 Pyhton的整数运算结果仍然是整数，浮点数运算结果仍然是浮点数。 整数和浮点数混合运算结果就变成了浮点数 Python的整数除法，即使除不尽，结果仍然是整数，余数直接扔掉 布尔类型 与运算 True and True # ==&gt; True True and False # ==&gt; False False and True # ==&gt; False False and False # ==&gt; False 或运算 True or True # ==&gt; True True or False # ==&gt; True False or True # ==&gt; True False or False # ==&gt; False 非运算 not True # ==&gt; False not False # ==&gt; True Python把0、空字符串''、None看出Flase，其他数值和非空字符串都看成True 短路计算 在计算 a and b 时，如果 a 是 False，则根据与运算法则，整个结果必定为 False，因此返回 a；如果 a 是 True，则整个计算结果必定取决与 b，因此返回 b。 在计算 a or b 时，如果 a 是 True，则根据或运算法则，整个计算结果必定为 True，因此返回 a；如果 a 是 False，则整个计算结果必定取决于 b，因此返回 b。]]></content>
       <categories>
         <category>python</category>
       </categories>
@@ -358,17 +358,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[RBAC]]></title>
+    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
+    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[GUID——全局唯一标识符]]></title>
     <url>%2F2017%2F04%2F11%2FGUID%2F</url>
     <content type="text"><![CDATA[理论 GUID(Globally Unique Identifier)是一个128位整数（16字节），可用于所有需要唯一标识符的计算机和网络。此标识符重复的可能性非常小。 GUID是由网卡上的标识数字（每个网卡都有唯一的标识号）以及CPU时钟的唯一数字生成的一个16字节的二进制值。 GUID的格式为“xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”,其中每一个x是0-9或a-f范围内的一个十六进制的数字。 世界上的任何两台计算机都不会生成重复的GUID值（概率很小）。 GUID主要用于在拥有多个节点、多台计算机的网络或系统中，分配必须具有唯一性的表示符。 在Windows平台上，GUID应用非常广泛：注册表、类及接口标识、数据库、甚至自动生成的机器名、目录名等。 Time 时间戳。将objectid的前4位进行提取，然后按照十六进制转为十进制，这个数字就是一个时间戳。通过时间戳的转换，可以很容易看清时间格式。 Machine 机器码。接下来的三个字节是所在主机的唯一标识符，一般是机器主机的散列值，这样就确保了不同主机生成不同的机器hash值，确保在分布式中不造成冲突，这也就是在同一台机器生成的objectid中间的字符串都是一模一样的原因。 PID 进程ID。上面的Machine是为了确保在不同机器产生的objectId不冲突，而pid就是为了在同一台机器不同的mongodb进程产生了objectId不冲突，接下来的两位就是产生objectId的进程标识符。 INC 自增计数器。前面的九个字节是保证了一秒内不同机器不同进程生成objectId不冲突，最后面的三个字节是一个自动增加的计数器，用来确保在同一秒内产生的objectId也不会发现冲突，允许2^24等于16777216条记录的唯一性。 &quot;Big Bang&quot; was caused when two GUIDs collided.]]></content>
       <tags>
         <tag>GUID</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[RBAC]]></title>
-    <url>%2F2017%2F04%2F11%2FRBAC%2F</url>
-    <content type="text"><![CDATA[简述 RBAC（Role-Based Access Control）即基于角色的权限访问控制。]]></content>
   </entry>
   <entry>
     <title><![CDATA[Spring Boot]]></title>
@@ -400,14 +400,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[EL表达式]]></title>
-    <url>%2F2016%2F10%2F18%2FEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[1$&#123;表达式&#125; &quot;.&quot;与&quot;[]&quot;运算符 12$&#123;user.sex&#125; &lt;==&gt; $&#123;user["sex"]&#125;$&#123;bookList[0].price&#125; EL变量 JSP内置对象 EL名称 Page PageScope Request RequestScope Session SessionScope Application ApplicationScope]]></content>
+    <title><![CDATA[Hosts]]></title>
+    <url>%2F2016%2F10%2F18%2FHosts%2F</url>
+    <content type="text"><![CDATA[Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统再会将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
       <categories>
-        <category>java</category>
+        <category>http</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -422,20 +422,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Hosts]]></title>
-    <url>%2F2016%2F10%2F18%2FHosts%2F</url>
-    <content type="text"><![CDATA[Hosts是一个没有扩展名的系统文件，可以用记事本等工具打开，其作用就是将一些常用的网址域名与其对应的IP地址建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从Hosts文件中寻找对应的IP地址，一旦找到，系统会立即打开对应网页，如果没有找到，则系统再会将网址提交DNS域名解析服务器进行IP地址的解析。]]></content>
-      <categories>
-        <category>http</category>
-      </categories>
-      <tags>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Java加解密]]></title>
-    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
-    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
+    <title><![CDATA[hibernate]]></title>
+    <url>%2F2016%2F10%2F18%2Fhibernate%2F</url>
+    <content type="text"><![CDATA[hibernate.cfg.xml常用配置 1234567891011121314151617181920212223242526272829303132333435363738394041&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;&lt;!--声明Hibernate配置文件的开始--&gt;&lt;hibernate-configuration&gt; &lt;!--表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存HIbernate的配置信息，以及对Session的操作--&gt; &lt;session-factory&gt; &lt;!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序--&gt; &lt;property name="connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; &lt;!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，hibernate是数据库名--&gt; &lt;property name="connection.url"&gt; jdbc:mysql://115.29.52.104:3306/ssh?useUnicode=true&amp;amp;characterEncoding=utf8 &lt;/property&gt; &lt;!--连接数据库是用户名--&gt; &lt;property name="connection.username"&gt;nebula&lt;/property&gt; &lt;!--连接数据库是密码--&gt; &lt;property name="connection.password"&gt;314159&lt;/property&gt; &lt;!--数据库连接池的大小--&gt; &lt;property name="hibernate.connection.pool.size"&gt;20&lt;/property&gt; &lt;!-- 显示SQL语句 --&gt; &lt;property name="show_sql"&gt;true&lt;/property&gt; &lt;property name="format_sql"&gt;true&lt;/property&gt; &lt;!-- create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表 create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。 update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据 model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。 --&gt; &lt;property name="hbm2ddl.auto"&gt;update&lt;/property&gt; &lt;!-- 定义方言 --&gt; &lt;property name="dialect"&gt; org.hibernate.dialect.MySQLDialect &lt;/property&gt; &lt;!--指定映射文件为“site/nebulas/bean/User.hbm.xml”--&gt; &lt;mapping resource="site/nebulas/bean/User.hbm.xml"&gt;&lt;/mapping&gt; &lt;/session-factory&gt;&lt;/hibernate-configuration&gt; User.hbm.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&lt;?xml version="1.0"?&gt;&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;&lt;!-- &lt;hibernate-mapping&gt;一般不去配置，采用默认即可。 default-cascade="none"：默认的级联风格，表与表联动。 default-lazy="true"：默认延迟加载 --&gt;&lt;hibernate-mapping&gt; &lt;!-- &lt;class&gt;：使用class元素定义一个持久化类。 name="site.nebulas.bean.User"：持久化类的java全限定名； table="user"：对应数据库表名； mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除； dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段； dynamic-update="false"：默认为false，动态插入非空值字段； select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新； optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)、 none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作； --&gt; &lt;class name="site.nebulas.bean.User" table="user" dynamic-insert="true" dynamic-update="true" optimistic-lock="version"&gt; &lt;!-- &lt;id&gt;：定义了该属性到数据库表主键字段的映射。 name="userId"：标识属性的名字； column="userId"：表主键字段的名字，如果不填写与name一样； --&gt; &lt;id name="id"&gt; &lt;!-- &lt;generator&gt;：指定主键由什么生成，推荐使用uuid（随机生成唯一通用的表示符，实体类的ID必须是String）， native（让数据库自动选择用什么生成（根据底层数据库的能力选择identity，sequence或hilo中的一种））， assigned（指用户手工填入，默认）。 --&gt; &lt;generator class="identity"/&gt; &lt;/id&gt; &lt;!-- &lt;version/&gt;：使用版本控制来处理并发，要开启optimistic-lock="version"和dynamic-update="true"。 name="version"：持久化类的属性名，column="version"：指定持有版本号的字段名； &lt;version name="version" column="version"/&gt; --&gt; &lt;!-- &lt;property&gt;：为类定义一个持久化的javaBean风格的属性。 name="name"：标识属性的名字，以小写字母开头； column="name"：表主键字段的名字，如果不填写与name一样； update="true"/insert="true"：默认为true，表示可以被更新或插入； --&gt; &lt;property name="name" column="name" /&gt; &lt;property name="password" column="password"/&gt; &lt;property name="createTime" column="createTime"/&gt; &lt;!-- 组件映射：把多个属性打包在一起当一个属性使用，用来把类的粒度变小。 &lt;component name="属性，这里指对象"&gt; &lt;property name="name1"&gt;&lt;/property&gt; &lt;property name="name2"&gt;&lt;/property&gt; &lt;/component&gt; --&gt; &lt;!-- &lt;join&gt;:一个对象映射多个表，该元素必须放在所有&lt;property&gt;之后。 &lt;join table="tbl_test：子表名"&gt; &lt;key column="uuid：子表主键"&gt;&lt;/key&gt; &lt;property name="name1：对象属性" column="name：子表字段"&gt;&lt;/property&gt; &lt;/join&gt; --&gt; &lt;/class&gt;&lt;/hibernate-mapping&gt; session save() update() delete() createQuery() transaction]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -444,9 +433,20 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hibernate]]></title>
-    <url>%2F2016%2F10%2F18%2Fhibernate%2F</url>
-    <content type="text"><![CDATA[hibernate.cfg.xml常用配置 1234567891011121314151617181920212223242526272829303132333435363738394041&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"&gt;&lt;!--声明Hibernate配置文件的开始--&gt;&lt;hibernate-configuration&gt; &lt;!--表明以下的配置是针对session-factory配置的，SessionFactory是Hibernate中的一个类，这个类主要负责保存HIbernate的配置信息，以及对Session的操作--&gt; &lt;session-factory&gt; &lt;!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序--&gt; &lt;property name="connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; &lt;!--设置数据库的连接url:jdbc:mysql://localhost/hibernate,其中localhost表示mysql服务器名称，此处为本机，hibernate是数据库名--&gt; &lt;property name="connection.url"&gt; jdbc:mysql://115.29.52.104:3306/ssh?useUnicode=true&amp;amp;characterEncoding=utf8 &lt;/property&gt; &lt;!--连接数据库是用户名--&gt; &lt;property name="connection.username"&gt;nebula&lt;/property&gt; &lt;!--连接数据库是密码--&gt; &lt;property name="connection.password"&gt;314159&lt;/property&gt; &lt;!--数据库连接池的大小--&gt; &lt;property name="hibernate.connection.pool.size"&gt;20&lt;/property&gt; &lt;!-- 显示SQL语句 --&gt; &lt;property name="show_sql"&gt;true&lt;/property&gt; &lt;property name="format_sql"&gt;true&lt;/property&gt; &lt;!-- create：每次加载hibernate时都会删除上一次的生成的表，然后根据你的model类再重新来生成新表 create-drop：每次加载hibernate时根据model类生成表，但是sessionFactory一关闭,表就自动删除。 update：最常用的属性，第一次加载hibernate时根据model类会自动建立起表的结构（前提是先建立好数据库），以后加载hibernate时根据 model类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。 --&gt; &lt;property name="hbm2ddl.auto"&gt;update&lt;/property&gt; &lt;!-- 定义方言 --&gt; &lt;property name="dialect"&gt; org.hibernate.dialect.MySQLDialect &lt;/property&gt; &lt;!--指定映射文件为“site/nebulas/bean/User.hbm.xml”--&gt; &lt;mapping resource="site/nebulas/bean/User.hbm.xml"&gt;&lt;/mapping&gt; &lt;/session-factory&gt;&lt;/hibernate-configuration&gt; User.hbm.xml 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&lt;?xml version="1.0"?&gt;&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;&lt;!-- &lt;hibernate-mapping&gt;一般不去配置，采用默认即可。 default-cascade="none"：默认的级联风格，表与表联动。 default-lazy="true"：默认延迟加载 --&gt;&lt;hibernate-mapping&gt; &lt;!-- &lt;class&gt;：使用class元素定义一个持久化类。 name="site.nebulas.bean.User"：持久化类的java全限定名； table="user"：对应数据库表名； mutable="true"：默认为true，设置为false时则不可以被应用程序更新或删除； dynamic-insert="false"：默认为false，动态修改那些有改变过的字段，而不用修改所有字段； dynamic-update="false"：默认为false，动态插入非空值字段； select-before-update="false"：默认为false，在修改之前先做一次查询，与用户的值进行对比，有变化都会真正更新； optimistic-lock="version"：默认为version(检查version/timestamp字段)，取值：all(检查全部字段)、dirty(只检查修改过的字段)、 none(不使用乐观锁定)，此参数主要用来处理并发，每条值都有固定且唯一的版本，版本为最新时才能执行操作； --&gt; &lt;class name="site.nebulas.bean.User" table="user" dynamic-insert="true" dynamic-update="true" optimistic-lock="version"&gt; &lt;!-- &lt;id&gt;：定义了该属性到数据库表主键字段的映射。 name="userId"：标识属性的名字； column="userId"：表主键字段的名字，如果不填写与name一样； --&gt; &lt;id name="id"&gt; &lt;!-- &lt;generator&gt;：指定主键由什么生成，推荐使用uuid（随机生成唯一通用的表示符，实体类的ID必须是String）， native（让数据库自动选择用什么生成（根据底层数据库的能力选择identity，sequence或hilo中的一种））， assigned（指用户手工填入，默认）。 --&gt; &lt;generator class="identity"/&gt; &lt;/id&gt; &lt;!-- &lt;version/&gt;：使用版本控制来处理并发，要开启optimistic-lock="version"和dynamic-update="true"。 name="version"：持久化类的属性名，column="version"：指定持有版本号的字段名； &lt;version name="version" column="version"/&gt; --&gt; &lt;!-- &lt;property&gt;：为类定义一个持久化的javaBean风格的属性。 name="name"：标识属性的名字，以小写字母开头； column="name"：表主键字段的名字，如果不填写与name一样； update="true"/insert="true"：默认为true，表示可以被更新或插入； --&gt; &lt;property name="name" column="name" /&gt; &lt;property name="password" column="password"/&gt; &lt;property name="createTime" column="createTime"/&gt; &lt;!-- 组件映射：把多个属性打包在一起当一个属性使用，用来把类的粒度变小。 &lt;component name="属性，这里指对象"&gt; &lt;property name="name1"&gt;&lt;/property&gt; &lt;property name="name2"&gt;&lt;/property&gt; &lt;/component&gt; --&gt; &lt;!-- &lt;join&gt;:一个对象映射多个表，该元素必须放在所有&lt;property&gt;之后。 &lt;join table="tbl_test：子表名"&gt; &lt;key column="uuid：子表主键"&gt;&lt;/key&gt; &lt;property name="name1：对象属性" column="name：子表字段"&gt;&lt;/property&gt; &lt;/join&gt; --&gt; &lt;/class&gt;&lt;/hibernate-mapping&gt; session save() update() delete() createQuery() transaction]]></content>
+    <title><![CDATA[EL表达式]]></title>
+    <url>%2F2016%2F10%2F18%2FEL%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[1$&#123;表达式&#125; &quot;.&quot;与&quot;[]&quot;运算符 12$&#123;user.sex&#125; &lt;==&gt; $&#123;user["sex"]&#125;$&#123;bookList[0].price&#125; EL变量 JSP内置对象 EL名称 Page PageScope Request RequestScope Session SessionScope Application ApplicationScope]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java加解密]]></title>
+    <url>%2F2016%2F10%2F18%2FJava%E5%8A%A0%E8%A7%A3%E5%AF%86%2F</url>
+    <content type="text"><![CDATA[名词 明文：待加密信息 密文：进过加密后的明文 加密：明文转为密文后的信息 加密算法：明文转为密文的转换算法 加密密钥：通过加密算法进行加密操作的密钥 解密：将密文转为明文的过程 解密算法：密文转为明文的算法 解密密钥：通过解密算法进行解密操作的密钥 密码分析：截获密文者试图通过分析截获的密文从而推断出原来的明文或密钥的过程 主动攻击：攻击者非法入侵密码系统，采用伪造、修改、删除等手段向系统注入假消息进行欺骗。（对密文具有破坏作用） 被动攻击：对一个保密系统采取截获密文并对其进行分析和攻击。（对密文没有破坏作用） 密码体制 明文空间 密文空间 密钥空间 加密算法 解密算法 密码协议：也称安全协议，指以密码学为基础的消息交换的通信协议，目的是在网络环境中提供安全的服务 密码系统：指用于加密、解密的系统 柯克霍夫原则：数据的安全基于密钥而不是算法的保密。即系统的安全取决于密钥，对密钥保密，对算法公开。——现代密码学设计的基本原则 时间 古典密码：以字符为基本加密单元 现代密码：以信息块为基本加密单元 保密内容算法 受限制算法 基于密钥算法 密码体制 对称密码：加密密钥和解密密钥相同 非对称加密：加密密钥与解密密钥不同，密钥分公钥和私钥 明文处理方法 分组处理：加密时将明文分成固定长度的组，用同一个密钥和算法对每一块加密，输出也是固定长度的密文。 也称序列密码：指加密时每次加密一位或一个字节明文。 OSI安全体系 物理层 数据链路层 网络层 传输层 会话层 表示层 应用层 加密机制 数字签名机制 控制访问机制 数据完整性机制 认证机制 业务流填充机制 路由控制机制 公证机制 认证（鉴别） 访问控制服务 数据完整性服务 数据保密性服务 抗否认性服务 Java相关包 jdk commons codec Bouncy castle Base64算法 消息摘要算法 对称加密算法 非对称加密算法 数字签名算法 数字证书 安全协议 散列函数 散列函数用来验证数据的完整性 特点 长度不受限制 哈希值容易计算 散列运算过程不可逆 消息摘要算法MD5 SHA——安全散列算法 MAC——消息认证算法 数字签名 主要是针对以数字形式存储的消息进行处理 JCA JCE JSSE JAAS java.security---消息摘要 javax.crypto---安全消息摘要，消息认证（鉴别）码 java.net.ssl---安全套接字]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -466,17 +466,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Java注解]]></title>
-    <url>%2F2016%2F10%2F10%2FJava%E6%B3%A8%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[JDK自带注解 @Override 覆盖/实现 @Deprecared 表示方法已经过时 @Suppvisewarnings 忽略警告 Spring注解 @Autowired @Service @Repository Mybatis注解 @InsertProvider @UpdateProvider @Options]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[HTTP]]></title>
     <url>%2F2016%2F10%2F10%2FHTTP%2F</url>
     <content type="text"><![CDATA[端口 端口号 0~65535 get/post get获取信息 Post提交表单数据或上传文件 HTTP头 HTTP头文件是&quot;键/值&quot;对 键可能会在HTTP头文件中出现任意次数 cookie 服务端发送到客户端然后客户端稍后再返回到服务端的短字符串 URL编码 URL编码标准用%后面跟着2位的代码代表特殊字符并以&quot;+&quot;字符代替空格 通用首部字段 字段 描述 Cashe-Control 控制缓存行为 Connection 逐跳首部、连接的管理 Date 创建报文的日期时间 Pragma 报文指令 Trailer 报文末端的首部一览 Transfer-Encoding 指定报文主体的传输编码方式 Upgrade 升级为其他协议 Via 代理服务器的相关信息 Warning 错误通知 请求首部字段 字段 描述 Accept 用于告诉服务器，客户机支持的数据类型 Accept-Charset 用于告诉服务器，客户机采用的编码 Accept-Encoding 用于告诉服务器，客户机支持的数据压缩格式 Accept-Language 客户机的语言环境 Host 客户机通过这个头告诉服务器，想要访问的主机名 Referer 客户机通过这个头告诉服务器，它是从哪个资源来访问服务器的（防盗链） Authorization Web认证信息 Expect 期待服务器的特定行为 From 用户的电子邮箱地址 If-Match 比较实体标记（ETag） If-None_Match 比较实体标记（与f-Match相反） If-Range 资源未更新时发送实体Byte的范围请求 If-Modified-Since 客户机通过这个头告诉服务器，资源的缓存时间 If-Unmodified-Since 比较资源更新的时间（与If-Modified-Since相反） Max-Forwards 最大传输逐跳数 Proxy-Authorization 代理服务器要求客户端的认证信息 Range 实体的字节范围请求 TE 传输编码的优先级 User-Agent HTTP客户端程序的信息 响应首部字段 字段 描述 Accept-Ranges 是否接受字节范围请求 Age 推算资源创建经过时间 Proxy-Authenticate 代理服务器对客户端的认证信息 Retry-After 对再起发起请求的时机要求 Vary 代理服务器缓存的管理信息 WWW-Authenticate 服务器对客户端的认证信息 location 配和302状态码使用，告诉客户机找谁 Server 服务器通过这个头，告诉浏览器服务器的类型 Content-Encoding 服务器通过这个头，数据的压缩格式 Content-Length 服务器通过这个头，告诉浏览器回送数据的长度 Content-Type 服务器通过这个头，告诉浏览器回送数据的类型 Last-Modified 服务器通过这个头，告诉浏览器当前资源缓存时间 Refresh 服务器通过这个头，告诉浏览器隔多久刷新一次 Content-Disposition 服务器通过这个头，告诉浏览器以下载方式打开这个数据 Transfer-Encoding 服务器通过这个头，告诉浏览器数据的传送格式 Etag 缓存 Expires 服务器通过这个头，告诉浏览器把回送的资源缓存多长时间，-1或0，则是不缓存 Cache-Control no-cache Pragma no-cache 服务器通过以上两个头，也是控制浏览器不要缓存数据 实体首部字段 字段 描述 Allow 资源可支持的HTTP方法 Content-Encoding 实体主体使用的编码方式 Content-Language 实体主体的自然语言 Content-Length 实体主体的大小（单位:字节） Content-Location 代替对应资源的URI Content-MD5 实体主体的报文摘要 Content-Range 实体主体的位置范围 Content-Type 实体主体的媒体类型 Expires 实体主体过期的日期时间 Last-Modified 资源的最后修改日期时间 Cache-Control 缓存请求指令 指令 参数 说明 no-cache 无 强制向源服务器再次验证 no-store 无 不缓存请求或响应的任何内容 max-age = [秒] 必需 响应的最大Age值 max-stale( = [秒]) 可省略 接收已过期的响应 min-fresh = [秒] 必需 期望在指定时间内的响应任有效 no-transform 无 代理不可更改媒体类型 only-if-cached 无 从缓存获取资源 cache-extension - 新指令标记（token） 缓存响应指令 指令 参数 说明 public 无 可向任意方提供响应的缓存 private 可省略 仅向特定用户返回响应 no-cache 可 省略 缓存前必需先确认其有效性 no-store 无 不缓存或响应任何内容 no-transform 无 代理不可更改媒体类型 must-revalidate 无 可缓存但必须再向源服务器确认 proxy-revalidate 无 要求中间缓存服务器对缓存的响应有效性再进行确认 max-age = [秒] 必需 响应的最大Age值 s-maxage = [秒] 必需 公共缓存服务器响应的最大Age值 cache-extension - 新指令标记（token）]]></content>
@@ -488,9 +477,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Servlet]]></title>
-    <url>%2F2016%2F10%2F09%2FServlet%2F</url>
-    <content type="text"><![CDATA[Servlet是JSP的前身 Servlet是在服务器上运行的小程序。一个Servlet就是一个Java类，并且可以通过“请求-响应”编程模型来访问的这个驻留在服务器内存里的Servlet程序。 Servlet实现 继承HttpServlet 重写doGet()或者doPost()方法 在web.xml中注册Servlet web.xml中配置 12345678&lt;servlet&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;servlet-class&gt;site.nebulas.servlet.HelloServlet&lt;/servlet-class&gt;&lt;/servlet&gt;&lt;servlet-mapping&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;url-pattern&gt;servlet/hello&lt;/url-pattern&gt;&lt;/servlet-mapping&gt; Servlet生命周期 在下列时刻Servlet容器装载Servlet Servlet容器启动时自动装载某些Servlet,实现它只需要在web.xml文件中的&lt;Servlet&gt;&lt;/Servlet&gt;之间添加如下代码：&lt;loadon-startup&gt;1&lt;/loadon-startup&gt;数字越小表示优先级别越高。 在Servlet容器启动后，客户首次向Servlet发送请求。 Servlet类文件被更新后，重新装载Servlet。 Servlet被装载后，Servlet容器创建一个Servlet实例并且调用Servlet的init()方法进行初始化。在Servlet的整个生命周期内，init()方法只被调用一次。 Servelt与九大内置对象 | JSP对象 | 怎样获得 | |::|::| | out | resp.getWriter | | request | service方法中的req参数 | | response | service方法中的resp参数 | | session | req.getSession()函数 | | application | getServletContext()函数 | | exception | Throwable | | page | this | | pageContext | PageContext | | Config | getServletConfig()函数 |]]></content>
+    <title><![CDATA[Java注解]]></title>
+    <url>%2F2016%2F10%2F10%2FJava%E6%B3%A8%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[JDK自带注解 @Override 覆盖/实现 @Deprecared 表示方法已经过时 @Suppvisewarnings 忽略警告 Spring注解 @Autowired @Service @Repository Mybatis注解 @InsertProvider @UpdateProvider @Options]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -502,6 +491,17 @@
     <title><![CDATA[Struts2]]></title>
     <url>%2F2016%2F10%2F09%2Fstruts2%2F</url>
     <content type="text"><![CDATA[Struts Struts是流行和成熟的基于MVC设计模式的Web应用程序框架 Struts2 Struts2不是一个全新的框架，因此稳定性、性能等各方面都有很好的保证，同时吸收了Struts1和WebWork两者的优势。 Struts2的环境需求 Servlet API 2.4 JSP API 2.0 Java 5 jar包 struts2-convention-plugin-2.3.15.3.jar 注解开发jar包 Struts2配置 配置依赖Struts2的基本jar包 配置web.xml,加载Struts2过滤器 加载Struts2的配置文件Struts.xml到src目录 开发Struts中的Action类，类中必须有execute方法 web.xml——Struts2过滤器 任何MVC框架都需要与Web应用整合，这就不得不借助于web.xml文件，只有配置在web.xml文件中Servlet才会被应用加载。 通常，所有的MVC框架都需要Web应用加载一个核心控制器，对于Struts2框架而言，需要加载StrutsPrepareAndExecuteFilter，只要Web应用负责加载StrutsPrepareAndExecuteFilter，StrutsPrepareAndExecuteFilter将会加载Struts2框架。 1234567891011121314151617181920212223&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0"&gt; &lt;filter&gt; &lt;filter-name&gt;struts2&lt;/filter-name&gt; &lt;filter-class&gt; org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;struts2&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt; &lt;welcome-file-list&gt; &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt; &lt;/welcome-file-list&gt;&lt;/web-app&gt; Struts.xml struts2的核心配置文件，在开发过程中利用率最高。 该文件主要负责管理应用中的Action映射，以及该Action包含的Result定义等。 全局属性 用户请求和响应Action之间的对应关系 Action可能用到的参数和返回结果 各种拦截器配置 include 12&lt;!-- include节点试试struts2中组件化的方式，可以将每个功能模块独立到一个xml配置文件中，然后用include节点引用 --&gt;&lt;include file="struts-default.xml"&gt;&lt;/include&gt; package 12345678910111213141516171819202122232425262728293031323334353637&lt;!-- package提供了将多个Action组织为一个模块的方式 package的名字必须是唯一的 package可以扩展 当一个package扩展自另一个package时该package会在本身配置的基础上加入扩展的package的配置 父package必须在子package前配置 name:package名称 extends:继承父package名称 abstract:设置package的属性为抽象的，抽象的package不能定义action 值true:flase namespace:定义package命名空间，该命名空间影响到url的地址，例如此命名空间为/test那么访问的是地址为http://localhost:8080/struts2/test/xx.action --&gt;&lt;?xml version="1.0" encoding="UTF-8" ?&gt;&lt;!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;&lt;struts&gt; &lt;package name="default" namespace="/" extends="struts-default"&gt; &lt;action name="helloAction" class="site.nebulas.action.HelloAction"&gt; &lt;result name="hello"&gt;/jsps/helloAction.jsp&lt;/result&gt; &lt;/action&gt; &lt;/package&gt;&lt;!-- &lt;package name="users" namespace="/users" extends="default"&gt; &lt;action name="*_*" class="action.&#123;1&#125;Action" method="&#123;2&#125;"&gt; &lt;result name="login_success"&gt;/users/Users_login_success.jsp&lt;/result&gt; &lt;result name="login_failure"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;result name="logout_success"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;result name="input"&gt;/users/Users_login.jsp&lt;/result&gt; &lt;/action&gt; &lt;/package&gt;--&gt;&lt;/struts&gt; interceptors 拦截器 12345678910111213141516&lt;interceptors&gt; &lt;!-- 定义拦截器 name:拦截器名称 class:拦截器类路径 --&gt; &lt;interceptor name="timer" class="site.nebulas.timer"&gt;&lt;/interceptor&gt; &lt;!-- 定义拦截器栈 --&gt; &lt;interceptor-stack&gt; &lt;interceptor-ref name="timer"&gt;&lt;/interceptor-ref&gt; &lt;interceptor-ref name="logger"&gt;&lt;/interceptor-ref&gt; &lt;/interceptor-stack&gt;&lt;/interceptors&gt;&lt;!-- 定义默认的拦截器 每个Action都会自动引用，如果Action中引用了其他拦截器，默认拦截器将无效 --&gt;&lt;default-interceptor-ref name="mystack"&gt;&lt;/default-interceptor-ref&gt; global-results 1234&lt;!-- 全局results配置 --&gt;&lt;global-results&gt; &lt;result name="input"&gt;/input.jsp&lt;/result&gt;&lt;/global-results&gt; action 123456&lt;!-- Action配置一个Action可以被多层映射（只要action配置中的name不同） name:action名称 class:对应的类路径 method:调用Action中的方法名 --&gt;&lt;action name="hello" class="site.nebulas.Action.LoginAcrion"&gt; result 1234&lt;!-- 节点配置 name:result名称和Action中返回值相同 type:result类型不写则选用superpackage的type struts-default.xml中的默认为dispatcher --&gt; param 1234&lt;!-- 参数设置 name:对应Action中的get/set方法 --&gt;&lt;param name="url"&gt;http://www.sina.com&lt;/param&gt; struts.properties struts2框架的全局属性文件，自动加载 该文件包含很多key-value对。 该文件完全可以配置在struts.xml文件中，使用constant元素。 12#指定默认编码集，对于请求参数带有中午的情况应该设置GBK或GB2312，默认值UTF-8struts.i18n.encoding=GB2312 Servlet API doGet() doPost() 接收参数 使用Action的属性接收参数 使用DomainModel接收参数 使用ModelDriven接收参数 Struts2注解]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Servlet]]></title>
+    <url>%2F2016%2F10%2F09%2FServlet%2F</url>
+    <content type="text"><![CDATA[Servlet是JSP的前身 Servlet是在服务器上运行的小程序。一个Servlet就是一个Java类，并且可以通过“请求-响应”编程模型来访问的这个驻留在服务器内存里的Servlet程序。 Servlet实现 继承HttpServlet 重写doGet()或者doPost()方法 在web.xml中注册Servlet web.xml中配置 12345678&lt;servlet&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;servlet-class&gt;site.nebulas.servlet.HelloServlet&lt;/servlet-class&gt;&lt;/servlet&gt;&lt;servlet-mapping&gt; &lt;servlet-name&gt;hello&lt;/servlet-name&gt; &lt;url-pattern&gt;servlet/hello&lt;/url-pattern&gt;&lt;/servlet-mapping&gt; Servlet生命周期 在下列时刻Servlet容器装载Servlet Servlet容器启动时自动装载某些Servlet,实现它只需要在web.xml文件中的&lt;Servlet&gt;&lt;/Servlet&gt;之间添加如下代码：&lt;loadon-startup&gt;1&lt;/loadon-startup&gt;数字越小表示优先级别越高。 在Servlet容器启动后，客户首次向Servlet发送请求。 Servlet类文件被更新后，重新装载Servlet。 Servlet被装载后，Servlet容器创建一个Servlet实例并且调用Servlet的init()方法进行初始化。在Servlet的整个生命周期内，init()方法只被调用一次。 Servelt与九大内置对象 | JSP对象 | 怎样获得 | |::|::| | out | resp.getWriter | | request | service方法中的req参数 | | response | service方法中的resp参数 | | session | req.getSession()函数 | | application | getServletContext()函数 | | exception | Throwable | | page | this | | pageContext | PageContext | | Config | getServletConfig()函数 |]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -715,9 +715,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[VI编辑器]]></title>
-    <url>%2F2016%2F03%2F04%2FVI%E7%BC%96%E8%BE%91%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[Visual Interface(可视化接口) VI ——&gt; VIM VIM支持多级撤销 VIM可以跨平台运行 VIM支持语法高亮 VIM支持图形界面 vi三种模式 一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。 编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、r、R”等字母之后才会进入编辑模式。注意，通常在Linux中，按下上述字符时，画面的左下方会出现“INSERT或REPLACE”的字样，才可以输入任何字到文件中。如果要回到一般模式时，则必须要按下Esc键才可退出编辑模式。 命令行模式：在一般模式中，输入“:或/或?”就可以将光标移到最下面的那一行，在这个模式中，你可以搜索数据，而且读取、存盘、大量删除字符、离开vi、显示行号等操作都是在此模式下实现的。 操作模式 Command Mode - 命令模式 Insert Mode - 输入模式 Last Line Mode - 底行模式（尾行，末行） 12345678vim + test.txt#打开test.txt文本，光标置于最后一行vim +3 test.txt#打开test.txt文本，光标置于第三行vim +/hello test.txt#打开test.txt文本，光标置于第一次出现hello的那一行，可以通过按n来切换hello所在的不同行 常用指令 12345678910111213141516171819202122232425262728底行模式常用命令-:w 将内容的修改从内存写入硬盘中-:q 退出当前VI编辑器-:! 强制执行-:ls 列出当前编辑器打开的文件-:n 切换到后一个文件-:N 切换到前一个文件-:15 把光标快速定位到15行- /xxx 从光标位置向后搜索xxx字符串- ?xxx 从光标位置向前搜索xxx字符串- h 光标左移- j 光标下移- k 光标上移- l 光标右移- ctrl + f 向下翻页（front）- ctrl + b 向上翻页（back）- ctrl + d 向下翻半页（down）- ctrl + u 向上翻半页（up）dd 删除光标所在行o 在光标所在行的下方插入一行并切换到输入模式yy 复制光标所在的行p 在光标所在行的下方粘贴P 在光标所在行的上方粘贴]]></content>
+    <title><![CDATA[Linux用户]]></title>
+    <url>%2F2016%2F03%2F04%2FLinux%E7%94%A8%E6%88%B7%2F</url>
+    <content type="text"><![CDATA[12345678910111213141516/etc/group 存储当前系统中所有用户组信息Group : x : 123 :abc,def,xyz组名称 : 组密码占位符 : 组编码 : 组中用户名列表/etc/gshadow 存储当前系统中用户组的密码信息Group : * : : abc,def,xyz组名称 : 组密码 : 组管理 : 组中用户名列表/etc/passwd 存储当前系统中所有用户的信息user : x : 123 : 456 : xxxxxxx : /home/user : /bin/bash用户名 : 密码占位符 ： 用户编码 : 用户组编码 : 用户注释信息 : 用户主目录 : shell类型/etc/shadow 存储当前系统中所有用户的密码信息 groupadd groupmod useradd usermod 12345678passwd -l username#锁定用户账号passwd -u username#解锁用户账号passwd -d username#无密码登陆 12345chfn username#设置用户资料，依次输入用户资料finger username#显示用户资料]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -726,9 +726,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux用户]]></title>
-    <url>%2F2016%2F03%2F04%2FLinux%E7%94%A8%E6%88%B7%2F</url>
-    <content type="text"><![CDATA[12345678910111213141516/etc/group 存储当前系统中所有用户组信息Group : x : 123 :abc,def,xyz组名称 : 组密码占位符 : 组编码 : 组中用户名列表/etc/gshadow 存储当前系统中用户组的密码信息Group : * : : abc,def,xyz组名称 : 组密码 : 组管理 : 组中用户名列表/etc/passwd 存储当前系统中所有用户的信息user : x : 123 : 456 : xxxxxxx : /home/user : /bin/bash用户名 : 密码占位符 ： 用户编码 : 用户组编码 : 用户注释信息 : 用户主目录 : shell类型/etc/shadow 存储当前系统中所有用户的密码信息 groupadd groupmod useradd usermod 12345678passwd -l username#锁定用户账号passwd -u username#解锁用户账号passwd -d username#无密码登陆 12345chfn username#设置用户资料，依次输入用户资料finger username#显示用户资料]]></content>
+    <title><![CDATA[VI编辑器]]></title>
+    <url>%2F2016%2F03%2F04%2FVI%E7%BC%96%E8%BE%91%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[Visual Interface(可视化接口) VI ——&gt; VIM VIM支持多级撤销 VIM可以跨平台运行 VIM支持语法高亮 VIM支持图形界面 vi三种模式 一般模式：vi处理文件时，一进入该文件，就是一般模式了。在这个模式中，可以使用“上下左右”键来移动光标，可以使用“删除字符”或者“删除整行”来处理文件内容，也可以使用“复制、粘贴”来处理文件数据。 编辑模式：在一般模式中可以进行删除、复制、粘贴等操作，却无法进行编辑等操作。要等到按下“i、I、o、O、a、A、r、R”等字母之后才会进入编辑模式。注意，通常在Linux中，按下上述字符时，画面的左下方会出现“INSERT或REPLACE”的字样，才可以输入任何字到文件中。如果要回到一般模式时，则必须要按下Esc键才可退出编辑模式。 命令行模式：在一般模式中，输入“:或/或?”就可以将光标移到最下面的那一行，在这个模式中，你可以搜索数据，而且读取、存盘、大量删除字符、离开vi、显示行号等操作都是在此模式下实现的。 操作模式 Command Mode - 命令模式 Insert Mode - 输入模式 Last Line Mode - 底行模式（尾行，末行） 12345678vim + test.txt#打开test.txt文本，光标置于最后一行vim +3 test.txt#打开test.txt文本，光标置于第三行vim +/hello test.txt#打开test.txt文本，光标置于第一次出现hello的那一行，可以通过按n来切换hello所在的不同行 常用指令 12345678910111213141516171819202122232425262728底行模式常用命令-:w 将内容的修改从内存写入硬盘中-:q 退出当前VI编辑器-:! 强制执行-:ls 列出当前编辑器打开的文件-:n 切换到后一个文件-:N 切换到前一个文件-:15 把光标快速定位到15行- /xxx 从光标位置向后搜索xxx字符串- ?xxx 从光标位置向前搜索xxx字符串- h 光标左移- j 光标下移- k 光标上移- l 光标右移- ctrl + f 向下翻页（front）- ctrl + b 向上翻页（back）- ctrl + d 向下翻半页（down）- ctrl + u 向上翻半页（up）dd 删除光标所在行o 在光标所在行的下方插入一行并切换到输入模式yy 复制光标所在的行p 在光标所在行的下方粘贴P 在光标所在行的上方粘贴]]></content>
       <categories>
         <category>Linux</category>
       </categories>
