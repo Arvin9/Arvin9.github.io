@@ -420,164 +420,23 @@ var _hmt = _hmt || [];
       
         
           
-            <h3>尽量减少HTTP请求个数——须权衡</h3>
-<blockquote>
-<p>合并图片（如css sprites，内置图片使用数据）、合并CSS、JS，这一点很重要，但是要考虑合并后的文件体积。</p>
-</blockquote>
-<h3>使用CDN（内容分发网络）</h3>
-<blockquote>
-<p>这里可以关注CDN的三类实现：镜像、高速缓存、专线，以及智能路由器和负载均衡；</p>
-</blockquote>
-<h3>为文件头指定Expires或Cache-Control，使内容具有缓存性。</h3>
-<blockquote>
-<p>区分静态内容和动态内容，避免以后页面访问中不必要的HTTP请求。</p>
-</blockquote>
-<h3>避免空的src和href</h3>
-<blockquote>
-<p>留意具有这两个属性的标签如link，script，img，iframe等；</p>
-</blockquote>
-<h3>使用gzip压缩内容</h3>
-<blockquote>
-<p>Gzip压缩所有可能的文件类型以来减少文件体积</p>
-</blockquote>
-<h3>把CSS放到顶部</h3>
-<blockquote>
-<p>实现页面有秩序地加载，这对于拥有较多内容的页面和网速较慢的用户来说更为重要，同时，HTML规范清楚指出样式表要放包含在页面的&lt;head /&gt;区域内；</p>
-</blockquote>
-<h3>把JS放到底部</h3>
-<blockquote>
-<p>HTTP/1.1 规范建议，浏览器每个主机名的并行下载内容不超过两个，而问题在于脚本阻止了页面的平行下载，即便是主机名不相同</p>
-</blockquote>
-<h3>避免使用CSS表达式</h3>
-<blockquote>
-<p>页面显示和缩放，滚动、乃至移动鼠标时，CSS表达式的计算频率是我们要关注的。可以考虑一次性的表达式或者使用事件句柄来代替CSS表达式。</p>
-</blockquote>
-<h3>将CSS和JS放到外部文件中</h3>
-<blockquote>
-<p>我们需要权衡内置代码带来的HTTP请求减少与通过使用外部文件进行缓存带来的好处的折中点。</p>
-</blockquote>
-<h3>减少DNS查找次数</h3>
-<blockquote>
-<p>我们需要权衡减少 DNS查找次数和保持较高程度并行下载两者之间的关系。</p>
-</blockquote>
-<h3>精简CSS和JS</h3>
-<blockquote>
-<p>目的就是减少下载的文件体积，可考虑压缩工具JSMin和YUI Compressor。</p>
-</blockquote>
-<h3>避免跳转</h3>
-<blockquote>
-<p>为了确保“后退”按钮可以正确地使用，使用标准的 3XXHTTP状态代码；同域中注意避免反斜杠 “/” 的跳转；
-跨域使用 Alias或者 mod_rewirte建立 CNAME（保存一个域名和另外一个域名之间关系的DNS记录）</p>
-</blockquote>
-<h3>剔除重复的JS和CSS</h3>
-<blockquote>
-<p>重复调用脚本，除了增加额外的HTTP请求外，多次运算也会浪费时间。在IE和Firefox中不管脚本是否可缓存，它们都存在重复运算JavaScript的问题。</p>
-</blockquote>
-<h3>配置ETags</h3>
-<blockquote>
-<p>Entity tags（ETags）（实体标签）是web服务器和浏览器用于判断浏览器缓存中的内容和服务器中的原始内容是否匹配的一种机制（“实体”就是所说的“内 容”，包括图片、脚本、样式表等），是比last-modified date更更加灵活的机制，单位时间内文件被修过多次，Etag可以综合Inode(文件的索引节点(inode)数)，MTime(修改时间)和Size来精准的进行判断，避开UNIX记录MTime只能精确到秒的问题。 服务器集群使用，可取后两个参数。使用ETags减少Web应用带宽和负载。</p>
-</blockquote>
-<h3>使AJAX可缓存</h3>
-<blockquote>
-<p>利用时间戳，更精巧的实现响应可缓存与服务器数据同步更新。</p>
-</blockquote>
-<h3>尽早刷新输出缓冲</h3>
-<blockquote>
-<p>尤其对于css，js文件的并行下载更有意义</p>
-</blockquote>
-<h3>使用GET来完成AJAX请求</h3>
-<blockquote>
-<p>当使用XMLHttpRequest时，浏览器中的POST方法是一个“两步走”的过程：首先发送文件头，然后才发送数据。在url小于2K时使用GET获取数据时更加有意义。</p>
-</blockquote>
-<h3>延迟加载</h3>
-<blockquote>
-<p>确定页面运行正常后，再加载脚本来实现如拖放和动画，或者是隐藏部分的内容以及折叠内容等。</p>
-</blockquote>
-<h3>预加载</h3>
-<blockquote>
-<p>关注下无条件加载，有条件加载和有预期的加载。</p>
-</blockquote>
-<h3>减少DOM元素个数</h3>
-<blockquote>
-<p>使用更适合或者在语意是更贴切的标签，要考虑大量DOM元素中循环的性能开销。</p>
-</blockquote>
-<h3>根据域名划分页面内容</h3>
-<blockquote>
-<p>很显然， 是最大限度地实现平行下载</p>
-</blockquote>
-<h3>尽量减少iframe的个数</h3>
-<blockquote>
-<p>考虑即使内容为空，加载也需要时间，会阻止页面加载，没有语意，注意iframe相对于其他DOM元素高出1-2个数量级的开销，它会在典型方式下阻塞onload事件，IE和Firefox中主页面样式表会阻塞它的下载。</p>
-</blockquote>
-<h3>避免404</h3>
-<blockquote>
-<p>HTTP请求时间消耗是很大的，有些站点把404错误响应页面改为“你是不是要找***”，这虽然改进了用户体验但是同样也会浪费服务器资源（如数据库等）。最糟糕的情况是指向外部 JavaScript的链接出现问题并返回404代码。首先，这种加载会破坏并行加载；其次浏览器会把试图在返回的404响应内容中找到可能有用的部分当作JavaScript代码来执行。</p>
-</blockquote>
-<h3>减少Cookie的大小</h3>
-<blockquote>
-<p>去除不必要的coockie
-使coockie体积尽量小以减少对用户响应的影响
-注意在适应级别的域名上设置coockie以便使子域名不受影响
-设置合理的过期时间。较早地Expire时间和不要过早去清除coockie，都会改善用户的响应时间。</p>
-</blockquote>
-<h3>使用无cookie的域</h3>
-<blockquote>
-<p>确定对于静态内容的请求是无coockie的请求。创建一个子域名并用他来存放所有静态内容。</p>
-</blockquote>
-<h3>减少DOM访问</h3>
-<blockquote>
-<p>缓存已经访问过的有关元素
-线下更新完节点之后再将它们添加到文档树中
-避免使用JavaScript来修改页面布局</p>
-</blockquote>
-<h3>开发智能事件处理程序</h3>
-<blockquote>
-<p>有时候我们会感觉到页面反应迟钝，这是因为DOM树元素中附加了过多的事件句柄并且些事件句病被频繁地触发。这就是为什么说使用event delegation（事件代理）是一种好方法了。如果你在一个div中有10个按钮，你只需要在div上附加一次事件句柄就可以了，而不用去为每一个按 钮增加一个句柄。事件冒泡时你可以捕捉到事件并判断出是哪个事件发出的。
-你同样也不用为了操作DOM树而等待onload事件的发生。你需要做的就是等待树结构中你要访问的元素出现。你也不用等待所有图像都加载完毕。
-你可能会希望用DOMContentLoaded事件来代替 事件应用程序中的onAvailable方法。</p>
-</blockquote>
-<h3>用&lt;link&gt;代替@import</h3>
-<blockquote>
-<p>在IE中，页面底部@import和使用&lt;link&gt;作用是一样的，因此最好不要使用它。</p>
-</blockquote>
-<h3>避免使用滤镜</h3>
-<blockquote>
-<p>完全避免使用AlphaImageLoader的最好方法就是使用PNG8格式来代替，这种格式能在IE中很好地工作。如果你确实需要使用 AlphaImageLoader，请使用下划线_filter又使之对IE7以上版本的用户无效。</p>
-</blockquote>
-<h3>优化图像</h3>
-<blockquote>
-<p>尝试把GIF格式转换成PNG格式，看看是否节省空间。在所有的PNG图片上运行pngcrush（或者其它PNG优化工具）</p>
-</blockquote>
-<h3>优化CSS Spirite</h3>
-<blockquote>
-<p>在Spirite中水平排列你的图片，垂直排列会稍稍增加文件大小；
-Spirite中把颜色较近的组合在一起可以降低颜色数，理想状况是低于256色以便适用PNG8格式；
-便于移动，不要在Spirite的图像中间留有较大空隙。这虽然不大会增加文件大小但对于用户代理来说它需要更少的内存来把图片解压为像素地图。 100×100的图片为1万像素，而1000×1000就是100万像素。</p>
-</blockquote>
-<h3>不要在HTML中缩放图像——须权衡</h3>
-<blockquote>
-<p>不要为了在HTML中设置长宽而使用比实际需要大的图片。如果你需要：
-&lt;img width=”100″ height=”100″ src=”mycat.jpg” alt=”My Cat” /&gt;
-那么你的图片（mycat.jpg）就应该是100×100像素而不是把一个500×500像素的图片缩小使用。这里在下文有更有趣的分析。</p>
-</blockquote>
-<h3>favicon.ico要小而且可缓存</h3>
-<blockquote>
-<p>favicon.ico是位于服务器根目录下的一个图片文件。它是必定存在的，因为即使你不关心它是否有用，浏览器也会对它发出请求，因此最好不要返回一 个404 Not Found的响应。由于是在同一台服务器上，它每被请求一次coockie就会被发送一次。这个图片文件还会影响下载顺序，例如在IE中当你在 onload中请求额外的文件时，favicon会在这些额外内容被加载前下载。
-因此，为了减少favicon.ico带来的弊端，要做到：
-文件尽量地小，最好小于1K
-在适当的时候（也就是你不要打算再换favicon.ico的时候，因为更换新文件时不能对它进行重命名）为它设置Expires文件头。你可以很安全地 把Expires文件头设置为未来的几个月。你可以通过核对当前favicon.ico的上次编辑时间来作出判断。
-Imagemagick可以帮你创建小巧的favicon。</p>
-</blockquote>
-<h3>保持单个内容小于25K</h3>
-<blockquote>
-<p>因为iPhone不能缓存大于25K的文件。注意这里指的是解压缩后的大小。由于单纯gizp压缩可能达不要求，因此精简文件就显得十分重 要。</p>
-</blockquote>
-<h3>打包组件成复合文本</h3>
-<blockquote>
-<p>页面内容打包成复合文本就如同带有多附件的Email，它能够使你在一个HTTP请求中取得多个组件（切记：HTTP请求是很奢侈的）。当你使用这条规 则时，首先要确定用户代理是否支持（iPhone就不支持）。</p>
-</blockquote>
+          尽量减少HTTP请求个数——须权衡
 
-          
+合并图片（如css sprites，内置图片使用数据）、合并CSS、JS，这一点很重要，但是要考虑合并后的文件体积。
+
+使用CDN（内容分发网络）
+
+这里可以关注CDN的三类实现：镜像、高速缓存、专线，以及智能路由器和负载均衡；
+
+为文件头指定Expires或C
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/26/Yahoo军规/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -740,30 +599,22 @@ Imagemagick可以帮你创建小巧的favicon。</p>
       
         
           
-            <h2>同步</h2>
-<ul>
-<li>所谓同步就是一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。</li>
-<li>当一个同步调用发出后，调用者要一直等待返回消息（结果）通知后，才能进行后续的执行。</li>
-</ul>
-<h2>异步</h2>
-<ul>
-<li>所谓异步是不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。</li>
-<li>当一个异步过程调用发出后，调用者不能立刻得到返回消息（结果）。</li>
-</ul>
-<h2>状态、通知和回调</h2>
-<ul>
-<li>如果执行部件用状态来通知，那么调用者就需要每隔一定时间检查一次，效率就很低（有些初学多线程编程的人，总喜欢用一个循环去检查某个变量的值，这其实是一种很严重的错误）。</li>
-<li>如果是使用通知的方式，效率则很高，因为执行部件几乎不需要做额外的操作。至于回调函数，其实和通知没太多区别。</li>
-</ul>
-<h2>阻塞与非阻塞</h2>
-<ul>
-<li>阻塞和非阻塞这两个概念与程序（线程）等待消息通知(无所谓同步或者异步)时的状态有关。也就是说阻塞与非阻塞主要是程序（线程）等待消息通知时的状态角度来说的。</li>
-<li>阻塞调用是指调用结果返回之前，当前线程会被挂起，一直处于等待消息通知，不能够执行其他业务。函数只有在得到结果之后才会返回。</li>
-<li>如果这个线程在等待当前函数返回时，仍在执行其他消息处理，那这种情况就叫做同步非阻塞。</li>
-<li>如果这个线程在等待当前函数返回时，没有执行其他消息处理，而是处于挂起等待状态，那这种情况就叫做同步阻塞。</li>
-</ul>
+          同步
 
-          
+所谓同步就是一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。
+当一个同步调用发出后，调用者要一直等待返回消息（结果）通知后，才能进行后续的执行。
+
+异步
+
+所谓异步是不需要
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/11/同步、异步、阻塞与非阻塞/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -926,45 +777,28 @@ Imagemagick可以帮你创建小巧的favicon。</p>
       
         
           
-            <h2>工厂模式的概念</h2>
-<ul>
-<li>实例化对象，用工厂方法代替new操作</li>
-<li>工厂模式包括工厂方法模式和抽象工厂模式</li>
-<li>抽象工厂模式是工厂方法模式的扩展</li>
-</ul>
-<h2>工厂模式的意图</h2>
-<ul>
-<li>定义一个接口来创建对象，但是让子类来决定哪些类需要被实例化</li>
-<li>工厂方法把实例化的工作推迟到子类中去实现</li>
-</ul>
-<h2>什么时候适合工厂模式</h2>
-<ul>
-<li>有一组类似的对象需要创建</li>
-<li>在编码时不能预见需要创建哪种类的实例</li>
-<li>系统需要考虑扩展性，不应依赖于产品类实例如何被创建、组合和表达的细节</li>
-</ul>
-<h2>设计</h2>
-<ul>
-<li>尽量松耦合，一个对象的依赖对象的变化与本身无关</li>
-<li>具体产品与客户端剥离，责任剥离</li>
-</ul>
-<h2>工厂模式</h2>
-<ul>
-<li>
-<p>创建接口
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.sunny.project;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 发型接口</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Administrator</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HairInterface</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line"><span class="comment">	 * 画图</span></div><div class="line"><span class="comment">	 */</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>创建工厂
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.sunny.project;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 发型工厂</span></div><div class="line"><span class="comment"> * <span class="doctag">@author</span> Administrator</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HairFactory</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line"><span class="comment">	 * 根据类型来创建对象</span></div><div class="line"><span class="comment">	 * <span class="doctag">@param</span> key</span></div><div class="line"><span class="comment">	 * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">	 */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> HairInterface <span class="title">getHair</span><span class="params">(String key)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(<span class="string">"left"</span>.equals(key))&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> LeftHair();			</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"right"</span>.equals(key))&#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">new</span> RightHair();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">  &#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line"><span class="comment">	 * 根据类的名称来生产对象</span></div><div class="line"><span class="comment">	 * <span class="doctag">@param</span> className</span></div><div class="line"><span class="comment">	 * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">	 */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> HairInterface <span class="title">getHairByClass</span><span class="params">(String className)</span></span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			  HairInterface hair = (HairInterface) Class.forName(className).newInstance();</div><div class="line">			  <span class="keyword">return</span> hair;</div><div class="line">		&#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</div><div class="line">			  <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			  e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</div><div class="line">			  <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			  e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">			  <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			  e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="comment">/**</span></div><div class="line"><span class="comment">   * 根据类的名称来生产对象</span></div><div class="line"><span class="comment">   * <span class="doctag">@param</span> className</span></div><div class="line"><span class="comment">   * <span class="doctag">@return</span></span></div><div class="line"><span class="comment">   */</span></div><div class="line">  <span class="function"><span class="keyword">public</span> HairInterface <span class="title">getHairByClassKey</span><span class="params">(String key)</span></span>&#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			  Map&lt;String, String&gt; map = <span class="keyword">new</span> PropertiesReader().getProperties();</div><div class="line"></div><div class="line">			  HairInterface hair = (HairInterface) Class.forName(map.get(key)).newInstance();</div><div class="line">			  <span class="keyword">return</span> hair;</div><div class="line">		&#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</div><div class="line">			  <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			  e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</div><div class="line">			  <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			  e.printStackTrace();</div><div class="line">		&#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">			  <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">			  e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>调用
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.sunny.project;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SunnyTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//		HairInterface left = new LeftHair();</span></div><div class="line">    <span class="comment">//		left.draw();</span></div><div class="line"></div><div class="line">		HairFactory factory = <span class="keyword">new</span> HairFactory();</div><div class="line">    <span class="comment">//		HairInterface right =  factory.getHair("right");</span></div><div class="line">    <span class="comment">//		right.draw();</span></div><div class="line"></div><div class="line">    <span class="comment">//		HairInterface left = factory.getHairByClass("com.sunny.project.LeftHair");</span></div><div class="line">    <span class="comment">//		left.draw();</span></div><div class="line"></div><div class="line">    <span class="comment">//		HairInterface hair = factory.getHairByClassKey("in");</span></div><div class="line">    <span class="comment">//		hair.draw();</span></div><div class="line">	 &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</li>
-</ul>
+          工厂模式的概念
 
-          
+实例化对象，用工厂方法代替new操作
+工厂模式包括工厂方法模式和抽象工厂模式
+抽象工厂模式是工厂方法模式的扩展
+
+工厂模式的意图
+
+定义一个接口来创建对象，但是让子类来决定哪些类需要被实例化
+工厂方法把实例化的工作推迟到子类中去实现
+
+什么时候适合工厂模式
+
+有一组类似的对象需要创
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/11/工厂模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1105,167 +939,25 @@ Imagemagick可以帮你创建小巧的favicon。</p>
       
         
           
-            <pre><code>Workspace：工作区
+          Workspace：工作区
 Index/Stage：暂存区
 Repository：仓库区（或本地仓库）
 Remote：远程仓库
-</code></pre>
-<h2>新建代码库</h2>
-<h3>在当前目录新建一个Git代码库</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git init</div></pre></td></tr></table></figure></p>
-<h3>新建一个目录，将其初始化为Git代码库</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git init [project-name]</div></pre></td></tr></table></figure></p>
-<h3>下载一个项目和它的整个代码历史</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> [url]</div></pre></td></tr></table></figure></p>
-<h2>配置</h2>
-<pre><code>Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。
-</code></pre>
-<h3>显示当前的Git配置</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --list</div></pre></td></tr></table></figure></p>
-<h3>编辑Git配置文件</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config -e [--global]</div></pre></td></tr></table></figure></p>
-<h3>设置提交代码时的用户信息</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config [--global] user.name <span class="string">"[name]"</span></div><div class="line">$ git config [--global] user.email <span class="string">"[email address]"</span></div></pre></td></tr></table></figure></p>
-<h2>增加/删除文件</h2>
-<h3>添加指定文件到暂存区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add [file1] [file2] ...</div></pre></td></tr></table></figure></p>
-<h3>添加指定目录到暂存区，包括子目录</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add [dir]</div></pre></td></tr></table></figure></p>
-<h3>添加当前目录的所有文件到暂存区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git add .</div></pre></td></tr></table></figure></p>
-<h3>删除工作区文件，并且将这次删除放入暂存区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rm [file1] [file2] ...</div></pre></td></tr></table></figure></p>
-<h3>停止追踪指定文件，但该文件会保留在工作区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rm --cached [file]</div></pre></td></tr></table></figure></p>
-<h3>改名文件，并且将这个改名放入暂存区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git mv [file-original] [file-renamed]</div></pre></td></tr></table></figure></p>
-<h2>代码提交</h2>
-<h3>提交暂存区到仓库区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit -m [message]</div></pre></td></tr></table></figure></p>
-<h3>提交暂存区的指定文件到仓库区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit [file1] [file2] ... -m [message]</div></pre></td></tr></table></figure></p>
-<h3>提交工作区自上次commit之后的变化，直接到仓库区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit -a</div></pre></td></tr></table></figure></p>
-<h3>提交时显示所有diff信息</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit -v</div></pre></td></tr></table></figure></p>
-<h3>使用一次新的commit，替代上一次提交</h3>
-<h3>如果代码没有任何新变化，则用来改写上一次commit的提交信息</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --amend -m [message]</div></pre></td></tr></table></figure></p>
-<h3>重做上一次commit，并包括指定文件的新变化</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --amend [file1] [file2] ...</div></pre></td></tr></table></figure></p>
-<h2>分支</h2>
-<h3>列出所有本地分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch</div></pre></td></tr></table></figure></p>
-<h3>列出所有远程分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -r</div></pre></td></tr></table></figure></p>
-<h3>列出所有本地分支和远程分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -a</div></pre></td></tr></table></figure></p>
-<h3>新建一个分支，但依然停留在当前分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch [branch-name]</div></pre></td></tr></table></figure></p>
-<h3>新建一个分支，并切换到该分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b [branch]</div></pre></td></tr></table></figure></p>
-<h3>新建一个分支，指向指定commit</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch [branch] [commit]</div></pre></td></tr></table></figure></p>
-<h3>新建一个分支，与指定的远程分支建立追踪关系</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch --track [branch] [remote-branch]</div></pre></td></tr></table></figure></p>
-<h3>切换到指定分支，并更新工作区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout [branch-name]</div></pre></td></tr></table></figure></p>
-<h3>建立追踪关系，在现有分支与指定的远程分支之间</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch --<span class="built_in">set</span>-upstream [branch] [remote-branch]</div></pre></td></tr></table></figure></p>
-<h3>合并指定分支到当前分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git merge [branch]</div></pre></td></tr></table></figure></p>
-<h3>选择一个commit，合并进当前分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git cherry-pick [commit]</div></pre></td></tr></table></figure></p>
-<h3>删除分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -d [branch-name]</div></pre></td></tr></table></figure></p>
-<h3>删除远程分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git push origin --delete [branch-name]</div><div class="line">$ git branch -dr [remote/branch]</div></pre></td></tr></table></figure></p>
-<h2>标签</h2>
-<h3>列出所有tag</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag</div></pre></td></tr></table></figure></p>
-<h3>新建一个tag在当前commit</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag [tag]</div></pre></td></tr></table></figure></p>
-<h3>新建一个tag在指定commit</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag [tag] [commit]</div></pre></td></tr></table></figure></p>
-<h3>查看tag信息</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git show [tag]</div></pre></td></tr></table></figure></p>
-<h3>提交指定tag</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push [remote] [tag]</div></pre></td></tr></table></figure></p>
-<h3>提交所有tag</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push [remote] --tags</div></pre></td></tr></table></figure></p>
-<h3>新建一个分支，指向某个tag</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b [branch] [tag]</div></pre></td></tr></table></figure></p>
-<h2>查看信息</h2>
-<h3>显示有变更的文件</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git status</div></pre></td></tr></table></figure></p>
-<h3>显示当前分支的版本历史</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">log</span></div></pre></td></tr></table></figure></p>
-<h3>显示commit历史，以及每次commit发生变更的文件</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">log</span> --<span class="built_in">stat</span></div></pre></td></tr></table></figure></p>
-<h3>显示某个文件的版本历史，包括文件改名</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">log</span> --follow [file]</div><div class="line">$ git whatchanged [file]</div></pre></td></tr></table></figure></p>
-<h3>显示指定文件相关的每一次diff</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">log</span> -p [file]</div></pre></td></tr></table></figure></p>
-<h3>显示指定文件是什么人在什么时间修改过</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git blame [file]</div></pre></td></tr></table></figure></p>
-<h3>显示暂存区和工作区的差异</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git diff</div></pre></td></tr></table></figure></p>
-<h3>显示暂存区和上一个commit的差异</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git diff --cached [file]</div></pre></td></tr></table></figure></p>
-<h3>显示工作区与当前分支最新commit之间的差异</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git diff HEAD</div></pre></td></tr></table></figure></p>
-<h3>显示两次提交之间的差异</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git diff [first-branch]...[second-branch]</div></pre></td></tr></table></figure></p>
-<h3>显示某次提交的元数据和内容变化</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git show [commit]</div></pre></td></tr></table></figure></p>
-<h3>显示某次提交发生变化的文件</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git show --name-only [commit]</div></pre></td></tr></table></figure></p>
-<h3>显示某次提交时，某个文件的内容</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git show [commit]:[filename]</div></pre></td></tr></table></figure></p>
-<h3>显示当前分支的最近几次提交</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reflog</div></pre></td></tr></table></figure></p>
-<h2>远程同步</h2>
-<h3>下载远程仓库的所有变动</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git fetch [remote]</div></pre></td></tr></table></figure></p>
-<h3>显示所有远程仓库</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git remote -v</div></pre></td></tr></table></figure></p>
-<h3>显示某个远程仓库的信息</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git remote show [remote]</div></pre></td></tr></table></figure></p>
-<h3>增加一个新的远程仓库，并命名</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git remote add [shortname] [url]</div></pre></td></tr></table></figure></p>
-<h3>取回远程仓库的变化，并与本地分支合并</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull [remote] [branch]</div></pre></td></tr></table></figure></p>
-<h3>上传本地指定分支到远程仓库</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push [remote] [branch]</div></pre></td></tr></table></figure></p>
-<h3>强行推送当前分支到远程仓库，即使有冲突</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push [remote] --force</div></pre></td></tr></table></figure></p>
-<h3>推送所有分支到远程仓库</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push [remote] --all</div></pre></td></tr></table></figure></p>
-<h2>撤销</h2>
-<h3>恢复暂存区的指定文件到工作区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout [file]</div></pre></td></tr></table></figure></p>
-<h3>恢复某个commit的指定文件到工作区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout [commit] [file]</div></pre></td></tr></table></figure></p>
-<h3>恢复上一个commit的所有文件到工作区</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout .</div></pre></td></tr></table></figure></p>
-<h3>重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset [file]</div></pre></td></tr></table></figure></p>
-<h3>重置暂存区与工作区，与上一次commit保持一致</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset --hard</div></pre></td></tr></table></figure></p>
-<h3>重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset [commit]</div></pre></td></tr></table></figure></p>
-<h3>重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset --hard [commit]</div></pre></td></tr></table></figure></p>
-<h3>重置当前HEAD为指定commit，但保持暂存区和工作区不变</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset --keep [commit]</div></pre></td></tr></table></figure></p>
-<h3>新建一个commit，用来撤销指定commit</h3>
-<h3>后者的所有变化都将被前者抵消，并且应用到当前分支</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git revert [commit]</div></pre></td></tr></table></figure></p>
-<h2>其他</h2>
-<h3>生成一个可供发布的压缩包</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git archive</div></pre></td></tr></table></figure></p>
 
-          
+新建代码库
+在当前目录新建一个Git代码库
+1$ git init
+新建一个目录，将其初始化为Git代码库
+1$ git init [project-name]
+下载一个
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/11/git/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1428,38 +1120,34 @@ Remote：远程仓库
       
         
           
-            <ul>
-<li>Class类的使用</li>
-<li>方法的反射</li>
-<li>成员变量的反射</li>
-<li>构造函数的反射</li>
-<li>Java类的加载机制</li>
-</ul>
-<h2>Class类</h2>
-<ul>
-<li>
-<p>在面向对象的世界里，万事万物皆为对象。</p>
-</li>
-<li>
-<p>类是对象，类是Java.lang.Class类的实例对象</p>
-</li>
-<li>
-<p>There is a class named Class</p>
-</li>
-<li>
-<p>任何一个类都是Class类的实例对象，这个实例对象有三种表示方式
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Foo foo1 = <span class="keyword">new</span> Foo();</div><div class="line"></div><div class="line"><span class="comment">//第一种表示方式--&gt;实际告诉我们任何一个类都有一个隐含的静态成员变量class</span></div><div class="line">Class c1 = Foo.class;</div><div class="line"></div><div class="line"><span class="comment">//第二种表达方式，已经知道该类的对象通过getClass方法</span></div><div class="line">Class c2 = foo1.getClass();</div><div class="line"></div><div class="line"><span class="comment">/*官网：C1，C2表示了Foo类的类类型（class type）*/</span></div><div class="line"></div><div class="line"><span class="comment">//不管C1或者C2都代表了Foo类的类类型，一个类只可能是Class类的一个实例对象</span></div><div class="line"></div><div class="line"><span class="comment">//第三种表达方式</span></div><div class="line">Class c3 = nulll;</div><div class="line">c3 = Class.forName(<span class="string">"com.imooc.reflet.Foo"</span>);</div></pre></td></tr></table></figure></p>
-</li>
-<li>
-<p>Class.forName(&quot;类的全称&quot;)</p>
-<ul>
-<li>不仅表示类的类类型，还代表了动态加载类</li>
-<li>编译时刻加载的类是静态加载类，运行时刻加载类是动态加载类型</li>
-</ul>
-</li>
-</ul>
-
           
+Class类的使用
+方法的反射
+成员变量的反射
+构造函数的反射
+Java类的加载机制
+
+Class类
+
+
+在面向对象的世界里，万事万物皆为对象。
+
+
+类是对象，类是Java.lang.Class类的实例对象
+
+
+There is a class named Class
+
+
+任何一个类都是Class
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/11/Java反射/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1622,117 +1310,49 @@ Remote：远程仓库
       
         
           
-            <h2>高级特性</h2>
-<ul>
-<li>反射</li>
-<li>泛型</li>
-<li>注释符</li>
-<li>自动装箱和拆箱</li>
-<li>枚举类</li>
-<li>可变参数</li>
-<li>可变返回类型</li>
-<li>增强循环</li>
-<li>静态导入</li>
-</ul>
-<h2>核心编程</h2>
-<ul>
-<li>IO</li>
-<li>多线程</li>
-<li>实体类</li>
-<li>集合类</li>
-<li>正则表达式</li>
-<li>XML和属性文件</li>
-</ul>
-<h2>网络编程</h2>
-<ul>
-<li>Applet</li>
-<li>Socket/TCP/UDP</li>
-<li>NIO</li>
-<li>RMI</li>
-<li>CORBA</li>
-</ul>
-<h2>Java语法基础</h2>
-<ul>
-<li>类</li>
-<li>抽象类</li>
-<li>接口</li>
-<li>最终类</li>
-<li>静态类</li>
-<li>匿名类</li>
-<li>内部类</li>
-<li>异常类</li>
-<li>编码规范</li>
-</ul>
-<h2>Java开发环境</h2>
-<ul>
-<li>JDK</li>
-<li>JVM</li>
-<li>Eclipse</li>
-<li>Linux</li>
-</ul>
-<h2>JavaWeb核心编程</h2>
-<ul>
-<li>三大组件（JSP、JavaBean、Servlet）</li>
-<li>扩展技术（EL、JSTL、Taglib）</li>
-</ul>
-<h2>网页开发技术</h2>
-<ul>
-<li>HTML</li>
-<li>XML</li>
-<li>CSS</li>
-<li>JavaScript</li>
-<li>AJAX</li>
-</ul>
-<h2>数据库</h2>
-<ul>
-<li>SQL</li>
-<li>MySQL</li>
-<li>JDBC</li>
-</ul>
-<h2>Web服务器</h2>
-<ul>
-<li>Tomcat</li>
-<li>Jetty</li>
-</ul>
-<h2>JavaWeb开源技术与框架</h2>
-<ul>
-<li>工作流</li>
-<li>规则引擎</li>
-<li>搜索引擎</li>
-<li>缓存引擎</li>
-<li>任务调度</li>
-<li>身份认证</li>
-<li>报表服务</li>
-<li>系统测试</li>
-<li>集群</li>
-<li>负载均衡</li>
-<li>故障转移</li>
-</ul>
-<h2>JavaWeb分布式开发技术</h2>
-<ul>
-<li>JTA（Java事务管理）</li>
-<li>JAAS（Java验证和授权服务）</li>
-<li>JNDI（Java命名和目录服务）</li>
-<li>JavaMail（Java邮件服务）</li>
-<li>JMS（Java信息服务）</li>
-<li>WebService（Web服务）</li>
-<li>JCA（Java连接体系）</li>
-<li>JMS（Java管理体系）</li>
-</ul>
-<h2>Java与UML建模</h2>
-<ul>
-<li>对象图</li>
-<li>用例图</li>
-<li>组件图</li>
-<li>部署图</li>
-<li>序列图</li>
-<li>交互图</li>
-<li>活动图</li>
-<li>正向工程</li>
-<li>逆向工程</li>
-</ul>
+          高级特性
 
-          
+反射
+泛型
+注释符
+自动装箱和拆箱
+枚举类
+可变参数
+可变返回类型
+增强循环
+静态导入
+
+核心编程
+
+IO
+多线程
+实体类
+集合类
+正则表达式
+XML和属性文件
+
+网络编程
+
+Applet
+Socket/TCP/UDP
+NIO
+RMI
+CORBA
+
+Java语法基础
+
+类
+抽象类
+接口
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/11/Java/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1895,45 +1515,52 @@ Remote：远程仓库
       
         
           
-            <ul>
-<li>创建式模式
-<ul>
-<li>抽象工厂</li>
-<li>建造者</li>
-<li>工厂方法</li>
-<li>原型</li>
-<li>单例</li>
-</ul>
-</li>
-<li>构造型模式
-<ul>
-<li>适配器</li>
-<li>桥接</li>
-<li>组合</li>
-<li>装饰</li>
-<li>外观</li>
-<li>享元</li>
-<li>代理</li>
-</ul>
-</li>
-<li>行为型模式
-<ul>
-<li>责任链</li>
-<li>命令</li>
-<li>解释器</li>
-<li>迭代子</li>
-<li>中介者</li>
-<li>备忘录</li>
-<li>观察者</li>
-<li>状态</li>
-<li>策略</li>
-<li>模板方法</li>
-<li>访问者</li>
-</ul>
-</li>
-</ul>
+          
+创建式模式
+
+抽象工厂
+建造者
+工厂方法
+原型
+单例
+
+
+构造型模式
+
+适配器
+桥接
+组合
+装饰
+外观
+享元
+代理
+
+
+行为型模式
+
+责任链
+命令
+解释器
+迭代子
+中介者
+备忘录
+观察者
+状态
+策略
+模板方法
+访问者
+
+
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/11/Java设计模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2074,12 +1701,19 @@ Remote：远程仓库
       
         
           
-            <h2>简述</h2>
-<blockquote>
-<p>RBAC（Role-Based Access Control）即基于角色的权限访问控制。</p>
-</blockquote>
+          简述
+
+RBAC（Role-Based Access Control）即基于角色的权限访问控制。
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/11/RBAC/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2220,48 +1854,24 @@ Remote：远程仓库
       
         
           
-            <h2>理论</h2>
-<ul>
-<li>
-<p>GUID(Globally Unique Identifier)是一个128位整数（16字节），可用于所有需要唯一标识符的计算机和网络。此标识符重复的可能性非常小。</p>
-</li>
-<li>
-<p>GUID是由网卡上的标识数字（每个网卡都有唯一的标识号）以及CPU时钟的唯一数字生成的一个16字节的二进制值。</p>
-</li>
-<li>
-<p>GUID的格式为“xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”,其中每一个x是0-9或a-f范围内的一个十六进制的数字。</p>
-</li>
-<li>
-<p>世界上的任何两台计算机都不会生成重复的GUID值（概率很小）。</p>
-</li>
-<li>
-<p>GUID主要用于在拥有多个节点、多台计算机的网络或系统中，分配必须具有唯一性的表示符。</p>
-</li>
-<li>
-<p>在Windows平台上，GUID应用非常广泛：注册表、类及接口标识、数据库、甚至自动生成的机器名、目录名等。</p>
-</li>
-</ul>
-<h3>Time</h3>
-<ul>
-<li>时间戳。将objectid的前4位进行提取，然后按照十六进制转为十进制，这个数字就是一个时间戳。通过时间戳的转换，可以很容易看清时间格式。</li>
-</ul>
-<h3>Machine</h3>
-<ul>
-<li>机器码。接下来的三个字节是所在主机的唯一标识符，一般是机器主机的散列值，这样就确保了不同主机生成不同的机器hash值，确保在分布式中不造成冲突，这也就是在同一台机器生成的objectid中间的字符串都是一模一样的原因。</li>
-</ul>
-<h3>PID</h3>
-<ul>
-<li>进程ID。上面的Machine是为了确保在不同机器产生的objectId不冲突，而pid就是为了在同一台机器不同的mongodb进程产生了objectId不冲突，接下来的两位就是产生objectId的进程标识符。</li>
-</ul>
-<h3>INC</h3>
-<ul>
-<li>自增计数器。前面的九个字节是保证了一秒内不同机器不同进程生成objectId不冲突，最后面的三个字节是一个自动增加的计数器，用来确保在同一秒内产生的objectId也不会发现冲突，允许2^24等于16777216条记录的唯一性。</li>
-</ul>
-<blockquote>
-<p>&quot;Big Bang&quot; was caused when two GUIDs collided.</p>
-</blockquote>
+          理论
 
-          
+
+GUID(Globally Unique Identifier)是一个128位整数（16字节），可用于所有需要唯一标识符的计算机和网络。此标识符重复的可能性非常小。
+
+
+GUID是由网卡上的标识数字（每个网卡都有唯一的标识号）以及CPU时钟的唯一数字生成的一个16字节的二进制值。
+
+
+GU
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/11/GUID/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2435,45 +2045,25 @@ Remote：远程仓库
       
         
           
-            <h2>四个核心</h2>
-<h3>自动配置</h3>
-<ul>
-<li>Spring Boot会为常见配置场景进行自动配置。</li>
-</ul>
-<h3>起步依赖</h3>
-<ul>
-<li>Spring Boot通过起步依赖为项目的依赖管理提供帮助。</li>
-<li>Spring Boot起步依赖基本都以<code>spring-boot-starter</code>打头，随后是直接代表其功能的名字，比如<code>web</code>、 <code>test</code>。</li>
-</ul>
-<h3>命令行界面（CLI）</h3>
-<ul>
-<li><code>CLI</code>能检测到你使用了哪些类，它知道要向<code>Classpath</code>中添加哪些起步依赖才能让它运转起来。一旦那些依赖出现在<code>Classpath</code>中，一系列自动配置就会接踵而来。</li>
-</ul>
-<h3>Actuator</h3>
-<ul>
-<li>Actuator则提供在运行时检视应用程序内部情况的能力。</li>
-</ul>
-<h2>初步</h2>
-<h3><code>@SpringBootApplication</code></h3>
-<blockquote>
-<p>开启了Spring的组件扫描和Spring Boot的自动配置功能。</p>
-</blockquote>
-<h4>Spring的<code>@Configuration</code></h4>
-<blockquote>
-<p>标明该类使用Spring基于Java的配置</p>
-</blockquote>
-<h4>Spring的<code>@ComponentScan</code></h4>
-<blockquote>
-<p>启用组件扫描</p>
-</blockquote>
-<h4>Spring Boot的 <code>@EnableAutoConfiguration</code></h4>
-<blockquote>
-<p>开启<code>Spring Boot</code>自动配置</p>
-</blockquote>
-<h3><code>application.properties</code></h3>
-<p>server.port=8000</p>
+          四个核心
+自动配置
 
-          
+Spring Boot会为常见配置场景进行自动配置。
+
+起步依赖
+
+Spring Boot通过起步依赖为项目的依赖管理提供帮助。
+Spring Boot起步依赖基本都以spring-boot-starter打头，随后是直接代表其功能的名字，比如web、 test。
+
+命令行界面
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/10/springboot/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2643,11 +2233,14 @@ Remote：远程仓库
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Nebula</span>
+  <span>
+    <a href="http://www.miitbeian.gov.cn/">闽ICP备15027851号</a> 
+  </span>
 </div>
 
 
